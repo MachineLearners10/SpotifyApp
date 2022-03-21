@@ -6,12 +6,12 @@ import { getTokenFromResponse } from "./spotify";
 import "./App.css";
 import Login from "./Login";
 import Home from "./Home";
-
+import { useDispatch } from "react-redux";
 const s = new SpotifyWebApi();
 
 function App() {
-  const [{ token }, dispatch] = useStateValue();
-
+  const [{ token }] = useStateValue();
+  const dispatch = useDispatch();
   useEffect(() => {
     // Set token
     const hash = getTokenFromResponse();
@@ -33,12 +33,12 @@ function App() {
         })
       );
 
-      s.getMyTopArtists().then((response) =>
-        dispatch({
-          type: "SET_TOP_ARTISTS",
-          top_artists: response,
-        })
-      );
+      // s.getMyTopArtists().then((response) =>
+      //   dispatch({
+      //     type: "SET_TOP_ARTISTS",
+      //     top_artists: response,
+      //   })
+      // );
 
       dispatch({
         type: "SET_SPOTIFY",
@@ -52,13 +52,18 @@ function App() {
           user,
         });
       });
-
-      s.getUserPlaylists().then((playlists) => {
+      s.getMySavedTracks().then((response) => {
         dispatch({
-          type: "SET_PLAYLISTS",
-          playlists,
+          type: "SET_USER_TRACKS",
+          user_tracks: response,
         });
       });
+      // s.getUserPlaylists().then((playlists) => {
+      //   dispatch({
+      //     type: "SET_PLAYLISTS",
+      //     playlists,
+      //   });
+      // });
     }
   }, [token, dispatch]);
 

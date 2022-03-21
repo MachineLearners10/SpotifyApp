@@ -8,6 +8,7 @@ export const initialState = {
   top_artists: null,
   playing: false,
   item: null,
+  user_tracks: null,
 };
 
 const reducer = (state, action) => {
@@ -62,6 +63,11 @@ const reducer = (state, action) => {
       };
     default:
       return state;
+    case "SET_USER_TRACKS":
+      return {
+        ...state,
+        tracks: action.user_tracks,
+      };
   }
 };
 
