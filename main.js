@@ -1,10 +1,19 @@
 const app = require('./server/index.js')
 const PORT = 8888
-const db = require('./server/db/database')
+const { default: mongoose } = require('mongoose')
+require('dotenv').config();
 
-db.sync() // if you update your db schemas, make sure you drop the tables first and then recreate them
-  .then(() => {
-    console.log('db synced')
-    app.listen(PORT, () => console.log(`studiously serving silly sounds on port ${PORT}`))
-  })
+async function letsRoll () {
+  try {
+    await mongoose.connect(`mongodb+srv://${process.env.GOOSENAME}:${process.env.SECRETGOOSE}@cluster0.jz5ok.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, 
+    { useNewUrlParser: true }, 
+    () => mongoose.connection.readyState ? console.log('The geese are in flight!') : console.log('Unable to get geese off the ground :('))
+    app.listen(PORT, () => console.log(`Goin through it on PORT:${PORT}`));
+  } catch (error) {
+    console.log(error);
+    app.listen(PORT, () => console.log(`Goin through it on PORT:${PORT}`));
+  }
+}
+
+letsRoll();
 

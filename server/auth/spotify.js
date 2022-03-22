@@ -2,6 +2,7 @@ const SpotifyStrategy = require('passport-spotify').Strategy;
 const passport = require('passport');
 const router = require('express').Router();
 const User = require('../db/models/user');
+const mongoose = require('mongoose');
 
 passport.use(
   new SpotifyStrategy(
@@ -10,14 +11,20 @@ passport.use(
       clientSecret: process.env.SECRET,
       callbackURL: 'http://localhost:8888/auth/spotify/callback'
     },
-    function(accessToken, refreshToken, expires_in, profile, done) {
-      User.findOrCreate({
-        where: { spotifyId: profile.id },
-        defaults: { spotifyId: profile.id, email: profile.emails[0].value, token: accessToken }
-      }).then(async function([user]) {
-        await user.update({ token: accessToken })
-        return done(null, user)
-      })
+
+    async function (accessToken, refreshToken, expires_in, profile, done) {
+      const user = new User({
+        email: profile.emails[0].value,
+        spotifyId: profile.id,
+        token: accessToken
+      });
+      if (!User.exists({ spotfyId: profile.id })) {
+        await user.save()
+      } else {
+        await User.findOneAndUpdate({ spotfyId: profile.id }, {token: accessToken})
+        return done(null, user);
+      }
+      return done(null, user)
     }
   )
 );
