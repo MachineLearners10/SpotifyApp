@@ -1,45 +1,57 @@
 {
-  "name": "SpotifyApp",
-  "version": "0.1.0",
-  "private": true,
+  "name": "spotifyapp",
+  "version": "1.0.0",
+  "description": "An app to give you a playlist based of your music taste and desired mood",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build-watch & npm run start-server",
+    "start-server": "nodemon main.js -e html,js,css --ignore public",
+    "build-watch": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MachineLearners10/SpotifyApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MachineLearners10/SpotifyApp/issues"
+  },
+  "homepage": "https://github.com/MachineLearners10/SpotifyApp#readme",
   "dependencies": {
-    "@material-ui/core": "^4.12.3",
-    "@material-ui/icons": "^4.11.2",
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/user-event": "^13.5.0",
+    "@babel/core": "^7.17.7",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/register": "^7.17.7",
+    "axios": "^0.26.1",
+    "babel-loader": "^8.2.3",
+    "babel-polyfill": "^6.26.0",
+    "cookie-parser": "^1.4.6",
+    "core-js": "^3.21.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "node-polyfill-webpack-plugin": "^1.1.4",
+    "nodemon": "^2.0.15",
+    "passport": "^0.5.2",
+    "passport-spotify": "^2.0.0",
+    "pg": "^8.7.3",
+    "querystring": "^0.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
-    "react-scripts": "5.0.0",
-    "spotify-web-api-js": "^1.5.2",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "PORT=8888 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@testing-library/react": "^12.1.4"
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.1",
+    "request": "^2.79.0",
+    "sequelize": "^6.17.0",
+    "spotify-web-api-node": "^5.0.2",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   }
 }
