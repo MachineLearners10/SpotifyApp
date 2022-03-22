@@ -1,10 +1,6 @@
 const router = require('express').Router();
 
-// router.get('/me', (req, res) => {
-//   res.json(req.user)
-// })
-
-router.use('/spotify', require('./spotify'))
+router.use('/spotify', require('./spotify'));
 
 router.get('/', (request, response) => {
   if (request.user == null) {
@@ -20,4 +16,4 @@ router.get('/', (request, response) => {
   response.json(user);
 })
 
-module.exports = router
+module.exports = router;
