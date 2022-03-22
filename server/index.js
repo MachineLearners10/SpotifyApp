@@ -2,7 +2,6 @@ const express = require('express');
 const sessions = require('express-session');
 require('dotenv').config();
 const path = require('path');
-const db = require('./db/database');
 const passport = require('passport');
 
 const app = express();
