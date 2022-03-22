@@ -9,7 +9,6 @@ const spotifyApi = new SpotifyWebApi({
 
 router.get('/topTracks', (req, res, next) => {
   try {
-    console.log(req.user.token)
     spotifyApi.setAccessToken(req.user.token);
     spotifyApi.getMyTopTracks()
     .then(function(data) {

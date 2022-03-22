@@ -18,10 +18,10 @@ passport.use(
         spotifyId: profile.id,
         token: accessToken
       });
-      if (!User.exists({ spotfyId: profile.id })) {
+      if (!User.exists({ spotifyId: profile.id })) {
         await user.save()
       } else {
-        await User.findOneAndUpdate({ spotfyId: profile.id }, {token: accessToken})
+        await User.findOneAndUpdate({ spotifyId: profile.id }, {token: accessToken})
         return done(null, user);
       }
       return done(null, user)
