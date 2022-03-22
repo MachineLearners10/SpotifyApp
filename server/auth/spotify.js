@@ -33,7 +33,7 @@ router.get(
   '/',
   passport.authenticate('spotify', {
     scope: [
-      'user-read-email',
+      'user-read-private user-read-email user-top-read'
     ]
   })
 )
