@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import store from './store';
 import { Provider } from 'react-redux';
-import Login from './components/Login';
+import MainRoutes from './components/MainRoutes';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Login />
+    <MainRoutes />
   </Provider>,
   document.getElementById('main')
 );
