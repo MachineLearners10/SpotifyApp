@@ -1,4 +1,6 @@
 const express = require('express');
+const sessions = require('express-session');
+require('dotenv').config();
 const path = require('path');
 const db = require('./db/database');
 const passport = require('passport');
@@ -9,9 +11,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.use('/auth', require('./auth'))
+app.use(sessions({ secret: process.env.SESSION_SECRET, saveUnitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.get("/helloWorld",)
+app.use('/auth', require('./auth'))
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'))

@@ -1,7 +1,6 @@
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const passport = require('passport');
 const router = require('express').Router();
-require('dotenv').config();
 const User = require('../db/models/user');
 
 passport.use(

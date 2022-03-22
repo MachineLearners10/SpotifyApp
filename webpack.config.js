@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
-  entry: ['./frontend/main'],
+  entry: ['babel-polyfill', './frontend/main'],
   output: {
     path: __dirname,
     filename: 'public/bundle.js',
