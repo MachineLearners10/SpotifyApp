@@ -11,11 +11,8 @@ router.get("/", (req, res, next) => {
   try {
     spotifyApi.setAccessToken(req.user.token);
     spotifyApi.getMyTopTracks().then(async function (data) {
-      console.log(req.user);
-      // console.log(data.body.items);
       let topSongs = data.body.items;
       topSongs.forEach(async song => {
-        console.log(count++);
         await User.updateOne({ spotifyId: req.user.spotifyId }, {$push: {topSongs: song}})
       })
       res.send(data.body.items);
