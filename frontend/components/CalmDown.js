@@ -2,38 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function CalmDown() {
-  const genres = [
-    "acoustic",
-    "afrobeat",
-    "ambient",
-    "blues",
-    "bossanova",
-    "chill",
-    "classical",
-    "comedy",
-    "country",
-    "folk",
-    "funk",
-    "garage",
-    "gospel",
-    "goth",
-    "groove",
-    "grunge",
-    "guitar",
-    "happy",
-    "jazz",
-    "movies",
-    "mpb",
-    "new-age",
-    "new-release",
-    "opera",
-    "party",
-    "piano",
-    "pop",
-    "power-pop",
-    "reggae",
-    "road-trip",
-  ];
+  const genres = ["chill", "rap", "hip-hop", "edm", "rock"];
   return (
     <div className="main-content">
       <h1 className="genre">Select a genre</h1>

@@ -6,6 +6,7 @@ import CalmDown from "./CalmDown";
 import PlayList from "./PlayList";
 import HelloWorld from "./HelloWorld";
 
+import Test from "./Test";
 const MainRoutes = () => {
   return (
     <Router>
@@ -17,6 +18,7 @@ const MainRoutes = () => {
           <Route path="/energizeme" element={<EnergizeMe />} />
           <Route path="/calmdown" element={<CalmDown />} />
           <Route path="/playlist" element={<PlayList />} />
+          <Route exact path="/test" element={<Test />} />
         </Routes>
       </div>
     </Router>

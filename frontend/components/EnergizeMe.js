@@ -2,27 +2,30 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function EnergizeMe() {
-  const genres = [
-    "acoustic",
-    "chill",
-    "country",
-    "dance",
-    "dancehall",
-    "disco",
-    "electronic",
-    "happy",
-    "hip-hop",
-    "holidays",
-    "indie-pop",
-    "k-pop",
-    "latin",
-    "latino",
-    "party",
-    "pop",
-    "reggae",
-    "reggaeton",
-    "rock",
-  ];
+  // const genres = [
+  //   "acoustic",
+  //   "chill",
+  //   "country",
+  //   "dance",
+  //   "dancehall",
+  //   "disco",
+  //   "electronic",
+  //   "happy",
+  //   "hip-hop",
+  //   "holidays",
+  //   "indie-pop",
+  //   "k-pop",
+  //   "latin",
+  //   "latino",
+  //   "party",
+  //   "pop",
+  //   "reggae",
+  //   "reggaeton",
+  //   "rock",
+  // ];
+
+  const genres = ["chill", "rap", "hip-hop", "edm", "rock"];
+
   return (
     <div className="main-content">
       <h1 className="genre">Select a genre</h1>
