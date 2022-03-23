@@ -18,4 +18,14 @@ router.get("/", (req, res, next) => {
   }
 });
 
+router.get("/recs", (req, res, next) => {
+  try {
+    spotifyApi.setAccessToken(req.user.token);
+    spotifyApi.getRecommendations().then(function (data) {
+      res.send(data.body.items);
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;
