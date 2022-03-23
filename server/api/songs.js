@@ -11,13 +11,18 @@ router.get("/topTracks", (req, res, next) => {
   try {
     spotifyApi.setAccessToken(req.user.token);
     spotifyApi.getMyTopTracks()
-      .then(function (data) {
-      res.send(data.body.items);
+      .then(async function (data) {
+        let topSongs = data.body.items;
+        topSongs.forEach(async song => {
+          await User.updateOne({ spotifyId: req.user.spotifyId }, {$push: {topSongs: song}})
+      });
+    res.send(data.body.items);
     });
   } catch (error) {
     next(error);
   }
 });
+
 
 router.get("/playlist", (req, res, next) => {
   spotifyApi.setAccessToken(req.user.token);
@@ -27,5 +32,6 @@ router.get("/playlist", (req, res, next) => {
       res.send(trackUris);
     })
 })
+
 
 module.exports = router;
