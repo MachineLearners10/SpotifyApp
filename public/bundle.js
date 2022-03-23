@@ -1,6 +1,600 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@gilbarbara/react-range-slider/esm/index.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@gilbarbara/react-range-slider/esm/index.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles */ "./node_modules/@gilbarbara/react-range-slider/esm/styles.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/@gilbarbara/react-range-slider/esm/utils.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+
+
+var RangeSlider = /** @class */ (function (_super) {
+    __extends(RangeSlider, _super);
+    function RangeSlider(props) {
+        var _this = _super.call(this, props) || this;
+        _this.lastCoordinates = { x: 0, y: 0 };
+        _this.mounted = false;
+        _this.offset = { x: 0, y: 0 };
+        _this.start = { x: 0, y: 0 };
+        _this.getDragPosition = function (_a) {
+            var x = _a.x, y = _a.y;
+            return {
+                x: x + _this.start.x - _this.offset.x,
+                y: _this.offset.y + _this.start.y - y,
+            };
+        };
+        _this.updateOptions = function (_a) {
+            var _b, _c, _d, _e, _f, _g, _h, _j;
+            var x = _a.x, y = _a.y;
+            var _k = _this, rail = _k.rail, track = _k.track;
+            _this.start = {
+                x: (_c = (_b = rail.current) === null || _b === void 0 ? void 0 : _b.offsetLeft) !== null && _c !== void 0 ? _c : 0,
+                y: ((_e = (_d = track.current) === null || _d === void 0 ? void 0 : _d.offsetHeight) !== null && _e !== void 0 ? _e : 0) -
+                    ((_g = (_f = rail.current) === null || _f === void 0 ? void 0 : _f.offsetTop) !== null && _g !== void 0 ? _g : 0) -
+                    ((_j = (_h = rail.current) === null || _h === void 0 ? void 0 : _h.offsetHeight) !== null && _j !== void 0 ? _j : 0),
+            };
+            _this.lastCoordinates = { x: x, y: y };
+            _this.offset = { x: x, y: y };
+        };
+        _this.updatePosition = function (position) {
+            _this.setState((0,_utils__WEBPACK_IMPORTED_MODULE_1__.getPosition)(position, _this.props, _this.slider.current));
+        };
+        _this.handleBlur = function () {
+            document.removeEventListener('keydown', _this.handleKeydown);
+        };
+        _this.handleClickTrack = function (e) {
+            var onAfterEnd = _this.props.onAfterEnd;
+            var isDragging = _this.state.isDragging;
+            if (!isDragging) {
+                var element = e.currentTarget;
+                var _a = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getCoordinates)(e, _this.lastCoordinates), x = _a.x, y = _a.y;
+                var _b = element.getBoundingClientRect(), left = _b.left, bottom = _b.bottom;
+                var nextPosition = {
+                    x: x - left,
+                    y: bottom - y,
+                };
+                _this.lastCoordinates = { x: x, y: y };
+                _this.updatePosition(nextPosition);
+                if (onAfterEnd) {
+                    onAfterEnd((0,_utils__WEBPACK_IMPORTED_MODULE_1__.getPosition)(nextPosition, _this.props, _this.slider.current), _this.props);
+                }
+            }
+            else if (_this.mounted) {
+                _this.setState({ isDragging: false });
+            }
+        };
+        _this.handleDrag = function (e) {
+            e.preventDefault();
+            var coordinates = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getCoordinates)(e, _this.lastCoordinates);
+            _this.updatePosition(_this.getDragPosition(coordinates));
+            _this.lastCoordinates = coordinates;
+        };
+        _this.handleDragEnd = function (e) {
+            e.preventDefault();
+            var _a = _this.props, onAfterEnd = _a.onAfterEnd, onDragEnd = _a.onDragEnd;
+            var position = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getPosition)(_this.getDragPosition((0,_utils__WEBPACK_IMPORTED_MODULE_1__.getCoordinates)(e, _this.lastCoordinates)), _this.props, _this.slider.current);
+            document.removeEventListener('mousemove', _this.handleDrag);
+            document.removeEventListener('mouseup', _this.handleDragEnd);
+            document.removeEventListener('touchmove', _this.handleDrag);
+            document.removeEventListener('touchend', _this.handleDragEnd);
+            document.removeEventListener('touchcancel', _this.handleDragEnd);
+            /* istanbul ignore else */
+            if (onDragEnd) {
+                onDragEnd(position, _this.props);
+            }
+            /* istanbul ignore else */
+            if (onAfterEnd) {
+                onAfterEnd(position, _this.props);
+            }
+        };
+        _this.handleFocus = function () {
+            document.addEventListener('keydown', _this.handleKeydown, { passive: false });
+        };
+        _this.handleKeydown = function (e) {
+            var _a = _this.state, innerX = _a.x, innerY = _a.y;
+            var _b = _this.props, x = _b.x, y = _b.y;
+            var _c = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getBaseProps)(_this.props), axis = _c.axis, xMax = _c.xMax, xMin = _c.xMin, xStep = _c.xStep, yMax = _c.yMax, yMin = _c.yMin, yStep = _c.yStep;
+            var codes = { down: 'ArrowDown', left: 'ArrowLeft', up: 'ArrowUp', right: 'ArrowRight' };
+            /* istanbul ignore else */
+            if (Object.values(codes).indexOf(e.code) > -1) {
+                e.preventDefault();
+                var position = {
+                    x: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined)(x) ? innerX : (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getNormalizedValue)('x', _this.props),
+                    y: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined)(y) ? innerY : (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getNormalizedValue)('y', _this.props),
+                };
+                var xMinus = position.x - xStep <= xMin ? xMin : position.x - xStep;
+                var xPlus = position.x + xStep >= xMax ? xMax : position.x + xStep;
+                var yMinus = position.y - yStep <= yMin ? yMin : position.y - yStep;
+                var yPlus = position.y + yStep >= yMax ? yMax : position.y + yStep;
+                switch (e.code) {
+                    case codes.up: {
+                        if (axis === 'x') {
+                            position.x = xPlus;
+                        }
+                        else {
+                            position.y = yPlus;
+                        }
+                        break;
+                    }
+                    case codes.down: {
+                        if (axis === 'x') {
+                            position.x = xMinus;
+                        }
+                        else {
+                            position.y = yMinus;
+                        }
+                        break;
+                    }
+                    case codes.left: {
+                        if (axis === 'y') {
+                            position.y = yMinus;
+                        }
+                        else {
+                            position.x = xMinus;
+                        }
+                        break;
+                    }
+                    case codes.right:
+                    default: {
+                        if (axis === 'y') {
+                            position.y = yPlus;
+                        }
+                        else {
+                            position.x = xPlus;
+                        }
+                        break;
+                    }
+                }
+                _this.setState(position);
+            }
+        };
+        _this.handleMouseDown = function (e) {
+            e.preventDefault();
+            _this.updateOptions((0,_utils__WEBPACK_IMPORTED_MODULE_1__.getCoordinates)(e, _this.lastCoordinates));
+            _this.setState({ isDragging: true });
+            document.addEventListener('mousemove', _this.handleDrag);
+            document.addEventListener('mouseup', _this.handleDragEnd);
+        };
+        _this.handleTouchStart = function (e) {
+            e.preventDefault();
+            _this.updateOptions((0,_utils__WEBPACK_IMPORTED_MODULE_1__.getCoordinates)(e, _this.lastCoordinates));
+            document.addEventListener('touchmove', _this.handleDrag, { passive: false });
+            document.addEventListener('touchend', _this.handleDragEnd, { passive: false });
+            document.addEventListener('touchcancel', _this.handleDragEnd, { passive: false });
+        };
+        _this.slider = react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+        _this.rail = react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+        _this.track = react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+        _this.state = {
+            isDragging: false,
+            x: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getNormalizedValue)('x', props),
+            y: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getNormalizedValue)('y', props),
+        };
+        return _this;
+    }
+    RangeSlider.prototype.componentDidMount = function () {
+        this.mounted = true;
+    };
+    RangeSlider.prototype.componentDidUpdate = function (_, prevState) {
+        var _a = this.state, x = _a.x, y = _a.y;
+        var onChange = this.props.onChange;
+        var prevX = prevState.x, prevY = prevState.y;
+        /* istanbul ignore else */
+        if (onChange && (x !== prevX || y !== prevY)) {
+            onChange({ x: x, y: y }, this.props);
+        }
+    };
+    RangeSlider.prototype.componentWillUnmount = function () {
+        this.mounted = false;
+    };
+    Object.defineProperty(RangeSlider.prototype, "position", {
+        get: function () {
+            var _a = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getBaseProps)(this.props), axis = _a.axis, xMax = _a.xMax, xMin = _a.xMin, yMax = _a.yMax, yMin = _a.yMin;
+            var bottom = ((this.y - yMin) / (yMax - yMin)) * 100;
+            var left = ((this.x - xMin) / (xMax - xMin)) * 100;
+            if (bottom > 100) {
+                bottom = 100;
+            }
+            if (bottom < 0) {
+                bottom = 0;
+            }
+            // bottom shouldn't be set with X axis
+            /* istanbul ignore else */
+            if (axis === 'x') {
+                bottom = 0;
+            }
+            if (left > 100) {
+                left = 100;
+            }
+            if (left < 0) {
+                left = 0;
+            }
+            // left shouldn't be set with Y axis
+            /* istanbul ignore else */
+            if (axis === 'y') {
+                left = 0;
+            }
+            return { x: left, y: bottom };
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(RangeSlider.prototype, "styles", {
+        get: function () {
+            var styles = this.props.styles;
+            return (0,_styles__WEBPACK_IMPORTED_MODULE_2__["default"])(styles);
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(RangeSlider.prototype, "x", {
+        get: function () {
+            var innerX = this.state.x;
+            var x = this.props.x;
+            return (0,_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined)(x) ? innerX : x;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(RangeSlider.prototype, "y", {
+        get: function () {
+            var innerY = this.state.y;
+            var y = this.props.y;
+            return (0,_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined)(y) ? innerY : y;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    RangeSlider.prototype.render = function () {
+        var _a = this.props, axis = _a.axis, className = _a.className, xMin = _a.xMin, xMax = _a.xMax, yMin = _a.yMin, yMax = _a.yMax;
+        var rest = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.removeProperties)(this.props, 'axis', 'className', 'onAfterEnd', 'onChange', 'onDragEnd', 'styles', 'x', 'xMin', 'xMax', 'xStep', 'y', 'yMin', 'yMax', 'yStep');
+        var _b = this.position, xPos = _b.x, yPos = _b.y;
+        var position = { left: xPos + "%", bottom: yPos + "%" };
+        var size = {};
+        var orientation;
+        var range;
+        var slider;
+        var thumb;
+        var track;
+        var valuemax = xMax;
+        var valuemin = xMin;
+        var valuenow = this.x;
+        /* istanbul ignore else */
+        if (axis === 'x') {
+            size.width = xPos + "%";
+            slider = this.styles.sliderX;
+            orientation = 'horizontal';
+            range = this.styles.rangeX;
+            track = this.styles.trackX;
+            thumb = this.styles.thumbX;
+        }
+        /* istanbul ignore else */
+        if (axis === 'y') {
+            size.height = yPos + "%";
+            slider = this.styles.sliderY;
+            range = this.styles.rangeY;
+            track = this.styles.trackY;
+            thumb = this.styles.thumbY;
+            orientation = 'vertical';
+            valuemax = yMax;
+            valuemin = yMin;
+            valuenow = this.y;
+        }
+        /* istanbul ignore else */
+        if (axis === 'xy') {
+            size.height = yPos + "%";
+            size.width = xPos + "%";
+            slider = this.styles.sliderXY;
+            range = this.styles.rangeXY;
+            track = this.styles.trackXY;
+            thumb = this.styles.thumbXY;
+        }
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", __assign({ ref: this.slider, className: className, style: slider }, rest),
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: className && className + "__track", ref: this.track, style: track, role: "presentation",
+                // @ts-ignore We can't use React's events because the listeners
+                onClick: this.handleClickTrack },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: className && className + "__range", style: __assign(__assign({}, size), range) }),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { ref: this.rail, style: __assign(__assign({}, this.styles.rail), position), role: "presentation",
+                    // @ts-ignore We can't use React's events because the listeners
+                    onTouchStart: this.handleTouchStart,
+                    // @ts-ignore We can't use React's events because the listeners
+                    onMouseDown: this.handleMouseDown },
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", { className: className && className + "__thumb", onBlur: this.handleBlur, onFocus: this.handleFocus, style: thumb, tabIndex: 0, role: "slider", "aria-label": "slider handle", "aria-orientation": orientation, "aria-valuemin": valuemin, "aria-valuenow": valuenow, "aria-valuemax": valuemax })))));
+    };
+    RangeSlider.defaultProps = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getBaseProps)();
+    return RangeSlider;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component));
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RangeSlider);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@gilbarbara/react-range-slider/esm/styles.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@gilbarbara/react-range-slider/esm/styles.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ getStyles)
+/* harmony export */ });
+/* harmony import */ var deepmerge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! deepmerge */ "./node_modules/deepmerge/dist/cjs.js");
+/* harmony import */ var deepmerge__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(deepmerge__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/@gilbarbara/react-range-slider/esm/utils.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+
+var defaultOptions = {
+    height: '20px',
+    padding: '6px',
+    rangeColor: '#007bff',
+    thumbBorder: '2px solid #000',
+    thumbBorderRadius: '4px',
+    thumbBorderRadiusXY: '50%',
+    thumbColor: '#fff',
+    thumbSize: '10px',
+    thumbSizeXY: '20px',
+    thumbSpace: '6px',
+    trackBorderRadius: '3px',
+    trackColor: '#ccc',
+    width: '20px',
+};
+function getStyles(styles) {
+    var options = deepmerge__WEBPACK_IMPORTED_MODULE_0__(defaultOptions, styles ? styles.options : {});
+    var slider = {
+        boxSizing: 'border-box',
+        display: 'inline-block',
+        padding: options.padding,
+        transition: 'height 0.4s, width 0.4s',
+    };
+    var track = {
+        backgroundColor: options.trackColor,
+        borderRadius: options.trackBorderRadius,
+        boxSizing: 'border-box',
+        height: '100%',
+        position: 'relative',
+        width: '100%',
+    };
+    var range = {
+        backgroundColor: options.rangeColor,
+        borderRadius: options.trackBorderRadius,
+        position: 'absolute',
+    };
+    var rail = {
+        boxSizing: 'border-box',
+        height: options.height,
+        position: 'absolute',
+        transition: 'height 0.4s, width 0.4s',
+        width: options.width,
+    };
+    var thumb = {
+        backgroundColor: options.thumbColor,
+        border: options.thumbBorder,
+        borderRadius: options.thumbBorderRadius,
+        boxSizing: 'border-box',
+        display: 'block',
+        position: 'absolute',
+        transition: 'height 0.4s, width 0.4s',
+    };
+    var defaultStyles = {
+        rail: rail,
+        rangeX: __assign(__assign({}, range), { height: '100%', top: 0 }),
+        rangeXY: __assign(__assign({}, range), { bottom: 0 }),
+        rangeY: __assign(__assign({}, range), { bottom: 0, left: 0, width: '100%' }),
+        sliderX: __assign(__assign({}, slider), { height: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.height) + (0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.padding) * 2, width: '100%' }),
+        sliderXY: __assign(__assign({}, slider), { height: '100%', width: '100%' }),
+        sliderY: __assign(__assign({}, slider), { height: '100%', width: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.width) + (0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.padding) * 2 }),
+        thumbX: __assign(__assign({}, thumb), { height: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.height) + (0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.thumbSpace), left: -((0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.thumbSize) / 2), top: -((0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.thumbSpace) / 2), width: options.thumbSize }),
+        thumbXY: __assign(__assign({}, thumb), { backgroundColor: 'transparent', border: options.thumbBorder, borderRadius: options.thumbBorderRadiusXY, bottom: -((0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.thumbSizeXY) / 2), height: options.thumbSizeXY, left: -((0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.thumbSizeXY) / 2), position: 'absolute', width: options.thumbSizeXY }),
+        thumbY: __assign(__assign({}, thumb), { bottom: -((0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.thumbSize) / 2), height: options.thumbSize, left: -((0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.thumbSpace) / 2), width: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.width) + (0,_utils__WEBPACK_IMPORTED_MODULE_1__.num)(options.thumbSpace) }),
+        trackX: __assign(__assign({}, track), { height: options.height }),
+        trackXY: __assign(__assign({}, track), { height: '100%', minHeight: '50px', width: '100%' }),
+        trackY: __assign(__assign({}, track), { height: '100%', minHeight: '50px', width: options.width }),
+    };
+    return deepmerge__WEBPACK_IMPORTED_MODULE_0__(defaultStyles, styles || {});
+}
+//# sourceMappingURL=styles.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@gilbarbara/react-range-slider/esm/utils.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@gilbarbara/react-range-slider/esm/utils.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getBaseProps": () => (/* binding */ getBaseProps),
+/* harmony export */   "getCoordinates": () => (/* binding */ getCoordinates),
+/* harmony export */   "getNormalizedValue": () => (/* binding */ getNormalizedValue),
+/* harmony export */   "getPosition": () => (/* binding */ getPosition),
+/* harmony export */   "isNumber": () => (/* binding */ isNumber),
+/* harmony export */   "isUndefined": () => (/* binding */ isUndefined),
+/* harmony export */   "num": () => (/* binding */ num),
+/* harmony export */   "removeProperties": () => (/* binding */ removeProperties),
+/* harmony export */   "round": () => (/* binding */ round)
+/* harmony export */ });
+var __read = (undefined && undefined.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+function getBaseProps(props) {
+    var _a, _b, _c, _d, _e, _f, _g;
+    return {
+        axis: (_a = props === null || props === void 0 ? void 0 : props.axis) !== null && _a !== void 0 ? _a : 'x',
+        xMax: (_b = props === null || props === void 0 ? void 0 : props.xMax) !== null && _b !== void 0 ? _b : 100,
+        xMin: (_c = props === null || props === void 0 ? void 0 : props.xMin) !== null && _c !== void 0 ? _c : 0,
+        xStep: (_d = props === null || props === void 0 ? void 0 : props.xStep) !== null && _d !== void 0 ? _d : 1,
+        yMax: (_e = props === null || props === void 0 ? void 0 : props.yMax) !== null && _e !== void 0 ? _e : 100,
+        yMin: (_f = props === null || props === void 0 ? void 0 : props.yMin) !== null && _f !== void 0 ? _f : 0,
+        yStep: (_g = props === null || props === void 0 ? void 0 : props.yStep) !== null && _g !== void 0 ? _g : 1,
+    };
+}
+function getCoordinates(e, lastPosition) {
+    if ('touches' in e) {
+        var _a = __read(e.touches, 1), touch = _a[0];
+        return {
+            x: touch ? touch.clientX : lastPosition.x,
+            y: touch ? touch.clientY : lastPosition.y,
+        };
+    }
+    return {
+        x: e.clientX,
+        y: e.clientY,
+    };
+}
+function getPosition(position, props, el) {
+    var _a = getBaseProps(props), axis = _a.axis, xMax = _a.xMax, xMin = _a.xMin, xStep = _a.xStep, yMax = _a.yMax, yMin = _a.yMin, yStep = _a.yStep;
+    var _b = (el === null || el === void 0 ? void 0 : el.getBoundingClientRect()) || {}, _c = _b.height, height = _c === void 0 ? xMax : _c, _d = _b.width, width = _d === void 0 ? yMax : _d;
+    var x = position.x, y = position.y;
+    var dx = 0;
+    var dy = 0;
+    if (x < 0) {
+        x = 0;
+    }
+    if (x > width) {
+        x = width;
+    }
+    if (y < 0) {
+        y = 0;
+    }
+    if (y > height) {
+        y = height;
+    }
+    if (axis === 'x' || axis === 'xy') {
+        dx = Math.round((x / width) * (xMax - xMin));
+    }
+    if (axis === 'y' || axis === 'xy') {
+        dy = Math.round((y / height) * (yMax - yMin));
+    }
+    return {
+        x: round(dx, xStep),
+        y: round(dy, yStep),
+    };
+}
+/**
+ * Get a normalized value
+ */
+function getNormalizedValue(name, props) {
+    var value = props[name] || 0;
+    var min = name === 'x' ? props.xMin : props.yMin;
+    var max = name === 'x' ? props.xMax : props.yMax;
+    if (isNumber(min) && value < min) {
+        return min;
+    }
+    if (isNumber(max) && value > max) {
+        return max;
+    }
+    return value;
+}
+/**
+ * Check if the value is a number
+ */
+function isNumber(value) {
+    return typeof value === 'number';
+}
+/**
+ * Check if the value is undefined
+ */
+function isUndefined(value) {
+    return typeof value === 'undefined';
+}
+/**
+ * Parse a string into a number or return it if it's already a number
+ */
+function num(value) {
+    if (typeof value === 'number') {
+        return value;
+    }
+    return parseInt(value, 10);
+}
+/**
+ *  Remove properties from an object
+ */
+function removeProperties(input) {
+    var filter = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        filter[_i - 1] = arguments[_i];
+    }
+    var output = {};
+    for (var key in input) {
+        /* istanbul ignore else */
+        if ({}.hasOwnProperty.call(input, key)) {
+            if (!filter.includes(key)) {
+                output[key] = input[key];
+            }
+        }
+    }
+    return output;
+}
+function round(value, increment) {
+    return Math.ceil(value / increment) * increment;
+}
+//# sourceMappingURL=utils.js.map
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -2214,7 +2808,7 @@ __webpack_require__.r(__webpack_exports__);
 function EnergizeMe() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "subtitle"
-  }, "What kind of gender do you like?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "Select Genre:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     to: "/playlist"
@@ -2431,22 +3025,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Player */ "./frontend/components/Player.js");
+
 
 
 function PlayList() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Playlist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "List of music"))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Playlist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "List of music")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Player__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PlayList);
 
 /***/ }),
 
-/***/ "./frontend/components/Test.js":
-/*!*************************************!*\
-  !*** ./frontend/components/Test.js ***!
-  \*************************************/
+/***/ "./frontend/components/Player.js":
+/*!***************************************!*\
+  !*** ./frontend/components/Player.js ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2455,105 +3051,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/playlist */ "./frontend/redux/playlist.js");
+/* harmony import */ var react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spotify-web-playback */ "./node_modules/react-spotify-web-playback/esm/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
 
 
 
-function Test() {
-  var songs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
-    return state.songs.songs;
+function Player() {
+  var user = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.user;
   });
-  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch((0,_redux_playlist__WEBPACK_IMPORTED_MODULE_2__.dispatchFetchSongs)());
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Songs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, songs === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "no songs") : songs.map(function (song) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, song.name);
-  }))))));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    token: user.token
+  }));
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Test);
-
-/***/ }),
-
-/***/ "./frontend/redux/playlist.js":
-/*!************************************!*\
-  !*** ./frontend/redux/playlist.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ songReducer),
-/* harmony export */   "dispatchFetchSongs": () => (/* binding */ dispatchFetchSongs)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-var initialState = {};
-var FETCH_SONGS = "FETCH_SONGS";
-
-var fetchSongs = function fetchSongs(songs) {
-  return {
-    type: FETCH_SONGS,
-    songs: songs
-  };
-};
-
-var dispatchFetchSongs = function dispatchFetchSongs() {
-  return /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
-      var _yield$Axios$get, data;
-
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/songs/");
-
-            case 2:
-              _yield$Axios$get = _context.sent;
-              data = _yield$Axios$get.data;
-              console.log(data);
-              return _context.abrupt("return", dispatch(fetchSongs(data)));
-
-            case 6:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-};
-function songReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case FETCH_SONGS:
-      return {
-        songs: action.songs
-      };
-
-    default:
-      return state;
-  }
-}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Player);
 
 /***/ }),
 
@@ -12609,6 +13122,197 @@ module.exports = __webpack_require__(/*! ./modules/_core */ "./node_modules/babe
 
 /***/ }),
 
+/***/ "./node_modules/deepmerge/dist/cjs.js":
+/*!********************************************!*\
+  !*** ./node_modules/deepmerge/dist/cjs.js ***!
+  \********************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+var isMergeableObject = function isMergeableObject(value) {
+	return isNonNullObject(value)
+		&& !isSpecial(value)
+};
+
+function isNonNullObject(value) {
+	return !!value && typeof value === 'object'
+}
+
+function isSpecial(value) {
+	var stringValue = Object.prototype.toString.call(value);
+
+	return stringValue === '[object RegExp]'
+		|| stringValue === '[object Date]'
+		|| isReactElement(value)
+}
+
+// see https://github.com/facebook/react/blob/b5ac963fb791d1298e7f396236383bc955f916c1/src/isomorphic/classic/element/ReactElement.js#L21-L25
+var canUseSymbol = typeof Symbol === 'function' && Symbol.for;
+var REACT_ELEMENT_TYPE = canUseSymbol ? Symbol.for('react.element') : 0xeac7;
+
+function isReactElement(value) {
+	return value.$$typeof === REACT_ELEMENT_TYPE
+}
+
+function emptyTarget(val) {
+	return Array.isArray(val) ? [] : {}
+}
+
+function cloneUnlessOtherwiseSpecified(value, options) {
+	return (options.clone !== false && options.isMergeableObject(value))
+		? deepmerge(emptyTarget(value), value, options)
+		: value
+}
+
+function defaultArrayMerge(target, source, options) {
+	return target.concat(source).map(function(element) {
+		return cloneUnlessOtherwiseSpecified(element, options)
+	})
+}
+
+function getMergeFunction(key, options) {
+	if (!options.customMerge) {
+		return deepmerge
+	}
+	var customMerge = options.customMerge(key);
+	return typeof customMerge === 'function' ? customMerge : deepmerge
+}
+
+function getEnumerableOwnPropertySymbols(target) {
+	return Object.getOwnPropertySymbols
+		? Object.getOwnPropertySymbols(target).filter(function(symbol) {
+			return target.propertyIsEnumerable(symbol)
+		})
+		: []
+}
+
+function getKeys(target) {
+	return Object.keys(target).concat(getEnumerableOwnPropertySymbols(target))
+}
+
+function propertyIsOnObject(object, property) {
+	try {
+		return property in object
+	} catch(_) {
+		return false
+	}
+}
+
+// Protects from prototype poisoning and unexpected merging up the prototype chain.
+function propertyIsUnsafe(target, key) {
+	return propertyIsOnObject(target, key) // Properties are safe to merge if they don't exist in the target yet,
+		&& !(Object.hasOwnProperty.call(target, key) // unsafe if they exist up the prototype chain,
+			&& Object.propertyIsEnumerable.call(target, key)) // and also unsafe if they're nonenumerable.
+}
+
+function mergeObject(target, source, options) {
+	var destination = {};
+	if (options.isMergeableObject(target)) {
+		getKeys(target).forEach(function(key) {
+			destination[key] = cloneUnlessOtherwiseSpecified(target[key], options);
+		});
+	}
+	getKeys(source).forEach(function(key) {
+		if (propertyIsUnsafe(target, key)) {
+			return
+		}
+
+		if (propertyIsOnObject(target, key) && options.isMergeableObject(source[key])) {
+			destination[key] = getMergeFunction(key, options)(target[key], source[key], options);
+		} else {
+			destination[key] = cloneUnlessOtherwiseSpecified(source[key], options);
+		}
+	});
+	return destination
+}
+
+function deepmerge(target, source, options) {
+	options = options || {};
+	options.arrayMerge = options.arrayMerge || defaultArrayMerge;
+	options.isMergeableObject = options.isMergeableObject || isMergeableObject;
+	// cloneUnlessOtherwiseSpecified is added to `options` so that custom arrayMerge()
+	// implementations can use it. The caller may not replace it.
+	options.cloneUnlessOtherwiseSpecified = cloneUnlessOtherwiseSpecified;
+
+	var sourceIsArray = Array.isArray(source);
+	var targetIsArray = Array.isArray(target);
+	var sourceAndTargetTypesMatch = sourceIsArray === targetIsArray;
+
+	if (!sourceAndTargetTypesMatch) {
+		return cloneUnlessOtherwiseSpecified(source, options)
+	} else if (sourceIsArray) {
+		return options.arrayMerge(target, source, options)
+	} else {
+		return mergeObject(target, source, options)
+	}
+}
+
+deepmerge.all = function deepmergeAll(array, options) {
+	if (!Array.isArray(array)) {
+		throw new Error('first argument should be an array')
+	}
+
+	return array.reduce(function(prev, next) {
+		return deepmerge(prev, next, options)
+	}, {})
+};
+
+var deepmerge_1 = deepmerge;
+
+module.exports = deepmerge_1;
+
+
+/***/ }),
+
+/***/ "./node_modules/exenv/index.js":
+/*!*************************************!*\
+  !*** ./node_modules/exenv/index.js ***!
+  \*************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2015 Jed Watson.
+  Based on code that is Copyright 2013-2015, Facebook, Inc.
+  All rights reserved.
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var canUseDOM = !!(
+		typeof window !== 'undefined' &&
+		window.document &&
+		window.document.createElement
+	);
+
+	var ExecutionEnvironment = {
+
+		canUseDOM: canUseDOM,
+
+		canUseWorkers: typeof Worker !== 'undefined',
+
+		canUseEventListeners:
+			canUseDOM && !!(window.addEventListener || window.attachEvent),
+
+		canUseViewport: canUseDOM && !!window.screen
+
+	};
+
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return ExecutionEnvironment;
+		}).call(exports, __webpack_require__, exports, module),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+
+}());
+
+
+/***/ }),
+
 /***/ "./node_modules/history/index.js":
 /*!***************************************!*\
   !*** ./node_modules/history/index.js ***!
@@ -13743,6 +14447,732 @@ exports.typeOf = typeOf;
 if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/hoist-non-react-statics/node_modules/react-is/cjs/react-is.development.js");
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/memoize-one/dist/memoize-one.esm.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/memoize-one/dist/memoize-one.esm.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var safeIsNaN = Number.isNaN ||
+    function ponyfill(value) {
+        return typeof value === 'number' && value !== value;
+    };
+function isEqual(first, second) {
+    if (first === second) {
+        return true;
+    }
+    if (safeIsNaN(first) && safeIsNaN(second)) {
+        return true;
+    }
+    return false;
+}
+function areInputsEqual(newInputs, lastInputs) {
+    if (newInputs.length !== lastInputs.length) {
+        return false;
+    }
+    for (var i = 0; i < newInputs.length; i++) {
+        if (!isEqual(newInputs[i], lastInputs[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function memoizeOne(resultFn, isEqual) {
+    if (isEqual === void 0) { isEqual = areInputsEqual; }
+    var lastThis;
+    var lastArgs = [];
+    var lastResult;
+    var calledOnce = false;
+    function memoized() {
+        var newArgs = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            newArgs[_i] = arguments[_i];
+        }
+        if (calledOnce && lastThis === this && isEqual(newArgs, lastArgs)) {
+            return lastResult;
+        }
+        lastResult = resultFn.apply(this, newArgs);
+        calledOnce = true;
+        lastThis = this;
+        lastArgs = newArgs;
+        return lastResult;
+    }
+    return memoized;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (memoizeOne);
+
+
+/***/ }),
+
+/***/ "./node_modules/nano-css/addon/__dev__/warnOnMissingDependencies.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/nano-css/addon/__dev__/warnOnMissingDependencies.js ***!
+  \**************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+var pkgName = 'nano-css';
+
+module.exports = function warnOnMissingDependencies (addon, renderer, deps) {
+    var missing = [];
+
+    for (var i = 0; i < deps.length; i++) {
+        var name = deps[i];
+
+        if (!renderer[name]) {
+            missing.push(name);
+        }
+    }
+
+    if (missing.length) {
+        var str = 'Addon "' + addon + '" is missing the following dependencies:';
+
+        for (var j = 0; j < missing.length; j++) {
+            str += '\n require("' + pkgName + '/addon/' + missing[j] + '").addon(nano);';
+        }
+
+        throw new Error(str);
+    }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/nano-css/addon/cache.js":
+/*!**********************************************!*\
+  !*** ./node_modules/nano-css/addon/cache.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+exports.addon = function (renderer) {
+    var cache = {};
+
+    renderer.cache = function (css) {
+        if (!css) return '';
+
+        var key = renderer.hash(css);
+
+        if (!cache[key]) {
+            cache[key] = renderer.rule(css, key);
+        }
+
+        return cache[key];
+    };
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/nano-css/addon/jsx.js":
+/*!********************************************!*\
+  !*** ./node_modules/nano-css/addon/jsx.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var addonCache = (__webpack_require__(/*! ./cache */ "./node_modules/nano-css/addon/cache.js").addon);
+
+exports.addon = function (renderer) {
+    if (!renderer.cache) {
+        addonCache(renderer);
+    }
+
+    if (true) {
+        __webpack_require__(/*! ./__dev__/warnOnMissingDependencies */ "./node_modules/nano-css/addon/__dev__/warnOnMissingDependencies.js")('jsx', renderer, ['rule', 'cache']);
+    }
+
+    renderer.jsx = function (fn, styles, block) {
+        var className;
+        var isElement = typeof fn === 'string';
+
+        // In dev mode emit CSS immediately so correct sourcemaps can be generated.
+        if (true) {
+            className = renderer.rule(styles, block);
+        }
+
+        var Component = function (props) {
+            if (!className) {
+                className = renderer.rule(styles, block);
+            }
+
+            var copy = props;
+            var $as = copy.$as;
+            var $ref = copy.$ref;
+
+            if (true) {
+                copy = renderer.assign({}, props);
+            }
+
+            var dynamicClassName = renderer.cache(props.css);
+            delete copy.css;
+            delete copy.$as;
+
+            if (isElement || $as) {
+                delete copy.$ref;
+                copy.ref = $ref;
+            }
+
+            copy.className = (props.className || '') + className + dynamicClassName;
+
+            return (isElement || $as)
+                ? renderer.h($as || fn, copy)
+                : fn(copy);
+        };
+
+        if (true) {
+            if (block) {
+                Component.displayName = 'jsx(' + block + ')';
+            }
+        }
+
+        return Component;
+    };
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/nano-css/addon/keyframes.js":
+/*!**************************************************!*\
+  !*** ./node_modules/nano-css/addon/keyframes.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+exports.addon = function (renderer, config) {
+    if (true) {
+        __webpack_require__(/*! ./__dev__/warnOnMissingDependencies */ "./node_modules/nano-css/addon/__dev__/warnOnMissingDependencies.js")('keyframes', renderer, ['putRaw', 'put']);
+    }
+
+    config = renderer.assign({
+        prefixes: ['-webkit-', '-moz-', '-o-', ''],
+    }, config || {});
+
+    var prefixes = config.prefixes;
+
+    if (renderer.client) {
+        // Craete @keyframe Stylesheet `ksh`.
+        document.head.appendChild(renderer.ksh = document.createElement('style'));
+    }
+
+    var putAt = renderer.putAt;
+
+    renderer.putAt = function (__, keyframes, prelude) {
+        // @keyframes
+        if (prelude[1] === 'k') {
+            var str = '';
+
+            for (var keyframe in keyframes) {
+                var decls = keyframes[keyframe];
+                var strDecls = '';
+
+                for (var prop in decls)
+                    strDecls += renderer.decl(prop, decls[prop]);
+
+                str += keyframe + '{' + strDecls + '}';
+            }
+
+            for (var i = 0; i < prefixes.length; i++) {
+                var prefix = prefixes[i];
+                var rawKeyframes = prelude.replace('@keyframes', '@' + prefix + 'keyframes') + '{' + str + '}';
+
+                if (renderer.client) {
+                    renderer.ksh.appendChild(document.createTextNode(rawKeyframes));
+                } else {
+                    renderer.putRaw(rawKeyframes);
+                }
+            }
+
+            return;
+        }
+
+        putAt(__, keyframes, prelude);
+    };
+
+    renderer.keyframes = function (keyframes, block) {
+        if (!block) block = renderer.hash(keyframes);
+        block = renderer.pfx + block;
+
+        renderer.putAt('', keyframes, '@keyframes ' + block);
+
+        return block;
+    };
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/nano-css/addon/nesting.js":
+/*!************************************************!*\
+  !*** ./node_modules/nano-css/addon/nesting.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+exports.addon = function (renderer) {
+    renderer.selector = function (parentSelectors, selector) {
+        var parents = parentSelectors.split(',');
+        var result = [];
+        var selectors = selector.split(',');
+        var len1 = parents.length;
+        var len2 = selectors.length;
+        var i, j, sel, pos, parent, replacedSelector;
+
+        for (i = 0; i < len2; i++) {
+            sel = selectors[i];
+            pos = sel.indexOf('&');
+
+            if (pos > -1) {
+                for (j = 0; j < len1; j++) {
+                    parent = parents[j];
+                    replacedSelector = sel.replace(/&/g, parent);
+                    result.push(replacedSelector);
+                }
+            } else {
+                for (j = 0; j < len1; j++) {
+                    parent = parents[j];
+
+                    if (parent) {
+                        result.push(parent + ' ' + sel);
+                    } else {
+                        result.push(sel);
+                    }
+                }
+            }
+        }
+
+        return result.join(',');
+    };
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/nano-css/addon/rule.js":
+/*!*********************************************!*\
+  !*** ./node_modules/nano-css/addon/rule.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+exports.addon = function (renderer) {
+    if (true) {
+        __webpack_require__(/*! ./__dev__/warnOnMissingDependencies */ "./node_modules/nano-css/addon/__dev__/warnOnMissingDependencies.js")('rule', renderer, ['put']);
+    }
+
+    var blocks;
+
+    if (true) {
+        blocks = {};
+    }
+
+    renderer.rule = function (css, block) {
+        // Warn user if CSS selectors clash.
+        if (true) {
+            if (block) {
+                if (typeof block !== 'string') {
+                    throw new TypeError(
+                        'nano-css block name must be a string. ' +
+                        'For example, use nano.rule({color: "red", "RedText").'
+                    );
+                }
+
+                if (blocks[block]) {
+                    console.error('Block name "' + block + '" used more than once.');
+                }
+
+                blocks[block] = 1;
+            }
+        }
+
+        block = block || renderer.hash(css);
+        block = renderer.pfx + block;
+        renderer.put('.' + block, css);
+
+        return ' ' + block;
+    };
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/nano-css/addon/style.js":
+/*!**********************************************!*\
+  !*** ./node_modules/nano-css/addon/style.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+exports.addon = function (renderer) {
+    if (true) {
+        __webpack_require__(/*! ./__dev__/warnOnMissingDependencies */ "./node_modules/nano-css/addon/__dev__/warnOnMissingDependencies.js")('style', renderer, ['jsx']);
+    }
+
+    renderer.style = function (fn, styles, dynamicTemplate, block) {
+        var jsxComponent = renderer.jsx(fn, styles, block);
+
+        var Component = function(props) {
+            var copy = props;
+
+            if (true) {
+                copy = Object.assign({}, props);
+            }
+
+            if (dynamicTemplate) {
+                copy.css = dynamicTemplate(props);
+            }
+
+            return jsxComponent(copy);
+        };
+
+        if (true) {
+            if (block || (typeof fn === 'function')) {
+                Component.displayName = 'style(' + (block || fn.displayName || fn.name) + ')';
+            }
+        }
+
+        return Component;
+    };
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/nano-css/addon/styled.js":
+/*!***********************************************!*\
+  !*** ./node_modules/nano-css/addon/styled.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var tags = [
+    'a',
+    'abbr',
+    'address',
+    'area',
+    'article',
+    'aside',
+    'audio',
+    'b',
+    'base',
+    'bdi',
+    'bdo',
+    'big',
+    'blockquote',
+    'body',
+    'br',
+    'button',
+    'canvas',
+    'caption',
+    'cite',
+    'code',
+    'col',
+    'colgroup',
+    'data',
+    'datalist',
+    'dd',
+    'del',
+    'details',
+    'dfn',
+    'dialog',
+    'div',
+    'dl',
+    'dt',
+    'em',
+    'embed',
+    'fieldset',
+    'figcaption',
+    'figure',
+    'footer',
+    'form',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'head',
+    'header',
+    'hgroup',
+    'hr',
+    'html',
+    'i',
+    'iframe',
+    'img',
+    'input',
+    'ins',
+    'kbd',
+    'keygen',
+    'label',
+    'legend',
+    'li',
+    'link',
+    'main',
+    'map',
+    'mark',
+    'marquee',
+    'menu',
+    'menuitem',
+    'meta',
+    'meter',
+    'nav',
+    'noscript',
+    'object',
+    'ol',
+    'optgroup',
+    'option',
+    'output',
+    'p',
+    'param',
+    'picture',
+    'pre',
+    'progress',
+    'q',
+    'rp',
+    'rt',
+    'ruby',
+    's',
+    'samp',
+    'script',
+    'section',
+    'select',
+    'small',
+    'source',
+    'span',
+    'strong',
+    'style',
+    'sub',
+    'summary',
+    'sup',
+    'table',
+    'tbody',
+    'td',
+    'textarea',
+    'tfoot',
+    'th',
+    'thead',
+    'time',
+    'title',
+    'tr',
+    'track',
+    'u',
+    'ul',
+    'var',
+    'video',
+    'wbr',
+
+    // SVG
+    'circle',
+    'clipPath',
+    'defs',
+    'ellipse',
+    'foreignObject',
+    'g',
+    'image',
+    'line',
+    'linearGradient',
+    'mask',
+    'path',
+    'pattern',
+    'polygon',
+    'polyline',
+    'radialGradient',
+    'rect',
+    'stop',
+    'svg',
+    'text',
+    'tspan',
+];
+
+exports.addon = function (renderer) {
+    if (true) {
+        __webpack_require__(/*! ./__dev__/warnOnMissingDependencies */ "./node_modules/nano-css/addon/__dev__/warnOnMissingDependencies.js")('styled', renderer, ['style']);
+    }
+
+    var styled = function (tag) {
+        return function (styles, dynamicTemplate, block) {
+            return renderer.style(tag, styles, dynamicTemplate, block);
+        };
+    };
+
+    var tag;
+
+    for (var i = 0; i < tags.length; i++) {
+        tag = tags[i];
+        styled[tag] = styled(tag);
+    }
+
+    renderer.styled = styled;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/nano-css/index.js":
+/*!****************************************!*\
+  !*** ./node_modules/nano-css/index.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+var KEBAB_REGEX = /[A-Z]/g;
+
+var hash = function (str) {
+    var h = 5381, i = str.length;
+
+    while (i) h = (h * 33) ^ str.charCodeAt(--i);
+
+    return '_' + (h >>> 0).toString(36);
+};
+
+exports.create = function (config) {
+    config = config || {};
+    var assign = config.assign || Object.assign;
+    var client = typeof window === 'object';
+
+    // Check if we are really in browser environment.
+    if (true) {
+        if (client) {
+            if ((typeof document !== 'object') || !document.getElementsByTagName('HTML')) {
+                console.error(
+                    'nano-css detected browser environment because of "window" global, but ' +
+                    '"document" global seems to be defective.'
+                );
+            }
+        }
+    }
+
+    var renderer = assign({
+        raw: '',
+        pfx: '_',
+        client: client,
+        assign: assign,
+        stringify: JSON.stringify,
+        kebab: function (prop) {
+            return prop.replace(KEBAB_REGEX, '-$&').toLowerCase();
+        },
+        decl: function (key, value) {
+            key = renderer.kebab(key);
+            return key + ':' + value + ';';
+        },
+        hash: function (obj) {
+            return hash(renderer.stringify(obj));
+        },
+        selector: function (parent, selector) {
+            return parent + (selector[0] === ':' ? ''  : ' ') + selector;
+        },
+        putRaw: function (rawCssRule) {
+            renderer.raw += rawCssRule;
+        }
+    }, config);
+
+    if (renderer.client) {
+        if (!renderer.sh)
+            document.head.appendChild(renderer.sh = document.createElement('style'));
+
+        if (true) {
+            renderer.sh.setAttribute('data-nano-css-dev', '');
+
+            // Test style sheet used in DEV mode to test if .insetRule() would throw.
+            renderer.shTest = document.createElement('style');
+            renderer.shTest.setAttribute('data-nano-css-dev-tests', '');
+            document.head.appendChild(renderer.shTest);
+        }
+
+        renderer.putRaw = function (rawCssRule) {
+            // .insertRule() is faster than .appendChild(), that's why we use it in PROD.
+            // But CSS injected using .insertRule() is not displayed in Chrome Devtools,
+            // that's why we use .appendChild in DEV.
+            if (false) { var sheet; } else {
+                // Test if .insertRule() works in dev mode. Unknown pseudo-selectors will throw when
+                // .insertRule() is used, but .appendChild() will not throw.
+                try {
+                    renderer.shTest.sheet.insertRule(rawCssRule, renderer.shTest.sheet.cssRules.length);
+                } catch (error) {
+                    if (config.verbose) {
+                        console.error(error);
+                    }
+                }
+
+                // Insert pretty-printed CSS for dev mode.
+                renderer.sh.appendChild(document.createTextNode(rawCssRule));
+            }
+        };
+    }
+
+    renderer.put = function (selector, decls, atrule) {
+        var str = '';
+        var prop, value;
+        var postponed = [];
+
+        for (prop in decls) {
+            value = decls[prop];
+
+            if ((value instanceof Object) && !(value instanceof Array)) {
+                postponed.push(prop);
+            } else {
+                if (( true) && !renderer.sourcemaps) {
+                    str += '    ' + renderer.decl(prop, value, selector, atrule) + '\n';
+                } else {
+                    str += renderer.decl(prop, value, selector, atrule);
+                }
+            }
+        }
+
+        if (str) {
+            if (( true) && !renderer.sourcemaps) {
+                str = '\n' + selector + ' {\n' + str + '}\n';
+            } else {
+                str = selector + '{' + str + '}';
+            }
+            renderer.putRaw(atrule ? atrule + '{' + str + '}' : str);
+        }
+
+        for (var i = 0; i < postponed.length; i++) {
+            prop = postponed[i];
+
+            if (prop[0] === '@' && prop !== '@font-face') {
+                renderer.putAt(selector, decls[prop], prop);
+            } else {
+                renderer.put(renderer.selector(selector, prop), decls[prop], atrule);
+            }
+        }
+    };
+
+    renderer.putAt = renderer.put;
+
+    return renderer;
+};
 
 
 /***/ }),
@@ -40677,7 +42107,7 @@ function injectIntoDevTools(devToolsConfig) {
     scheduleRoot:  scheduleRoot ,
     setRefreshHandler:  setRefreshHandler ,
     // Enables DevTools to append owner stacks to error messages in DEV mode.
-    getCurrentFiber:  getCurrentFiberForDevTools 
+    getCurrentFiber:  getCurrentFiberForDevTools
   });
 }
 
@@ -41946,7 +43376,7 @@ var _excluded = ["pure", "areStatesEqual", "areOwnPropsEqual", "areStatePropsEqu
   selectorFactory, which has the signature:
 
     (dispatch, options) => (nextState, nextOwnProps) => nextFinalProps
-  
+
   connect passes its args to connectAdvanced as options, which will in turn pass them to
   selectorFactory each time a Connect component instance is instantiated or hot reloaded.
 
@@ -44605,6 +46035,2984 @@ const normalizeHash = hash => !hash || hash === "#" ? "" : hash.startsWith("#") 
 
 //# sourceMappingURL=index.js.map
 
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/Actions.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/Actions.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Devices__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Devices */ "./node_modules/react-spotify-web-playback/esm/components/Devices.js");
+/* harmony import */ var _Volume__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Volume */ "./node_modules/react-spotify-web-playback/esm/components/Volume.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles */ "./node_modules/react-spotify-web-playback/esm/styles.js");
+
+
+
+
+var Wrapper = (0,_styles__WEBPACK_IMPORTED_MODULE_3__.styled)('div')({
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    paddingRight: (0,_styles__WEBPACK_IMPORTED_MODULE_3__.px)(10),
+    'pointer-events': 'none',
+    '> div + div': {
+        marginLeft: (0,_styles__WEBPACK_IMPORTED_MODULE_3__.px)(10),
+    },
+    '@media (max-width: 1023px)': {
+        bottom: 0,
+        position: 'absolute',
+        right: 0,
+        width: 'auto',
+    },
+}, function (_a) {
+    var style = _a.style;
+    return ({
+        height: (0,_styles__WEBPACK_IMPORTED_MODULE_3__.px)(style.h),
+    });
+}, 'ActionsRSWP');
+function Actions(props) {
+    var currentDeviceId = props.currentDeviceId, deviceId = props.deviceId, devices = props.devices, isDevicesOpen = props.isDevicesOpen, locale = props.locale, onClickDevice = props.onClickDevice, playerPosition = props.playerPosition, setVolume = props.setVolume, styles = props.styles, volume = props.volume;
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrapper, { style: { h: styles.height } },
+        currentDeviceId && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Volume__WEBPACK_IMPORTED_MODULE_2__["default"], { playerPosition: playerPosition, setVolume: setVolume, styles: styles, title: locale.volume, volume: volume })),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Devices__WEBPACK_IMPORTED_MODULE_1__["default"], { currentDeviceId: currentDeviceId, deviceId: deviceId, devices: devices, onClickDevice: onClickDevice, open: isDevicesOpen, playerPosition: playerPosition, styles: styles, title: locale.devices })));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Actions);
+//# sourceMappingURL=Actions.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/ClickOutside.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/ClickOutside.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (undefined && undefined.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+
+var ClickOutside = /** @class */ (function (_super) {
+    __extends(ClickOutside, _super);
+    function ClickOutside(props) {
+        var _this = _super.call(this, props) || this;
+        _this.handleClick = function (event) {
+            if (event.type === 'touchend') {
+                _this.isTouch = true;
+            }
+            if (event.type === 'click' && _this.isTouch) {
+                return;
+            }
+            var onClick = _this.props.onClick;
+            var el = _this.container;
+            if (el && !el.contains(event.target)) {
+                onClick();
+            }
+        };
+        _this.container = null;
+        _this.setRef = _this.setRef.bind(_this);
+        _this.isTouch = false;
+        return _this;
+    }
+    ClickOutside.prototype.componentDidMount = function () {
+        document.addEventListener('touchend', this.handleClick, true);
+        document.addEventListener('click', this.handleClick, true);
+    };
+    ClickOutside.prototype.componentWillUnmount = function () {
+        document.removeEventListener('touchend', this.handleClick, true);
+        document.removeEventListener('click', this.handleClick, true);
+    };
+    ClickOutside.prototype.setRef = function (ref) {
+        this.container = ref;
+    };
+    ClickOutside.prototype.render = function () {
+        var _a = this.props, children = _a.children, onClick = _a.onClick, props = __rest(_a, ["children", "onClick"]);
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", __assign({}, props, { ref: this.setRef }), children));
+    };
+    return ClickOutside;
+}(react__WEBPACK_IMPORTED_MODULE_0__.PureComponent));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ClickOutside);
+//# sourceMappingURL=ClickOutside.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/Content.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/Content.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles */ "./node_modules/react-spotify-web-playback/esm/styles.js");
+
+
+var Wrapper = (0,_styles__WEBPACK_IMPORTED_MODULE_1__.styled)('div')({
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    position: 'relative',
+    '> *': {
+        width: '100%',
+        '@media (min-width: 1024px)': {
+            width: '33.3333%',
+        },
+    },
+    '@media (min-width: 1024px)': {
+        flexDirection: 'row',
+    },
+}, function (_a) {
+    var style = _a.style;
+    return ({
+        minHeight: (0,_styles__WEBPACK_IMPORTED_MODULE_1__.px)(style.h),
+    });
+}, 'ContentRSWP');
+function Content(_a) {
+    var children = _a.children, styles = _a.styles;
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrapper, { style: { h: styles.height } }, children);
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Content);
+//# sourceMappingURL=Content.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/Controls.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/Controls.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Controls)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _icons_Next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./icons/Next */ "./node_modules/react-spotify-web-playback/esm/components/icons/Next.js");
+/* harmony import */ var _icons_Pause__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./icons/Pause */ "./node_modules/react-spotify-web-playback/esm/components/icons/Pause.js");
+/* harmony import */ var _icons_Play__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./icons/Play */ "./node_modules/react-spotify-web-playback/esm/components/icons/Play.js");
+/* harmony import */ var _icons_Previous__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./icons/Previous */ "./node_modules/react-spotify-web-playback/esm/components/icons/Previous.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles */ "./node_modules/react-spotify-web-playback/esm/styles.js");
+
+
+
+
+
+
+var Wrapper = (0,_styles__WEBPACK_IMPORTED_MODULE_5__.styled)('div')({}, function (_a) {
+    var style = _a.style;
+    return ({
+        alignItems: 'center',
+        display: 'flex',
+        height: (0,_styles__WEBPACK_IMPORTED_MODULE_5__.px)(style.h),
+        justifyContent: 'center',
+        '@media (max-width: 767px)': {
+            padding: (0,_styles__WEBPACK_IMPORTED_MODULE_5__.px)(10),
+        },
+        '> div': {
+            minWidth: (0,_styles__WEBPACK_IMPORTED_MODULE_5__.px)(style.h),
+            textAlign: 'center',
+        },
+        button: {
+            alignItems: 'center',
+            color: style.c,
+            display: 'inline-flex',
+            fontSize: (0,_styles__WEBPACK_IMPORTED_MODULE_5__.px)(16),
+            height: (0,_styles__WEBPACK_IMPORTED_MODULE_5__.px)(48),
+            justifyContent: 'center',
+            width: (0,_styles__WEBPACK_IMPORTED_MODULE_5__.px)(48),
+            '&.rswp__toggle': {
+                fontSize: (0,_styles__WEBPACK_IMPORTED_MODULE_5__.px)(28),
+            },
+        },
+    });
+}, 'ControlsRSWP');
+function Controls(props) {
+    var isExternalDevice = props.isExternalDevice, isPlaying = props.isPlaying, locale = props.locale, nextTracks = props.nextTracks, onClickNext = props.onClickNext, onClickPrevious = props.onClickPrevious, onClickTogglePlay = props.onClickTogglePlay, previousTracks = props.previousTracks, _a = props.styles, color = _a.color, height = _a.height;
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrapper, { style: { c: color, h: height } },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, (!!previousTracks.length || isExternalDevice) && (react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", { "aria-label": locale.previous, onClick: onClickPrevious, title: locale.previous, type: "button" },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_icons_Previous__WEBPACK_IMPORTED_MODULE_4__["default"], null)))),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null,
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", { "aria-label": isPlaying ? locale.pause : locale.play, className: "rswp__toggle", onClick: onClickTogglePlay, title: isPlaying ? locale.pause : locale.play, type: "button" }, isPlaying ? react__WEBPACK_IMPORTED_MODULE_0__.createElement(_icons_Pause__WEBPACK_IMPORTED_MODULE_2__["default"], null) : react__WEBPACK_IMPORTED_MODULE_0__.createElement(_icons_Play__WEBPACK_IMPORTED_MODULE_3__["default"], null))),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, (!!nextTracks.length || isExternalDevice) && (react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", { "aria-label": locale.next, onClick: onClickNext, title: locale.next, type: "button" },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_icons_Next__WEBPACK_IMPORTED_MODULE_1__["default"], null))))));
+}
+//# sourceMappingURL=Controls.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/Devices.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/Devices.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _ClickOutside__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ClickOutside */ "./node_modules/react-spotify-web-playback/esm/components/ClickOutside.js");
+/* harmony import */ var _icons_Devices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./icons/Devices */ "./node_modules/react-spotify-web-playback/esm/components/icons/Devices.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles */ "./node_modules/react-spotify-web-playback/esm/styles.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+var Wrapper = (0,_styles__WEBPACK_IMPORTED_MODULE_3__.styled)('div')({
+    'pointer-events': 'all',
+    position: 'relative',
+    zIndex: 20,
+    '> div': {
+        display: 'flex',
+        flexDirection: 'column',
+        padding: (0,_styles__WEBPACK_IMPORTED_MODULE_3__.px)(8),
+        position: 'absolute',
+        right: "-" + (0,_styles__WEBPACK_IMPORTED_MODULE_3__.px)(3),
+        button: {
+            display: 'block',
+            padding: (0,_styles__WEBPACK_IMPORTED_MODULE_3__.px)(8),
+            whiteSpace: 'nowrap',
+            '&.rswp__devices__active': {
+                fontWeight: 'bold',
+            },
+        },
+    },
+    '> button': {
+        fontSize: (0,_styles__WEBPACK_IMPORTED_MODULE_3__.px)(26),
+    },
+}, function (_a) {
+    var _b;
+    var style = _a.style;
+    return ({
+        '> button': {
+            color: style.c,
+        },
+        '> div': (_b = {
+                backgroundColor: style.bgColor,
+                boxShadow: style.altColor ? "1px 1px 10px " + style.altColor : 'none'
+            },
+            _b[style.p] = '120%',
+            _b.button = {
+                color: style.c,
+            },
+            _b),
+    });
+}, 'DevicesRSWP');
+var Devices = /** @class */ (function (_super) {
+    __extends(Devices, _super);
+    function Devices(props) {
+        var _this = _super.call(this, props) || this;
+        _this.handleClickSetDevice = function (event) {
+            var onClickDevice = _this.props.onClickDevice;
+            var dataset = event.currentTarget.dataset;
+            /* istanbul ignore else */
+            if (dataset.id) {
+                onClickDevice(dataset.id);
+                _this.setState({ isOpen: false });
+            }
+        };
+        _this.handleClickToggleDevices = function () {
+            _this.setState(function (state) { return ({ isOpen: !state.isOpen }); });
+        };
+        _this.state = {
+            isOpen: props.open,
+        };
+        return _this;
+    }
+    Devices.prototype.render = function () {
+        var _this = this;
+        var isOpen = this.state.isOpen;
+        var _a = this.props, currentDeviceId = _a.currentDeviceId, deviceId = _a.deviceId, devices = _a.devices, playerPosition = _a.playerPosition, _b = _a.styles, activeColor = _b.activeColor, altColor = _b.altColor, bgColor = _b.bgColor, color = _b.color, title = _a.title;
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrapper, { style: {
+                altColor: altColor,
+                bgColor: bgColor,
+                c: currentDeviceId && deviceId && currentDeviceId !== deviceId ? activeColor : color,
+                p: playerPosition,
+            } }, !!devices.length && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+            isOpen && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ClickOutside__WEBPACK_IMPORTED_MODULE_1__["default"], { onClick: this.handleClickToggleDevices }, devices.map(function (d) { return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", { key: d.id, className: d.id === currentDeviceId ? 'rswp__devices__active' : undefined, "data-id": d.id, onClick: _this.handleClickSetDevice, type: "button" }, d.name)); }))),
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", { "aria-label": title, onClick: this.handleClickToggleDevices, title: title, type: "button" },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_icons_Devices__WEBPACK_IMPORTED_MODULE_2__["default"], null))))));
+    };
+    return Devices;
+}(react__WEBPACK_IMPORTED_MODULE_0__.PureComponent));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Devices);
+//# sourceMappingURL=Devices.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/ErrorMessage.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/ErrorMessage.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles */ "./node_modules/react-spotify-web-playback/esm/styles.js");
+
+
+var Wrapper = (0,_styles__WEBPACK_IMPORTED_MODULE_1__.styled)('p')({
+    textAlign: 'center',
+    width: '100%',
+}, function (_a) {
+    var style = _a.style;
+    return ({
+        borderTop: "1px solid " + style.errorColor,
+        color: style.errorColor,
+        height: (0,_styles__WEBPACK_IMPORTED_MODULE_1__.px)(style.h),
+        lineHeight: (0,_styles__WEBPACK_IMPORTED_MODULE_1__.px)(style.h),
+    });
+}, 'ErrorRSWP');
+function ErrorMessage(_a) {
+    var children = _a.children, _b = _a.styles, errorColor = _b.errorColor, height = _b.height;
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrapper, { style: { errorColor: errorColor, h: height } }, children);
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ErrorMessage);
+//# sourceMappingURL=ErrorMessage.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/Info.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/Info.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _icons_Favorite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./icons/Favorite */ "./node_modules/react-spotify-web-playback/esm/components/icons/Favorite.js");
+/* harmony import */ var _icons_FavoriteOutline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./icons/FavoriteOutline */ "./node_modules/react-spotify-web-playback/esm/components/icons/FavoriteOutline.js");
+/* harmony import */ var _spotify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../spotify */ "./node_modules/react-spotify-web-playback/esm/spotify.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles */ "./node_modules/react-spotify-web-playback/esm/styles.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils */ "./node_modules/react-spotify-web-playback/esm/utils.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __read = (undefined && undefined.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+
+
+
+
+
+
+var Wrapper = (0,_styles__WEBPACK_IMPORTED_MODULE_4__.styled)('div')({
+    alignItems: 'center',
+    display: 'flex',
+    textAlign: 'left',
+    a: {
+        display: 'inline-flex',
+        textDecoration: 'none',
+    },
+    '@media (max-width: 1023px)': {
+        borderBottom: '1px solid #ccc',
+        display: 'none',
+        width: '100%',
+    },
+    '&.rswp__active': {
+        '@media (max-width: 1023px)': {
+            display: 'flex',
+        },
+    },
+}, function (_a) {
+    var style = _a.style;
+    return ({
+        height: (0,_styles__WEBPACK_IMPORTED_MODULE_4__.px)(style.h),
+        img: {
+            height: (0,_styles__WEBPACK_IMPORTED_MODULE_4__.px)(style.h),
+            width: (0,_styles__WEBPACK_IMPORTED_MODULE_4__.px)(style.h),
+        },
+    });
+}, 'InfoRSWP');
+var Title = (0,_styles__WEBPACK_IMPORTED_MODULE_4__.styled)('div')({
+    paddingLeft: (0,_styles__WEBPACK_IMPORTED_MODULE_4__.px)(10),
+    whiteSpace: 'nowrap',
+    p: {
+        fontSize: (0,_styles__WEBPACK_IMPORTED_MODULE_4__.px)(14),
+        lineHeight: 1.3,
+        paddingRight: (0,_styles__WEBPACK_IMPORTED_MODULE_4__.px)(5),
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        width: '100%',
+        '&:first-child': {
+            alignItems: 'center',
+            display: 'inline-flex',
+        },
+    },
+    span: {
+        display: 'inline-block',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+    },
+    button: {
+        fontSize: '110%',
+        marginLeft: (0,_styles__WEBPACK_IMPORTED_MODULE_4__.px)(5),
+    },
+}, function (_a) {
+    var style = _a.style;
+    return ({
+        width: "calc(100% - " + (0,_styles__WEBPACK_IMPORTED_MODULE_4__.px)(style.h) + ")",
+        p: {
+            a: {
+                color: style.trackNameColor,
+            },
+            '&:last-child': {
+                a: {
+                    color: style.trackArtistColor,
+                },
+            },
+        },
+        button: {
+            color: style.c,
+            '&.rswp__active': {
+                color: style.activeColor,
+            },
+        },
+    });
+});
+var Info = /** @class */ (function (_super) {
+    __extends(Info, _super);
+    function Info(props) {
+        var _this = _super.call(this, props) || this;
+        _this.isActive = false;
+        _this.handleClickIcon = function () { return __awaiter(_this, void 0, void 0, function () {
+            var isSaved, _a, onFavoriteStatusChange, token, track;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        isSaved = this.state.isSaved;
+                        _a = this.props, onFavoriteStatusChange = _a.onFavoriteStatusChange, token = _a.token, track = _a.track;
+                        if (!isSaved) return [3 /*break*/, 2];
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_3__.removeTracks)(token, track.id)];
+                    case 1:
+                        _b.sent();
+                        this.updateState({ isSaved: false });
+                        return [3 /*break*/, 4];
+                    case 2: return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_3__.saveTracks)(token, track.id)];
+                    case 3:
+                        _b.sent();
+                        this.updateState({ isSaved: true });
+                        _b.label = 4;
+                    case 4:
+                        onFavoriteStatusChange(!isSaved);
+                        return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.setStatus = function () { return __awaiter(_this, void 0, void 0, function () {
+            var _a, onFavoriteStatusChange, token, track, updateSavedStatus, status, _b, isSaved;
+            var _this = this;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        if (!this.isActive) {
+                            return [2 /*return*/];
+                        }
+                        _a = this.props, onFavoriteStatusChange = _a.onFavoriteStatusChange, token = _a.token, track = _a.track, updateSavedStatus = _a.updateSavedStatus;
+                        if (updateSavedStatus && track.id) {
+                            updateSavedStatus(function (newStatus) {
+                                _this.updateState({ isSaved: newStatus });
+                            });
+                        }
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_3__.checkTracksStatus)(token, track.id)];
+                    case 1:
+                        status = _c.sent();
+                        _b = __read(status || [false], 1), isSaved = _b[0];
+                        this.updateState({ isSaved: isSaved });
+                        onFavoriteStatusChange(isSaved);
+                        return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.updateState = function (state) {
+            if (state === void 0) { state = {}; }
+            if (!_this.isActive) {
+                return;
+            }
+            _this.setState(state);
+        };
+        _this.state = {
+            isSaved: false,
+        };
+        return _this;
+    }
+    Info.prototype.componentDidMount = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, showSaveIcon, track;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        this.isActive = true;
+                        _a = this.props, showSaveIcon = _a.showSaveIcon, track = _a.track;
+                        if (!(showSaveIcon && track.id)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.setStatus()];
+                    case 1:
+                        _b.sent();
+                        _b.label = 2;
+                    case 2: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Info.prototype.componentDidUpdate = function (previousProps) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, showSaveIcon, track;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this.props, showSaveIcon = _a.showSaveIcon, track = _a.track;
+                        if (!(showSaveIcon && previousProps.track.id !== track.id && track.id)) return [3 /*break*/, 2];
+                        this.updateState({ isSaved: false });
+                        return [4 /*yield*/, this.setStatus()];
+                    case 1:
+                        _b.sent();
+                        _b.label = 2;
+                    case 2: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Info.prototype.componentWillUnmount = function () {
+        this.isActive = false;
+    };
+    Info.prototype.render = function () {
+        var isSaved = this.state.isSaved;
+        var _a = this.props, isActive = _a.isActive, locale = _a.locale, showSaveIcon = _a.showSaveIcon, _b = _a.styles, activeColor = _b.activeColor, color = _b.color, height = _b.height, trackArtistColor = _b.trackArtistColor, trackNameColor = _b.trackNameColor, _c = _a.track, id = _c.id, name = _c.name, uri = _c.uri, image = _c.image, _d = _c.artists, artists = _d === void 0 ? [] : _d;
+        var title = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.getSpotifyLinkTitle)(name, locale.title);
+        var icon;
+        /* istanbul ignore else */
+        if (showSaveIcon && id) {
+            icon = (react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", { className: isSaved ? 'rswp__active' : undefined, onClick: this.handleClickIcon, type: "button" }, isSaved ? react__WEBPACK_IMPORTED_MODULE_0__.createElement(_icons_Favorite__WEBPACK_IMPORTED_MODULE_1__["default"], null) : react__WEBPACK_IMPORTED_MODULE_0__.createElement(_icons_FavoriteOutline__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+        }
+        var classes = [];
+        if (isActive) {
+            classes.push('rswp__active');
+        }
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrapper, { className: classes.join(' '), style: { h: height } },
+            image && (react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", { "aria-label": title, href: (0,_utils__WEBPACK_IMPORTED_MODULE_5__.getSpotifyLink)(uri), rel: "noreferrer", target: "_blank", title: title },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { alt: name, src: image }))),
+            !!name && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(Title, { style: { c: color, h: height, activeColor: activeColor, trackArtistColor: trackArtistColor, trackNameColor: trackNameColor } },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null,
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null,
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", { "aria-label": title, href: (0,_utils__WEBPACK_IMPORTED_MODULE_5__.getSpotifyLink)(uri), rel: "noreferrer", target: "_blank", title: title }, name)),
+                    icon),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", { title: artists.map(function (d) { return d.name; }).join(', ') }, artists.map(function (artist, index) {
+                    var artistTitle = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.getSpotifyLinkTitle)(artist.name, locale.title);
+                    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", { key: artist.uri },
+                        index ? ', ' : '',
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", { "aria-label": artistTitle, href: (0,_utils__WEBPACK_IMPORTED_MODULE_5__.getSpotifyLink)(artist.uri), rel: "noreferrer", target: "_blank", title: artistTitle }, artist.name)));
+                }))))));
+    };
+    return Info;
+}(react__WEBPACK_IMPORTED_MODULE_0__.PureComponent));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Info);
+//# sourceMappingURL=Info.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/Loader.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/Loader.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles */ "./node_modules/react-spotify-web-playback/esm/styles.js");
+
+
+var Wrapper = (0,_styles__WEBPACK_IMPORTED_MODULE_1__.styled)('div')({
+    margin: '0 auto',
+    position: 'relative',
+    '> div': {
+        borderRadius: '50%',
+        borderStyle: 'solid',
+        borderWidth: 0,
+        boxSizing: 'border-box',
+        height: 0,
+        left: '50%',
+        position: 'absolute',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 0,
+    },
+}, function (_a) {
+    var style = _a.style;
+    var pulse = (0,_styles__WEBPACK_IMPORTED_MODULE_1__.keyframes)({
+        '0%': {
+            height: 0,
+            width: 0,
+        },
+        '30%': {
+            borderWidth: (0,_styles__WEBPACK_IMPORTED_MODULE_1__.px)(8),
+            height: (0,_styles__WEBPACK_IMPORTED_MODULE_1__.px)(style.loaderSize),
+            opacity: 1,
+            width: (0,_styles__WEBPACK_IMPORTED_MODULE_1__.px)(style.loaderSize),
+        },
+        '100%': {
+            borderWidth: 0,
+            height: (0,_styles__WEBPACK_IMPORTED_MODULE_1__.px)(style.loaderSize),
+            opacity: 0,
+            width: (0,_styles__WEBPACK_IMPORTED_MODULE_1__.px)(style.loaderSize),
+        },
+    });
+    return {
+        height: (0,_styles__WEBPACK_IMPORTED_MODULE_1__.px)(style.loaderSize),
+        width: (0,_styles__WEBPACK_IMPORTED_MODULE_1__.px)(style.loaderSize),
+        '> div': {
+            animation: pulse + " 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1)",
+            borderColor: style.loaderColor,
+        },
+    };
+}, 'LoaderRSWP');
+function Loader(_a) {
+    var _b = _a.styles, loaderColor = _b.loaderColor, loaderSize = _b.loaderSize;
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrapper, { style: { loaderColor: loaderColor, loaderSize: loaderSize } },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Loader);
+//# sourceMappingURL=Loader.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/Player.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/Player.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles */ "./node_modules/react-spotify-web-playback/esm/styles.js");
+
+
+(0,_styles__WEBPACK_IMPORTED_MODULE_1__.put)('.PlayerRSWP', {
+    boxSizing: 'border-box',
+    fontSize: 'inherit',
+    width: '100%',
+    '*': {
+        boxSizing: 'border-box',
+    },
+    button: {
+        appearance: 'none',
+        backgroundColor: 'transparent',
+        border: 0,
+        borderRadius: 0,
+        color: 'inherit',
+        cursor: 'pointer',
+        display: 'inline-flex',
+        lineHeight: 1,
+        padding: 0,
+        ':focus': {
+            outlineColor: '#000',
+            outlineOffset: 3,
+        },
+    },
+    p: {
+        margin: 0,
+    },
+});
+var Player = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (_a, ref) {
+    var children = _a.children, _b = _a.styles, bgColor = _b.bgColor, height = _b.height;
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { ref: ref, className: "PlayerRSWP", style: { backgroundColor: bgColor, minHeight: (0,_styles__WEBPACK_IMPORTED_MODULE_1__.px)(height) } }, children));
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Player);
+//# sourceMappingURL=Player.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/Slider.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/Slider.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _gilbarbara_react_range_slider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @gilbarbara/react-range-slider */ "./node_modules/@gilbarbara/react-range-slider/esm/index.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles */ "./node_modules/react-spotify-web-playback/esm/styles.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+var Wrapper = (0,_styles__WEBPACK_IMPORTED_MODULE_1__.styled)('div')({
+    display: 'flex',
+    position: 'relative',
+    transition: 'height 0.3s',
+    zIndex: 10,
+}, function (_a) {
+    var style = _a.style;
+    return ({
+        height: (0,_styles__WEBPACK_IMPORTED_MODULE_1__.px)(style.sliderHeight),
+    });
+}, 'SliderRSWP');
+var Slider = /** @class */ (function (_super) {
+    __extends(Slider, _super);
+    function Slider() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.handleChangeRange = function (_a) {
+            var x = _a.x;
+            return __awaiter(_this, void 0, void 0, function () {
+                var onChangeRange;
+                return __generator(this, function (_b) {
+                    onChangeRange = this.props.onChangeRange;
+                    onChangeRange(x);
+                    return [2 /*return*/];
+                });
+            });
+        };
+        return _this;
+    }
+    Slider.prototype.render = function () {
+        var _a = this.props, isMagnified = _a.isMagnified, onToggleMagnify = _a.onToggleMagnify, position = _a.position, styles = _a.styles;
+        var handleSize = styles.sliderHeight + 6;
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrapper, { onMouseEnter: onToggleMagnify, onMouseLeave: onToggleMagnify, style: { sliderHeight: isMagnified ? styles.sliderHeight + 4 : styles.sliderHeight } },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_gilbarbara_react_range_slider__WEBPACK_IMPORTED_MODULE_2__["default"], { axis: "x", onChange: this.handleChangeRange, styles: {
+                    options: {
+                        thumbBorder: 0,
+                        thumbBorderRadius: styles.sliderHandleBorderRadius,
+                        thumbColor: styles.sliderHandleColor,
+                        thumbSize: isMagnified ? handleSize + 4 : handleSize,
+                        height: isMagnified ? styles.sliderHeight + 4 : styles.sliderHeight,
+                        padding: 0,
+                        rangeColor: styles.sliderColor,
+                        trackBorderRadius: styles.sliderTrackBorderRadius,
+                        trackColor: styles.sliderTrackColor,
+                    },
+                }, x: position, xMax: 100, xMin: 0, xStep: 0.1 })));
+    };
+    return Slider;
+}(react__WEBPACK_IMPORTED_MODULE_0__.PureComponent));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Slider);
+//# sourceMappingURL=Slider.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/Volume.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/Volume.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _gilbarbara_react_range_slider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @gilbarbara/react-range-slider */ "./node_modules/@gilbarbara/react-range-slider/esm/index.js");
+/* harmony import */ var _ClickOutside__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ClickOutside */ "./node_modules/react-spotify-web-playback/esm/components/ClickOutside.js");
+/* harmony import */ var _icons_VolumeHigh__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./icons/VolumeHigh */ "./node_modules/react-spotify-web-playback/esm/components/icons/VolumeHigh.js");
+/* harmony import */ var _icons_VolumeLow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./icons/VolumeLow */ "./node_modules/react-spotify-web-playback/esm/components/icons/VolumeLow.js");
+/* harmony import */ var _icons_VolumeMute__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./icons/VolumeMute */ "./node_modules/react-spotify-web-playback/esm/components/icons/VolumeMute.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles */ "./node_modules/react-spotify-web-playback/esm/styles.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+
+
+var Wrapper = (0,_styles__WEBPACK_IMPORTED_MODULE_5__.styled)('div')({
+    'pointer-events': 'all',
+    position: 'relative',
+    zIndex: 20,
+    '> div': {
+        display: 'flex',
+        flexDirection: 'column',
+        padding: (0,_styles__WEBPACK_IMPORTED_MODULE_5__.px)(12),
+        position: 'absolute',
+        right: "-" + (0,_styles__WEBPACK_IMPORTED_MODULE_5__.px)(3),
+    },
+    '> button': {
+        fontSize: (0,_styles__WEBPACK_IMPORTED_MODULE_5__.px)(26),
+    },
+    '@media (max-width: 1023px)': {
+        display: 'none',
+    },
+}, function (_a) {
+    var _b;
+    var style = _a.style;
+    return ({
+        '> button': {
+            color: style.c,
+        },
+        '> div': (_b = {
+                backgroundColor: style.bgColor,
+                boxShadow: style.altColor ? "1px 1px 10px " + style.altColor : 'none'
+            },
+            _b[style.p] = '120%',
+            _b),
+    });
+}, 'VolumeRSWP');
+var Volume = /** @class */ (function (_super) {
+    __extends(Volume, _super);
+    function Volume(props) {
+        var _this = _super.call(this, props) || this;
+        _this.handleClick = function () {
+            _this.setState(function (state) { return ({ isOpen: !state.isOpen }); });
+        };
+        _this.handleChangeSlider = function (_a) {
+            var y = _a.y;
+            var setVolume = _this.props.setVolume;
+            var volume = Math.round(y) / 100;
+            clearTimeout(_this.timeout);
+            _this.timeout = window.setTimeout(function () {
+                setVolume(volume);
+            }, 250);
+            _this.setState({ volume: volume });
+        };
+        _this.handleAfterEnd = function () {
+            setTimeout(function () {
+                _this.setState({ isOpen: false });
+            }, 100);
+        };
+        _this.state = {
+            isOpen: false,
+            volume: props.volume,
+        };
+        return _this;
+    }
+    Volume.prototype.componentDidUpdate = function (previousProps) {
+        var volumeState = this.state.volume;
+        var volume = this.props.volume;
+        if (previousProps.volume !== volume && volume !== volumeState) {
+            // eslint-disable-next-line react/no-did-update-set-state
+            this.setState({ volume: volume });
+        }
+    };
+    Volume.prototype.render = function () {
+        var _a = this.state, isOpen = _a.isOpen, volume = _a.volume;
+        var _b = this.props, playerPosition = _b.playerPosition, _c = _b.styles, altColor = _c.altColor, bgColor = _c.bgColor, color = _c.color, title = _b.title;
+        var icon = react__WEBPACK_IMPORTED_MODULE_0__.createElement(_icons_VolumeHigh__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+        if (volume === 0) {
+            icon = react__WEBPACK_IMPORTED_MODULE_0__.createElement(_icons_VolumeMute__WEBPACK_IMPORTED_MODULE_4__["default"], null);
+        }
+        else if (volume <= 0.5) {
+            icon = react__WEBPACK_IMPORTED_MODULE_0__.createElement(_icons_VolumeLow__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+        }
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrapper, { style: { altColor: altColor, bgColor: bgColor, c: color, p: playerPosition } },
+            isOpen && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ClickOutside__WEBPACK_IMPORTED_MODULE_1__["default"], { onClick: this.handleClick },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_gilbarbara_react_range_slider__WEBPACK_IMPORTED_MODULE_6__["default"], { axis: "y", className: "rrs", onAfterEnd: this.handleAfterEnd, onChange: this.handleChangeSlider, styles: {
+                        options: {
+                            thumbBorder: "2px solid " + color,
+                            thumbBorderRadius: 12,
+                            thumbColor: bgColor,
+                            thumbSize: 12,
+                            padding: 0,
+                            rangeColor: altColor || '#ccc',
+                            trackColor: color,
+                            width: 6,
+                        },
+                    }, y: volume * 100, yMax: 100, yMin: 0 }))),
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", { "aria-label": title, onClick: !isOpen ? this.handleClick : undefined, title: title, type: "button" }, icon)));
+    };
+    return Volume;
+}(react__WEBPACK_IMPORTED_MODULE_0__.PureComponent));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Volume);
+//# sourceMappingURL=Volume.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/icons/Devices.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/icons/Devices.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function DevicesIcon(props) {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", __assign({ height: "1em", preserveAspectRatio: "xMidYMid", viewBox: "0 0 128 128", width: "1em" }, props),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M6.765 89.483h40.412v6.765H6.269C2.765 96.248 0 93.483 0 89.978V20.703c0-3.504 2.765-6.27 6.27-6.27h40.907v6.766H6.765v68.285zm16.327 20.702a3.4 3.4 0 0 1 3.383-3.383h20.702v6.765H26.475c-.915 0-1.72-.347-2.344-1.038a3.064 3.064 0 0 1-1.039-2.344zm46.681-95.752h51.958c3.504 0 6.269 2.765 6.269 6.269v86.596c0 3.504-2.765 6.27-6.27 6.27H69.774c-3.504 0-6.27-2.766-6.27-6.27V20.702c0-3.504 2.766-6.27 6.27-6.27zm-.496 5.842l.07 87.52 52.88-.07-.07-87.45h-52.88zm13.89 45.573c3.464-3.462 7.714-5.23 12.585-5.23 9.827 0 17.815 7.988 17.815 17.815 0 9.827-7.988 17.815-17.815 17.815-9.827 0-17.815-7.988-17.815-17.815 0-4.87 1.768-9.122 5.23-12.585zm4.124 21.045c2.381 2.381 5.195 3.582 8.46 3.582 6.598 0 12.043-5.445 12.043-12.042 0-6.597-5.445-12.043-12.042-12.043-6.597 0-12.042 5.446-12.042 12.043 0 3.266 1.2 6.08 3.581 8.46zm12.935-44.466c-1.247 1.247-2.741 1.863-4.474 1.863-3.504 0-6.27-2.765-6.27-6.269s2.766-6.27 6.27-6.27c3.504 0 6.27 2.766 6.27 6.27 0 1.72-.608 3.218-1.796 4.406z", fill: "currentColor" })));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DevicesIcon);
+//# sourceMappingURL=Devices.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/icons/Favorite.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/icons/Favorite.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function Favorite(props) {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", __assign({ height: "1em", preserveAspectRatio: "xMidYMid", viewBox: "0 0 128 128", width: "1em" }, props),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M117.686 16.288c-4.297-4.297-9.22-7.266-14.924-8.907-11.33-3.36-23.518-.86-32.582 6.72l-.781.546c-.938.703-3.282 1.641-5.392 1.641-2.187 0-4.688-1.172-5.313-1.64-.39-.235-.625-.391-.86-.548-9.063-7.579-21.252-10.08-32.582-6.72C13.922 10.74 4.39 19.96 1.187 32.072c-3.204 12.19.156 25.082 9.142 34.145L54.24 117.63c2.579 2.97 5.782 4.454 9.767 4.454 3.985 0 7.189-1.485 9.767-4.454l43.912-51.413C124.484 59.42 128 50.121 128 41.213c0-8.907-3.516-18.127-10.314-24.925z", fill: "currentColor" })));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Favorite);
+//# sourceMappingURL=Favorite.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/icons/FavoriteOutline.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/icons/FavoriteOutline.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function FavoriteOutline(props) {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", __assign({ height: "1em", preserveAspectRatio: "xMidYMid", viewBox: "0 0 128 128", width: "1em" }, props),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M126.772 51.913c-1.641 6.254-4.848 11.796-9.505 16.528l-41.524 48.612c-3.096 3.585-7.039 5.392-11.765 5.392-4.726 0-8.668-1.807-11.768-5.396L10.66 68.34C6.077 63.754 2.814 58.12 1.266 52.004.418 49 0 45.775 0 42.443 0 32.631 3.808 23.4 10.737 16.472 19.61 7.597 31.993 3.833 44.055 6.293c6.015 1.267 11.383 3.881 16.17 7.883a5.834 5.834 0 0 0 3.753 1.342c1.4 0 2.658-.459 3.674-1.339 9.686-7.953 22.313-10.577 34.105-7.094 5.884 1.828 11.005 4.928 15.463 9.387 9.322 9.322 12.893 22.716 9.552 35.44zm-14.428 12.012c7.721-7.721 10.73-18.85 8.013-29.263-3.259-12.157-13.877-21.773-27.765-22.377-7.712-.374-14.583 1.94-20.726 7.016-.334.223-.49.33-.73.511a11.431 11.431 0 0 1-4.092 1.923c-1.093.273-2.062.412-3.066.412-2.319 0-5.33-1.013-6.809-1.998-.37-.247-.701-.496-1.228-.902-5.627-4.652-11.977-6.96-19.156-6.96a30.137 30.137 0 0 0-21.323 8.825c-5.7 5.776-8.834 13.336-8.834 21.331 0 8.072 3.133 15.63 8.878 21.379l41.75 48.913c1.77 2.055 3.998 3.082 6.722 3.082s4.95-1.026 6.722-3.08l41.644-48.812z", fill: "currentColor" })));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FavoriteOutline);
+//# sourceMappingURL=FavoriteOutline.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/icons/Next.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/icons/Next.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function Next(props) {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", __assign({ height: "1em", preserveAspectRatio: "xMidYMid", viewBox: "0 0 128 128", width: "1em" }, props),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M98.91 53.749L5.817 0v128L98.91 74.251v47.93h23.273V5.819H98.909z", fill: "currentColor" })));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Next);
+//# sourceMappingURL=Next.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/icons/Pause.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/icons/Pause.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function Pause(props) {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", __assign({ height: "1em", preserveAspectRatio: "xMidYMid", viewBox: "0 0 128 128", width: "1em" }, props),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M41.86 128V0H8.648v128h33.21zm77.491 0V0h-33.21v128h33.21z", fill: "currentColor" })));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Pause);
+//# sourceMappingURL=Pause.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/icons/Play.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/icons/Play.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function Play(props) {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", __assign({ height: "1em", preserveAspectRatio: "xMidYMid", viewBox: "0 0 128 128", width: "1em" }, props),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M119.351 64L8.65 0v128z", fill: "currentColor" })));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Play);
+//# sourceMappingURL=Play.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/icons/Previous.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/icons/Previous.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function Previous(props) {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", __assign({ height: "1em", preserveAspectRatio: "xMidYMid", viewBox: "0 0 128 128", width: "1em" }, props),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M29.09 53.749V5.819H5.819v116.363h23.273v-47.93L122.18 128V0z", fill: "currentColor" })));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Previous);
+//# sourceMappingURL=Previous.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/icons/VolumeHigh.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/icons/VolumeHigh.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function VolumeHigh(props) {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", __assign({ height: "1em", preserveAspectRatio: "xMidYMid", viewBox: "0 0 128 128", width: "1em" }, props),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M0 85.869V40.38h21.24l39.41-22.743v90.974L21.24 85.87H0zm53.069 9.627V30.754L23.285 47.963H7.581v30.324h15.704L53.07 95.496zM92.355 18.86l4.889-5.723c13.772 12.64 21.94 30.407 21.94 49.724 0 19.318-8.168 37.085-21.94 49.725l-4.89-5.724c12.104-11.208 19.318-26.89 19.318-44 0-17.112-7.214-32.793-19.317-44.002zM75.303 38.835l4.889-5.724c5.246 5.008 9.062 11.209 11.149 18.542a41.69 41.69 0 0 1 1.55 11.21c0 11.506-4.77 22.12-12.7 29.75l-4.888-5.723c6.26-6.26 10.076-14.786 10.076-24.028 0-9.241-3.697-17.767-10.076-24.027z", fill: "currentColor" })));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VolumeHigh);
+//# sourceMappingURL=VolumeHigh.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/icons/VolumeLow.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/icons/VolumeLow.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function VolumeLow(props) {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", __assign({ height: "1em", preserveAspectRatio: "xMidYMid", viewBox: "0 0 128 128", width: "1em" }, props),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M0 85.606V40.12h21.24l39.41-22.744v90.975L21.24 85.606H0zm53.069 9.627V30.492L23.285 47.7H7.581v30.325h15.704L53.07 95.233zm22.234-56.66l4.889-5.725c5.246 5.009 9.062 11.21 11.149 18.543a41.69 41.69 0 0 1 1.55 11.209c0 11.507-4.77 22.12-12.7 29.751l-4.888-5.724c6.26-6.26 10.076-14.786 10.076-24.027 0-9.242-3.697-17.768-10.076-24.028z", fill: "currentColor" })));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VolumeLow);
+//# sourceMappingURL=VolumeLow.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/components/icons/VolumeMute.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/components/icons/VolumeMute.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function VolumeMute(props) {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", __assign({ height: "1em", preserveAspectRatio: "xMidYMid", viewBox: "0 0 128 128", width: "1em" }, props),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", { d: "M127.993 83.387l-5.278 5.279-20.53-20.559L81.62 88.672l-5.233-5.292 20.55-20.522L76.38 42.3l5.248-5.248 20.557 20.558 20.522-20.551L128 42.293l-20.565 20.565 20.558 20.53zM0 85.607V40.118h21.24l39.41-22.744v90.975L21.24 85.606H0zm53.069 9.626V30.492L23.285 47.7H7.581v30.325h15.704L53.07 95.233z", fill: "currentColor" })));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VolumeMute);
+//# sourceMappingURL=VolumeMute.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/index.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/index.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "STATUS": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS),
+/* harmony export */   "TYPE": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_11__.TYPE),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var memoize_one__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! memoize-one */ "./node_modules/memoize-one/dist/memoize-one.esm.js");
+/* harmony import */ var _components_Actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Actions */ "./node_modules/react-spotify-web-playback/esm/components/Actions.js");
+/* harmony import */ var _components_Content__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Content */ "./node_modules/react-spotify-web-playback/esm/components/Content.js");
+/* harmony import */ var _components_Controls__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Controls */ "./node_modules/react-spotify-web-playback/esm/components/Controls.js");
+/* harmony import */ var _components_ErrorMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/ErrorMessage */ "./node_modules/react-spotify-web-playback/esm/components/ErrorMessage.js");
+/* harmony import */ var _components_Info__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Info */ "./node_modules/react-spotify-web-playback/esm/components/Info.js");
+/* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Loader */ "./node_modules/react-spotify-web-playback/esm/components/Loader.js");
+/* harmony import */ var _components_Player__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Player */ "./node_modules/react-spotify-web-playback/esm/components/Player.js");
+/* harmony import */ var _components_Slider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Slider */ "./node_modules/react-spotify-web-playback/esm/components/Slider.js");
+/* harmony import */ var _spotify__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./spotify */ "./node_modules/react-spotify-web-playback/esm/spotify.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./styles */ "./node_modules/react-spotify-web-playback/esm/styles.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./utils */ "./node_modules/react-spotify-web-playback/esm/utils.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./types */ "./node_modules/react-spotify-web-playback/esm/types/index.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __read = (undefined && undefined.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+/* eslint-disable camelcase */
+
+
+
+
+
+
+
+
+
+
+
+
+
+var SpotifyWebPlayer = /** @class */ (function (_super) {
+    __extends(SpotifyWebPlayer, _super);
+    function SpotifyWebPlayer(props) {
+        var _this = _super.call(this, props) || this;
+        _this.isActive = false;
+        _this.emptyTrack = {
+            artists: [],
+            durationMs: 0,
+            id: '',
+            image: '',
+            name: '',
+            uri: '',
+        };
+        _this.getPlayOptions = (0,memoize_one__WEBPACK_IMPORTED_MODULE_12__["default"])(function (data) {
+            var playOptions = {
+                context_uri: undefined,
+                uris: undefined,
+            };
+            /* istanbul ignore else */
+            if (data) {
+                var ids = Array.isArray(data) ? data : [data];
+                if (!ids.every(function (d) { return (0,_utils__WEBPACK_IMPORTED_MODULE_11__.validateURI)(d); })) {
+                    // eslint-disable-next-line no-console
+                    console.error('Invalid URI');
+                    return playOptions;
+                }
+                if (ids.some(function (d) { return (0,_utils__WEBPACK_IMPORTED_MODULE_11__.getSpotifyURIType)(d) === 'track'; })) {
+                    if (!ids.every(function (d) { return (0,_utils__WEBPACK_IMPORTED_MODULE_11__.getSpotifyURIType)(d) === 'track'; })) {
+                        // eslint-disable-next-line no-console
+                        console.warn("You can't mix tracks URIs with other types");
+                    }
+                    playOptions.uris = ids.filter(function (d) { return (0,_utils__WEBPACK_IMPORTED_MODULE_11__.validateURI)(d) && (0,_utils__WEBPACK_IMPORTED_MODULE_11__.getSpotifyURIType)(d) === 'track'; });
+                }
+                else {
+                    if (ids.length > 1) {
+                        // eslint-disable-next-line no-console
+                        console.warn("Albums, Artists, Playlists and Podcasts can't have multiple URIs");
+                    }
+                    // eslint-disable-next-line prefer-destructuring
+                    playOptions.context_uri = ids[0];
+                }
+            }
+            return playOptions;
+        });
+        _this.hasNewToken = false;
+        _this.ref = react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+        _this.seekUpdateInterval = 100;
+        _this.handleChangeRange = function (position) { return __awaiter(_this, void 0, void 0, function () {
+            var track, _a, callback, token, progress, percentage, state, error_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        track = this.state.track;
+                        _a = this.props, callback = _a.callback, token = _a.token;
+                        progress = 0;
+                        _b.label = 1;
+                    case 1:
+                        _b.trys.push([1, 8, , 9]);
+                        percentage = position / 100;
+                        if (!this.isExternalPlayer) return [3 /*break*/, 3];
+                        progress = Math.round(track.durationMs * percentage);
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.seek)(token, progress)];
+                    case 2:
+                        _b.sent();
+                        this.updateState({
+                            position: position,
+                            progressMs: progress,
+                        });
+                        return [3 /*break*/, 7];
+                    case 3:
+                        if (!this.player) return [3 /*break*/, 7];
+                        return [4 /*yield*/, this.player.getCurrentState()];
+                    case 4:
+                        state = (_b.sent());
+                        if (!state) return [3 /*break*/, 6];
+                        progress = Math.round(state.track_window.current_track.duration_ms * percentage);
+                        return [4 /*yield*/, this.player.seek(progress)];
+                    case 5:
+                        _b.sent();
+                        this.updateState({
+                            position: position,
+                            progressMs: progress,
+                        });
+                        return [3 /*break*/, 7];
+                    case 6:
+                        this.updateState({ position: 0 });
+                        _b.label = 7;
+                    case 7:
+                        if (callback) {
+                            callback(__assign(__assign({}, this.state), { type: _utils__WEBPACK_IMPORTED_MODULE_11__.TYPE.PROGRESS }));
+                        }
+                        return [3 /*break*/, 9];
+                    case 8:
+                        error_1 = _b.sent();
+                        // eslint-disable-next-line no-console
+                        console.error(error_1);
+                        return [3 /*break*/, 9];
+                    case 9: return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.handleClickTogglePlay = function () { return __awaiter(_this, void 0, void 0, function () {
+            var isActive, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        isActive = this.state.isActive;
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.togglePlay(!this.isExternalPlayer && !isActive)];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_2 = _a.sent();
+                        // eslint-disable-next-line no-console
+                        console.error(error_2);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.handleClickPrevious = function () { return __awaiter(_this, void 0, void 0, function () {
+            var token, error_3;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 5, , 6]);
+                        if (!this.isExternalPlayer) return [3 /*break*/, 2];
+                        token = this.props.token;
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.previous)(token)];
+                    case 1:
+                        _a.sent();
+                        this.syncTimeout = window.setTimeout(function () {
+                            _this.syncDevice();
+                        }, 300);
+                        return [3 /*break*/, 4];
+                    case 2:
+                        if (!this.player) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.player.previousTrack()];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        error_3 = _a.sent();
+                        // eslint-disable-next-line no-console
+                        console.error(error_3);
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.handleClickNext = function () { return __awaiter(_this, void 0, void 0, function () {
+            var token, error_4;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 5, , 6]);
+                        if (!this.isExternalPlayer) return [3 /*break*/, 2];
+                        token = this.props.token;
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.next)(token)];
+                    case 1:
+                        _a.sent();
+                        this.syncTimeout = window.setTimeout(function () {
+                            _this.syncDevice();
+                        }, 300);
+                        return [3 /*break*/, 4];
+                    case 2:
+                        if (!this.player) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.player.nextTrack()];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        error_4 = _a.sent();
+                        // eslint-disable-next-line no-console
+                        console.error(error_4);
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.handleClickDevice = function (deviceId) { return __awaiter(_this, void 0, void 0, function () {
+            var isUnsupported, _a, autoPlay, persistDeviceSelection, token, player, error_5;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        isUnsupported = this.state.isUnsupported;
+                        _a = this.props, autoPlay = _a.autoPlay, persistDeviceSelection = _a.persistDeviceSelection, token = _a.token;
+                        this.updateState({ currentDeviceId: deviceId });
+                        _b.label = 1;
+                    case 1:
+                        _b.trys.push([1, 7, , 8]);
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.setDevice)(token, deviceId)];
+                    case 2:
+                        _b.sent();
+                        /* istanbul ignore else */
+                        if (persistDeviceSelection) {
+                            sessionStorage.setItem('rswpDeviceId', deviceId);
+                        }
+                        if (!isUnsupported) return [3 /*break*/, 6];
+                        return [4 /*yield*/, this.syncDevice()];
+                    case 3:
+                        _b.sent();
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.getPlaybackState)(token)];
+                    case 4:
+                        player = _b.sent();
+                        if (!(player && !player.is_playing && autoPlay)) return [3 /*break*/, 6];
+                        return [4 /*yield*/, this.togglePlay(true)];
+                    case 5:
+                        _b.sent();
+                        _b.label = 6;
+                    case 6: return [3 /*break*/, 8];
+                    case 7:
+                        error_5 = _b.sent();
+                        // eslint-disable-next-line no-console
+                        console.error(error_5);
+                        return [3 /*break*/, 8];
+                    case 8: return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.handleFavoriteStatusChange = function (status) {
+            var isSaved = _this.state.isSaved;
+            var callback = _this.props.callback;
+            _this.updateState({ isSaved: status });
+            /* istanbul ignore else */
+            if (isSaved !== status) {
+                callback(__assign(__assign({}, __assign(__assign({}, _this.state), { isSaved: status })), { type: _utils__WEBPACK_IMPORTED_MODULE_11__.TYPE.FAVORITE }));
+            }
+        };
+        _this.handlePlayerErrors = function (type, message) { return __awaiter(_this, void 0, void 0, function () {
+            var status, isPlaybackError, isInitializationError, nextStatus, devices, token;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        status = this.state.status;
+                        isPlaybackError = type === 'playback_error';
+                        isInitializationError = type === 'initialization_error';
+                        nextStatus = status;
+                        devices = [];
+                        if (!(this.player && !isPlaybackError)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.player.disconnect()];
+                    case 1:
+                        _b.sent();
+                        _b.label = 2;
+                    case 2:
+                        if (!isInitializationError) return [3 /*break*/, 4];
+                        nextStatus = _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.UNSUPPORTED;
+                        token = this.props.token;
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.getDevices)(token)];
+                    case 3:
+                        (_a = (_b.sent()).devices, devices = _a === void 0 ? [] : _a);
+                        _b.label = 4;
+                    case 4:
+                        if (!isInitializationError && !isPlaybackError) {
+                            nextStatus = _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.ERROR;
+                        }
+                        this.updateState({
+                            devices: devices,
+                            error: message,
+                            errorType: type,
+                            isInitializing: false,
+                            isUnsupported: isInitializationError,
+                            status: nextStatus,
+                        });
+                        return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.handlePlayerStateChanges = function (state) { return __awaiter(_this, void 0, void 0, function () {
+            var paused, position, _a, _b, album, artists, duration_ms, id, name_1, uri, next_tracks, previous_tracks, isPlaying, volume, track, trackState, error_6;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        _c.trys.push([0, 6, , 7]);
+                        if (!state) return [3 /*break*/, 2];
+                        paused = state.paused, position = state.position, _a = state.track_window, _b = _a.current_track, album = _b.album, artists = _b.artists, duration_ms = _b.duration_ms, id = _b.id, name_1 = _b.name, uri = _b.uri, next_tracks = _a.next_tracks, previous_tracks = _a.previous_tracks;
+                        isPlaying = !paused;
+                        return [4 /*yield*/, this.player.getVolume()];
+                    case 1:
+                        volume = _c.sent();
+                        track = {
+                            artists: artists,
+                            durationMs: duration_ms,
+                            id: id,
+                            image: this.setAlbumImage(album),
+                            name: name_1,
+                            uri: uri,
+                        };
+                        trackState = void 0;
+                        if (position === 0) {
+                            trackState = {
+                                nextTracks: next_tracks,
+                                position: 0,
+                                previousTracks: previous_tracks,
+                                track: track,
+                            };
+                        }
+                        this.updateState(__assign({ error: '', errorType: '', isActive: true, isPlaying: isPlaying, progressMs: position, volume: (0,_utils__WEBPACK_IMPORTED_MODULE_11__.round)(volume) }, trackState));
+                        return [3 /*break*/, 5];
+                    case 2:
+                        if (!this.isExternalPlayer) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.syncDevice()];
+                    case 3:
+                        _c.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        this.updateState({
+                            isActive: false,
+                            isPlaying: false,
+                            nextTracks: [],
+                            position: 0,
+                            previousTracks: [],
+                            track: {
+                                artists: '',
+                                durationMs: 0,
+                                id: '',
+                                image: '',
+                                name: '',
+                                uri: '',
+                            },
+                        });
+                        _c.label = 5;
+                    case 5: return [3 /*break*/, 7];
+                    case 6:
+                        error_6 = _c.sent();
+                        // eslint-disable-next-line no-console
+                        console.error(error_6);
+                        return [3 /*break*/, 7];
+                    case 7: return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.handlePlayerStatus = function (_a) {
+            var device_id = _a.device_id;
+            return __awaiter(_this, void 0, void 0, function () {
+                var _b, currentDeviceId, devices;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0: return [4 /*yield*/, this.initializeDevices(device_id)];
+                        case 1:
+                            _b = _c.sent(), currentDeviceId = _b.currentDeviceId, devices = _b.devices;
+                            this.updateState({
+                                currentDeviceId: currentDeviceId,
+                                deviceId: device_id,
+                                devices: devices,
+                                isInitializing: false,
+                                status: device_id ? _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.READY : _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.IDLE,
+                            });
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        _this.handleToggleMagnify = function () {
+            var magnifySliderOnHover = _this.props.magnifySliderOnHover;
+            if (magnifySliderOnHover) {
+                _this.updateState(function (previousState) {
+                    return { isMagnified: !previousState.isMagnified };
+                });
+            }
+        };
+        _this.initializePlayer = function () {
+            var volume = _this.state.volume;
+            var _a = _this.props, name = _a.name, token = _a.token;
+            _this.updateState({ isInitializing: true });
+            // @ts-ignore
+            _this.player = new window.Spotify.Player({
+                getOAuthToken: function (callback) {
+                    callback(token);
+                },
+                name: name,
+                volume: volume,
+            });
+            _this.player.addListener('ready', _this.handlePlayerStatus);
+            _this.player.addListener('not_ready', _this.handlePlayerStatus);
+            _this.player.addListener('player_state_changed', _this.handlePlayerStateChanges);
+            _this.player.addListener('initialization_error', function (error) {
+                return _this.handlePlayerErrors('initialization_error', error.message);
+            });
+            _this.player.addListener('authentication_error', function (error) {
+                return _this.handlePlayerErrors('authentication_error', error.message);
+            });
+            _this.player.addListener('account_error', function (error) {
+                return _this.handlePlayerErrors('account_error', error.message);
+            });
+            _this.player.addListener('playback_error', function (error) {
+                return _this.handlePlayerErrors('playback_error', error.message);
+            });
+            _this.player.connect();
+        };
+        _this.setAlbumImage = function (album) {
+            var width = Math.min.apply(Math, __spreadArray([], __read(album.images.map(function (d) { return d.width; })), false));
+            var thumb = album.images.find(function (d) { return d.width === width; }) || {};
+            return thumb.url;
+        };
+        _this.setExternalDevice = function (id) {
+            _this.updateState({ currentDeviceId: id, isPlaying: true });
+        };
+        _this.setVolume = function (volume) { return __awaiter(_this, void 0, void 0, function () {
+            var token;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        token = this.props.token;
+                        if (!this.isExternalPlayer) return [3 /*break*/, 3];
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.setVolume)(token, Math.round(volume * 100))];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.syncDevice()];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 5];
+                    case 3:
+                        if (!this.player) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.player.setVolume(volume)];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5:
+                        this.updateState({ volume: volume });
+                        return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.syncDevice = function () { return __awaiter(_this, void 0, void 0, function () {
+            var deviceId, token, player, track, error_7, state;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.isActive) {
+                            return [2 /*return*/];
+                        }
+                        deviceId = this.state.deviceId;
+                        token = this.props.token;
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.getPlaybackState)(token)];
+                    case 2:
+                        player = _a.sent();
+                        track = this.emptyTrack;
+                        if (!player) {
+                            throw new Error('No player');
+                        }
+                        /* istanbul ignore else */
+                        if (player.item) {
+                            track = {
+                                artists: player.item.artists,
+                                durationMs: player.item.duration_ms,
+                                id: player.item.id,
+                                image: this.setAlbumImage(player.item.album),
+                                name: player.item.name,
+                                uri: player.item.uri,
+                            };
+                        }
+                        this.updateState({
+                            error: '',
+                            errorType: '',
+                            isActive: true,
+                            isPlaying: player.is_playing,
+                            nextTracks: [],
+                            previousTracks: [],
+                            progressMs: player.item ? player.progress_ms : 0,
+                            status: _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.READY,
+                            track: track,
+                            volume: (0,_utils__WEBPACK_IMPORTED_MODULE_11__.parseVolume)(player.device.volume_percent),
+                        });
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_7 = _a.sent();
+                        state = {
+                            isActive: false,
+                            isPlaying: false,
+                            position: 0,
+                            track: this.emptyTrack,
+                        };
+                        if (deviceId) {
+                            this.updateState(__assign({ currentDeviceId: deviceId }, state));
+                            return [2 /*return*/];
+                        }
+                        this.updateState(__assign({ error: error_7.message, errorType: 'player_status', status: _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.ERROR }, state));
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.toggleOffset = function () { return __awaiter(_this, void 0, void 0, function () {
+            var _a, currentDeviceId, isPlaying, _b, offset, token, uris;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        _a = this.state, currentDeviceId = _a.currentDeviceId, isPlaying = _a.isPlaying;
+                        _b = this.props, offset = _b.offset, token = _b.token, uris = _b.uris;
+                        if (!(isPlaying && typeof offset === 'number' && Array.isArray(uris))) return [3 /*break*/, 2];
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.play)(token, { deviceId: currentDeviceId, offset: offset, uris: uris })];
+                    case 1:
+                        _c.sent();
+                        _c.label = 2;
+                    case 2: return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.togglePlay = function (init) {
+            if (init === void 0) { init = false; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var _a, currentDeviceId, isPlaying, needsUpdate, _b, offset, token, uris, shouldInitialize, playOptions, playerState, error_8;
+                var _this = this;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this.state, currentDeviceId = _a.currentDeviceId, isPlaying = _a.isPlaying, needsUpdate = _a.needsUpdate;
+                            _b = this.props, offset = _b.offset, token = _b.token, uris = _b.uris;
+                            shouldInitialize = init || needsUpdate;
+                            playOptions = this.getPlayOptions(uris);
+                            _c.label = 1;
+                        case 1:
+                            _c.trys.push([1, 12, , 13]);
+                            if (!this.isExternalPlayer) return [3 /*break*/, 6];
+                            if (!!isPlaying) return [3 /*break*/, 3];
+                            return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.play)(token, __assign({ deviceId: currentDeviceId, offset: offset }, (shouldInitialize ? playOptions : undefined)))];
+                        case 2:
+                            _c.sent();
+                            return [3 /*break*/, 5];
+                        case 3: return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.pause)(token)];
+                        case 4:
+                            _c.sent();
+                            this.updateState({ isPlaying: false });
+                            _c.label = 5;
+                        case 5:
+                            this.syncTimeout = window.setTimeout(function () {
+                                _this.syncDevice();
+                            }, 300);
+                            return [3 /*break*/, 11];
+                        case 6:
+                            if (!this.player) return [3 /*break*/, 11];
+                            return [4 /*yield*/, this.player.getCurrentState()];
+                        case 7:
+                            playerState = _c.sent();
+                            this.player.activateElement();
+                            if (!((!playerState && !!(playOptions.context_uri || playOptions.uris)) ||
+                                (shouldInitialize && playerState && playerState.paused))) return [3 /*break*/, 9];
+                            return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.play)(token, __assign({ deviceId: currentDeviceId, offset: offset }, (shouldInitialize ? playOptions : undefined)))];
+                        case 8:
+                            _c.sent();
+                            return [3 /*break*/, 11];
+                        case 9: return [4 /*yield*/, this.player.togglePlay()];
+                        case 10:
+                            _c.sent();
+                            _c.label = 11;
+                        case 11:
+                            if (needsUpdate) {
+                                this.updateState({ needsUpdate: false });
+                            }
+                            return [3 /*break*/, 13];
+                        case 12:
+                            error_8 = _c.sent();
+                            // eslint-disable-next-line no-console
+                            console.error(error_8);
+                            return [3 /*break*/, 13];
+                        case 13: return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        _this.updateSeekBar = function () { return __awaiter(_this, void 0, void 0, function () {
+            var _a, progressMs, track, position, state, progress, position, error_9;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (!this.isActive) {
+                            return [2 /*return*/];
+                        }
+                        _a = this.state, progressMs = _a.progressMs, track = _a.track;
+                        _b.label = 1;
+                    case 1:
+                        _b.trys.push([1, 5, , 6]);
+                        if (!this.isExternalPlayer) return [3 /*break*/, 2];
+                        position = progressMs / track.durationMs;
+                        position = Number(((Number.isFinite(position) ? position : 0) * 100).toFixed(1));
+                        this.updateState({
+                            position: position,
+                            progressMs: progressMs + this.seekUpdateInterval,
+                        });
+                        return [3 /*break*/, 4];
+                    case 2:
+                        if (!this.player) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.player.getCurrentState()];
+                    case 3:
+                        state = (_b.sent());
+                        /* istanbul ignore else */
+                        if (state) {
+                            progress = state.position;
+                            position = Number(((progress / state.track_window.current_track.duration_ms) * 100).toFixed(1));
+                            this.updateState({
+                                position: position,
+                                progressMs: progress + this.seekUpdateInterval,
+                            });
+                        }
+                        _b.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        error_9 = _b.sent();
+                        // eslint-disable-next-line no-console
+                        console.error(error_9);
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.updateState = function (state) {
+            if (state === void 0) { state = {}; }
+            if (!_this.isActive) {
+                return;
+            }
+            _this.setState(state);
+        };
+        _this.state = {
+            currentDeviceId: '',
+            deviceId: '',
+            devices: [],
+            error: '',
+            errorType: '',
+            isActive: false,
+            isInitializing: false,
+            isMagnified: false,
+            isPlaying: false,
+            isSaved: false,
+            isUnsupported: false,
+            needsUpdate: false,
+            nextTracks: [],
+            playerPosition: 'bottom',
+            position: 0,
+            previousTracks: [],
+            progressMs: 0,
+            status: _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.IDLE,
+            track: _this.emptyTrack,
+            volume: (0,_utils__WEBPACK_IMPORTED_MODULE_11__.parseVolume)(props.initialVolume) || 1,
+        };
+        _this.styles = (0,_styles__WEBPACK_IMPORTED_MODULE_10__.getMergedStyles)(props.styles);
+        return _this;
+    }
+    SpotifyWebPlayer.prototype.componentDidMount = function () {
+        var _a;
+        return __awaiter(this, void 0, void 0, function () {
+            var _b, top;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        this.isActive = true;
+                        _b = (((_a = this.ref.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect()) || {}).top, top = _b === void 0 ? 0 : _b;
+                        this.updateState({
+                            playerPosition: top > window.innerHeight / 2 ? 'bottom' : 'top',
+                            status: _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.INITIALIZING,
+                        });
+                        if (!window.onSpotifyWebPlaybackSDKReady) {
+                            window.onSpotifyWebPlaybackSDKReady = this.initializePlayer;
+                        }
+                        else {
+                            this.initializePlayer();
+                        }
+                        return [4 /*yield*/, (0,_utils__WEBPACK_IMPORTED_MODULE_11__.loadSpotifyPlayer)()];
+                    case 1:
+                        _c.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SpotifyWebPlayer.prototype.componentDidUpdate = function (previousProps, previousState) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, currentDeviceId, deviceId, error, isInitializing, isPlaying, status, track, _b, autoPlay, callback, offset, playProp, showSaveIcon, syncExternalDevice, token, uris, isReady, changedURIs, playOptions, canPlay, shouldPlay, player;
+            var _this = this;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        _a = this.state, currentDeviceId = _a.currentDeviceId, deviceId = _a.deviceId, error = _a.error, isInitializing = _a.isInitializing, isPlaying = _a.isPlaying, status = _a.status, track = _a.track;
+                        _b = this.props, autoPlay = _b.autoPlay, callback = _b.callback, offset = _b.offset, playProp = _b.play, showSaveIcon = _b.showSaveIcon, syncExternalDevice = _b.syncExternalDevice, token = _b.token, uris = _b.uris;
+                        isReady = previousState.status !== _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.READY && status === _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.READY;
+                        changedURIs = Array.isArray(uris)
+                            ? !(0,_utils__WEBPACK_IMPORTED_MODULE_11__.isEqualArray)(previousProps.uris, uris)
+                            : previousProps.uris !== uris;
+                        playOptions = this.getPlayOptions(uris);
+                        canPlay = !!currentDeviceId && !!(playOptions.context_uri || playOptions.uris);
+                        shouldPlay = (changedURIs && isPlaying) || !!(isReady && (autoPlay || playProp));
+                        if (!(canPlay && shouldPlay)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.play)(token, __assign({ deviceId: currentDeviceId, offset: offset }, playOptions))];
+                    case 1:
+                        _c.sent();
+                        /* istanbul ignore else */
+                        if (!isPlaying) {
+                            this.updateState({ isPlaying: true });
+                        }
+                        if (this.isExternalPlayer) {
+                            this.syncTimeout = window.setTimeout(function () {
+                                _this.syncDevice();
+                            }, 600);
+                        }
+                        return [3 /*break*/, 3];
+                    case 2:
+                        if (changedURIs && !isPlaying) {
+                            this.updateState({ needsUpdate: true });
+                        }
+                        _c.label = 3;
+                    case 3:
+                        if (previousState.status !== status) {
+                            callback(__assign(__assign({}, this.state), { type: _utils__WEBPACK_IMPORTED_MODULE_11__.TYPE.STATUS }));
+                        }
+                        if (!(previousState.currentDeviceId !== currentDeviceId && currentDeviceId)) return [3 /*break*/, 6];
+                        if (!isReady) {
+                            callback(__assign(__assign({}, this.state), { type: _utils__WEBPACK_IMPORTED_MODULE_11__.TYPE.DEVICE }));
+                        }
+                        return [4 /*yield*/, this.toggleSyncInterval(this.isExternalPlayer)];
+                    case 4:
+                        _c.sent();
+                        return [4 /*yield*/, this.updateSeekBar()];
+                    case 5:
+                        _c.sent();
+                        _c.label = 6;
+                    case 6:
+                        if (previousState.track.id !== track.id && track.id) {
+                            callback(__assign(__assign({}, this.state), { type: _utils__WEBPACK_IMPORTED_MODULE_11__.TYPE.TRACK }));
+                            if (showSaveIcon) {
+                                this.updateState({ isSaved: false });
+                            }
+                        }
+                        if (!(previousState.isPlaying !== isPlaying)) return [3 /*break*/, 8];
+                        this.toggleProgressBar();
+                        return [4 /*yield*/, this.toggleSyncInterval(this.isExternalPlayer)];
+                    case 7:
+                        _c.sent();
+                        callback(__assign(__assign({}, this.state), { type: _utils__WEBPACK_IMPORTED_MODULE_11__.TYPE.PLAYER }));
+                        _c.label = 8;
+                    case 8:
+                        if (token && previousProps.token !== token) {
+                            this.hasNewToken = true;
+                            if (!isInitializing) {
+                                this.initializePlayer();
+                            }
+                            else {
+                                this.hasNewToken = true;
+                            }
+                        }
+                        if (!(previousProps.play !== playProp && playProp !== isPlaying)) return [3 /*break*/, 10];
+                        return [4 /*yield*/, this.togglePlay(!track.id)];
+                    case 9:
+                        _c.sent();
+                        _c.label = 10;
+                    case 10:
+                        if (!(previousProps.offset !== offset)) return [3 /*break*/, 12];
+                        return [4 /*yield*/, this.toggleOffset()];
+                    case 11:
+                        _c.sent();
+                        _c.label = 12;
+                    case 12:
+                        if (!(previousState.isInitializing && !isInitializing)) return [3 /*break*/, 14];
+                        if (error === 'authentication_error' && this.hasNewToken) {
+                            this.hasNewToken = false;
+                            this.initializePlayer();
+                        }
+                        if (!(syncExternalDevice && !uris)) return [3 /*break*/, 14];
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.getPlaybackState)(token)];
+                    case 13:
+                        player = _c.sent();
+                        /* istanbul ignore else */
+                        if (player && player.is_playing && player.device.id !== deviceId) {
+                            this.setExternalDevice(player.device.id);
+                        }
+                        _c.label = 14;
+                    case 14: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SpotifyWebPlayer.prototype.componentWillUnmount = function () {
+        this.isActive = false;
+        /* istanbul ignore else */
+        if (this.player) {
+            this.player.disconnect();
+        }
+        clearInterval(this.playerSyncInterval);
+        clearInterval(this.playerProgressInterval);
+        clearTimeout(this.syncTimeout);
+    };
+    Object.defineProperty(SpotifyWebPlayer.prototype, "isExternalPlayer", {
+        get: function () {
+            var _a = this.state, currentDeviceId = _a.currentDeviceId, deviceId = _a.deviceId, status = _a.status;
+            return (currentDeviceId && currentDeviceId !== deviceId) || status === _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.UNSUPPORTED;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    SpotifyWebPlayer.prototype.initializeDevices = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, persistDeviceSelection, token, devices, currentDeviceId, savedDeviceId_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this.props, persistDeviceSelection = _a.persistDeviceSelection, token = _a.token;
+                        return [4 /*yield*/, (0,_spotify__WEBPACK_IMPORTED_MODULE_9__.getDevices)(token)];
+                    case 1:
+                        devices = (_b.sent()).devices;
+                        currentDeviceId = id;
+                        if (persistDeviceSelection) {
+                            savedDeviceId_1 = sessionStorage.getItem('rswpDeviceId');
+                            /* istanbul ignore else */
+                            if (!savedDeviceId_1 || !devices.some(function (d) { return d.id === savedDeviceId_1; })) {
+                                sessionStorage.setItem('rswpDeviceId', currentDeviceId);
+                            }
+                            else {
+                                currentDeviceId = savedDeviceId_1;
+                            }
+                        }
+                        return [2 /*return*/, { currentDeviceId: currentDeviceId, devices: devices }];
+                }
+            });
+        });
+    };
+    SpotifyWebPlayer.prototype.toggleSyncInterval = function (shouldSync) {
+        return __awaiter(this, void 0, void 0, function () {
+            var syncExternalDeviceInterval, error_10;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        syncExternalDeviceInterval = this.props.syncExternalDeviceInterval;
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 4, , 5]);
+                        if (!(this.isExternalPlayer && shouldSync && !this.playerSyncInterval)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.syncDevice()];
+                    case 2:
+                        _a.sent();
+                        clearInterval(this.playerSyncInterval);
+                        this.playerSyncInterval = window.setInterval(this.syncDevice, syncExternalDeviceInterval * 1000);
+                        _a.label = 3;
+                    case 3:
+                        if ((!shouldSync || !this.isExternalPlayer) && this.playerSyncInterval) {
+                            clearInterval(this.playerSyncInterval);
+                            this.playerSyncInterval = undefined;
+                        }
+                        return [3 /*break*/, 5];
+                    case 4:
+                        error_10 = _a.sent();
+                        // eslint-disable-next-line no-console
+                        console.error(error_10);
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SpotifyWebPlayer.prototype.toggleProgressBar = function () {
+        var isPlaying = this.state.isPlaying;
+        /* istanbul ignore else */
+        if (isPlaying) {
+            /* istanbul ignore else */
+            if (!this.playerProgressInterval) {
+                this.playerProgressInterval = window.setInterval(this.updateSeekBar, this.seekUpdateInterval);
+            }
+        }
+        else if (this.playerProgressInterval) {
+            clearInterval(this.playerProgressInterval);
+            this.playerProgressInterval = undefined;
+        }
+    };
+    SpotifyWebPlayer.prototype.render = function () {
+        var _a = this.state, currentDeviceId = _a.currentDeviceId, deviceId = _a.deviceId, devices = _a.devices, error = _a.error, errorType = _a.errorType, isActive = _a.isActive, isMagnified = _a.isMagnified, isPlaying = _a.isPlaying, isUnsupported = _a.isUnsupported, nextTracks = _a.nextTracks, playerPosition = _a.playerPosition, position = _a.position, previousTracks = _a.previousTracks, status = _a.status, track = _a.track, volume = _a.volume;
+        var _b = this.props, locale = _b.locale, name = _b.name, showSaveIcon = _b.showSaveIcon, token = _b.token, updateSavedStatus = _b.updateSavedStatus;
+        var isReady = [_utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.READY, _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.UNSUPPORTED].indexOf(status) >= 0;
+        var isPlaybackError = errorType === 'playback_error';
+        var localeMerged = (0,_utils__WEBPACK_IMPORTED_MODULE_11__.getLocale)(locale);
+        var output = react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Loader__WEBPACK_IMPORTED_MODULE_6__["default"], { styles: this.styles });
+        var info;
+        if (isPlaybackError) {
+            info = react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, error);
+        }
+        if (isReady) {
+            /* istanbul ignore else */
+            if (!info) {
+                info = (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Info__WEBPACK_IMPORTED_MODULE_5__["default"], { isActive: isActive, locale: localeMerged, onFavoriteStatusChange: this.handleFavoriteStatusChange, showSaveIcon: showSaveIcon, styles: this.styles, token: token, track: track, updateSavedStatus: updateSavedStatus }));
+            }
+            output = (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, info),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Controls__WEBPACK_IMPORTED_MODULE_3__["default"], { isExternalDevice: this.isExternalPlayer, isPlaying: isPlaying, locale: localeMerged, nextTracks: nextTracks, onClickNext: this.handleClickNext, onClickPrevious: this.handleClickPrevious, onClickTogglePlay: this.handleClickTogglePlay, previousTracks: previousTracks, styles: this.styles }),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Actions__WEBPACK_IMPORTED_MODULE_1__["default"], { currentDeviceId: currentDeviceId, deviceId: deviceId, devices: devices, isDevicesOpen: isUnsupported && !deviceId, locale: localeMerged, onClickDevice: this.handleClickDevice, playerPosition: playerPosition, setVolume: this.setVolume, styles: this.styles, volume: volume })));
+        }
+        if (status === _utils__WEBPACK_IMPORTED_MODULE_11__.STATUS.ERROR) {
+            output = (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ErrorMessage__WEBPACK_IMPORTED_MODULE_4__["default"], { styles: this.styles },
+                name,
+                ": ",
+                error));
+        }
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Player__WEBPACK_IMPORTED_MODULE_7__["default"], { ref: this.ref, styles: this.styles },
+            isReady && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Slider__WEBPACK_IMPORTED_MODULE_8__["default"], { isMagnified: isMagnified, onChangeRange: this.handleChangeRange, onToggleMagnify: this.handleToggleMagnify, position: position, styles: this.styles })),
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Content__WEBPACK_IMPORTED_MODULE_2__["default"], { styles: this.styles }, output)));
+    };
+    // eslint-disable-next-line react/static-property-placement
+    SpotifyWebPlayer.defaultProps = {
+        callback: function () { return undefined; },
+        magnifySliderOnHover: false,
+        name: 'Spotify Web Player',
+        showSaveIcon: false,
+        syncExternalDeviceInterval: 5,
+        syncExternalDevice: false,
+    };
+    return SpotifyWebPlayer;
+}(react__WEBPACK_IMPORTED_MODULE_0__.PureComponent));
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SpotifyWebPlayer);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/spotify.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/spotify.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "checkTracksStatus": () => (/* binding */ checkTracksStatus),
+/* harmony export */   "getDevices": () => (/* binding */ getDevices),
+/* harmony export */   "getPlaybackState": () => (/* binding */ getPlaybackState),
+/* harmony export */   "next": () => (/* binding */ next),
+/* harmony export */   "pause": () => (/* binding */ pause),
+/* harmony export */   "play": () => (/* binding */ play),
+/* harmony export */   "previous": () => (/* binding */ previous),
+/* harmony export */   "removeTracks": () => (/* binding */ removeTracks),
+/* harmony export */   "saveTracks": () => (/* binding */ saveTracks),
+/* harmony export */   "seek": () => (/* binding */ seek),
+/* harmony export */   "setDevice": () => (/* binding */ setDevice),
+/* harmony export */   "setVolume": () => (/* binding */ setVolume)
+/* harmony export */ });
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+function checkTracksStatus(token, tracks) {
+    return __awaiter(this, void 0, void 0, function () {
+        var ids;
+        return __generator(this, function (_a) {
+            ids = Array.isArray(tracks) ? tracks : [tracks];
+            return [2 /*return*/, fetch("https://api.spotify.com/v1/me/tracks/contains?ids=" + ids, {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'GET',
+                }).then(function (d) { return d.json(); })];
+        });
+    });
+}
+function getDevices(token) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, fetch("https://api.spotify.com/v1/me/player/devices", {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'GET',
+                }).then(function (d) { return d.json(); })];
+        });
+    });
+}
+function getPlaybackState(token) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, fetch("https://api.spotify.com/v1/me/player", {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'GET',
+                }).then(function (d) {
+                    if (d.status === 204) {
+                        return null;
+                    }
+                    return d.json();
+                })];
+        });
+    });
+}
+function pause(token) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, fetch("https://api.spotify.com/v1/me/player/pause", {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'PUT',
+                })];
+        });
+    });
+}
+function play(token, _a) {
+    var context_uri = _a.context_uri, deviceId = _a.deviceId, _b = _a.offset, offset = _b === void 0 ? 0 : _b, uris = _a.uris;
+    return __awaiter(this, void 0, void 0, function () {
+        var body, isArtist, position;
+        return __generator(this, function (_c) {
+            if (context_uri) {
+                isArtist = context_uri.indexOf('artist') >= 0;
+                position = void 0;
+                /* istanbul ignore else */
+                if (!isArtist) {
+                    position = { position: offset };
+                }
+                body = JSON.stringify({ context_uri: context_uri, offset: position });
+            }
+            else if (Array.isArray(uris) && uris.length) {
+                body = JSON.stringify({ uris: uris, offset: { position: offset } });
+            }
+            return [2 /*return*/, fetch("https://api.spotify.com/v1/me/player/play?device_id=" + deviceId, {
+                    body: body,
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'PUT',
+                })];
+        });
+    });
+}
+function previous(token) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, fetch("https://api.spotify.com/v1/me/player/previous", {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'POST',
+                })];
+        });
+    });
+}
+function next(token) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, fetch("https://api.spotify.com/v1/me/player/next", {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'POST',
+                })];
+        });
+    });
+}
+function removeTracks(token, tracks) {
+    return __awaiter(this, void 0, void 0, function () {
+        var ids;
+        return __generator(this, function (_a) {
+            ids = Array.isArray(tracks) ? tracks : [tracks];
+            return [2 /*return*/, fetch("https://api.spotify.com/v1/me/tracks", {
+                    body: JSON.stringify(ids),
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'DELETE',
+                })];
+        });
+    });
+}
+function saveTracks(token, tracks) {
+    return __awaiter(this, void 0, void 0, function () {
+        var ids;
+        return __generator(this, function (_a) {
+            ids = Array.isArray(tracks) ? tracks : [tracks];
+            return [2 /*return*/, fetch("https://api.spotify.com/v1/me/tracks", {
+                    body: JSON.stringify({ ids: ids }),
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'PUT',
+                })];
+        });
+    });
+}
+function seek(token, position) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, fetch("https://api.spotify.com/v1/me/player/seek?position_ms=" + position, {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'PUT',
+                })];
+        });
+    });
+}
+function setDevice(token, deviceId, shouldPlay) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, fetch("https://api.spotify.com/v1/me/player", {
+                    body: JSON.stringify({ device_ids: [deviceId], play: shouldPlay }),
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'PUT',
+                })];
+        });
+    });
+}
+function setVolume(token, volume) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, fetch("https://api.spotify.com/v1/me/player/volume?volume_percent=" + volume, {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'PUT',
+                })];
+        });
+    });
+}
+//# sourceMappingURL=spotify.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/styles.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/styles.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getMergedStyles": () => (/* binding */ getMergedStyles),
+/* harmony export */   "keyframes": () => (/* binding */ keyframes),
+/* harmony export */   "put": () => (/* binding */ put),
+/* harmony export */   "px": () => (/* binding */ px),
+/* harmony export */   "styled": () => (/* binding */ styled)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var nano_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! nano-css */ "./node_modules/nano-css/index.js");
+/* harmony import */ var nano_css_addon_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! nano-css/addon/jsx */ "./node_modules/nano-css/addon/jsx.js");
+/* harmony import */ var nano_css_addon_keyframes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nano-css/addon/keyframes */ "./node_modules/nano-css/addon/keyframes.js");
+/* harmony import */ var nano_css_addon_nesting__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nano-css/addon/nesting */ "./node_modules/nano-css/addon/nesting.js");
+/* harmony import */ var nano_css_addon_rule__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nano-css/addon/rule */ "./node_modules/nano-css/addon/rule.js");
+/* harmony import */ var nano_css_addon_style__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nano-css/addon/style */ "./node_modules/nano-css/addon/style.js");
+/* harmony import */ var nano_css_addon_styled__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! nano-css/addon/styled */ "./node_modules/nano-css/addon/styled.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+/* tslint:disable:object-literal-sort-keys */
+
+
+// @ts-ignore
+
+
+// @ts-ignore
+
+
+// @ts-ignore
+
+// @ts-ignore
+
+var nano = (0,nano_css__WEBPACK_IMPORTED_MODULE_1__.create)({ h: react__WEBPACK_IMPORTED_MODULE_0__.createElement });
+(0,nano_css_addon_rule__WEBPACK_IMPORTED_MODULE_5__.addon)(nano);
+(0,nano_css_addon_keyframes__WEBPACK_IMPORTED_MODULE_3__.addon)(nano);
+(0,nano_css_addon_jsx__WEBPACK_IMPORTED_MODULE_2__.addon)(nano);
+(0,nano_css_addon_style__WEBPACK_IMPORTED_MODULE_6__.addon)(nano);
+(0,nano_css_addon_styled__WEBPACK_IMPORTED_MODULE_7__.addon)(nano);
+(0,nano_css_addon_nesting__WEBPACK_IMPORTED_MODULE_4__.addon)(nano);
+var _a = nano, keyframes = _a.keyframes, put = _a.put, styled = _a.styled;
+var px = function (value) {
+    return typeof value === 'number' ? value + "px" : value;
+};
+function getMergedStyles(styles) {
+    return __assign({ activeColor: '#1cb954', altColor: '#ccc', bgColor: '#fff', color: '#333', errorColor: '#a60000', height: 48, loaderColor: '#ccc', loaderSize: 32, sliderColor: '#666', sliderHandleBorderRadius: '50%', sliderHandleColor: '#000', sliderHeight: 4, sliderTrackBorderRadius: 0, sliderTrackColor: '#ccc', trackArtistColor: '#666', trackNameColor: '#333' }, styles);
+}
+
+//# sourceMappingURL=styles.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/types/common.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/types/common.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+//# sourceMappingURL=common.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/types/index.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/types/index.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ "./node_modules/react-spotify-web-playback/esm/types/common.js");
+/* harmony import */ var _spotify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./spotify */ "./node_modules/react-spotify-web-playback/esm/types/spotify.js");
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/types/spotify.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/types/spotify.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+//# sourceMappingURL=spotify.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-spotify-web-playback/esm/utils.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/react-spotify-web-playback/esm/utils.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "STATUS": () => (/* binding */ STATUS),
+/* harmony export */   "TYPE": () => (/* binding */ TYPE),
+/* harmony export */   "canUseDOM": () => (/* binding */ canUseDOM),
+/* harmony export */   "getLocale": () => (/* binding */ getLocale),
+/* harmony export */   "getSpotifyLink": () => (/* binding */ getSpotifyLink),
+/* harmony export */   "getSpotifyLinkTitle": () => (/* binding */ getSpotifyLinkTitle),
+/* harmony export */   "getSpotifyURIType": () => (/* binding */ getSpotifyURIType),
+/* harmony export */   "isEqualArray": () => (/* binding */ isEqualArray),
+/* harmony export */   "isNumber": () => (/* binding */ isNumber),
+/* harmony export */   "loadSpotifyPlayer": () => (/* binding */ loadSpotifyPlayer),
+/* harmony export */   "parseVolume": () => (/* binding */ parseVolume),
+/* harmony export */   "round": () => (/* binding */ round),
+/* harmony export */   "validateURI": () => (/* binding */ validateURI)
+/* harmony export */ });
+/* harmony import */ var exenv__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! exenv */ "./node_modules/exenv/index.js");
+/* harmony import */ var exenv__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(exenv__WEBPACK_IMPORTED_MODULE_0__);
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __read = (undefined && undefined.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+
+var canUseDOM = function () { return exenv__WEBPACK_IMPORTED_MODULE_0__.canUseDOM; };
+var STATUS = {
+    ERROR: 'ERROR',
+    IDLE: 'IDLE',
+    INITIALIZING: 'INITIALIZING',
+    READY: 'READY',
+    RUNNING: 'RUNNING',
+    UNSUPPORTED: 'UNSUPPORTED',
+};
+var TYPE = {
+    DEVICE: 'device_update',
+    FAVORITE: 'favorite_update',
+    PLAYER: 'player_update',
+    PROGRESS: 'progress_update',
+    STATUS: 'status_update',
+    TRACK: 'track_update',
+};
+function getLocale(locale) {
+    return __assign({ devices: 'Devices', next: 'Next', pause: 'Pause', play: 'Play', previous: 'Previous', title: '{name} on SPOTIFY', volume: 'Volume' }, locale);
+}
+function getSpotifyLink(uri) {
+    var _a = __read(uri.split(':'), 3), _b = _a[1], type = _b === void 0 ? '' : _b, _c = _a[2], id = _c === void 0 ? '' : _c;
+    return "https://open.spotify.com/" + type + "/" + id;
+}
+function getSpotifyLinkTitle(name, locale) {
+    return locale.replace('{name}', name);
+}
+function getSpotifyURIType(uri) {
+    var _a = __read(uri.split(':'), 2), _b = _a[1], type = _b === void 0 ? '' : _b;
+    return type;
+}
+function isEqualArray(A, B) {
+    if (!Array.isArray(A) || !Array.isArray(B) || A.length !== B.length) {
+        return false;
+    }
+    var result = true;
+    A.forEach(function (a) {
+        return B.forEach(function (b) {
+            result = a === b;
+        });
+    });
+    return result;
+}
+function isNumber(value) {
+    return typeof value === 'number';
+}
+function loadSpotifyPlayer() {
+    return new Promise(function (resolve, reject) {
+        var scriptTag = document.getElementById('spotify-player');
+        if (!scriptTag) {
+            var script = document.createElement('script');
+            script.id = 'spotify-player';
+            script.type = 'text/javascript';
+            script.async = false;
+            script.defer = true;
+            script.src = 'https://sdk.scdn.co/spotify-player.js';
+            script.onload = function () { return resolve(); };
+            script.onerror = function (error) { return reject(new Error("loadScript: " + error.message)); };
+            document.head.appendChild(script);
+        }
+        else {
+            resolve();
+        }
+    });
+}
+function parseVolume(value) {
+    if (!isNumber(value)) {
+        return 1;
+    }
+    if (value > 1) {
+        return value / 100;
+    }
+    return value;
+}
+/**
+ * Round decimal numbers
+ */
+function round(number, digits) {
+    if (digits === void 0) { digits = 2; }
+    var factor = Math.pow(10, digits);
+    return Math.round(number * factor) / factor;
+}
+function validateURI(input) {
+    var validTypes = ['album', 'artist', 'playlist', 'show', 'track'];
+    /* istanbul ignore else */
+    if (input && input.indexOf(':') > -1) {
+        var _a = __read(input.split(':'), 3), key = _a[0], type = _a[1], id = _a[2];
+        /* istanbul ignore else */
+        if (key === 'spotify' && validTypes.indexOf(type) >= 0 && id.length === 22) {
+            return true;
+        }
+    }
+    return false;
+}
+//# sourceMappingURL=utils.js.map
 
 /***/ }),
 
@@ -49689,7 +54097,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -49703,14 +54111,14 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -49723,7 +54131,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -49735,7 +54143,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -49747,12 +54155,12 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -49763,7 +54171,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.

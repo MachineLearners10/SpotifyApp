@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function EnergizeMe() {
   return (
     <div>
-      <h1 className="subtitle">What kind of gender do you like?</h1>
+      <h1 className="subtitle">Select Genre:</h1>
       <div className="container">
         <Link to="/playlist">
           <button>Techno</button>
