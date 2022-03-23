@@ -2,6 +2,25 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchUser } from "../redux/user";
 import { Link } from "react-router-dom";
+import { Typography, makeStyles, Grid } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  toolbar: theme.mixins.toolbar,
+  title: {
+    flexGrow: 1,
+    // backgroundColor: theme.palette.background.default,
+    // backgroundColor: "#263238",
+    padding: theme.spacing(3),
+    color: "white",
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+  fullWidth: {
+    width: "100%",
+  },
+}));
 
 class HelloWorld extends React.Component {
   constructor(props) {
@@ -17,15 +36,15 @@ class HelloWorld extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Welcome, {this.props.user.spotifyId}</h1>
-        <h2 className="subtitle">What's the vibe today</h2>
-        <div className="container">
+      <div className="main-content">
+        <h1 className="welcome">Welcome, {this.props.user.spotifyId}</h1>
+        <h2 className="welcome-subtitle">What's the vibe today?</h2>
+        <div className="container2">
           <Link to="/energizeme">
-            <button>Energize me </button>
+            <button className="button-style">Energize me </button>
           </Link>
           <Link to="/calmdown">
-            <button>Calm Down </button>
+            <button className="button-style">Calm Down </button>
           </Link>
         </div>
       </div>
