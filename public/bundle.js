@@ -324,13 +324,13 @@ var RangeSlider = /** @class */ (function (_super) {
             thumb = this.styles.thumbXY;
         }
         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", __assign({ ref: this.slider, className: className, style: slider }, rest),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: className && className + "__track", ref: this.track, style: track, role: "presentation",
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: className && className + "__track", ref: this.track, style: track, role: "presentation", 
                 // @ts-ignore We can't use React's events because the listeners
                 onClick: this.handleClickTrack },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: className && className + "__range", style: __assign(__assign({}, size), range) }),
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { ref: this.rail, style: __assign(__assign({}, this.styles.rail), position), role: "presentation",
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { ref: this.rail, style: __assign(__assign({}, this.styles.rail), position), role: "presentation", 
                     // @ts-ignore We can't use React's events because the listeners
-                    onTouchStart: this.handleTouchStart,
+                    onTouchStart: this.handleTouchStart, 
                     // @ts-ignore We can't use React's events because the listeners
                     onMouseDown: this.handleMouseDown },
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", { className: className && className + "__thumb", onBlur: this.handleBlur, onFocus: this.handleFocus, style: thumb, tabIndex: 0, role: "slider", "aria-label": "slider handle", "aria-orientation": orientation, "aria-valuemin": valuemin, "aria-valuenow": valuenow, "aria-valuemax": valuemax })))));
@@ -3053,20 +3053,148 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spotify-web-playback */ "./node_modules/react-spotify-web-playback/esm/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../redux/playlist */ "./frontend/redux/playlist.js");
+
 
 
 
 
 function Player() {
-  var user = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.user;
-  });
+  }),
+      user = _useSelector.user;
+
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    dispatch((0,_redux_playlist__WEBPACK_IMPORTED_MODULE_3__.fetchPlaylistThunk)());
+  }, []);
+
+  var _useSelector2 = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.playlist;
+  }),
+      playlist = _useSelector2.playlist;
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    token: user.token
+    token: user.token,
+    uris: playlist
   }));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Player);
+
+/***/ }),
+
+/***/ "./frontend/components/Test.js":
+/*!*************************************!*\
+  !*** ./frontend/components/Test.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/playlist */ "./frontend/redux/playlist.js");
+
+
+
+
+function Test() {
+  var songs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.playlist;
+  });
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    dispatch((0,_redux_playlist__WEBPACK_IMPORTED_MODULE_2__.fetchPlaylistThunk)());
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Songs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, songs === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "no songs") : songs.map(function (song) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, song.name);
+  }))))));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Test);
+
+/***/ }),
+
+/***/ "./frontend/redux/playlist.js":
+/*!************************************!*\
+  !*** ./frontend/redux/playlist.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ playlistReducer),
+/* harmony export */   "fetchPlaylistThunk": () => (/* binding */ fetchPlaylistThunk)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var initialState = {};
+var FETCH_PLAYLIST = "FETCH_PLAYLIST";
+
+var fetchPlaylist = function fetchPlaylist(playlist) {
+  return {
+    type: FETCH_PLAYLIST,
+    playlist: playlist
+  };
+};
+
+var fetchPlaylistThunk = function fetchPlaylistThunk() {
+  return /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
+      var _yield$Axios$get, data;
+
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/songs/playlist");
+
+            case 2:
+              _yield$Axios$get = _context.sent;
+              data = _yield$Axios$get.data;
+              return _context.abrupt("return", dispatch(fetchPlaylist(data)));
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+function playlistReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case FETCH_PLAYLIST:
+      return {
+        playlist: action.playlist
+      };
+
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
@@ -3159,30 +3287,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
-/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
-/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
-/* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./redux/user */ "./frontend/redux/user.js");
-/* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/playlist */ "./frontend/redux/playlist.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
+/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./redux/user */ "./frontend/redux/user.js");
+/* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./redux/playlist */ "./frontend/redux/playlist.js");
 
 
 
 
 
 
-
-var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_5__.combineReducers)({
-  user: _redux_user__WEBPACK_IMPORTED_MODULE_3__["default"],
-  songs: _redux_playlist__WEBPACK_IMPORTED_MODULE_4__["default"]
+var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
+  user: _redux_user__WEBPACK_IMPORTED_MODULE_2__["default"],
+  playlist: _redux_playlist__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
-var middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_5__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_6__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_1__.createLogger)({
+var middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_4__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_5__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
   collapsed: true
 })));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_5__.createStore)(reducer, middleware));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_4__.createStore)(reducer, middleware));
 
 /***/ }),
 
@@ -42107,7 +42232,7 @@ function injectIntoDevTools(devToolsConfig) {
     scheduleRoot:  scheduleRoot ,
     setRefreshHandler:  setRefreshHandler ,
     // Enables DevTools to append owner stacks to error messages in DEV mode.
-    getCurrentFiber:  getCurrentFiberForDevTools
+    getCurrentFiber:  getCurrentFiberForDevTools 
   });
 }
 
@@ -43376,7 +43501,7 @@ var _excluded = ["pure", "areStatesEqual", "areOwnPropsEqual", "areStatePropsEqu
   selectorFactory, which has the signature:
 
     (dispatch, options) => (nextState, nextOwnProps) => nextFinalProps
-
+  
   connect passes its args to connectAdvanced as options, which will in turn pass them to
   selectorFactory each time a Connect component instance is instantiated or hot reloaded.
 
@@ -54097,7 +54222,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -54111,14 +54236,14 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -54131,7 +54256,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -54143,7 +54268,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -54155,12 +54280,12 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -54171,7 +54296,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
