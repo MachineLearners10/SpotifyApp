@@ -16,13 +16,14 @@ passport.use(
       const user = new User({
         email: profile.emails[0].value,
         spotifyId: profile.id,
-        token: accessToken
+        token: accessToken,
+        // topSongs: ['songs']
       });
 
       if (!await User.exists({ spotifyId: profile.id })) {
         await user.save()
       } else {
-        await User.findOneAndUpdate({ spotifyId: profile.id }, {token: accessToken})
+        await User.findOneAndUpdate({ spotifyId: profile.id }, {token: accessToken/*, topSongs: 'songs'*/})
       }
       return done(null, user)
     }
