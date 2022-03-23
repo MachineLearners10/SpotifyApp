@@ -17,7 +17,6 @@ passport.use(
         email: profile.emails[0].value,
         spotifyId: profile.id,
         token: accessToken,
-        // topSongs: ['songs']
       });
 
       if (!await User.exists({ spotifyId: profile.id })) {
