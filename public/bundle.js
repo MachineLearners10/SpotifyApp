@@ -2374,11 +2374,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login */ "./frontend/components/Login.js");
 /* harmony import */ var _HelloWorld__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HelloWorld */ "./frontend/components/HelloWorld.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var _EnergizeMe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EnergizeMe */ "./frontend/components/EnergizeMe.js");
 /* harmony import */ var _CalmDown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CalmDown */ "./frontend/components/CalmDown.js");
 /* harmony import */ var _PlayList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./PlayList */ "./frontend/components/PlayList.js");
+/* harmony import */ var _Test__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Test */ "./frontend/components/Test.js");
+
 
 
 
@@ -2388,24 +2390,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MainRoutes = function MainRoutes() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Login__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/login",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Login__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/helloWorld",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_HelloWorld__WEBPACK_IMPORTED_MODULE_2__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/energizeme",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EnergizeMe__WEBPACK_IMPORTED_MODULE_3__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/calmdown",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_CalmDown__WEBPACK_IMPORTED_MODULE_4__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/playlist",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PlayList__WEBPACK_IMPORTED_MODULE_5__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+    exact: true,
+    path: "/test",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Test__WEBPACK_IMPORTED_MODULE_6__["default"], null)
   }))));
 };
 
@@ -2434,6 +2440,120 @@ function PlayList() {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PlayList);
+
+/***/ }),
+
+/***/ "./frontend/components/Test.js":
+/*!*************************************!*\
+  !*** ./frontend/components/Test.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/playlist */ "./frontend/redux/playlist.js");
+
+
+
+
+function Test() {
+  var songs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.songs.songs;
+  });
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    dispatch((0,_redux_playlist__WEBPACK_IMPORTED_MODULE_2__.dispatchFetchSongs)());
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Songs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, songs === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "no songs") : songs.map(function (song) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, song.name);
+  }))))));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Test);
+
+/***/ }),
+
+/***/ "./frontend/redux/playlist.js":
+/*!************************************!*\
+  !*** ./frontend/redux/playlist.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ songReducer),
+/* harmony export */   "dispatchFetchSongs": () => (/* binding */ dispatchFetchSongs)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var initialState = {};
+var FETCH_SONGS = "FETCH_SONGS";
+
+var fetchSongs = function fetchSongs(songs) {
+  return {
+    type: FETCH_SONGS,
+    songs: songs
+  };
+};
+
+var dispatchFetchSongs = function dispatchFetchSongs() {
+  return /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
+      var _yield$Axios$get, data;
+
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/songs/");
+
+            case 2:
+              _yield$Axios$get = _context.sent;
+              data = _yield$Axios$get.data;
+              console.log(data);
+              return _context.abrupt("return", dispatch(fetchSongs(data)));
+
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+function songReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case FETCH_SONGS:
+      return {
+        songs: action.songs
+      };
+
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
@@ -2532,20 +2652,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
-/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./redux/user */ "./frontend/redux/user.js");
+/* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/playlist */ "./frontend/redux/playlist.js");
 
 
 
 
 
 
-var middleware = [redux_thunk__WEBPACK_IMPORTED_MODULE_4__["default"].withExtraArgument({
-  axios: (axios__WEBPACK_IMPORTED_MODULE_0___default())
-}), (0,redux_logger__WEBPACK_IMPORTED_MODULE_1__.createLogger)({
+
+var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_5__.combineReducers)({
+  user: _redux_user__WEBPACK_IMPORTED_MODULE_3__["default"],
+  songs: _redux_playlist__WEBPACK_IMPORTED_MODULE_4__["default"]
+});
+var middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_5__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_6__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_1__.createLogger)({
   collapsed: true
-})];
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_5__.createStore)(_redux_user__WEBPACK_IMPORTED_MODULE_3__["default"], (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)(redux__WEBPACK_IMPORTED_MODULE_5__.applyMiddleware.apply(void 0, middleware))));
+})));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_5__.createStore)(reducer, middleware));
 
 /***/ }),
 

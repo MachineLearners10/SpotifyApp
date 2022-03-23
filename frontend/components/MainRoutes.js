@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import EnergizeMe from "./EnergizeMe";
 import CalmDown from "./CalmDown";
 import PlayList from "./PlayList";
-
+import Test from "./Test";
 const MainRoutes = () => {
   return (
     <Router>
@@ -17,6 +17,7 @@ const MainRoutes = () => {
           <Route path="/energizeme" element={<EnergizeMe />} />
           <Route path="/calmdown" element={<CalmDown />} />
           <Route path="/playlist" element={<PlayList />} />
+          <Route exact path="/test" element={<Test />} />
         </Routes>
       </div>
     </Router>
