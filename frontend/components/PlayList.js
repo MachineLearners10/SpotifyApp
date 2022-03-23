@@ -1,5 +1,4 @@
 import React from "react";
-import Player from "./Player";
 
 function PlayList() {
   return (
@@ -10,7 +9,6 @@ function PlayList() {
           <h1>Playlist</h1>
           <p>List of music</p>
         </div>
-        <Player />
       </div>
     </div>
   );

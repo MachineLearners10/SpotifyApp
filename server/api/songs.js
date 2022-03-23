@@ -7,7 +7,7 @@ const spotifyApi = new SpotifyWebApi({
   callbackURL: "http://localhost:8888/auth/spotify/callback",
 });
 
-router.get("/topTracks", (req, res, next) => {
+router.get("/", (req, res, next) => {
   try {
     spotifyApi.setAccessToken(req.user.token);
     spotifyApi.getMyTopTracks()
