@@ -18,8 +18,7 @@ passport.use(
         spotifyId: profile.id,
         token: accessToken,
       });
-
-      if (!await User.exists({ spotifyId: profile.id })) {
+      if (!User.exists({ spotifyId: profile.id })) {
         await user.save()
       } else {
         await User.findOneAndUpdate({ spotifyId: profile.id }, {token: accessToken/*, topSongs: 'songs'*/})
@@ -33,7 +32,7 @@ router.get(
   '/',
   passport.authenticate('spotify', {
     scope: [
-      'user-read-private user-read-email user-top-read'
+      'user-read-private user-read-email user-top-read streaming user-read-playback-state user-modify-playback-state  playlist-read-private playlist-read-collaborative'
     ]
   })
 )
