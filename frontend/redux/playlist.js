@@ -2,23 +2,24 @@ import Axios from "axios";
 
 const initialState = {};
 
-const FETCH_PLAYLIST = "FETCH_PLAYLIST";
+const FETCH_SONGS = "FETCH_SONGS";
 
-const fetchPlaylist = (playlist) => ({
-  type: FETCH_PLAYLIST,
-  playlist,
+const fetchSongs = (songs) => ({
+  type: FETCH_SONGS,
+  songs,
 });
 
-export const fetchPlaylistThunk = () => async (dispatch) => {
-  const { data } = await Axios.get("/api/songs/playlist");
-  return dispatch(fetchPlaylist(data));
+export const dispatchFetchSongs = () => async (dispatch) => {
+  const { data } = await Axios.get("/api/songs/");
+  console.log(data);
+  return dispatch(fetchSongs(data));
 };
 
-export default function playlistReducer(state = initialState, action) {
+export default function songReducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_PLAYLIST:
+    case FETCH_SONGS:
       return {
-        playlist: action.playlist,
+        songs: action.songs,
       };
     default:
       return state;

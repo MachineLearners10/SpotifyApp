@@ -11,7 +11,6 @@ router.get('/', (request, response) => {
     id: request.user.id,
     email: request.user.email,
     spotifyId: request.user.spotifyId,
-    token: request.user.token
   };
 
   response.json(user);
