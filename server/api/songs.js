@@ -10,12 +10,18 @@ const spotifyApi = new SpotifyWebApi({
 router.get("/", (req, res, next) => {
   try {
     spotifyApi.setAccessToken(req.user.token);
-    spotifyApi.getMyTopTracks().then(function (data) {
-      res.send(data.body.items);
+    spotifyApi.getMyTopTracks()
+      .then(async function (data) {
+        let topSongs = data.body.items;
+        topSongs.forEach(async song => {
+          await User.updateOne({ spotifyId: req.user.spotifyId }, {$push: {topSongs: song}})
+      });
+    res.send(data.body.items);
     });
   } catch (error) {
     next(error);
   }
 });
+
 
 module.exports = router;
