@@ -10,7 +10,7 @@ function Player() {
     dispatch(fetchPlaylistThunk());
   }, []);
   const { playlist } = useSelector((state) => state.playlist);
-  
+
   return (
     <div>
         <SpotifyPlayer
@@ -19,6 +19,6 @@ function Player() {
         />
     </div>
   );
-}
+};
 
 export default Player;

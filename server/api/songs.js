@@ -19,13 +19,18 @@ router.get("/topTracks", (req, res, next) => {
   }
 });
 
+//This will change to getRecommendation api call and not hardcoded to a specific playlist
 router.get("/playlist", (req, res, next) => {
-  spotifyApi.setAccessToken(req.user.token);
-  spotifyApi.getPlaylist('08SEtNKtOwc7p74VZiriVx')
-    .then(function(data) {
-      const trackUris = data.body.tracks.items.map(trackDetails => trackDetails.track.uri)
-      res.send(trackUris);
-    })
+  try {
+    spotifyApi.setAccessToken(req.user.token);
+    spotifyApi.getPlaylist('08SEtNKtOwc7p74VZiriVx')
+      .then(function(data) {
+        const trackUris = data.body.tracks.items.map(trackDetails => trackDetails.track.uri)
+        res.send(trackUris);
+      })
+  } catch (error) {
+    next(error);
+  }
 })
 
 module.exports = router;
