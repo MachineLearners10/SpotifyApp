@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPlaylistThunk } from "../redux/playlist";
+import { dispatchFetchSongs } from "../redux/playlist";
 function Test() {
-  const songs = useSelector((state) => state.playlist);
+  const songs = useSelector((state) => state.songs.songs);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchPlaylistThunk());
+    dispatch(dispatchFetchSongs());
   }, []);
   return (
     <div className="container">

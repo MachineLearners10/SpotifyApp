@@ -7,7 +7,7 @@ const spotifyApi = new SpotifyWebApi({
   callbackURL: "http://localhost:8888/auth/spotify/callback",
 });
 
-router.get("/topTracks", (req, res, next) => {
+router.get("/", (req, res, next) => {
   try {
     spotifyApi.setAccessToken(req.user.token);
     spotifyApi.getMyTopTracks()
@@ -22,16 +22,6 @@ router.get("/topTracks", (req, res, next) => {
     next(error);
   }
 });
-
-
-router.get("/playlist", (req, res, next) => {
-  spotifyApi.setAccessToken(req.user.token);
-  spotifyApi.getPlaylist('08SEtNKtOwc7p74VZiriVx')
-    .then(function(data) {
-      const trackUris = data.body.tracks.items.map(trackDetails => trackDetails.track.uri)
-      res.send(trackUris);
-    })
-})
 
 
 module.exports = router;
