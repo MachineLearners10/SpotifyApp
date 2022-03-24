@@ -12298,8 +12298,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-
 
 
 function EnergizeMe() {
@@ -12334,7 +12332,7 @@ function EnergizeMe() {
   }, genres.map(function (genre, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       key: index
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Link, {
       to: "/playlist"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       className: "button-style"
@@ -12420,9 +12418,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/user */ "./frontend/redux/user.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _redux_mood__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../redux/mood */ "./frontend/redux/mood.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -12449,7 +12454,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["default"])(function (theme) {
+
+var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"])(function (theme) {
   return {
     toolbar: theme.mixins.toolbar,
     title: {
@@ -12481,8 +12487,11 @@ var HelloWorld = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      user: {}
+      user: {},
+      mood: null
     };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -12492,8 +12501,22 @@ var HelloWorld = /*#__PURE__*/function (_React$Component) {
       this.props.fetchUser();
     }
   }, {
+    key: "handleChange",
+    value: function handleChange(evt) {
+      this.setState(_defineProperty({}, evt.target.name, evt.target.value));
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(evt) {
+      evt.preventDefault();
+      this.props.createMood(_objectSpread({}, this.state));
+    }
+  }, {
     key: "render",
     value: function render() {
+      var mood = this.state.mood;
+      var handleSubmit = this.handleSubmit,
+          handleChange = this.handleChange;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "main-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
@@ -12502,15 +12525,19 @@ var HelloWorld = /*#__PURE__*/function (_React$Component) {
         className: "welcome-subtitle"
       }, "What's the vibe today?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "container2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        onSubmit: handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
         to: "/energizeme"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        type: "submit",
         className: "button-style"
-      }, "Energize me ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+      }, "Energize me", " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
         to: "/calmdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        type: "submit",
         className: "button-style"
-      }, "Calm Down "))));
+      }, "Calm me down", " ")))));
     }
   }]);
 
@@ -12829,17 +12856,17 @@ function TopMenu() {
 
 /***/ }),
 
-/***/ "./frontend/redux/artist.js":
-/*!**********************************!*\
-  !*** ./frontend/redux/artist.js ***!
-  \**********************************/
+/***/ "./frontend/redux/genre.js":
+/*!*********************************!*\
+  !*** ./frontend/redux/genre.js ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ artistReducer),
-/* harmony export */   "fetchArtists": () => (/* binding */ fetchArtists)
+/* harmony export */   "createGenre": () => (/* binding */ createGenre),
+/* harmony export */   "default": () => (/* binding */ genreReducer)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -12848,17 +12875,17 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-var initialState = {};
-var FETCH_ARTISTS = "FETCH_ARTISTS ";
+var initialState = null;
+var SET_GENRE = "SET_GENRE";
 
-var setArtists = function setArtists(artists) {
+var setGenre = function setGenre(genre) {
   return {
-    type: FETCH_ARTISTS,
-    artists: artists
+    type: SET_GENRE,
+    genre: genre
   };
 };
 
-var fetchArtists = function fetchArtists() {
+var createGenre = function createGenre() {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
       var _yield$Axios$get, data;
@@ -12868,13 +12895,13 @@ var fetchArtists = function fetchArtists() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/artists/");
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/mood/genre");
 
             case 2:
               _yield$Axios$get = _context.sent;
               data = _yield$Axios$get.data;
               console.log(data);
-              return _context.abrupt("return", dispatch(setArtists(data)));
+              return _context.abrupt("return", dispatch(setGenre(data)));
 
             case 6:
             case "end":
@@ -12889,14 +12916,91 @@ var fetchArtists = function fetchArtists() {
     };
   }();
 };
-function artistReducer() {
+function genreReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case FETCH_ARTISTS:
+    case SET_GENRE:
       return {
-        artists: action.artists
+        genre: action.genre
+      };
+
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./frontend/redux/mood.js":
+/*!********************************!*\
+  !*** ./frontend/redux/mood.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createMood": () => (/* binding */ createMood),
+/* harmony export */   "default": () => (/* binding */ moodReducer)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var initialState = null;
+var SET_MOOD = "SET_MOOD";
+
+var setMood = function setMood(mood) {
+  return {
+    type: SET_MOOD,
+    mood: mood
+  };
+};
+
+var createMood = function createMood() {
+  return /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
+      var _yield$Axios$get, data;
+
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/mood/");
+
+            case 2:
+              _yield$Axios$get = _context.sent;
+              data = _yield$Axios$get.data;
+              console.log(data);
+              return _context.abrupt("return", dispatch(setMood(data)));
+
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+function moodReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case SET_MOOD:
+      return {
+        mood: action.mood
       };
 
     default:
@@ -13073,15 +13177,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
-/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
+/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
+/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
-/* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./redux/user */ "./frontend/redux/user.js");
-/* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/playlist */ "./frontend/redux/playlist.js");
-/* harmony import */ var _redux_artist__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./redux/artist */ "./frontend/redux/artist.js");
+/* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./redux/user */ "./frontend/redux/user.js");
+/* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./redux/playlist */ "./frontend/redux/playlist.js");
+/* harmony import */ var _redux_mood__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/mood */ "./frontend/redux/mood.js");
+/* harmony import */ var _redux_genre__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./redux/genre */ "./frontend/redux/genre.js");
 
 
 
@@ -13091,11 +13194,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_6__.combineReducers)({
-  user: _redux_user__WEBPACK_IMPORTED_MODULE_3__["default"],
-  songs: _redux_playlist__WEBPACK_IMPORTED_MODULE_4__["default"],
-  artists: _redux_artist__WEBPACK_IMPORTED_MODULE_5__["default"]
+  user: _redux_user__WEBPACK_IMPORTED_MODULE_2__["default"],
+  playlist: _redux_playlist__WEBPACK_IMPORTED_MODULE_3__["default"],
+  mood: _redux_mood__WEBPACK_IMPORTED_MODULE_4__["default"],
+  genre: _redux_genre__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
-var middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_6__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_7__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_1__.createLogger)({
+var middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_6__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_7__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
   collapsed: true
 })));
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_6__.createStore)(reducer, middleware));

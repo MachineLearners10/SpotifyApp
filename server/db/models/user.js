@@ -15,11 +15,16 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  topSongs: {
-    type: Array,
+  mood: {
+    type: String,
+    validate: {
+      isIn: [["Energize me", "Calm me down"]],
+    },
+    required: true,
   },
-  topArtists: {
-    type: Array,
+  gender: {
+    type: String,
+    required: true,
   },
 });
 
