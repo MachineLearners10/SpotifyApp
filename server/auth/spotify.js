@@ -24,7 +24,7 @@ passport.use(
       } else {
         await User.findOneAndUpdate(
           { spotifyId: profile.id },
-          { token: accessToken }
+          { token: accessToken /*, topSongs: 'songs'*/ }
         );
       }
       return done(null, user);

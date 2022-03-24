@@ -10,12 +10,12 @@ const spotifyApi = new SpotifyWebApi({
 router.get("/", (req, res, next) => {
   try {
     spotifyApi.setAccessToken(req.user.token);
-    spotifyApi.getMyTopTracks().then(async function (data) {
-      let topSongs = data.body.items;
-      topSongs.forEach(async (song) => {
+    spotifyApi.getMyTopArtists().then(async function (data) {
+      let topArtists = data.body.items;
+      topArtists.forEach(async (artist) => {
         await User.updateOne(
           { spotifyId: req.user.spotifyId },
-          { $push: { topSongs: song } }
+          { $push: { topArtists: artist } }
         );
       });
       res.send(data.body.items);
@@ -26,3 +26,7 @@ router.get("/", (req, res, next) => {
 });
 
 module.exports = router;
+
+// GET https://api.spotify.com/v1/recommendations/available-genre-seeds
+
+// GET https://api.spotify.com/v1/recommendations

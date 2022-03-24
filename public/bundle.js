@@ -12829,44 +12829,36 @@ function TopMenu() {
 
 /***/ }),
 
-/***/ "./frontend/redux/genre.js":
-/*!*********************************!*\
-  !*** ./frontend/redux/genre.js ***!
-  \*********************************/
+/***/ "./frontend/redux/artist.js":
+/*!**********************************!*\
+  !*** ./frontend/redux/artist.js ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ genderReducer),
-/* harmony export */   "fetchGenre": () => (/* binding */ fetchGenre)
+/* harmony export */   "default": () => (/* binding */ artistReducer),
+/* harmony export */   "fetchArtists": () => (/* binding */ fetchArtists)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-var initialState = {
-  genre: null
-};
-var SET_GENRE = "SET_GENRE";
+var initialState = {};
+var FETCH_ARTISTS = "FETCH_ARTISTS ";
 
-var setGenre = function setGenre(genre) {
+var setArtists = function setArtists(artists) {
   return {
-    type: SET_GENRE,
-    gender: gender
+    type: FETCH_ARTISTS,
+    artists: artists
   };
 };
 
-var fetchGenre = function fetchGenre(type) {
+var fetchArtists = function fetchArtists() {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
       var _yield$Axios$get, data;
@@ -12876,14 +12868,15 @@ var fetchGenre = function fetchGenre(type) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/genre/".concat(type));
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/artists/");
 
             case 2:
               _yield$Axios$get = _context.sent;
               data = _yield$Axios$get.data;
-              return _context.abrupt("return", dispatch(setGenre(data)));
+              console.log(data);
+              return _context.abrupt("return", dispatch(setArtists(data)));
 
-            case 5:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -12896,15 +12889,15 @@ var fetchGenre = function fetchGenre(type) {
     };
   }();
 };
-function genderReducer() {
+function artistReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case SET_GENRE:
-      return _objectSpread(_objectSpread({}, state), {}, {
-        genre: action.genre
-      });
+    case FETCH_ARTISTS:
+      return {
+        artists: action.artists
+      };
 
     default:
       return state;
@@ -13088,7 +13081,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./redux/user */ "./frontend/redux/user.js");
 /* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/playlist */ "./frontend/redux/playlist.js");
-/* harmony import */ var _redux_genre__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./redux/genre */ "./frontend/redux/genre.js");
+/* harmony import */ var _redux_artist__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./redux/artist */ "./frontend/redux/artist.js");
 
 
 
@@ -13100,7 +13093,7 @@ __webpack_require__.r(__webpack_exports__);
 var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_6__.combineReducers)({
   user: _redux_user__WEBPACK_IMPORTED_MODULE_3__["default"],
   songs: _redux_playlist__WEBPACK_IMPORTED_MODULE_4__["default"],
-  gender: _redux_genre__WEBPACK_IMPORTED_MODULE_5__["default"]
+  artists: _redux_artist__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
 var middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_6__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_7__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_1__.createLogger)({
   collapsed: true

@@ -15,6 +15,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  topSongs: {
+    type: Array,
+  },
+  topArtists: {
+    type: Array,
+  },
 });
 
 module.exports = User = mongoose.model("users", UserSchema);

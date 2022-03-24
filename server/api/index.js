@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
 router.use("/songs", require("./songs"));
-router.use("/genre", require("./genre"));
+router.use("/artists", require("./artists"));
 
 module.exports = router;

@@ -5,11 +5,11 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunkMiddleware from "redux-thunk";
 import userReducer from "./redux/user";
 import songReducer from "./redux/playlist";
-import genderReducer from "./redux/genre";
+import artistReducer from "./redux/artist";
 const reducer = combineReducers({
   user: userReducer,
   songs: songReducer,
-  gender: genderReducer,
+  artists: artistReducer,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
