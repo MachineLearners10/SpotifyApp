@@ -10,6 +10,7 @@ passport.use(
       clientID: process.env.CLIENTID,
       clientSecret: process.env.SECRET,
       callbackURL: 'http://localhost:8888/auth/spotify/callback'
+      //comment
     },
 
     async function (accessToken, refreshToken, expires_in, profile, done) {
