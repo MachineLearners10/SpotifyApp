@@ -9,7 +9,7 @@ passport.use(
     {
       clientID: process.env.CLIENTID,
       clientSecret: process.env.SECRET,
-      callbackURL: 'http://localhost:8888/auth/spotify/callback'
+      callbackURL: 'https://catch-a-vibe.herokuapp.com/auth/spotify/callback'
       //comment
     },
 
