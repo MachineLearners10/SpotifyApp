@@ -40,7 +40,7 @@ function Sidebar({ token }) {
     <Drawer
       open={true}
       variant="permanent"
-      anchor="left"
+      anchor="right"
       className={classes.drawer}
       classes={{
         paper: classes.drawerPaper,

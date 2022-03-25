@@ -9,12 +9,8 @@ import {
 import { makeStyles } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Face";
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
     backgroundColor: "#000a12",
   },
   menuButton: {

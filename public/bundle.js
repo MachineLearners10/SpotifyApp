@@ -12344,7 +12344,7 @@ var CalmDown = /*#__PURE__*/function (_React$Component) {
         className: "main-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
         className: "genre"
-      }, "Select genres (up to 5) "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+      }, "Select genres up to 5 (", count, ") "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         className: "container3",
         onSubmit: handleSubmit
       }, list.map(function (genre, index) {
@@ -12474,7 +12474,7 @@ var EnergizeMe = /*#__PURE__*/function (_React$Component) {
         className: "main-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
         className: "genre"
-      }, "Select genres (up to 5) "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+      }, "Select genres up to 5 (", count, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         className: "container3",
         onSubmit: handleSubmit
       }, list.map(function (genre, index) {
@@ -12530,7 +12530,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var drawerWidth = 240;
+var drawerWidth = 0;
 var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["default"])(function (theme) {
   return {
     appBar: {
@@ -12987,7 +12987,7 @@ function Sidebar(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["default"], {
     open: true,
     variant: "permanent",
-    anchor: "left",
+    anchor: "right",
     className: classes.drawer,
     classes: {
       paper: classes.drawerPaper
@@ -13072,12 +13072,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var drawerWidth = 240;
 var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["default"])(function (theme) {
   return {
     appBar: {
-      width: "calc(100% - ".concat(drawerWidth, "px)"),
-      marginLeft: drawerWidth,
       backgroundColor: "#000a12"
     },
     menuButton: {

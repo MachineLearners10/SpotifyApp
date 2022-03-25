@@ -50,7 +50,7 @@ class EnergizeMe extends React.Component {
 
     return (
       <div className="main-content">
-        <h1 className="genre">Select genres (up to 5) </h1>
+        <h1 className="genre">Select genres up to 5 ({count})</h1>
         <form className="container3" onSubmit={handleSubmit}>
           {list.map((genre, index) => {
             return (

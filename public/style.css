@@ -1,3 +1,9 @@
+.body {
+  height: 130vh;
+  background-color: #2941ab;
+  width: 100%;
+}
+
 .title {
   align-items: center;
   display: flex;
@@ -8,7 +14,7 @@
   color: #1ed760;
   font-size: 60px;
   font-family: Arial, Helvetica, sans-serif;
-  margin-left: 150px;
+  margin-right: 300px;
 }
 
 .subtitle {
@@ -33,12 +39,11 @@
 
 .login-form {
   display: grid;
-  /* background-color: #323b33; */
-  background-color: #2941ab;
-  height: 100vh;
-  width: 230vh;
+  height: 130vh;
+  width: 100%;
   place-items: center;
   position: fixed;
+  background-color: #2941ab;
 }
 
 .login-form > img {
@@ -53,25 +58,26 @@
   font-weight: 800;
   font-size: 20px;
   background-color: black;
-  margin-left: 200px;
+  margin-right: 300px;
 }
 .main-content {
   display: flex;
   background-color: #2941ab;
   height: 100vh;
-  width: 230vh;
+  width: 100%;
   place-items: center;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   position: fixed;
+  margin-right: 300px;
 }
 .welcome {
   padding: 50px;
   color: #1ed760;
   font-size: 60px;
   font-family: Arial, Helvetica, sans-serif;
-  margin-left: 210px;
+  margin-right: 300px;
 }
 .welcome-subtitle {
   align-items: center;
@@ -79,7 +85,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 5px;
-  margin-left: 210px;
+  margin-right: 300px;
   color: white;
   font-size: 40px;
   font-family: Arial, Helvetica, sans-serif;
@@ -91,7 +97,7 @@
   width: 80%;
   margin: auto;
   padding: 30px;
-  margin-left: 240px;
+  margin-right: 300px;
 }
 .button-style {
   font-size: 20px;
@@ -108,7 +114,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 90px;
-  margin-left: 10px;
+  margin-right: 300px;
   color: white;
   font-size: 40px;
   font-family: Arial, Helvetica, sans-serif;
@@ -124,6 +130,6 @@
   height: 150vh;
   width: 100vh;
   margin-top: 0px;
-  margin-left: 50px;
+  margin-right: 300px;
   margin-bottom: 100px;
 }

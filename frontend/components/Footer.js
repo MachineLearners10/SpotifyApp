@@ -3,7 +3,7 @@ import { AppBar, Typography, makeStyles } from "@material-ui/core";
 import { ImageListItem } from "@material-ui/core";
 import { ImageList } from "@material-ui/core";
 
-const drawerWidth = 240;
+const drawerWidth = 0;
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
