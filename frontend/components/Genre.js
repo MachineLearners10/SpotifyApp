@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addGenre } from "../redux/genres";
+import { Link } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 let count = 0;
-class EnergizeMe extends React.Component {
+class Genre extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -11,14 +13,12 @@ class EnergizeMe extends React.Component {
   }
 
   handleInput(evt) {
-    this.setState({ [evt.target.name]: evt.target.value });
-    count++;
-    function pageRedirect(i) {
-      if (i > 4) {
-        return window.location.replace("http://localhost:8888/playlist");
-      }
+    if (count > 3) {
+      return alert("You chose more that 4 genres");
+    } else {
+      this.setState({ [evt.target.name]: evt.target.value });
+      count++;
     }
-    pageRedirect(count);
   }
   handleSubmit(evt) {
     evt.preventDefault();
@@ -33,7 +33,6 @@ class EnergizeMe extends React.Component {
       "dancehall",
       "disco",
       "electronic",
-      "happy",
       "hip-hop",
       "holidays",
       "indie-pop",
@@ -50,7 +49,7 @@ class EnergizeMe extends React.Component {
 
     return (
       <div className="main-content">
-        <h1 className="genre">Select genres up to 5 ({count})</h1>
+        <h1 className="genre">Select genres up to 4 ({count})</h1>
         <form className="container3" onSubmit={handleSubmit}>
           {list.map((genre, index) => {
             return (
@@ -66,6 +65,9 @@ class EnergizeMe extends React.Component {
               </div>
             );
           })}
+          <Link to="/playlist">
+            <Button>Submit</Button>
+          </Link>
         </form>
       </div>
     );
@@ -85,4 +87,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(EnergizeMe);
+export default connect(mapState, mapDispatch)(Genre);

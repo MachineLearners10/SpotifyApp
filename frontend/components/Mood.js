@@ -1,8 +1,6 @@
-import { userSetter } from "core-js/fn/symbol";
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { addMood } from "../redux/mood";
+import { addGenre } from "../redux/genres";
 
 class Mood extends React.Component {
   constructor(props) {
@@ -13,14 +11,10 @@ class Mood extends React.Component {
 
   handleInput(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
-    function pageRedirect(value) {
-      if (value === "Energize me") {
-        return window.location.replace("http://localhost:8888/energizeme");
-      } else if (value === "Calm me down") {
-        return window.location.replace("http://localhost:8888/calmdown");
-      }
+    function pageRedirect() {
+      return window.location.replace("http://localhost:8888/genre");
     }
-    pageRedirect(evt.target.value);
+    pageRedirect();
   }
 
   handleSubmit(evt) {
@@ -29,22 +23,22 @@ class Mood extends React.Component {
   }
 
   render() {
-    const list = ["Energize me", "Calm me down"];
+    const list = ["Happy", "Chill"];
     const { handleSubmit, handleInput } = this;
 
     return (
       <form className="container2" onSubmit={handleSubmit}>
-        {list.map((mood, index) => {
+        {list.map((genre, index) => {
           return (
             <div key={index}>
               <button
                 type="submit"
                 className="button-style"
                 onClick={handleInput}
-                value={mood}
-                name="mood"
+                value={genre}
+                name="genre"
               >
-                {mood}
+                {genre}
               </button>
             </div>
           );
@@ -56,8 +50,8 @@ class Mood extends React.Component {
 
 const mapDispatch = (dispatch) => {
   return {
-    addMood: (mood) => {
-      return dispatch(addMood(mood));
+    addMood: (genre) => {
+      return dispatch(addGenre(genre));
     },
   };
 };

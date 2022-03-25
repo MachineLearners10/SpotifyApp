@@ -5,13 +5,11 @@ import thunkMiddleware from "redux-thunk";
 import userReducer from "./redux/user";
 import playlistReducer from "./redux/playlist";
 import genresReducer from "./redux/genres";
-import moodReducer from "./redux/mood";
 
 const reducer = combineReducers({
   user: userReducer,
   playlist: playlistReducer,
   genres: genresReducer,
-  mood: moodReducer,
 });
 
 const middleware = composeWithDevTools(
