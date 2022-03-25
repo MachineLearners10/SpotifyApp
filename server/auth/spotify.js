@@ -19,12 +19,12 @@ passport.use(
         spotifyId: profile.id,
         token: accessToken
       });
-      if (!User.exists({ spotifyId: profile.id })) {
-        await user.save()
-      } else {
-        await User.findOneAndUpdate({ spotifyId: profile.id }, {token: accessToken})
-        return done(null, user);
-      }
+      // if (!User.exists({ spotifyId: profile.id })) {
+      //   await user.save()
+      // } else {
+      //   await User.findOneAndUpdate({ spotifyId: profile.id }, {token: accessToken})
+      //   return done(null, user);
+      // }
       return done(null, user)
     }
   )
