@@ -5,11 +5,11 @@ import EnergizeMe from "./EnergizeMe";
 import CalmDown from "./CalmDown";
 import PlayList from "./PlayList";
 import HelloWorld from "./HelloWorld";
-
 import Test from "./Test";
+
 const MainRoutes = () => {
   return (
-    <Router>
+    <Router history={history}>
       <div>
         <Routes>
           <Route path="/" element={<Login />} />

@@ -28,21 +28,4 @@ router.get("/playlist", (req, res, next) => {
   });
 });
 
-router.get("/recommendations", (req, res, next) => {
-  try {
-    spotifyApi.setAccessToken(req.user.token);
-    spotifyApi
-      .getRecommendations({
-        min_energy: 0.4,
-        seed_artists: ["6mfK6Q2tzLMEchAr0e9Uzu", "4DYFVNKZ1uixa6SQTvzQwJ"],
-        min_popularity: 50,
-      })
-      .then(function (data) {
-        res.send(data.body);
-      });
-  } catch (error) {
-    next(error);
-  }
-});
-
 module.exports = router;

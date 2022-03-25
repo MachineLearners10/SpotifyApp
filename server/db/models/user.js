@@ -15,17 +15,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  mood: {
-    type: String,
-    validate: {
-      isIn: [["Energize me", "Calm me down"]],
-    },
-    required: true,
-  },
-  gender: {
-    type: String,
-    required: true,
-  },
 });
 
 module.exports = User = mongoose.model("users", UserSchema);

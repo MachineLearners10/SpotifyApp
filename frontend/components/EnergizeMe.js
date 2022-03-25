@@ -1,30 +1,32 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createGenre } from "../redux/mood";
+import { addGenre } from "../redux/genres";
 
+let count = 0;
 class EnergizeMe extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      genre: null,
-    };
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    });
+  handleInput(evt) {
+    this.setState({ [evt.target.name]: evt.target.value });
+    count++;
+    function pageRedirect(i) {
+      if (i > 4) {
+        return window.location.replace("http://localhost:8888/playlist");
+      }
+    }
+    pageRedirect(count);
   }
-
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.createGenre({ ...this.state });
+    this.props.addGenre({ ...this.state });
   }
 
   render() {
-    const genres = [
+    const list = [
       "acoustic",
       "country",
       "dance",
@@ -44,41 +46,41 @@ class EnergizeMe extends React.Component {
       "reggaeton",
       "rock",
     ];
-    const { handleSubmit, handleChange } = this;
-    // const genres = ["chill", "rap", "hip-hop", "edm", "rock"];
+    const { handleSubmit, handleInput } = this;
 
     return (
       <div className="main-content">
-        <h1 className="genre">Select a genre</h1>
-        <div className="container3">
-          {genres.map((genre, index) => {
+        <h1 className="genre">Select genres (up to 5) </h1>
+        <form className="container3" onSubmit={handleSubmit}>
+          {list.map((genre, index) => {
             return (
               <div key={index}>
-                <form onSubmit={handleSubmit}>
-                  <Link to="/playlist">
-                    <button onChange={handleChange} className="button-style">
-                      {genre}
-                    </button>
-                  </Link>
-                </form>
+                <button
+                  onClick={handleInput}
+                  name="genre"
+                  value={genre}
+                  className="button-style"
+                >
+                  {genre}
+                </button>
               </div>
             );
           })}
-        </div>
+        </form>
       </div>
     );
   }
 }
 const mapState = (state) => {
   return {
-    mood: state.mood,
+    genre: state.genre,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    createGenre: () => {
-      return dispatch(createGenre());
+    addGenre: (genre) => {
+      return dispatch(addGenre(genre));
     },
   };
 };

@@ -1,7 +1,24 @@
-import React from "react";
+// import React, { useEffect } from "react";
+// import SpotifyPlayer from "react-spotify-web-playback";
+// import { useSelector, useDispatch } from "react-redux"
+// import { fetchPlaylistThunk } from "../redux/playlist";
 
-function Recomendations() {
-  return <div>Recomendations</div>;
-}
+// function Player() {
+//   const { user } = useSelector((state) => state.user);
+//   const dispatch = useDispatch();
+//   useEffect(() => {
+//     dispatch(fetchPlaylistThunk());
+//   }, []);
+//   const { playlist } = useSelector((state) => state.playlist);
 
-export default Recomendations;
+//   return (
+//     <div>
+//         <SpotifyPlayer
+//           token={user.token}
+//           uris={playlist}
+//         />
+//     </div>
+//   );
+// }
+
+// export default Player;
