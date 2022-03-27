@@ -10,7 +10,7 @@ const strategy = new SpotifyStrategy(
   {
     clientID: process.env.CLIENTID,
     clientSecret: process.env.SECRET,
-    callbackURL: 'http://localhost:8888/auth/spotify/callback'
+    callbackURL: process.env.CALLBACKURL,
   },
 
   async function (accessToken, refreshToken, expires_in, profile, done) {
@@ -20,13 +20,11 @@ const strategy = new SpotifyStrategy(
       token: accessToken,
       refreshToken: refreshToken
     });
-    if (!User.exists({ spotifyId: profile.id })) {
-      await user.save()
-    } else {
-      await User.findOneAndUpdate({ spotifyId: profile.id }, {token: accessToken, refreshToken: refreshToken})
-      return done(null, user);
-    }
-    return done(null, user)
+    // if (!User.exists({ spotifyId: profile.id })) {
+    //   await user.save()
+    // } else {
+    //   await User.findOneAndUpdate({ spotifyId: profile.id }, {token: accessToken, refreshToken: refreshToken})
+    return done(null, user);
   }
 );
 
