@@ -2,14 +2,16 @@ const SpotifyStrategy = require('passport-spotify').Strategy;
 const passport = require('passport');
 const router = require('express').Router();
 const User = require('../db/models/user');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+require('dotenv').config();
 
 passport.use(
   new SpotifyStrategy(
     {
       clientID: process.env.CLIENTID,
       clientSecret: process.env.SECRET,
-      callbackURL: 'http://localhost:8888/auth/spotify/callback'
+      callbackURL: process.env.CALLBACKURL,
+      //'https://catch-a-vibe.herokuapp.com/auth/spotify/callback'
     },
 
     async function (accessToken, refreshToken, expires_in, profile, done) {
@@ -18,12 +20,12 @@ passport.use(
         spotifyId: profile.id,
         token: accessToken
       });
-      if (!User.exists({ spotifyId: profile.id })) {
-        await user.save()
-      } else {
-        await User.findOneAndUpdate({ spotifyId: profile.id }, {token: accessToken})
-        return done(null, user);
-      }
+      // if (!User.exists({ spotifyId: profile.id })) {
+      //   await user.save()
+      // } else {
+      //   await User.findOneAndUpdate({ spotifyId: profile.id }, {token: accessToken})
+      //   return done(null, user);
+      // }
       return done(null, user)
     }
   )
