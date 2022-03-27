@@ -8,9 +8,7 @@ import { getGenres } from "../redux/getGenres";
 import { fetchUser } from "../redux/user";
 import {
   getRecommendations,
-  addRecommendation1,
-  addRecommendation2,
-  addRecommendation3,
+  addRecommendation,
 } from "../redux/getRecommendations";
 
 import SpotifyPlayer from "react-spotify-web-playback";
@@ -26,11 +24,10 @@ const sample = (items) => {
 };
 
 function Recommendation() {
-  const { user } = useSelector((state) => state.user);
   const { idSongs } = useSelector((state) => state.getIdSongs);
   const { idArtists } = useSelector((state) => state.getIdArtists);
   const genresList = useSelector((state) => state.getGenres);
-
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -52,8 +49,13 @@ function Recommendation() {
       })
       .then(function (data) {
         let recommendation = data.tracks.map((a) => a.uri);
-        dispatch(addRecommendation1(recommendation));
+        dispatch(addRecommendation(recommendation));
       });
+  }, [accessToken]);
+
+  useEffect(() => {
+    if (!accessToken) return;
+    spotifyApi.setAccessToken(accessToken);
 
     spotifyApi
       .getRecommendations({
@@ -61,17 +63,23 @@ function Recommendation() {
       })
       .then(function (data) {
         let recommendation = data.tracks.map((a) => a.uri);
-        dispatch(addRecommendation2(recommendation));
+        dispatch(addRecommendation(recommendation));
       });
+  }, [accessToken, idArtists]);
+
+  useEffect(() => {
+    if (!accessToken) return;
+    spotifyApi.setAccessToken(accessToken);
+
     spotifyApi
       .getRecommendations({
         seed_tracks: idSongs,
       })
       .then(function (data) {
         let recommendation = data.tracks.map((a) => a.uri);
-        dispatch(addRecommendation3(recommendation));
+        dispatch(addRecommendation(recommendation));
       });
-  }, [accessToken, idArtists, idSongs]);
+  }, [accessToken, idSongs]);
 
   useEffect(() => {
     dispatch(getRecommendations);

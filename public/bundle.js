@@ -10488,23 +10488,24 @@ var sample = function sample(items) {
 
 function Recommendation() {
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
-    return state.user;
-  }),
-      user = _useSelector.user;
-
-  var _useSelector2 = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.getIdSongs;
   }),
-      idSongs = _useSelector2.idSongs;
+      idSongs = _useSelector.idSongs;
 
-  var _useSelector3 = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+  var _useSelector2 = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.getIdArtists;
   }),
-      idArtists = _useSelector3.idArtists;
+      idArtists = _useSelector2.idArtists;
 
   var genresList = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.getGenres;
   });
+
+  var _useSelector3 = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.user;
+  }),
+      user = _useSelector3.user;
+
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_redux_user__WEBPACK_IMPORTED_MODULE_6__.fetchUser)());
@@ -10527,25 +10528,33 @@ function Recommendation() {
       var recommendation = data.tracks.map(function (a) {
         return a.uri;
       });
-      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__.addRecommendation1)(recommendation));
+      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__.addRecommendation)(recommendation));
     });
+  }, [accessToken]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!accessToken) return;
+    spotifyApi.setAccessToken(accessToken);
     spotifyApi.getRecommendations({
       seed_artists: idArtists
     }).then(function (data) {
       var recommendation = data.tracks.map(function (a) {
         return a.uri;
       });
-      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__.addRecommendation2)(recommendation));
+      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__.addRecommendation)(recommendation));
     });
+  }, [accessToken, idArtists]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!accessToken) return;
+    spotifyApi.setAccessToken(accessToken);
     spotifyApi.getRecommendations({
       seed_tracks: idSongs
     }).then(function (data) {
       var recommendation = data.tracks.map(function (a) {
         return a.uri;
       });
-      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__.addRecommendation3)(recommendation));
+      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__.addRecommendation)(recommendation));
     });
-  }, [accessToken, idArtists, idSongs]);
+  }, [accessToken, idSongs]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch(_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__.getRecommendations);
   }, []);
@@ -10986,9 +10995,7 @@ function getIdSongsReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addRecommendation1": () => (/* binding */ addRecommendation1),
-/* harmony export */   "addRecommendation2": () => (/* binding */ addRecommendation2),
-/* harmony export */   "addRecommendation3": () => (/* binding */ addRecommendation3),
+/* harmony export */   "addRecommendation": () => (/* binding */ addRecommendation),
 /* harmony export */   "default": () => (/* binding */ getRecommendationsReducer),
 /* harmony export */   "getRecommendations": () => (/* binding */ getRecommendations)
 /* harmony export */ });
@@ -11010,9 +11017,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var initialState = [];
 var GET_RECOMMENDATIONS = "GET_RECOMMENDATIONS ";
-var ADD_RECOMMENDATION1 = "ADD_RECOMMENDATION1";
-var ADD_RECOMMENDATION2 = "ADD_RECOMMENDATION2";
-var ADD_RECOMMENDATION3 = "ADD_RECOMMENDATION3";
+var ADD_RECOMMENDATION = "ADD_RECOMMENDATION";
 
 var _getRecommendations = function _getRecommendations(recommendations) {
   return {
@@ -11021,23 +11026,9 @@ var _getRecommendations = function _getRecommendations(recommendations) {
   };
 };
 
-var _addRecommendation1 = function _addRecommendation1(recommendation) {
+var _addRecommendation = function _addRecommendation(recommendation) {
   return {
-    type: ADD_RECOMMENDATION1,
-    recommendation: recommendation
-  };
-};
-
-var _addRecommendation2 = function _addRecommendation2(recommendation) {
-  return {
-    type: ADD_RECOMMENDATION2,
-    recommendation: recommendation
-  };
-};
-
-var _addRecommendation3 = function _addRecommendation3(recommendation) {
-  return {
-    type: ADD_RECOMMENDATION3,
+    type: ADD_RECOMMENDATION,
     recommendation: recommendation
   };
 };
@@ -11051,8 +11042,8 @@ var getRecommendations = function getRecommendations() {
           switch (_context.prev = _context.next) {
             case 0:
               try {
-                if (window.localStorage.listRecommendations1 || window.localStorage.listRecommendations2 || window.localStorage.listRecommendations3) {
-                  recommendations = JSON.parse(window.localStorage.getItem("listRecommendations1" || 0 || 0));
+                if (window.localStorage.listRecommendations) {
+                  recommendations = JSON.parse(window.localStorage.getItem("listRecommendations"));
                   dispatch(_getRecommendations(recommendations));
                 } else {
                   dispatch(_getRecommendations([]));
@@ -11074,10 +11065,10 @@ var getRecommendations = function getRecommendations() {
     };
   }();
 };
-var addRecommendation1 = function addRecommendation1(recommendation) {
+var addRecommendation = function addRecommendation(recommendation) {
   return /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
-      var recommendations, listRecommendations1;
+      var recommendations, listRecommendations;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -11087,17 +11078,17 @@ var addRecommendation1 = function addRecommendation1(recommendation) {
                 localStorage.clear();
               };
 
-              recommendations = JSON.parse(window.localStorage.getItem("listRecommendations1"));
+              recommendations = JSON.parse(window.localStorage.getItem("listRecommendations"));
 
               if (recommendations !== null) {
                 recommendations.push(recommendation);
-                window.localStorage.setItem("listRecommendations1", JSON.stringify(recommendations));
-                dispatch(_addRecommendation1(recommendation));
+                window.localStorage.setItem("listRecommendations", JSON.stringify(recommendations));
+                dispatch(_addRecommendation(recommendation));
               } else {
-                listRecommendations1 = [];
-                listRecommendations1.push(recommendation);
-                window.localStorage.setItem("listRecommendations1", JSON.stringify(listRecommendations1));
-                dispatch(_addRecommendation1(recommendation));
+                listRecommendations = [];
+                listRecommendations.push(recommendation);
+                window.localStorage.setItem("listRecommendations", JSON.stringify(listRecommendations));
+                dispatch(_addRecommendation(recommendation));
               } // } catch (error) {
               //   next(error);
               // }
@@ -11116,90 +11107,6 @@ var addRecommendation1 = function addRecommendation1(recommendation) {
     };
   }();
 };
-var addRecommendation2 = function addRecommendation2(recommendation) {
-  return /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(dispatch) {
-      var recommendations, listRecommendations2;
-      return regeneratorRuntime.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              // try {
-              window.onbeforeunload = function () {
-                localStorage.clear();
-              };
-
-              recommendations = JSON.parse(window.localStorage.getItem("listRecommendations2"));
-
-              if (recommendations !== null) {
-                recommendations.push(recommendation);
-                window.localStorage.setItem("listRecommendations2", JSON.stringify(recommendations));
-                dispatch(_addRecommendation2(recommendation));
-              } else {
-                listRecommendations2 = [];
-                listRecommendations2.push(recommendation);
-                window.localStorage.setItem("listRecommendations2", JSON.stringify(listRecommendations2));
-                dispatch(_addRecommendation2(recommendation));
-              } // } catch (error) {
-              //   next(error);
-              // }
-
-
-            case 3:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-
-    return function (_x3) {
-      return _ref3.apply(this, arguments);
-    };
-  }();
-};
-var addRecommendation3 = function addRecommendation3(recommendation) {
-  return /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(dispatch) {
-      var recommendations, listRecommendations3;
-      return regeneratorRuntime.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              // try {
-              window.onbeforeunload = function () {
-                localStorage.clear();
-              };
-
-              recommendations = JSON.parse(window.localStorage.getItem("listRecommendations3"));
-
-              if (recommendations !== null) {
-                recommendations.push(recommendation);
-                window.localStorage.setItem("listRecommendations3", JSON.stringify(recommendations));
-                dispatch(_addRecommendation3(recommendation));
-              } else {
-                listRecommendations3 = [];
-                listRecommendations3.push(recommendation);
-                window.localStorage.setItem("listRecommendations3", JSON.stringify(listRecommendations3));
-                dispatch(_addRecommendation3(recommendation));
-              } // } catch (error) {
-              //   next(error);
-              // }
-
-
-            case 3:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, _callee4);
-    }));
-
-    return function (_x4) {
-      return _ref4.apply(this, arguments);
-    };
-  }();
-};
 function getRecommendationsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
@@ -11208,13 +11115,7 @@ function getRecommendationsReducer() {
     case GET_RECOMMENDATIONS:
       return action.recommendations;
 
-    case ADD_RECOMMENDATION1:
-      return [].concat(_toConsumableArray(state), [action.recommendation]);
-
-    case ADD_RECOMMENDATION2:
-      return [].concat(_toConsumableArray(state), [action.recommendation]);
-
-    case ADD_RECOMMENDATION3:
+    case ADD_RECOMMENDATION:
       return [].concat(_toConsumableArray(state), [action.recommendation]);
 
     default:
