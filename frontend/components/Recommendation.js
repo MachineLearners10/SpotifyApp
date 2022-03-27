@@ -25,7 +25,7 @@ const sample = (items) => {
     .slice(0, n);
 };
 
-function Player() {
+function Recommendation() {
   const { user } = useSelector((state) => state.user);
   const { idSongs } = useSelector((state) => state.getIdSongs);
   const { idArtists } = useSelector((state) => state.getIdArtists);
@@ -82,9 +82,9 @@ function Player() {
   return (
     <div>
       <div>{console.log("URIS", uris)}</div>
-      <SpotifyPlayer token={user.token} uris={uris} />
+      <SpotifyPlayer token={accessToken} uris={uris} />
     </div>
   );
 }
 
-export default Player;
+export default Recommendation;

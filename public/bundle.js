@@ -10486,7 +10486,7 @@ var sample = function sample(items) {
   }).slice(0, n);
 };
 
-function Player() {
+function Recommendation() {
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.user;
   }),
@@ -10554,12 +10554,12 @@ function Player() {
   });
   var uris = sample([].concat.apply([], recommendations));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, console.log("URIS", uris)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    token: user.token,
+    token: accessToken,
     uris: uris
   }));
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Player);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Recommendation);
 
 /***/ }),
 
