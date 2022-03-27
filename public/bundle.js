@@ -10471,7 +10471,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 var spotifyApi = new (spotify_web_api_js__WEBPACK_IMPORTED_MODULE_1___default())();
-var n = 10;
+var n = 20;
 
 var sample = function sample(items) {
   return items.map(function (x) {
@@ -11051,8 +11051,8 @@ var getRecommendations = function getRecommendations() {
           switch (_context.prev = _context.next) {
             case 0:
               try {
-                if (window.localStorage.listRecommendations) {
-                  recommendations = JSON.parse(window.localStorage.getItem("listRecommendations"));
+                if (window.localStorage.listRecommendations1 || window.localStorage.listRecommendations2 || window.localStorage.listRecommendations3) {
+                  recommendations = JSON.parse(window.localStorage.getItem("listRecommendations1" || 0 || 0));
                   dispatch(_getRecommendations(recommendations));
                 } else {
                   dispatch(_getRecommendations([]));
@@ -11082,28 +11082,28 @@ var addRecommendation1 = function addRecommendation1(recommendation) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              try {
-                window.onbeforeunload = function () {
-                  localStorage.clear();
-                };
+              // try {
+              window.onbeforeunload = function () {
+                localStorage.clear();
+              };
 
-                recommendations = JSON.parse(window.localStorage.getItem("listRecommendations1"));
+              recommendations = JSON.parse(window.localStorage.getItem("listRecommendations1"));
 
-                if (recommendations !== null) {
-                  recommendations.push(genre);
-                  window.localStorage.setItem("listRecommendations1", JSON.stringify(recommendations));
-                  dispatch(_addRecommendation1(recommendation));
-                } else {
-                  listRecommendations1 = [];
-                  listRecommendations1.push(recommendation);
-                  window.localStorage.setItem("listRecommendations1", JSON.stringify(listRecommendations1));
-                  dispatch(_addRecommendation1(recommendation));
-                }
-              } catch (error) {
-                next(error);
-              }
+              if (recommendations !== null) {
+                recommendations.push(recommendation);
+                window.localStorage.setItem("listRecommendations1", JSON.stringify(recommendations));
+                dispatch(_addRecommendation1(recommendation));
+              } else {
+                listRecommendations1 = [];
+                listRecommendations1.push(recommendation);
+                window.localStorage.setItem("listRecommendations1", JSON.stringify(listRecommendations1));
+                dispatch(_addRecommendation1(recommendation));
+              } // } catch (error) {
+              //   next(error);
+              // }
 
-            case 1:
+
+            case 3:
             case "end":
               return _context2.stop();
           }
@@ -11124,28 +11124,28 @@ var addRecommendation2 = function addRecommendation2(recommendation) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              try {
-                window.onbeforeunload = function () {
-                  localStorage.clear();
-                };
+              // try {
+              window.onbeforeunload = function () {
+                localStorage.clear();
+              };
 
-                recommendations = JSON.parse(window.localStorage.getItem("listRecommendations2"));
+              recommendations = JSON.parse(window.localStorage.getItem("listRecommendations2"));
 
-                if (recommendations !== null) {
-                  recommendations.push(genre);
-                  window.localStorage.setItem("listRecommendations2", JSON.stringify(recommendations));
-                  dispatch(_addRecommendation2(recommendation));
-                } else {
-                  listRecommendations2 = [];
-                  listRecommendations2.push(recommendation);
-                  window.localStorage.setItem("listRecommendations2", JSON.stringify(listRecommendations2));
-                  dispatch(_addRecommendation2(recommendation));
-                }
-              } catch (error) {
-                next(error);
-              }
+              if (recommendations !== null) {
+                recommendations.push(recommendation);
+                window.localStorage.setItem("listRecommendations2", JSON.stringify(recommendations));
+                dispatch(_addRecommendation2(recommendation));
+              } else {
+                listRecommendations2 = [];
+                listRecommendations2.push(recommendation);
+                window.localStorage.setItem("listRecommendations2", JSON.stringify(listRecommendations2));
+                dispatch(_addRecommendation2(recommendation));
+              } // } catch (error) {
+              //   next(error);
+              // }
 
-            case 1:
+
+            case 3:
             case "end":
               return _context3.stop();
           }
@@ -11166,28 +11166,28 @@ var addRecommendation3 = function addRecommendation3(recommendation) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              try {
-                window.onbeforeunload = function () {
-                  localStorage.clear();
-                };
+              // try {
+              window.onbeforeunload = function () {
+                localStorage.clear();
+              };
 
-                recommendations = JSON.parse(window.localStorage.getItem("listRecommendations3"));
+              recommendations = JSON.parse(window.localStorage.getItem("listRecommendations3"));
 
-                if (recommendations !== null) {
-                  recommendations.push(genre);
-                  window.localStorage.setItem("listRecommendations3", JSON.stringify(recommendations));
-                  dispatch(_addRecommendation3(recommendation));
-                } else {
-                  listRecommendations3 = [];
-                  listRecommendations3.push(recommendation);
-                  window.localStorage.setItem("listRecommendations3", JSON.stringify(listRecommendations3));
-                  dispatch(_addRecommendation3(recommendation));
-                }
-              } catch (error) {
-                next(error);
-              }
+              if (recommendations !== null) {
+                recommendations.push(recommendation);
+                window.localStorage.setItem("listRecommendations3", JSON.stringify(recommendations));
+                dispatch(_addRecommendation3(recommendation));
+              } else {
+                listRecommendations3 = [];
+                listRecommendations3.push(recommendation);
+                window.localStorage.setItem("listRecommendations3", JSON.stringify(listRecommendations3));
+                dispatch(_addRecommendation3(recommendation));
+              } // } catch (error) {
+              //   next(error);
+              // }
 
-            case 1:
+
+            case 3:
             case "end":
               return _context4.stop();
           }

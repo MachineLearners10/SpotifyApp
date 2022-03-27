@@ -16,7 +16,7 @@ import {
 import SpotifyPlayer from "react-spotify-web-playback";
 const spotifyApi = new SpotifyWebApi();
 
-const n = 10;
+const n = 20;
 const sample = (items) => {
   return items
     .map((x) => ({ x, r: Math.random() }))
