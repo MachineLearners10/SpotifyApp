@@ -3257,10 +3257,9 @@ var fetchUser = function fetchUser() {
             case 2:
               _yield$Axios$get = _context.sent;
               data = _yield$Axios$get.data;
-              console.log("I am running", data);
               return _context.abrupt("return", dispatch(setUserAction(data)));
 
-            case 6:
+            case 5:
             case "end":
               return _context.stop();
           }
