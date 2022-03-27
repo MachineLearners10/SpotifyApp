@@ -22,10 +22,10 @@ class HelloWorld extends React.Component {
         <h2 className="subtitle">What's the vibe today</h2>
         <div className="container">
           <Link to="/energizeme">
-            <button>Energize me </button>
+            <button>Happy</button>
           </Link>
           <Link to="/calmdown">
-            <button>Calm Down </button>
+            <button>Calm</button>
           </Link>
         </div>
       </div>

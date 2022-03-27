@@ -12,6 +12,7 @@ router.get("/topTracks", (req, res, next) => {
     spotifyApi.setAccessToken(req.user.token);
     spotifyApi.getMyTopTracks()
       .then(function (data) {
+      console.log(data.body.items)
       res.send(data.body.items);
     });
   } catch (error) {

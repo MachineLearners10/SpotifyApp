@@ -2896,9 +2896,9 @@ var HelloWorld = /*#__PURE__*/function (_React$Component) {
         className: "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/energizeme"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Energize me ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Happy")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/calmdown"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Calm Down "))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Calm"))));
     }
   }]);
 
@@ -3054,6 +3054,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spotify-web-playback */ "./node_modules/react-spotify-web-playback/esm/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../redux/playlist */ "./frontend/redux/playlist.js");
+/* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/user */ "./frontend/redux/user.js");
+
 
 
 
@@ -3067,18 +3069,29 @@ function Player() {
 
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    dispatch((0,_redux_user__WEBPACK_IMPORTED_MODULE_4__.fetchUser)());
     dispatch((0,_redux_playlist__WEBPACK_IMPORTED_MODULE_3__.fetchPlaylistThunk)());
   }, []);
 
   var _useSelector2 = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.playlist;
   }),
-      playlist = _useSelector2.playlist;
+      playlist = _useSelector2.playlist; // performance.navigation.type == performance.navigation.TYPE_RELOAD
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    token: user.token,
-    uris: playlist
-  }));
+
+  var spotifyPlayer;
+
+  if (user.token) {
+    spotifyPlayer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      token: user.token,
+      uris: playlist
+    }));
+  } else {
+    spotifyPlayer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Loading");
+  }
+
+  ;
+  return spotifyPlayer;
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Player);
@@ -3244,9 +3257,10 @@ var fetchUser = function fetchUser() {
             case 2:
               _yield$Axios$get = _context.sent;
               data = _yield$Axios$get.data;
+              console.log("I am running", data);
               return _context.abrupt("return", dispatch(setUserAction(data)));
 
-            case 5:
+            case 6:
             case "end":
               return _context.stop();
           }

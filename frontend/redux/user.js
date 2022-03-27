@@ -12,8 +12,13 @@ const setUserAction = (user) => ({
 });
 
 export const fetchUser = () => async (dispatch) => {
-  const { data } = await Axios.get('/auth');
-  return dispatch(setUserAction(data))
+
+  const {data} = await Axios.get('/auth')
+  console.log("I am running", data)
+  return dispatch(setUserAction(data));
+
+  // const { data } = await Axios.get('/auth');
+  // return dispatch(setUserAction(data))
 }
 
 export default function userReducer(state = initialState, action) {
