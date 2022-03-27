@@ -1,35 +1,35 @@
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const passport = require('passport');
+const refresh = require('passport-oauth2-refresh');
 const router = require('express').Router();
 const User = require('../db/models/user');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
-passport.use(
-  new SpotifyStrategy(
-    {
-      clientID: process.env.CLIENTID,
-      clientSecret: process.env.SECRET,
-      callbackURL: process.env.CALLBACKURL,
-      //'https://catch-a-vibe.herokuapp.com/auth/spotify/callback'
-    },
+const strategy = new SpotifyStrategy(
+  {
+    clientID: process.env.CLIENTID,
+    clientSecret: process.env.SECRET,
+    callbackURL: process.env.CALLBACKURL,
+  },
 
-    async function (accessToken, refreshToken, expires_in, profile, done) {
-      const user = new User({
-        email: profile.emails[0].value,
-        spotifyId: profile.id,
-        token: accessToken
-      });
-      // if (!User.exists({ spotifyId: profile.id })) {
-      //   await user.save()
-      // } else {
-      //   await User.findOneAndUpdate({ spotifyId: profile.id }, {token: accessToken})
-      //   return done(null, user);
-      // }
-      return done(null, user)
-    }
-  )
+  async function (accessToken, refreshToken, expires_in, profile, done) {
+    const user = new User({
+      email: profile.emails[0].value,
+      spotifyId: profile.id,
+      token: accessToken,
+      refreshToken: refreshToken
+    });
+    // if (!User.exists({ spotifyId: profile.id })) {
+    //   await user.save()
+    // } else {
+    //   await User.findOneAndUpdate({ spotifyId: profile.id }, {token: accessToken, refreshToken: refreshToken})
+    return done(null, user);
+  }
 );
+
+passport.use(strategy);
+refresh.use(strategy);
 
 router.get(
   '/',
