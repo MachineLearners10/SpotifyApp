@@ -12,7 +12,7 @@ const setUserAction = (user) => ({
 });
 
 export const fetchUser = () => async (dispatch) => {
-  const {data} = await Axios.get('/auth')
+  const { data } = await Axios.get('/auth');
   return dispatch(setUserAction(data));
 }
 
