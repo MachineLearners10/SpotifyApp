@@ -2,15 +2,16 @@ const SpotifyStrategy = require('passport-spotify').Strategy;
 const passport = require('passport');
 const router = require('express').Router();
 const User = require('../db/models/user');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+require('dotenv').config();
 
 passport.use(
   new SpotifyStrategy(
     {
       clientID: process.env.CLIENTID,
       clientSecret: process.env.SECRET,
-      callbackURL: 'https://catch-a-vibe.herokuapp.com/auth/spotify/callback'
-      //comment
+      callbackURL: process.env.CALLBACKURL,
+      //'https://catch-a-vibe.herokuapp.com/auth/spotify/callback'
     },
 
     async function (accessToken, refreshToken, expires_in, profile, done) {
