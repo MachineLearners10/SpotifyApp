@@ -1,10 +1,11 @@
-.subtitle {
+/* @import "../frontend/components//Test.css"; */
+/* .subtitle {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 30px;
-}
+} */
 /* .right-container {
   align-items: right;
   display: flex;
@@ -19,11 +20,129 @@
   justify-content: center;
   padding: 30px;
 } */
-.container {
+/* .container {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
   width: 80%;
   margin: auto;
   padding: 50px;
+} */
+
+.playlist {
+  /* border: linear-gradient(rgb(94, 0, 200), rgba(0, 0, 0, 0)); */
+  flex-direction: column;
+  border: solid;
+  display: flex;
+  width: 70%;
+  height: 80vh;
+  padding: 30px;
+  /* padding: 30px;
+  color: rgb(0, 0, 0); */
+  border-color: rgb(77, 0, 51);
+  border-width: 10px;
+  color: white;
+  background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0));
+  overflow-y: overlay;
+}
+.playlist::-webkit-scrollbar {
+  display: none;
+}
+.songRow {
+  margin-left: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  flex-direction: row;
+}
+.songRow_left {
+  align-items: center;
+  display: flex;
+  height: 75%;
+  width: 33%;
+}
+.songRow_order {
+  padding-right: 20px;
+  font-size: 20px;
+  color: rgb(163, 163, 163);
+}
+
+.songRow:hover {
+  cursor: pointer;
+  background-color: white;
+  opacity: 0.8;
+}
+
+.songRow_info {
+  margin: left 20px;
+}
+
+.songRow_info > h1 {
+  font-size: 16px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.songRow_info > p {
+  font-size: 14px;
+  margin-top: 3px;
+  color: rgb(192, 192, 192);
+  padding-left: 10px;
+}
+.songRow_album {
+  width: 50px;
+  height: 50px;
+}
+
+.songRow_right {
+  border: solid;
+  align-items: center;
+  color: rgb(192, 192, 192);
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  height: 75%;
+}
+.albumName {
+  display: flex;
+  margin-left: 5%;
+  border: solid;
+  flex: 0 0 15%;
+}
+.mood {
+  margin-right: 10%;
+  display: flex;
+  border: solid;
+}
+.favorite {
+  display: flex;
+  padding-right: 5px;
+}
+.duration {
+  display: flex;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.header_left {
+  flex: 0.45;
+  min-width: 70px;
+  background-color: white;
+  color: gray;
+  border-radius: 30px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.header_left > input {
+  border: 0;
+  width: 100%;
+  outline: none;
 }

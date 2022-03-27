@@ -45,4 +45,13 @@ router.get("/playlist", (req, res, next) => {
   });
 });
 
+router.get("/likedSongs", (req, res, next) => {
+  console.log(req.params);
+  spotifyApi.setAccessToken(req.user.token);
+  spotifyApi.containsMySavedTracks(req.params.songs).then(function (data) {
+    console.log(data);
+    res.send(data);
+  });
+});
+
 module.exports = router;

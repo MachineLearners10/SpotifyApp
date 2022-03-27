@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import EnergizeMe from "./EnergizeMe";
 import CalmDown from "./CalmDown";
 import PlayList from "./PlayList";
-import Test from "./Test";
+import Test from "./playlist/Test";
 const MainRoutes = () => {
   return (
     <Router>

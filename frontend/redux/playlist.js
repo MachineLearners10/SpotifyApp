@@ -25,9 +25,22 @@ export const dispatchFetchRecs = () => async (dispatch) => {
 
 export const dispatchFetchSongs = () => async (dispatch) => {
   const { data } = await Axios.get("/api/songs/topTracks");
-  return dispatch(fetchSongs(data));
+  if (!data) {
+    const items = JSON.parse(window.localStorage.getItem("playlist"));
+    return dispatch(fetchSongs(items));
+  } else {
+    window.localStorage.setItem("playlist", JSON.stringify(data));
+    const items = JSON.parse(window.localStorage.getItem("playlist"));
+    return dispatch(fetchSongs(items));
+  }
 };
-
+export const dispatchLikedSongs = (songs) => async (dispatch) => {
+  const { data } = await Axios.get("/api/songs/likedSongs", {
+    params: { songs },
+  });
+  console.log(data);
+  // return dispatch(likedSongs(data));
+};
 export const fetchPlaylistThunk = () => async (dispatch) => {
   const { data } = await Axios.get("/api/songs/playlist");
   return dispatch(fetchPlaylist(data));
