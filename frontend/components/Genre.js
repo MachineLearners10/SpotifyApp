@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addGenre } from "../redux/genres";
+import { addGenre } from "../redux/getGenres";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
 let count = 0;
+let list = [];
 class Genre extends React.Component {
   constructor(props) {
     super(props);
@@ -13,11 +14,16 @@ class Genre extends React.Component {
   }
 
   handleInput(evt) {
-    if (count > 3) {
-      return alert("You chose more that 4 genres");
+    if (list.includes(evt.target.value)) {
+      return alert("You'd already chosen this genre");
     } else {
-      this.setState({ [evt.target.name]: evt.target.value });
-      count++;
+      if (count > 3) {
+        return alert("You can't choose more than 5 genres");
+      } else {
+        this.setState({ [evt.target.name]: evt.target.value });
+        list.push(evt.target.value);
+        count++;
+      }
     }
   }
   handleSubmit(evt) {
@@ -65,7 +71,7 @@ class Genre extends React.Component {
               </div>
             );
           })}
-          <Link to="/playlist">
+          <Link to="/recommendation">
             <Button>Submit</Button>
           </Link>
         </form>

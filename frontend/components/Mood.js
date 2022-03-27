@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addGenre } from "../redux/genres";
+import { addGenre } from "../redux/getGenres";
 
 class Mood extends React.Component {
   constructor(props) {
@@ -34,6 +34,7 @@ class Mood extends React.Component {
               <button
                 type="submit"
                 className="button-style"
+                onClick={handleInput}
                 onClick={handleInput}
                 value={genre}
                 name="genre"

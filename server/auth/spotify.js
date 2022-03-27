@@ -19,14 +19,14 @@ passport.use(
         token: accessToken,
       });
 
-      if (!(await User.exists({ spotifyId: profile.id }))) {
-        await user.save();
-      } else {
-        await User.findOneAndUpdate(
-          { spotifyId: profile.id },
-          { token: accessToken /*, topSongs: 'songs'*/ }
-        );
-      }
+      // if (!(await User.exists({ spotifyId: profile.id }))) {
+      //   await user.save();
+      // } else {
+      //   await User.findOneAndUpdate(
+      //     { spotifyId: profile.id },
+      //     { token: accessToken /*, topSongs: 'songs'*/ }
+      //   );
+      // }
       return done(null, user);
     }
   )
@@ -35,7 +35,9 @@ passport.use(
 router.get(
   "/",
   passport.authenticate("spotify", {
-    scope: ["user-read-private user-read-email user-top-read"],
+    scope: [
+      "user-read-private user-read-email user-top-read streaming user-read-playback-state user-modify-playback-state  playlist-read-private playlist-read-collaborative",
+    ],
   })
 );
 

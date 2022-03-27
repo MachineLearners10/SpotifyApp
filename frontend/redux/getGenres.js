@@ -3,7 +3,7 @@ const initialState = [];
 const GET_GENRES = "GET_GENRES";
 const ADD_GENRE = "ADD_GENRE";
 
-const _getGenre = (genres) => ({
+const _getGenres = (genres) => ({
   type: GET_GENRES,
   genres,
 });
@@ -12,14 +12,14 @@ const _addGenre = (genre) => ({
   genre,
 });
 
-export const getGenre = () => {
+export const getGenres = () => {
   return async (dispatch) => {
     try {
       if (window.localStorage.listGenres) {
         const genres = JSON.parse(window.localStorage.getItem("listGenres"));
-        dispatch(_getGenre(genres));
+        dispatch(_getGenres(genres));
       } else {
-        dispatch(_getGenre([]));
+        dispatch(_getGenres([]));
       }
     } catch (error) {
       next(error);
@@ -47,7 +47,7 @@ export const addGenre = (genre) => {
   };
 };
 
-export default function genresReducer(state = initialState, action) {
+export default function getGenresReducer(state = initialState, action) {
   switch (action.type) {
     case GET_GENRES:
       return action.genres;
