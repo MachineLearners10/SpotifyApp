@@ -16,7 +16,7 @@ import {
 import SpotifyPlayer from "react-spotify-web-playback";
 const spotifyApi = new SpotifyWebApi();
 
-const n = 15;
+const n = 10;
 const sample = (items) => {
   return items
     .map((x) => ({ x, r: Math.random() }))
@@ -25,7 +25,7 @@ const sample = (items) => {
     .slice(0, n);
 };
 
-function Recommendation() {
+function Player() {
   const { user } = useSelector((state) => state.user);
   const { idSongs } = useSelector((state) => state.getIdSongs);
   const { idArtists } = useSelector((state) => state.getIdArtists);
@@ -82,9 +82,9 @@ function Recommendation() {
   return (
     <div>
       <div>{console.log("URIS", uris)}</div>
-      {/* <SpotifyPlayer token={user.token} uris={uris} /> */}
+      <SpotifyPlayer token={user.token} uris={uris} />
     </div>
   );
 }
 
-export default Recommendation;
+export default Player;

@@ -10471,7 +10471,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 var spotifyApi = new (spotify_web_api_js__WEBPACK_IMPORTED_MODULE_1___default())();
-var n = 15;
+var n = 10;
 
 var sample = function sample(items) {
   return items.map(function (x) {
@@ -10486,7 +10486,7 @@ var sample = function sample(items) {
   }).slice(0, n);
 };
 
-function Recommendation() {
+function Player() {
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.user;
   }),
@@ -10553,10 +10553,13 @@ function Recommendation() {
     return state.getRecommendations;
   });
   var uris = sample([].concat.apply([], recommendations));
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, console.log("URIS", uris)));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, console.log("URIS", uris)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    token: user.token,
+    uris: uris
+  }));
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Recommendation);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Player);
 
 /***/ }),
 
@@ -11080,6 +11083,10 @@ var addRecommendation1 = function addRecommendation1(recommendation) {
           switch (_context2.prev = _context2.next) {
             case 0:
               try {
+                window.onbeforeunload = function () {
+                  localStorage.clear();
+                };
+
                 recommendations = JSON.parse(window.localStorage.getItem("listRecommendations1"));
 
                 if (recommendations !== null) {
@@ -11118,6 +11125,10 @@ var addRecommendation2 = function addRecommendation2(recommendation) {
           switch (_context3.prev = _context3.next) {
             case 0:
               try {
+                window.onbeforeunload = function () {
+                  localStorage.clear();
+                };
+
                 recommendations = JSON.parse(window.localStorage.getItem("listRecommendations2"));
 
                 if (recommendations !== null) {
@@ -11156,6 +11167,10 @@ var addRecommendation3 = function addRecommendation3(recommendation) {
           switch (_context4.prev = _context4.next) {
             case 0:
               try {
+                window.onbeforeunload = function () {
+                  localStorage.clear();
+                };
+
                 recommendations = JSON.parse(window.localStorage.getItem("listRecommendations3"));
 
                 if (recommendations !== null) {

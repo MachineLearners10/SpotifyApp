@@ -9,7 +9,6 @@ const _getRecommendations = (recommendations) => ({
   type: GET_RECOMMENDATIONS,
   recommendations,
 });
-
 const _addRecommendation1 = (recommendation) => ({
   type: ADD_RECOMMENDATION1,
   recommendation,
@@ -43,6 +42,9 @@ export const getRecommendations = () => {
 export const addRecommendation1 = (recommendation) => {
   return async (dispatch) => {
     try {
+      window.onbeforeunload = function () {
+        localStorage.clear();
+      };
       const recommendations = JSON.parse(
         window.localStorage.getItem("listRecommendations1")
       );
@@ -70,6 +72,10 @@ export const addRecommendation1 = (recommendation) => {
 export const addRecommendation2 = (recommendation) => {
   return async (dispatch) => {
     try {
+      window.onbeforeunload = function () {
+        localStorage.clear();
+      };
+
       const recommendations = JSON.parse(
         window.localStorage.getItem("listRecommendations2")
       );
@@ -97,6 +103,9 @@ export const addRecommendation2 = (recommendation) => {
 export const addRecommendation3 = (recommendation) => {
   return async (dispatch) => {
     try {
+      window.onbeforeunload = function () {
+        localStorage.clear();
+      };
       const recommendations = JSON.parse(
         window.localStorage.getItem("listRecommendations3")
       );
