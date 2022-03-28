@@ -1,6 +1,6 @@
 require("dotenv").config();
 const app = require("./server/index.js");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8888;
 const { default: mongoose } = require("mongoose");
 
 async function letsRoll() {

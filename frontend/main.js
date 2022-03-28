@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import store from './store';
-import { Provider } from 'react-redux';
-import MainRoutes from './components/MainRoutes';
+import React from "react";
+import ReactDOM from "react-dom";
+import store from "./store";
+import { Provider } from "react-redux";
+import App from "./App";
 
 ReactDOM.render(
   <Provider store={store}>
-    <MainRoutes />
+    <App />
   </Provider>,
-  document.getElementById('main')
+  document.getElementById("main")
 );

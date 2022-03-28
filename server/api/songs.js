@@ -6,7 +6,6 @@ const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENTID,
   clientSecret: process.env.SECRET,
   callbackURL: process.env.CALLBACKURL,
-  // "https://catch-a-vibe.herokuapp.com/auth/spotify/callback",
 });
 
 router.get("/topTracks", (req, res, next) => {
