@@ -17354,8 +17354,8 @@ var Mood = /*#__PURE__*/function (_React$Component) {
       this.setState(_defineProperty({}, evt.target.name, evt.target.value));
 
       function pageRedirect() {
-        return window.location.replace( // `https://catch-a-vibe.herokuapp.com/genre`
-        "http://localhost:8888/genre");
+        return window.location.replace("https://catch-a-vibe.herokuapp.com/genre" // "http://localhost:8888/genre"
+        );
       }
 
       pageRedirect();
@@ -17369,7 +17369,7 @@ var Mood = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var list = ["Happy", "Chill"];
+      var list = ["Happy", "Chill", "Work-out"];
       var handleSubmit = this.handleSubmit,
           handleInput = this.handleInput;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
