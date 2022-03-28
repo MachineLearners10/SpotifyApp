@@ -1,14 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { dispatchLikedSongs } from "../../redux/playlist";
 import { useEffect } from "react";
-
+import { fetchUser } from "../../redux/user";
+import { dispatchFetchSongs } from "../../redux/playlist";
 export default function usePlaylist() {
   const dispatch = useDispatch();
+  const songs = useSelector((state) => state.playlist.songs);
+  const likedSongs = useSelector((state) => state.playlist.likedSongs);
+  useEffect(() => {
+    dispatch(fetchUser());
+    dispatch(dispatchFetchSongs());
+  }, []);
 
   function getLikedSongs(songs) {
-    console.log(songs);
     const songsId = songs.map((song) => song.id);
-    console.log(songsId);
     dispatch(dispatchLikedSongs(songsId));
   }
 
@@ -17,5 +22,5 @@ export default function usePlaylist() {
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
   }
-  return { convertDuration, getLikedSongs };
+  return { convertDuration, getLikedSongs, songs };
 }

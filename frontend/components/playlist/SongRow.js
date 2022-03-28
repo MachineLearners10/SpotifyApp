@@ -4,9 +4,7 @@ import { dispatchFetchSongs } from "../../redux/playlist";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import usePlaylist from "../../redux/hooks/usePlaylist";
 
-function SongRow({ song, order }) {
-  const { convertDuration } = usePlaylist();
-
+function SongRow({ song, order, convertDuration }) {
   return (
     <div className="songRow">
       <div className="songRow_left">

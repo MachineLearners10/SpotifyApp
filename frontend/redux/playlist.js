@@ -5,6 +5,7 @@ const initialState = {};
 const FETCH_SONGS = "FETCH_SONGS";
 const FETCH_RECS = "FETCH_RECS";
 const FETCH_PLAYLIST = "FETCH_PLAYLIST";
+const LIKED_SONGS = "LIKED_SONGS";
 
 const fetchRecs = (recs) => ({ type: FETCH_RECS, recs });
 
@@ -13,6 +14,10 @@ const fetchSongs = (songs) => ({
   songs,
 });
 
+const likedSongs = (likedSongs) => ({
+  type: LIKED_SONGS,
+  likedSongs,
+});
 const fetchPlaylist = (playlist) => ({
   type: FETCH_PLAYLIST,
   playlist,
@@ -25,21 +30,14 @@ export const dispatchFetchRecs = () => async (dispatch) => {
 
 export const dispatchFetchSongs = () => async (dispatch) => {
   const { data } = await Axios.get("/api/songs/topTracks");
-  if (!data) {
-    const items = JSON.parse(window.localStorage.getItem("playlist"));
-    return dispatch(fetchSongs(items));
-  } else {
-    window.localStorage.setItem("playlist", JSON.stringify(data));
-    const items = JSON.parse(window.localStorage.getItem("playlist"));
-    return dispatch(fetchSongs(items));
-  }
+  return dispatch(fetchSongs(data));
 };
+
 export const dispatchLikedSongs = (songs) => async (dispatch) => {
   const { data } = await Axios.get("/api/songs/likedSongs", {
     params: { songs },
   });
-  console.log(data);
-  // return dispatch(likedSongs(data));
+  return dispatch(likedSongs(data.body));
 };
 export const fetchPlaylistThunk = () => async (dispatch) => {
   const { data } = await Axios.get("/api/songs/playlist");
@@ -59,6 +57,11 @@ export default function playlistReducer(state = initialState, action) {
       return {
         ...state,
         recs: action.recs,
+      };
+    case LIKED_SONGS:
+      return {
+        ...state,
+        likedSongs: action.likedSongs,
       };
     default:
       return state;

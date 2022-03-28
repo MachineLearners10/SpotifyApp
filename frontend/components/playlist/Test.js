@@ -3,23 +3,12 @@ import SongRow from "./SongRow.js";
 import Header from "./Header.js";
 import usePlaylist from "../../redux/hooks/usePlaylist";
 import { useDispatch, useSelector } from "react-redux";
-import { dispatchFetchSongs } from "../../redux/playlist";
 
 function Test() {
-  const { getLikedSongs } = usePlaylist();
-
-  const songs = useSelector((state) => state.playlist.songs);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(dispatchFetchSongs());
-  }, []);
-
+  const { songs, convertDuration, getLikedSongs } = usePlaylist();
   // if (songs !== undefined) {
-  //   console.log(getLikedSongs(songs));
+  //   getLikedSongs(songs);
   // }
-
   return (
     <div className="playlist">
       <Header />
@@ -27,7 +16,12 @@ function Test() {
         <h1>no songs</h1>
       ) : (
         songs.map((song, i) => (
-          <SongRow order={i + 1} song={song} className="songRow" />
+          <SongRow
+            convertDuration={convertDuration}
+            order={i + 1}
+            song={song}
+            className="songRow"
+          />
         ))
       )}
     </div>

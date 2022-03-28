@@ -1,23 +1,25 @@
 const router = require("express").Router();
 const SpotifyWebApi = require("spotify-web-api-node");
+require("dotenv").config();
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENTID,
   clientSecret: process.env.SECRET,
-  callbackURL: "http://localhost:8888/auth/spotify/callback",
+  callbackURL: process.env.CALLBACKURL,
+  // "https://catch-a-vibe.herokuapp.com/auth/spotify/callback",
 });
 
 router.get("/topTracks", (req, res, next) => {
   try {
     spotifyApi.setAccessToken(req.user.token);
     spotifyApi.getMyTopTracks().then(async function (data) {
-      let topSongs = data.body.items;
-      topSongs.forEach(async (song) => {
-        await User.updateOne(
-          { spotifyId: req.user.spotifyId },
-          { $push: { topSongs: song } }
-        );
-      });
+      // let topSongs = data.body.items;
+      // topSongs.forEach(async (song) => {
+      //   await User.updateOne(
+      //     { spotifyId: req.user.spotifyId },
+      //     { $push: { topSongs: song } }
+      //   );
+      // });
       res.send(data.body.items);
     });
   } catch (error) {
@@ -46,10 +48,9 @@ router.get("/playlist", (req, res, next) => {
 });
 
 router.get("/likedSongs", (req, res, next) => {
-  console.log(req.params);
+  console.log(req.query);
   spotifyApi.setAccessToken(req.user.token);
-  spotifyApi.containsMySavedTracks(req.params.songs).then(function (data) {
-    console.log(data);
+  spotifyApi.containsMySavedTracks(req.query.songs).then(function (data) {
     res.send(data);
   });
 });
