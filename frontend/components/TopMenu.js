@@ -45,6 +45,11 @@ function TopMenu() {
             About
           </Typography>
         </MenuItem>
+        <MenuItem>
+          <Typography variant="h6" className={classes.title}>
+            Sing out
+          </Typography>
+        </MenuItem>
       </Toolbar>
     </AppBar>
   );
