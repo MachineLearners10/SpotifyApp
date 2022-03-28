@@ -30,6 +30,9 @@ export const getGenres = () => {
 export const addGenre = (genre) => {
   return async (dispatch) => {
     try {
+      window.onbeforeunload = function () {
+        localStorage.clear();
+      };
       const genres = JSON.parse(window.localStorage.getItem("listGenres"));
       if (genres !== null) {
         genres.push(genre);

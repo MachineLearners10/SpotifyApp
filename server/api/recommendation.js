@@ -4,7 +4,7 @@ const SpotifyWebApi = require("spotify-web-api-node");
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENTID,
   clientSecret: process.env.SECRET,
-  callbackURL: "http://localhost:8888/auth/spotify/callback",
+  callbackURL: process.env.CALLBACKURL,
 });
 
 const n = 5;

@@ -71,7 +71,7 @@ class Genre extends React.Component {
               </div>
             );
           })}
-          <Link to="/recommendation">
+          <Link to="/playlist">
             <Button>Submit</Button>
           </Link>
         </form>
