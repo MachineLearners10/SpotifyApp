@@ -9918,7 +9918,7 @@ var Mood = /*#__PURE__*/function (_React$Component) {
       this.setState(_defineProperty({}, evt.target.name, evt.target.value));
 
       function pageRedirect() {
-        return window.location.replace("http://localhost:8888/genre");
+        return window.location.replace("https://catch-a-vibe.herokuapp.com/genre");
       }
 
       pageRedirect();
@@ -10010,12 +10010,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var spotify_web_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(spotify_web_api_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spotify-web-playback */ "./node_modules/react-spotify-web-playback/esm/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/playlist */ "./frontend/redux/playlist.js");
-/* harmony import */ var _redux_getIdArtists__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/getIdArtists */ "./frontend/redux/getIdArtists.js");
-/* harmony import */ var _redux_getIdSongs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../redux/getIdSongs */ "./frontend/redux/getIdSongs.js");
-/* harmony import */ var _redux_getGenres__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/getGenres */ "./frontend/redux/getGenres.js");
-/* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../redux/user */ "./frontend/redux/user.js");
-/* harmony import */ var _redux_getRecommendations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../redux/getRecommendations */ "./frontend/redux/getRecommendations.js");
+/* harmony import */ var _redux_getIdArtists__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/getIdArtists */ "./frontend/redux/getIdArtists.js");
+/* harmony import */ var _redux_getIdSongs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/getIdSongs */ "./frontend/redux/getIdSongs.js");
+/* harmony import */ var _redux_getGenres__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../redux/getGenres */ "./frontend/redux/getGenres.js");
+/* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/user */ "./frontend/redux/user.js");
+/* harmony import */ var _redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../redux/getRecommendations */ "./frontend/redux/getRecommendations.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -10031,7 +10030,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
-
+ // import { fetchPlaylistThunk } from "../redux/playlist";
 
 
 
@@ -10076,10 +10075,10 @@ function Player() {
 
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch((0,_redux_user__WEBPACK_IMPORTED_MODULE_8__.fetchUser)());
-    dispatch((0,_redux_getGenres__WEBPACK_IMPORTED_MODULE_7__.getGenres)());
-    dispatch((0,_redux_getIdArtists__WEBPACK_IMPORTED_MODULE_5__.getIdArtists)());
-    dispatch((0,_redux_getIdSongs__WEBPACK_IMPORTED_MODULE_6__.getIdSongs)());
+    dispatch((0,_redux_user__WEBPACK_IMPORTED_MODULE_7__.fetchUser)());
+    dispatch((0,_redux_getGenres__WEBPACK_IMPORTED_MODULE_6__.getGenres)());
+    dispatch((0,_redux_getIdArtists__WEBPACK_IMPORTED_MODULE_4__.getIdArtists)());
+    dispatch((0,_redux_getIdSongs__WEBPACK_IMPORTED_MODULE_5__.getIdSongs)());
   }, []);
   var accessToken = user.token;
 
@@ -10096,7 +10095,7 @@ function Player() {
       var recommendation = data.tracks.map(function (a) {
         return a.uri;
       });
-      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_9__.addRecommendation)(recommendation));
+      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.addRecommendation)(recommendation));
     });
   }, [accessToken]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -10108,7 +10107,7 @@ function Player() {
       var recommendation = data.tracks.map(function (a) {
         return a.uri;
       });
-      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_9__.addRecommendation)(recommendation));
+      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.addRecommendation)(recommendation));
     });
   }, [accessToken, idArtists]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -10120,18 +10119,12 @@ function Player() {
       var recommendation = data.tracks.map(function (a) {
         return a.uri;
       });
-      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_9__.addRecommendation)(recommendation));
+      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.addRecommendation)(recommendation));
     });
   }, [accessToken, idSongs]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch(_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_9__.getRecommendations);
-    dispatch((0,_redux_playlist__WEBPACK_IMPORTED_MODULE_4__.fetchPlaylistThunk)());
-  }, []);
-
-  var _useSelector4 = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
-    return state.playlist;
-  }),
-      playlist = _useSelector4.playlist;
+    dispatch(_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.getRecommendations); // dispatch(fetchPlaylistThunk());
+  }, []); // const { playlist } = useSelector((state) => state.playlist);
 
   var recommendations = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
     return state.getRecommendations;
@@ -10143,7 +10136,7 @@ function Player() {
   if (user.token) {
     spotifyPlayer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_2__["default"], {
       token: user.token,
-      uris: [].concat(uris, playlist)
+      uris: uris
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, console.log("uris", uris)));
   } else {
     spotifyPlayer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Loading");

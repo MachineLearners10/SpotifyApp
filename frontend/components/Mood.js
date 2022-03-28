@@ -12,7 +12,9 @@ class Mood extends React.Component {
   handleInput(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
     function pageRedirect() {
-      return window.location.replace("http://localhost:8888/genre");
+      return window.location.replace(
+        `https://catch-a-vibe.herokuapp.com/genre`
+      );
     }
     pageRedirect();
   }

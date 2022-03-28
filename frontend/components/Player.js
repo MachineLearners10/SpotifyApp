@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import SpotifyPlayer from "react-spotify-web-playback";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPlaylistThunk } from "../redux/playlist";
+// import { fetchPlaylistThunk } from "../redux/playlist";
 
 import { getIdArtists } from "../redux/getIdArtists";
 import { getIdSongs } from "../redux/getIdSongs";
@@ -88,10 +88,10 @@ function Player() {
 
   useEffect(() => {
     dispatch(getRecommendations);
-    dispatch(fetchPlaylistThunk());
+    // dispatch(fetchPlaylistThunk());
   }, []);
 
-  const { playlist } = useSelector((state) => state.playlist);
+  // const { playlist } = useSelector((state) => state.playlist);
   const recommendations = useSelector((state) => state.getRecommendations);
   const uris = sample([].concat.apply([], recommendations));
   // performance.navigation.type == performance.navigation.TYPE_RELOAD
@@ -100,7 +100,7 @@ function Player() {
   if (user.token) {
     spotifyPlayer = (
       <div>
-        <SpotifyPlayer token={user.token} uris={[].concat(uris, playlist)} />
+        <SpotifyPlayer token={user.token} uris={uris} />
         <div>{console.log("uris", uris)}</div>
       </div>
     );
