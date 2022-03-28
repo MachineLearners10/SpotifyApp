@@ -8,7 +8,7 @@ class Mood extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
-
+  //
   handleInput(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
     function pageRedirect() {
