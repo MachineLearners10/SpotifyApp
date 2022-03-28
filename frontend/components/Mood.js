@@ -14,6 +14,7 @@ class Mood extends React.Component {
     function pageRedirect() {
       return window.location.replace(
         `https://catch-a-vibe.herokuapp.com/genre`
+        // "http://localhost:8888/genre"
       );
     }
     pageRedirect();
@@ -36,7 +37,6 @@ class Mood extends React.Component {
               <button
                 type="submit"
                 className="button-style"
-                onClick={handleInput}
                 onClick={handleInput}
                 value={genre}
                 name="genre"

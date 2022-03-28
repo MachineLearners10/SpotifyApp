@@ -1,3 +1,138 @@
+/* @import "../frontend/components//Test.css"; */
+
+.playlist {
+  /* border: linear-gradient(rgb(94, 0, 200), rgba(0, 0, 0, 0)); */
+  flex-direction: column;
+  border: solid;
+  display: flex;
+  width: 70%;
+  height: 80vh;
+  padding: 30px;
+  /* padding: 30px;
+  color: rgb(0, 0, 0); */
+  border-color: rgb(77, 0, 51);
+  border-width: 10px;
+  color: white;
+  background: linear-gradient(rgb(91, 87, 115), rgb(22, 21, 21) 30%);
+  overflow-y: overlay;
+}
+.playlist::-webkit-scrollbar {
+  display: none;
+}
+.songRow {
+  margin-left: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  flex-direction: row;
+  border-radius: 5px;
+}
+.songRow_left {
+  align-items: center;
+  display: flex;
+  height: 75%;
+  width: 33%;
+}
+.songRow_order {
+  display: flex;
+  flex: 0 0 10px;
+  padding-right: 10px;
+  font-size: 20px;
+  color: rgb(163, 163, 163);
+}
+.svg_icons {
+  display: flex;
+  flex: 0 0 10px;
+  padding-right: 8px;
+  transform: scale(2);
+  color: white;
+}
+.songRow:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.212);
+  opacity: 1;
+}
+
+.songRow_info {
+  margin: left 20px;
+}
+
+.songRow_info > h1.active {
+  font-size: 16px;
+  padding-left: 10px;
+  padding-top: 10px;
+  color: rgb(30, 215, 96);
+}
+
+.songRow_info > h1.inactive {
+  font-size: 16px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.songRow_info > p {
+  font-size: 14px;
+  margin-top: 3px;
+  color: rgb(192, 192, 192);
+  padding-left: 10px;
+}
+.songRow_album {
+  width: 50px;
+  height: 50px;
+}
+
+.songRow_right {
+  align-items: center;
+  color: rgb(192, 192, 192);
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  height: 75%;
+}
+.albumName {
+  display: flex;
+  margin-left: 5%;
+  flex: 0 0 25%;
+}
+.mood {
+  display: flex;
+  flex: 0 0 29%;
+  justify-content: center;
+}
+.favorite {
+  display: flex;
+  padding-right: 5px;
+  padding-left: 25%;
+}
+.duration {
+  display: flex;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.header_left {
+  flex: 0.45;
+  min-width: 70px;
+  background-color: white;
+  color: gray;
+  border-radius: 30px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.header_left > input {
+  border: 0;
+  width: 100%;
+  outline: none;
+  padding: 30px;
+}
 .title {
   align-items: center;
   display: flex;

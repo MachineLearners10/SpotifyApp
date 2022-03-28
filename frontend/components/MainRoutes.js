@@ -4,8 +4,7 @@ import HelloWorld from "./HelloWorld";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Genre from "./Genre";
 import PlayList from "./PlayList";
-import Test from "./Test";
-
+import Test from "./playlist/Test";
 const MainRoutes = () => {
   return (
     <Router history={history}>

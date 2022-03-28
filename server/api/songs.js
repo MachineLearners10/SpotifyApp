@@ -11,7 +11,14 @@ const spotifyApi = new SpotifyWebApi({
 router.get("/topTracks", (req, res, next) => {
   try {
     spotifyApi.setAccessToken(req.user.token);
-    spotifyApi.getMyTopTracks().then(function (data) {
+    spotifyApi.getMyTopTracks().then(async function (data) {
+      // let topSongs = data.body.items;
+      // topSongs.forEach(async (song) => {
+      //   await User.updateOne(
+      //     { spotifyId: req.user.spotifyId },
+      //     { $push: { topSongs: song } }
+      //   );
+      // });
       res.send(data.body.items);
     });
   } catch (error) {
@@ -19,6 +26,16 @@ router.get("/topTracks", (req, res, next) => {
   }
 });
 
+router.get("/recs", (req, res, next) => {
+  try {
+    spotifyApi.setAccessToken(req.user.token);
+    spotifyApi.getRecommendations().then(function (data) {
+      res.send(data.body.items);
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 router.get("/playlist", (req, res, next) => {
   spotifyApi.setAccessToken(req.user.token);
   spotifyApi.getPlaylist("08SEtNKtOwc7p74VZiriVx").then(function (data) {
@@ -26,6 +43,14 @@ router.get("/playlist", (req, res, next) => {
       (trackDetails) => trackDetails.track.uri
     );
     res.send(trackUris);
+  });
+});
+
+router.get("/likedSongs", (req, res, next) => {
+  console.log(req.query);
+  spotifyApi.setAccessToken(req.user.token);
+  spotifyApi.containsMySavedTracks(req.query.songs).then(function (data) {
+    res.send(data);
   });
 });
 
