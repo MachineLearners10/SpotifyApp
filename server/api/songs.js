@@ -1,10 +1,12 @@
 const router = require("express").Router();
 const SpotifyWebApi = require("spotify-web-api-node");
+require("dotenv").config();
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENTID,
   clientSecret: process.env.SECRET,
-  callbackURL: "http://localhost:8888/auth/spotify/callback",
+  callbackURL: process.env.CALLBACKURL,
+  // "https://catch-a-vibe.herokuapp.com/auth/spotify/callback",
 });
 
 router.get("/topTracks", (req, res, next) => {
