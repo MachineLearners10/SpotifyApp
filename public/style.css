@@ -42,7 +42,7 @@
   border-color: rgb(77, 0, 51);
   border-width: 10px;
   color: white;
-  background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0));
+  background: linear-gradient(rgb(91, 87, 115), rgb(22, 21, 21) 30%);
   overflow-y: overlay;
 }
 .playlist::-webkit-scrollbar {
@@ -57,6 +57,7 @@
   padding-top: 5px;
   padding-bottom: 5px;
   flex-direction: row;
+  border-radius: 5px;
 }
 .songRow_left {
   align-items: center;
@@ -65,22 +66,37 @@
   width: 33%;
 }
 .songRow_order {
-  padding-right: 20px;
+  display: flex;
+  flex: 0 0 10px;
+  padding-right: 10px;
   font-size: 20px;
   color: rgb(163, 163, 163);
 }
-
+.svg_icons {
+  display: flex;
+  flex: 0 0 10px;
+  padding-right: 8px;
+  transform: scale(2);
+  color: white;
+}
 .songRow:hover {
   cursor: pointer;
-  background-color: white;
-  opacity: 0.8;
+  background-color: rgba(255, 255, 255, 0.212);
+  opacity: 1;
 }
 
 .songRow_info {
   margin: left 20px;
 }
 
-.songRow_info > h1 {
+.songRow_info > h1.active {
+  font-size: 16px;
+  padding-left: 10px;
+  padding-top: 10px;
+  color: rgb(30, 215, 96);
+}
+
+.songRow_info > h1.inactive {
   font-size: 16px;
   padding-left: 10px;
   padding-top: 10px;

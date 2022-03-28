@@ -2,25 +2,26 @@ import React, { useEffect } from "react";
 import SongRow from "./SongRow.js";
 import Header from "./Header.js";
 import usePlaylist from "../../redux/hooks/usePlaylist";
-import { useDispatch, useSelector } from "react-redux";
 
 function Test() {
-  const { songs, convertDuration, getLikedSongs } = usePlaylist();
-  // if (songs !== undefined) {
-  //   getLikedSongs(songs);
-  // }
+  const { songs, convertDuration, getLikedSongs, likedSongs } = usePlaylist();
+  if (songs !== undefined && likedSongs === undefined) {
+    getLikedSongs(songs);
+  }
   return (
     <div className="playlist">
       <Header />
-      {songs === undefined ? (
-        <h1>no songs</h1>
+      {songs === undefined && likedSongs === undefined ? (
+        <h1>loading</h1>
       ) : (
         songs.map((song, i) => (
           <SongRow
+            key={i + 1}
             convertDuration={convertDuration}
             order={i + 1}
             song={song}
             className="songRow"
+            likedSongs={likedSongs}
           />
         ))
       )}

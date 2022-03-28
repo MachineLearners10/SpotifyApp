@@ -6,7 +6,7 @@ const FETCH_SONGS = "FETCH_SONGS";
 const FETCH_RECS = "FETCH_RECS";
 const FETCH_PLAYLIST = "FETCH_PLAYLIST";
 const LIKED_SONGS = "LIKED_SONGS";
-
+const HOVER_SONG = "HOVER_SONG";
 const fetchRecs = (recs) => ({ type: FETCH_RECS, recs });
 
 const fetchSongs = (songs) => ({
@@ -22,7 +22,10 @@ const fetchPlaylist = (playlist) => ({
   type: FETCH_PLAYLIST,
   playlist,
 });
-
+export const hoverSongs = (hoveredSong) => ({
+  type: HOVER_SONG,
+  hoveredSong,
+});
 export const dispatchFetchRecs = () => async (dispatch) => {
   const { data } = await Axios.get("/api/songs/recs");
   return dispatch(fetchRecs(data));
@@ -63,6 +66,8 @@ export default function playlistReducer(state = initialState, action) {
         ...state,
         likedSongs: action.likedSongs,
       };
+    case HOVER_SONG:
+      return { ...state, hoveredSong: action.hoveredSong };
     default:
       return state;
   }

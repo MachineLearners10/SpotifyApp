@@ -3,6 +3,7 @@ import { dispatchLikedSongs } from "../../redux/playlist";
 import { useEffect } from "react";
 import { fetchUser } from "../../redux/user";
 import { dispatchFetchSongs } from "../../redux/playlist";
+
 export default function usePlaylist() {
   const dispatch = useDispatch();
   const songs = useSelector((state) => state.playlist.songs);
@@ -22,5 +23,5 @@ export default function usePlaylist() {
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
   }
-  return { convertDuration, getLikedSongs, songs };
+  return { convertDuration, getLikedSongs, songs, likedSongs };
 }
