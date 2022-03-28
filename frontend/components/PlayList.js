@@ -1,10 +1,10 @@
 import React from "react";
 import Player from "./Player";
 
-function PlayList() {
+function PlayList({ uris }) {
   return (
     <div className="container">
-      <div>{/* <img src={require("../../public/calmImage.jpeg")} /> */}</div>
+      <div>{/* <img src="../../public/dance.gif" /> */}</div>
       <div>
         <div>
           <h1>Playlist</h1>

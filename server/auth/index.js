@@ -1,25 +1,25 @@
-const refresh = require('passport-oauth2-refresh');
-const router = require('express').Router();
+const refresh = require("passport-oauth2-refresh");
+const router = require("express").Router();
 
-router.use('/spotify', require('./spotify'));
+router.use("/spotify", require("./spotify"));
 
-router.get('/', (request, response) => {
+router.get("/", (request, response) => {
   if (request.user == null) {
     response.sendStatus(401);
   }
   refresh.requestNewAccessToken(
-    'spotify',
+    "spotify",
     request.user.refreshToken,
-    function(err, accessToken, refreshToken) {
+    function (err, accessToken, refreshToken) {
       const user = {
         id: request.user.id,
         email: request.user.email,
         spotifyId: request.user.spotifyId,
-        token: accessToken
-      }
+        token: accessToken,
+      };
       response.json(user);
     }
-  )
-})
+  );
+});
 
 module.exports = router;
