@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import SpotifyPlayer from "react-spotify-web-playback";
-<<<<<<< HEAD
 import { useSelector, useDispatch } from "react-redux";
 // import { fetchPlaylistThunk } from "../redux/playlist";
 
@@ -25,11 +24,6 @@ const sample = (items) => {
     .map((a) => a.x)
     .slice(0, n);
 };
-=======
-import { useSelector, useDispatch } from "react-redux"
-import { fetchPlaylistThunk } from "../redux/playlist";
-import { fetchUser } from "../redux/user";
->>>>>>> c24699c575e99d228666fb584c3bacd713f98a6b
 
 function Player() {
   const { idSongs } = useSelector((state) => state.getIdSongs);
@@ -106,7 +100,6 @@ function Player() {
   if (user.token) {
     spotifyPlayer = (
       <div>
-<<<<<<< HEAD
         <SpotifyPlayer token={user.token} uris={uris} />
         <div>{console.log("uris", uris)}</div>
       </div>
@@ -115,20 +108,6 @@ function Player() {
     spotifyPlayer = <p>Loading</p>;
   }
   return spotifyPlayer;
-=======
-        <SpotifyPlayer
-          token={user.token}
-          uris={playlist}
-        />
-      </div>
-    );
-  } else {
-    spotifyPlayer = (<p>Loading</p>)
-  };
-  return (
-    spotifyPlayer
-  );
->>>>>>> c24699c575e99d228666fb584c3bacd713f98a6b
 }
 
 export default Player;
