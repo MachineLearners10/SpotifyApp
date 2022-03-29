@@ -7,20 +7,19 @@ const spotifyApi = new SpotifyWebApi({
   callbackURL: process.env.CALLBACKURL,
 });
 
-const n = 5;
 const sample = (items) => {
   return items
     .map((x) => ({ x, r: Math.random() }))
     .sort((a, b) => a.r - b.r)
     .map((a) => a.x)
-    .slice(0, n);
+    .slice(0, 1);
 };
 
 //list of random id songs
-router.get("/idTracks", (req, res, next) => {
+router.get("/idTracks", async (req, res, next) => {
   try {
     spotifyApi.setAccessToken(req.user.token);
-    const songsData = spotifyApi.getMyTopTracks().then(function (data) {
+    const songsData = await spotifyApi.getMyTopTracks().then(function (data) {
       let dataTracks = data.body.items;
       let ids = dataTracks.map((a) => a.id);
       let randomIds = sample(ids);
@@ -32,10 +31,10 @@ router.get("/idTracks", (req, res, next) => {
 });
 
 //list of random id artists
-router.get("/idArtists", (req, res, next) => {
+router.get("/idArtists", async (req, res, next) => {
   try {
     spotifyApi.setAccessToken(req.user.token);
-    const songsData = spotifyApi.getMyTopTracks().then(function (data) {
+    const songsData = await spotifyApi.getMyTopTracks().then(function (data) {
       let dataTracks = data.body.items;
       let artists = dataTracks.map((a) => a.artists);
       let listIds = [];

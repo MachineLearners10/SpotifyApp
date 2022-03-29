@@ -16871,10 +16871,72 @@ __webpack_require__.r(__webpack_exports__);
 var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     history: _history__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_MainRoutes__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TopMenu__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_MainRoutes__WEBPACK_IMPORTED_MODULE_1__["default"], null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./frontend/components/About.js":
+/*!**************************************!*\
+  !*** ./frontend/components/About.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+function About() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "about"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "title_about"
+  }, "About us"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "about_container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "avatar",
+    src: "https://avatars.githubusercontent.com/u/101672012?s=400&u=06c0426ec9792569e1dbdab5259cb69eb955c372&v=4",
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "paragraph"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "Catch A Vibe"), " is an App that make you feel better."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "The inspiration behind the app came from our need to feel happy or chill during the day while working, working out, cooking or any daily activity."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "title_about"
+  }, " The Team Members"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "pictures_container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "sub_container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "team_member_picture",
+    src: "https://www.istockphoto.com/photo/drawing-of-a-happy-smiling-emoticon-on-a-yellow-paper-and-white-background-gm1171346911-324483391?utm_campaign=srp_photos_inline&utm_content=https%3A%2F%2Fwww.pexels.com%2Fes-es%2Fbuscar%2Fhappy%2520face%2520emoticon%2F&utm_medium=affiliate&utm_source=pexels&utm_term=happy%20face%20emoticon",
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Averi Passmore")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "sub_container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "team_member_picture",
+    src: "https://www.istockphoto.com/photo/drawing-of-a-happy-smiling-emoticon-on-a-yellow-paper-and-white-background-gm1171346911-324483391?utm_campaign=srp_photos_inline&utm_content=https%3A%2F%2Fwww.pexels.com%2Fes-es%2Fbuscar%2Fhappy%2520face%2520emoticon%2F&utm_medium=affiliate&utm_source=pexels&utm_term=happy%20face%20emoticon",
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Ferhan Syed")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "sub_container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "team_member_picture",
+    src: "https://www.istockphoto.com/photo/drawing-of-a-happy-smiling-emoticon-on-a-yellow-paper-and-white-background-gm1171346911-324483391?utm_campaign=srp_photos_inline&utm_content=https%3A%2F%2Fwww.pexels.com%2Fes-es%2Fbuscar%2Fhappy%2520face%2520emoticon%2F&utm_medium=affiliate&utm_source=pexels&utm_term=happy%20face%20emoticon",
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Kathia Villavicencio")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "sub_container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "team_member_picture",
+    src: __webpack_require__(/*! ../../public/HappyFaceSmiling.png */ "./public/HappyFaceSmiling.png"),
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Oscar Rolf"))));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (About);
 
 /***/ }),
 
@@ -17011,8 +17073,8 @@ var Genre = /*#__PURE__*/function (_React$Component) {
       if (list.includes(evt.target.value)) {
         return alert("You'd already chosen this genre");
       } else {
-        if (count > 3) {
-          return alert("You can't choose more than 5 genres");
+        if (count > 1) {
+          return alert("You can't choose more than 2 genres");
         } else {
           this.setState(_defineProperty({}, evt.target.name, evt.target.value));
           list.push(evt.target.value);
@@ -17029,14 +17091,14 @@ var Genre = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var list = ["acoustic", "country", "dance", "dancehall", "disco", "electronic", "hip-hop", "holidays", "indie-pop", "k-pop", "latin", "latino", "party", "pop", "reggae", "reggaeton", "rock"];
+      var list = ["acoustic", "country", "dance", "dancehall", "disco", "electronic", "hip-hop", "holidays", "indie-pop", "k-pop", "latin", "party", "pop", "reggae", "reggaeton", "rock"];
       var handleSubmit = this.handleSubmit,
           handleInput = this.handleInput;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "main-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
         className: "genre"
-      }, "Select genres up to 4 (", count, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+      }, "Select genres up to 2 (", count, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         className: "container3",
         onSubmit: handleSubmit
       }, list.map(function (genre, index) {
@@ -17220,7 +17282,7 @@ var Login = function Login() {
     href: "/auth/spotify",
     className: "button-two"
   }, "Login In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: "../../public/spotify.png",
+    src: "https://www.google.com/search?q=spotify+logo&source=lnms&tbm=isch&sa=X&ved=2ahUKEwi1vMSMsun2AhUzhHIEHZcOC3YQ_AUoAXoECAEQAw&biw=683&bih=697&dpr=2#imgrc=5NdoWYJ9zhrB6M",
     alt: ""
   }));
 };
@@ -17243,11 +17305,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login */ "./frontend/components/Login.js");
 /* harmony import */ var _HelloWorld__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HelloWorld */ "./frontend/components/HelloWorld.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var _Genre__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Genre */ "./frontend/components/Genre.js");
 /* harmony import */ var _PlayList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PlayList */ "./frontend/components/PlayList.js");
 /* harmony import */ var _playlist_Test__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./playlist/Test */ "./frontend/components/playlist/Test.js");
+/* harmony import */ var _About__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./About */ "./frontend/components/About.js");
+/* harmony import */ var _TopMenu__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./TopMenu */ "./frontend/components/TopMenu.js");
+/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Footer */ "./frontend/components/Footer.js");
+
+
+
 
 
 
@@ -17257,28 +17325,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MainRoutes = function MainRoutes() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.BrowserRouter, {
     history: history
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_TopMenu__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Login__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/login",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Login__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/helloWorld",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_HelloWorld__WEBPACK_IMPORTED_MODULE_2__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/genre",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Genre__WEBPACK_IMPORTED_MODULE_3__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/playlist",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PlayList__WEBPACK_IMPORTED_MODULE_4__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     exact: true,
     path: "/test",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_playlist_Test__WEBPACK_IMPORTED_MODULE_5__["default"], null)
-  }))));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+    exact: true,
+    path: "/about",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_About__WEBPACK_IMPORTED_MODULE_6__["default"], null)
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Footer__WEBPACK_IMPORTED_MODULE_8__["default"], null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MainRoutes);
@@ -17369,7 +17441,7 @@ var Mood = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var list = ["Happy", "Chill"];
+      var list = ["happy", "chill"];
       var handleSubmit = this.handleSubmit,
           handleInput = this.handleInput;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
@@ -17452,6 +17524,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_getGenres__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../redux/getGenres */ "./frontend/redux/getGenres.js");
 /* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/user */ "./frontend/redux/user.js");
 /* harmony import */ var _redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../redux/getRecommendations */ "./frontend/redux/getRecommendations.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -17475,7 +17551,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 var spotifyApi = new (spotify_web_api_js__WEBPACK_IMPORTED_MODULE_1___default())();
-var n = 20;
 
 var sample = function sample(items) {
   return items.map(function (x) {
@@ -17487,28 +17562,28 @@ var sample = function sample(items) {
     return a.r - b.r;
   }).map(function (a) {
     return a.x;
-  }).slice(0, n);
+  }).slice(0, 20);
 };
 
 function Player() {
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
-    return state.getIdSongs;
+    return state.user;
   }),
-      idSongs = _useSelector.idSongs;
+      user = _useSelector.user;
+
+  var genresList = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+    return state.getGenres;
+  });
 
   var _useSelector2 = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
     return state.getIdArtists;
   }),
       idArtists = _useSelector2.idArtists;
 
-  var genresList = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
-    return state.getGenres;
-  });
-
   var _useSelector3 = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
-    return state.user;
+    return state.getIdSongs;
   }),
-      user = _useSelector3.user;
+      idSongs = _useSelector3.idSongs;
 
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -17523,48 +17598,48 @@ function Player() {
     return a.genre;
   })));
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!accessToken) return;
-    spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getRecommendations({
-      seed_genres: genres
-    }).then(function (data) {
-      var recommendation = data.tracks.map(function (a) {
-        return a.uri;
-      });
-      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.addRecommendation)(recommendation));
-    });
-  }, [accessToken]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!accessToken) return;
-    spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getRecommendations({
-      seed_artists: idArtists
-    }).then(function (data) {
-      var recommendation = data.tracks.map(function (a) {
-        return a.uri;
-      });
-      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.addRecommendation)(recommendation));
-    });
-  }, [accessToken, idArtists]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!accessToken) return;
-    spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getRecommendations({
-      seed_tracks: idSongs
-    }).then(function (data) {
-      var recommendation = data.tracks.map(function (a) {
-        return a.uri;
-      });
-      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.addRecommendation)(recommendation));
-    });
-  }, [accessToken, idSongs]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch(_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.getRecommendations); // dispatch(fetchPlaylistThunk());
-  }, []); // const { playlist } = useSelector((state) => state.playlist);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            if (accessToken) {
+              _context.next = 2;
+              break;
+            }
+
+            return _context.abrupt("return");
+
+          case 2:
+            spotifyApi.setAccessToken(accessToken);
+            console.log("ids and genres", idSongs, genres);
+            _context.next = 6;
+            return spotifyApi.getRecommendations({
+              seed_tracks: idSongs,
+              seed_artists: idArtists,
+              seed_genres: genres
+            }).then(function (data) {
+              var recommendation = data.tracks.map(function (track) {
+                return track.uri;
+              });
+              dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.addRecommendation)(recommendation));
+            }).then(function () {
+              dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.getRecommendations)());
+            });
+
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  })), [accessToken, idSongs]); // useEffect(() => {
+  // dispatch(fetchPlaylistThunk());
+  // }, []);
+  // const { playlist } = useSelector((state) => state.playlist);
 
   var recommendations = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
-    return state.getRecommendations;
+    return state.getListRecommendations;
   });
   var uris = sample([].concat.apply([], recommendations)); // performance.navigation.type == performance.navigation.TYPE_RELOAD
 
@@ -17574,7 +17649,7 @@ function Player() {
     spotifyPlayer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_2__["default"], {
       token: user.token,
       uris: uris
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, console.log("uris", uris)));
+    }));
   } else {
     spotifyPlayer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Loading");
   }
@@ -18248,28 +18323,28 @@ var addRecommendation = function addRecommendation(recommendation) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              // try {
-              window.onbeforeunload = function () {
-                localStorage.clear();
-              };
+              try {
+                window.onbeforeunload = function () {
+                  localStorage.clear();
+                };
 
-              recommendations = JSON.parse(window.localStorage.getItem("listRecommendations"));
+                recommendations = JSON.parse(window.localStorage.getItem("listRecommendations"));
 
-              if (recommendations !== null) {
-                recommendations.push(recommendation);
-                window.localStorage.setItem("listRecommendations", JSON.stringify(recommendations));
-                dispatch(_addRecommendation(recommendation));
-              } else {
-                listRecommendations = [];
-                listRecommendations.push(recommendation);
-                window.localStorage.setItem("listRecommendations", JSON.stringify(listRecommendations));
-                dispatch(_addRecommendation(recommendation));
-              } // } catch (error) {
-              //   next(error);
-              // }
+                if (recommendations !== null) {
+                  recommendations.push(recommendation);
+                  window.localStorage.setItem("listRecommendations", JSON.stringify(recommendations));
+                  dispatch(_addRecommendation(recommendation));
+                } else {
+                  listRecommendations = [];
+                  listRecommendations.push(recommendation);
+                  window.localStorage.setItem("listRecommendations", JSON.stringify(listRecommendations));
+                  dispatch(_addRecommendation(recommendation));
+                }
+              } catch (error) {
+                next(error);
+              }
 
-
-            case 3:
+            case 1:
             case "end":
               return _context2.stop();
           }
@@ -18703,7 +18778,7 @@ var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_8__.combineReducers)({
   getIdSongs: _redux_getIdSongs__WEBPACK_IMPORTED_MODULE_6__["default"],
   getIdArtists: _redux_getIdArtists__WEBPACK_IMPORTED_MODULE_5__["default"],
   getGenres: _redux_getGenres__WEBPACK_IMPORTED_MODULE_4__["default"],
-  getRecommendations: _redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__["default"]
+  getListRecommendations: _redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__["default"]
 });
 var middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_8__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_9__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
   collapsed: true
@@ -29484,6 +29559,21 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 }());
 
+
+/***/ }),
+
+/***/ "./public/HappyFaceSmiling.png":
+/*!*************************************!*\
+  !*** ./public/HappyFaceSmiling.png ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "7a0f94ae040bc5db22574af4820a5f62.png");
 
 /***/ }),
 
@@ -78794,6 +78884,11 @@ function combine (array, callback) {
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		__webpack_require__.p = "/";
 /******/ 	})();
 /******/ 	
 /************************************************************************/

@@ -17,8 +17,8 @@ class Genre extends React.Component {
     if (list.includes(evt.target.value)) {
       return alert("You'd already chosen this genre");
     } else {
-      if (count > 3) {
-        return alert("You can't choose more than 5 genres");
+      if (count > 1) {
+        return alert("You can't choose more than 2 genres");
       } else {
         this.setState({ [evt.target.name]: evt.target.value });
         list.push(evt.target.value);
@@ -44,7 +44,6 @@ class Genre extends React.Component {
       "indie-pop",
       "k-pop",
       "latin",
-      "latino",
       "party",
       "pop",
       "reggae",
@@ -55,7 +54,7 @@ class Genre extends React.Component {
 
     return (
       <div className="main-content">
-        <h1 className="genre">Select genres up to 4 ({count})</h1>
+        <h1 className="genre">Select genres up to 2 ({count})</h1>
         <form className="container3" onSubmit={handleSubmit}>
           {list.map((genre, index) => {
             return (
