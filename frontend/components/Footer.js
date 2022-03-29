@@ -35,6 +35,7 @@ function Footer() {
       <Typography variant="h6" className={classes.footer1}>
         SpotifyApp
       </Typography>
+      {/* o: remove if not being used */}
       {/* <ImageList
       // className={classes.footer2}
       // sx={{ width: 10, height: 10 }}
@@ -42,10 +43,10 @@ function Footer() {
       // rowHeight={16}
       >
         <ImageListItem className={classes.image}>
-          <img src={require("./Images/SpotifyIcon.png")} alt="" />
-          <img src={require("./Images/GithubIcon.png")} alt="" />
-          <img src={require("./Images/FacebookIcon.png")} alt="" />
-          <img src={require("./Images/InstagramIcon.png")} alt="" />
+          <img src={require("Images/SpotifyIcon.png")} alt="" />
+          <img src={require("Images/GithubIcon.png")} alt="" />
+          <img src={require("Images/FacebookIcon.png")} alt="" />
+          <img src={require("Images/InstagramIcon.png")} alt="" />
         </ImageListItem>
       </ImageList> */}
     </AppBar>

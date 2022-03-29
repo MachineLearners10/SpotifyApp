@@ -12,6 +12,7 @@ class Mood extends React.Component {
   handleInput(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
     function pageRedirect() {
+      // o: is there a particular reason this is hardcoded?
       return window.location.replace(
         `https://catch-a-vibe.herokuapp.com/genre`
         // "http://localhost:8888/genre"

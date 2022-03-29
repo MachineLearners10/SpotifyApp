@@ -16,8 +16,10 @@ import {
 
 const spotifyApi = new SpotifyWebApi();
 
+// o: what is n? this should have a clearer name
 const n = 20;
 const sample = (items) => {
+  // o: single letter variable names are generally frowned upon
   return items
     .map((x) => ({ x, r: Math.random() }))
     .sort((a, b) => a.r - b.r)
@@ -42,17 +44,21 @@ function Player() {
   }, []);
 
   const accessToken = user.token;
+  // o: please use a clearer name for your map item here like "genreListItem"
   const genres = [...new Set(genresList.map((a) => a.genre))];
 
   useEffect(() => {
+    // o: can't we place this at the top before all the useEffect hooks?
     if (!accessToken) return;
     spotifyApi.setAccessToken(accessToken);
 
+    // o: use async await
     spotifyApi
       .getRecommendations({
         seed_genres: genres,
       })
       .then(function (data) {
+        // o: please use a better name for your map item like "track"
         let recommendation = data.tracks.map((a) => a.uri);
         dispatch(addRecommendation(recommendation));
       });
@@ -67,6 +73,7 @@ function Player() {
         seed_artists: idArtists,
       })
       .then(function (data) {
+        // o: please use a better name for your map item like "track"
         let recommendation = data.tracks.map((a) => a.uri);
         dispatch(addRecommendation(recommendation));
       });
@@ -81,6 +88,7 @@ function Player() {
         seed_tracks: idSongs,
       })
       .then(function (data) {
+        // o: please use a better name for your map item like "track"
         let recommendation = data.tracks.map((a) => a.uri);
         dispatch(addRecommendation(recommendation));
       });
@@ -101,6 +109,7 @@ function Player() {
     spotifyPlayer = (
       <div>
         <SpotifyPlayer token={user.token} uris={uris} />
+        {/* o: this is interesting */}
         <div>{console.log("uris", uris)}</div>
       </div>
     );

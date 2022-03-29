@@ -16985,6 +16985,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+ // o: why are these defined out here?
 
 var count = 0;
 var list = [];
@@ -17120,6 +17121,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
  // import { Link } from "react-router-dom";
 
 
+ // o: doesn't seem like this is being used
 
 var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"])(function (theme) {
   return {
@@ -17354,8 +17356,9 @@ var Mood = /*#__PURE__*/function (_React$Component) {
       this.setState(_defineProperty({}, evt.target.name, evt.target.value));
 
       function pageRedirect() {
-        return window.location.replace( // `https://catch-a-vibe.herokuapp.com/genre`
-        "http://localhost:8888/genre");
+        // o: is there a particular reason this is hardcoded?
+        return window.location.replace("https://catch-a-vibe.herokuapp.com/genre" // "http://localhost:8888/genre"
+        );
       }
 
       pageRedirect();
@@ -17474,10 +17477,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
-var spotifyApi = new (spotify_web_api_js__WEBPACK_IMPORTED_MODULE_1___default())();
+var spotifyApi = new (spotify_web_api_js__WEBPACK_IMPORTED_MODULE_1___default())(); // o: what is n? this should have a clearer name
+
 var n = 20;
 
 var sample = function sample(items) {
+  // o: single letter variable names are generally frowned upon
   return items.map(function (x) {
     return {
       x: x,
@@ -17488,7 +17493,8 @@ var sample = function sample(items) {
   }).map(function (a) {
     return a.x;
   }).slice(0, n);
-};
+}; // o: why is this a functional style component and the others are class components?
+
 
 function Player() {
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
@@ -17517,18 +17523,20 @@ function Player() {
     dispatch((0,_redux_getIdArtists__WEBPACK_IMPORTED_MODULE_4__.getIdArtists)());
     dispatch((0,_redux_getIdSongs__WEBPACK_IMPORTED_MODULE_5__.getIdSongs)());
   }, []);
-  var accessToken = user.token;
+  var accessToken = user.token; // o: please use a clearer name for your map item here like "genreListItem"
 
   var genres = _toConsumableArray(new Set(genresList.map(function (a) {
     return a.genre;
   })));
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // o: can't we place this at the top before all the useEffect hooks?
     if (!accessToken) return;
     spotifyApi.setAccessToken(accessToken);
     spotifyApi.getRecommendations({
       seed_genres: genres
     }).then(function (data) {
+      // o: please use a better name for your map item like "track"
       var recommendation = data.tracks.map(function (a) {
         return a.uri;
       });
@@ -17541,6 +17549,7 @@ function Player() {
     spotifyApi.getRecommendations({
       seed_artists: idArtists
     }).then(function (data) {
+      // o: please use a better name for your map item like "track"
       var recommendation = data.tracks.map(function (a) {
         return a.uri;
       });
@@ -17553,6 +17562,7 @@ function Player() {
     spotifyApi.getRecommendations({
       seed_tracks: idSongs
     }).then(function (data) {
+      // o: please use a better name for your map item like "track"
       var recommendation = data.tracks.map(function (a) {
         return a.uri;
       });

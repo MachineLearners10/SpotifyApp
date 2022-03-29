@@ -4,6 +4,7 @@ import { addGenre } from "../redux/getGenres";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
+// o: why are these defined out here?
 let count = 0;
 let list = [];
 class Genre extends React.Component {

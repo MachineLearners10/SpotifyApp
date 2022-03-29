@@ -5,6 +5,7 @@ import { fetchUser } from "../redux/user";
 import { Typography, makeStyles, Grid } from "@material-ui/core";
 import Mood from "./Mood";
 
+// o: doesn't seem like this is being used
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   title: {

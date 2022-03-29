@@ -3,6 +3,23 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
+
+
+// higher order component
+// function Loading ({ loading, children }) {
+//   return loading ? <div>Loading</div> ? <div>
+//     { children }
+//   </div>
+// }
+
+// how to utilize it
+// <Loading loading={likedSongs === undefined}>
+//  <>
+//   <div>Some component code 1</div>
+//   <div>Some component code 2</div>
+//  </>
+// </Loading>
+
 function SongRow({ song, order, convertDuration, likedSongs }) {
   const [hover, setHover] = useState(false);
   const [selected, setSelected] = useState(false);
