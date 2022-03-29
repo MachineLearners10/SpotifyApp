@@ -6,13 +6,13 @@ import userReducer from "./redux/user";
 import playlistReducer from "./redux/playlist";
 import getGenresReducer from "./redux/getGenres";
 import getIdArtistsReducer from "./redux/getIdArtists";
-import getIdSongsReducer from "./redux/getIdSongs";
 import getRecommendationsReducer from "./redux/getRecommendations";
+import getPlaylistReducer from "./redux/getPlaylist";
 
 const reducer = combineReducers({
   user: userReducer,
   playlist: playlistReducer,
-  getIdSongs: getIdSongsReducer,
+  getPlaylist: getPlaylistReducer,
   getIdArtists: getIdArtistsReducer,
   getGenres: getGenresReducer,
   getRecommendations: getRecommendationsReducer,

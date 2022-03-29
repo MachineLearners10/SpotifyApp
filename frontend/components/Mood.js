@@ -26,7 +26,7 @@ class Mood extends React.Component {
   }
 
   render() {
-    const list = ["Happy", "Chill"];
+    const list = ["happy", "chill"];
     const { handleSubmit, handleInput } = this;
 
     return (
