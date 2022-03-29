@@ -17354,8 +17354,8 @@ var Mood = /*#__PURE__*/function (_React$Component) {
       this.setState(_defineProperty({}, evt.target.name, evt.target.value));
 
       function pageRedirect() {
-        return window.location.replace("https://catch-a-vibe.herokuapp.com/genre" // "http://localhost:8888/genre"
-        );
+        return window.location.replace( // `https://catch-a-vibe.herokuapp.com/genre`
+        "http://localhost:8888/genre");
       }
 
       pageRedirect();
@@ -17369,7 +17369,7 @@ var Mood = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var list = ["Happy", "Chill", "Work-out"];
+      var list = ["happy", "chill"];
       var handleSubmit = this.handleSubmit,
           handleInput = this.handleInput;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
@@ -17447,11 +17447,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var spotify_web_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(spotify_web_api_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spotify-web-playback */ "./node_modules/react-spotify-web-playback/esm/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _redux_getIdArtists__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/getIdArtists */ "./frontend/redux/getIdArtists.js");
-/* harmony import */ var _redux_getIdSongs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/getIdSongs */ "./frontend/redux/getIdSongs.js");
-/* harmony import */ var _redux_getGenres__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../redux/getGenres */ "./frontend/redux/getGenres.js");
-/* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/user */ "./frontend/redux/user.js");
-/* harmony import */ var _redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../redux/getRecommendations */ "./frontend/redux/getRecommendations.js");
+/* harmony import */ var _redux_getIdSongs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/getIdSongs */ "./frontend/redux/getIdSongs.js");
+/* harmony import */ var _redux_getGenres__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/getGenres */ "./frontend/redux/getGenres.js");
+/* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../redux/user */ "./frontend/redux/user.js");
+/* harmony import */ var _redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/getRecommendations */ "./frontend/redux/getRecommendations.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -17468,7 +17471,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
  // import { fetchPlaylistThunk } from "../redux/playlist";
-
 
 
 
@@ -17496,26 +17498,20 @@ function Player() {
   }),
       idSongs = _useSelector.idSongs;
 
-  var _useSelector2 = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
-    return state.getIdArtists;
-  }),
-      idArtists = _useSelector2.idArtists;
-
   var genresList = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
     return state.getGenres;
   });
 
-  var _useSelector3 = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+  var _useSelector2 = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
     return state.user;
   }),
-      user = _useSelector3.user;
+      user = _useSelector2.user;
 
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch((0,_redux_user__WEBPACK_IMPORTED_MODULE_7__.fetchUser)());
-    dispatch((0,_redux_getGenres__WEBPACK_IMPORTED_MODULE_6__.getGenres)());
-    dispatch((0,_redux_getIdArtists__WEBPACK_IMPORTED_MODULE_4__.getIdArtists)());
-    dispatch((0,_redux_getIdSongs__WEBPACK_IMPORTED_MODULE_5__.getIdSongs)());
+    dispatch((0,_redux_user__WEBPACK_IMPORTED_MODULE_6__.fetchUser)());
+    dispatch((0,_redux_getGenres__WEBPACK_IMPORTED_MODULE_5__.getGenres)());
+    dispatch((0,_redux_getIdSongs__WEBPACK_IMPORTED_MODULE_4__.getIdSongs)());
   }, []);
   var accessToken = user.token;
 
@@ -17523,58 +17519,55 @@ function Player() {
     return a.genre;
   })));
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            if (accessToken) {
+              _context.next = 2;
+              break;
+            }
+
+            return _context.abrupt("return");
+
+          case 2:
+            spotifyApi.setAccessToken(accessToken);
+            console.log("seeds", genres, idSongs);
+            _context.next = 6;
+            return spotifyApi.getRecommendations({
+              seed_genres: genres,
+              seed_tracks: idSongs
+            }).then(function (data) {
+              console.log("I ran x times");
+              var recommendation = data.tracks.map(function (a) {
+                return a.uri;
+              });
+              dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__.addRecommendation)(recommendation));
+            });
+
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  })), [accessToken]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!accessToken) return;
-    spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getRecommendations({
-      seed_genres: genres
-    }).then(function (data) {
-      var recommendation = data.tracks.map(function (a) {
-        return a.uri;
-      });
-      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.addRecommendation)(recommendation));
-    });
-  }, [accessToken]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!accessToken) return;
-    spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getRecommendations({
-      seed_artists: idArtists
-    }).then(function (data) {
-      var recommendation = data.tracks.map(function (a) {
-        return a.uri;
-      });
-      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.addRecommendation)(recommendation));
-    });
-  }, [accessToken, idArtists]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!accessToken) return;
-    spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getRecommendations({
-      seed_tracks: idSongs
-    }).then(function (data) {
-      var recommendation = data.tracks.map(function (a) {
-        return a.uri;
-      });
-      dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.addRecommendation)(recommendation));
-    });
-  }, [accessToken, idSongs]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch(_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.getRecommendations); // dispatch(fetchPlaylistThunk());
+    dispatch(_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__.getRecommendations); // dispatch(fetchPlaylistThunk());
   }, []); // const { playlist } = useSelector((state) => state.playlist);
 
   var recommendations = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
     return state.getRecommendations;
   });
-  var uris = sample([].concat.apply([], recommendations)); // performance.navigation.type == performance.navigation.TYPE_RELOAD
-
+  var uris = sample([].concat.apply([], recommendations));
   var spotifyPlayer;
 
   if (user.token) {
     spotifyPlayer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_2__["default"], {
       token: user.token,
       uris: uris
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, console.log("uris", uris)));
+    }));
   } else {
     spotifyPlayer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Loading");
   }
@@ -17871,6 +17864,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ getGenresReducer),
 /* harmony export */   "getGenres": () => (/* binding */ getGenres)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -17886,6 +17881,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 var initialState = [];
 var GET_GENRES = "GET_GENRES";
@@ -17908,7 +17904,8 @@ var _addGenre = function _addGenre(genre) {
 var getGenres = function getGenres() {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
-      var genres;
+      var genres, _axios$get, playlistReccomendation;
+
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -17916,6 +17913,11 @@ var getGenres = function getGenres() {
               try {
                 if (window.localStorage.listGenres) {
                   genres = JSON.parse(window.localStorage.getItem("listGenres"));
+                  _axios$get = axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/recommendation/idTracks", {
+                    params: {
+                      genres: genres
+                    }
+                  }), playlistReccomendation = _axios$get.playlistReccomendation;
                   dispatch(_getGenres(genres));
                 } else {
                   dispatch(_getGenres([]));
@@ -18108,7 +18110,7 @@ var _getIdSongs = function _getIdSongs(idSongs) {
   };
 };
 
-var getIdSongs = function getIdSongs() {
+var getIdSongs = function getIdSongs(next) {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
       var _yield$axios$get, data;
@@ -18119,24 +18121,25 @@ var getIdSongs = function getIdSongs() {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/recommendation/idTracks");
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/recommendation/playlist");
 
             case 3:
               _yield$axios$get = _context.sent;
               data = _yield$axios$get.data;
+              console.log("data", data);
               return _context.abrupt("return", dispatch(_getIdSongs(data)));
 
-            case 8:
-              _context.prev = 8;
+            case 9:
+              _context.prev = 9;
               _context.t0 = _context["catch"](0);
               next(_context.t0);
 
-            case 11:
+            case 12:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 8]]);
+      }, _callee, null, [[0, 9]]);
     }));
 
     return function (_x) {

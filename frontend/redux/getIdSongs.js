@@ -9,12 +9,13 @@ const _getIdSongs = (idSongs) => ({
   idSongs,
 });
 
-export const getIdSongs = () => async (dispatch) => {
+export const getIdSongs = (next) => async (dispatch) => {
   try {
-    const { data } = await axios.get("/api/recommendation/idTracks");
+    const { data } = await axios.get("/api/recommendation/playlist");
+    console.log("data", data)
     return dispatch(_getIdSongs(data));
   } catch (error) {
-    next(error);
+    next(error)
   }
 };
 

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const initialState = [];
 
 const GET_GENRES = "GET_GENRES";
@@ -17,6 +19,9 @@ export const getGenres = () => {
     try {
       if (window.localStorage.listGenres) {
         const genres = JSON.parse(window.localStorage.getItem("listGenres"));
+        const { playlistReccomendation } = axios.get("/api/recommendation/idTracks", {
+          params: { genres }
+        });
         dispatch(_getGenres(genres));
       } else {
         dispatch(_getGenres([]));
