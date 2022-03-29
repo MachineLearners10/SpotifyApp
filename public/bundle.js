@@ -16894,46 +16894,98 @@ __webpack_require__.r(__webpack_exports__);
 
 function About() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "about"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "title_about"
-  }, "About us"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "about_container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    className: "avatar",
-    src: "https://avatars.githubusercontent.com/u/101672012?s=400&u=06c0426ec9792569e1dbdab5259cb69eb955c372&v=4",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
+    className: "about-title"
+  }, "Catch A Vibe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "color_image ",
+    src: "image1.jpg",
     alt: ""
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "paragraph"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "Catch A Vibe"), " is an App that make you feel better."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "The inspiration behind the app came from our need to feel happy or chill during the day while working, working out, cooking or any daily activity."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    className: "title_about"
-  }, " The Team Members"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "pictures_container"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
+    className: "about-subtitle"
+  }, "About Us"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "about-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "Catch A Vibe"), " is an App that makes you feel better. The inspiration behind the app came from our need to feel happy or chill during the day while working, working out, cooking or any daily activity."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "about-detail"
+  }, "We love music and we hope people could enjoy the app. For any questions please contact us through our Linkedin account."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "about-detail"
+  }, "We look forward to hearing from you!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
+    className: "about-subtitle"
+  }, " Team Members"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "about-photo-gallery"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "sub_container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    className: "team_member_picture",
-    src: "https://www.istockphoto.com/photo/drawing-of-a-happy-smiling-emoticon-on-a-yellow-paper-and-white-background-gm1171346911-324483391?utm_campaign=srp_photos_inline&utm_content=https%3A%2F%2Fwww.pexels.com%2Fes-es%2Fbuscar%2Fhappy%2520face%2520emoticon%2F&utm_medium=affiliate&utm_source=pexels&utm_term=happy%20face%20emoticon",
+    className: "about_team_member_picture",
+    src: "https://ca.slack-edge.com/T024FPYBQ-U02TW4T0K6U-eb13764eee63-512",
     alt: ""
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Averi Passmore")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Averi Passmore"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://github.com/averipassmore"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "github",
+    src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://github.com/averipassmore"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "linkedin",
+    src: "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "sub_container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    className: "team_member_picture",
-    src: "https://www.istockphoto.com/photo/drawing-of-a-happy-smiling-emoticon-on-a-yellow-paper-and-white-background-gm1171346911-324483391?utm_campaign=srp_photos_inline&utm_content=https%3A%2F%2Fwww.pexels.com%2Fes-es%2Fbuscar%2Fhappy%2520face%2520emoticon%2F&utm_medium=affiliate&utm_source=pexels&utm_term=happy%20face%20emoticon",
+    className: "about_team_member_picture",
+    src: "https://ca.slack-edge.com/T024FPYBQ-U02SRPVTKF1-7af5afb4e082-512",
     alt: ""
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Ferhan Syed")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Ferhan Syed"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://github.com/hanfer10"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "github",
+    src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://github.com/hanfer10"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "linkedin",
+    src: "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "sub_container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    className: "team_member_picture",
-    src: "https://www.istockphoto.com/photo/drawing-of-a-happy-smiling-emoticon-on-a-yellow-paper-and-white-background-gm1171346911-324483391?utm_campaign=srp_photos_inline&utm_content=https%3A%2F%2Fwww.pexels.com%2Fes-es%2Fbuscar%2Fhappy%2520face%2520emoticon%2F&utm_medium=affiliate&utm_source=pexels&utm_term=happy%20face%20emoticon",
+    className: "about_team_member_picture",
+    src: "https://ca.slack-edge.com/T024FPYBQ-U02T6CRC9B4-707c82cd8900-512",
     alt: ""
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Kathia Villavicencio")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Kathia Villavicencio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://github.com/kathia83"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "github",
+    src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://www.linkedin.com/in/kathia-v-3863a047/"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "linkedin",
+    src: "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "sub_container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    className: "team_member_picture",
-    src: __webpack_require__(/*! ../../public/HappyFaceSmiling.png */ "./public/HappyFaceSmiling.png"),
+    className: "about_team_member_picture",
+    src: "HappyFaceSmiling.png",
     alt: ""
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Oscar Rolf"))));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Oscar Rolf"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://github.com/oscareng"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "github",
+    src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://github.com/oscareng"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "linkedin",
+    src: "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+  })))))));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (About);
@@ -29559,21 +29611,6 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 }());
 
-
-/***/ }),
-
-/***/ "./public/HappyFaceSmiling.png":
-/*!*************************************!*\
-  !*** ./public/HappyFaceSmiling.png ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "7a0f94ae040bc5db22574af4820a5f62.png");
 
 /***/ }),
 
@@ -78884,11 +78921,6 @@ function combine (array, callback) {
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		__webpack_require__.p = "/";
 /******/ 	})();
 /******/ 	
 /************************************************************************/
