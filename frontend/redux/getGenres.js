@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const initialState = [];
 
 const GET_GENRES = "GET_GENRES";
