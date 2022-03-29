@@ -3,11 +3,8 @@ import SpotifyWebApi from "spotify-web-api-js";
 import SpotifyPlayer from "react-spotify-web-playback";
 import { useSelector, useDispatch } from "react-redux";
 // import { fetchPlaylistThunk } from "../redux/playlist";
-
-import { getIdArtists } from "../redux/getIdArtists";
 import { getIdSongs } from "../redux/getIdSongs";
 import { getGenres } from "../redux/getGenres";
-
 import { fetchUser } from "../redux/user";
 import {
   getRecommendations,
@@ -27,7 +24,6 @@ const sample = (items) => {
 function Player() {
   const { user } = useSelector((state) => state.user);
   const genresList = useSelector((state) => state.getGenres);
-  const { idArtists } = useSelector((state) => state.getIdArtists);
   const { idSongs } = useSelector((state) => state.getIdSongs);
 
   const dispatch = useDispatch();
@@ -35,7 +31,6 @@ function Player() {
   useEffect(() => {
     dispatch(fetchUser());
     dispatch(getGenres());
-    dispatch(getIdArtists());
     dispatch(getIdSongs());
   }, []);
 
@@ -50,7 +45,6 @@ function Player() {
     await spotifyApi
       .getRecommendations({
         seed_tracks: idSongs,
-        seed_artists: idArtists,
         seed_genres: genres,
       })
       .then((data) => {
@@ -69,14 +63,12 @@ function Player() {
   // const { playlist } = useSelector((state) => state.playlist);
   const recommendations = useSelector((state) => state.getListRecommendations);
   const uris = sample([].concat.apply([], recommendations));
-  // performance.navigation.type == performance.navigation.TYPE_RELOAD
 
   let spotifyPlayer;
   if (user.token) {
     spotifyPlayer = (
       <div>
         <SpotifyPlayer token={user.token} uris={uris} />
-        {/* <div>{console.log("uris", uris)}</div> */}
       </div>
     );
   } else {

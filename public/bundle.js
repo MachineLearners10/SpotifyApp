@@ -17519,11 +17519,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var spotify_web_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(spotify_web_api_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spotify-web-playback */ "./node_modules/react-spotify-web-playback/esm/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _redux_getIdArtists__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/getIdArtists */ "./frontend/redux/getIdArtists.js");
-/* harmony import */ var _redux_getIdSongs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/getIdSongs */ "./frontend/redux/getIdSongs.js");
-/* harmony import */ var _redux_getGenres__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../redux/getGenres */ "./frontend/redux/getGenres.js");
-/* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/user */ "./frontend/redux/user.js");
-/* harmony import */ var _redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../redux/getRecommendations */ "./frontend/redux/getRecommendations.js");
+/* harmony import */ var _redux_getIdSongs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/getIdSongs */ "./frontend/redux/getIdSongs.js");
+/* harmony import */ var _redux_getGenres__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/getGenres */ "./frontend/redux/getGenres.js");
+/* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../redux/user */ "./frontend/redux/user.js");
+/* harmony import */ var _redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/getRecommendations */ "./frontend/redux/getRecommendations.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -17544,7 +17543,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
  // import { fetchPlaylistThunk } from "../redux/playlist";
-
 
 
 
@@ -17576,21 +17574,15 @@ function Player() {
   });
 
   var _useSelector2 = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
-    return state.getIdArtists;
-  }),
-      idArtists = _useSelector2.idArtists;
-
-  var _useSelector3 = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
     return state.getIdSongs;
   }),
-      idSongs = _useSelector3.idSongs;
+      idSongs = _useSelector2.idSongs;
 
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch((0,_redux_user__WEBPACK_IMPORTED_MODULE_7__.fetchUser)());
-    dispatch((0,_redux_getGenres__WEBPACK_IMPORTED_MODULE_6__.getGenres)());
-    dispatch((0,_redux_getIdArtists__WEBPACK_IMPORTED_MODULE_4__.getIdArtists)());
-    dispatch((0,_redux_getIdSongs__WEBPACK_IMPORTED_MODULE_5__.getIdSongs)());
+    dispatch((0,_redux_user__WEBPACK_IMPORTED_MODULE_6__.fetchUser)());
+    dispatch((0,_redux_getGenres__WEBPACK_IMPORTED_MODULE_5__.getGenres)());
+    dispatch((0,_redux_getIdSongs__WEBPACK_IMPORTED_MODULE_4__.getIdSongs)());
   }, []);
   var accessToken = user.token;
 
@@ -17616,15 +17608,14 @@ function Player() {
             _context.next = 6;
             return spotifyApi.getRecommendations({
               seed_tracks: idSongs,
-              seed_artists: idArtists,
               seed_genres: genres
             }).then(function (data) {
               var recommendation = data.tracks.map(function (track) {
                 return track.uri;
               });
-              dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.addRecommendation)(recommendation));
+              dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__.addRecommendation)(recommendation));
             }).then(function () {
-              dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_8__.getRecommendations)());
+              dispatch((0,_redux_getRecommendations__WEBPACK_IMPORTED_MODULE_7__.getRecommendations)());
             });
 
           case 6:
@@ -17641,8 +17632,7 @@ function Player() {
   var recommendations = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
     return state.getListRecommendations;
   });
-  var uris = sample([].concat.apply([], recommendations)); // performance.navigation.type == performance.navigation.TYPE_RELOAD
-
+  var uris = sample([].concat.apply([], recommendations));
   var spotifyPlayer;
 
   if (user.token) {
