@@ -1,12 +1,19 @@
 /* @import "../frontend/components//Test.css"; */
-
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: 9%;
+}
 .playlist {
   /* border: linear-gradient(rgb(94, 0, 200), rgba(0, 0, 0, 0)); */
   flex-direction: column;
   border: solid;
   display: flex;
-  width: 70%;
-  height: 80vh;
+  width: 80%;
+  height: 60vh;
   padding: 30px;
   /* padding: 30px;
   color: rgb(0, 0, 0); */
@@ -107,6 +114,12 @@
   padding-right: 5px;
   padding-left: 25%;
 }
+.favorited {
+  display: flex;
+  padding-right: 5px;
+  padding-left: 25%;
+  color: rgb(30, 215, 96);
+}
 .duration {
   display: flex;
 }
@@ -132,6 +145,10 @@
   width: 100%;
   outline: none;
   padding: 30px;
+}
+
+.player {
+  margin-left: 50%;
 }
 .title {
   align-items: center;

@@ -96,18 +96,15 @@ function Player() {
   const uris = sample([].concat.apply([], recommendations));
   // performance.navigation.type == performance.navigation.TYPE_RELOAD
 
-  let spotifyPlayer;
-  if (user.token) {
-    spotifyPlayer = (
-      <div>
-        <SpotifyPlayer token={user.token} uris={uris} />
-        <div>{console.log("uris", uris)}</div>
-      </div>
-    );
-  } else {
-    spotifyPlayer = <p>Loading</p>;
-  }
-  return spotifyPlayer;
+  return (
+    <div>
+      {user.token ? (
+        <SpotifyPlayer token={user.token} uris={uris} showSaveIcon={true} />
+      ) : (
+        <p>loading</p>
+      )}
+    </div>
+  );
 }
 
 export default Player;

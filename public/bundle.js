@@ -17568,18 +17568,11 @@ function Player() {
   });
   var uris = sample([].concat.apply([], recommendations)); // performance.navigation.type == performance.navigation.TYPE_RELOAD
 
-  var spotifyPlayer;
-
-  if (user.token) {
-    spotifyPlayer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      token: user.token,
-      uris: uris
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, console.log("uris", uris)));
-  } else {
-    spotifyPlayer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Loading");
-  }
-
-  return spotifyPlayer;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, user.token ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    token: user.token,
+    uris: uris,
+    showSaveIcon: true
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "loading"));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Player);
@@ -17772,7 +17765,7 @@ function SongRow(_ref) {
   }, song.album.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "mood"
   }, "chill"), likedSongs[order - 1] ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_icons_material_Favorite__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "favorite",
+    className: "favorited",
     onClick: function onClick() {
       console.log("click");
     }
@@ -17806,6 +17799,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SongRow_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SongRow.js */ "./frontend/components/playlist/SongRow.js");
 /* harmony import */ var _Header_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header.js */ "./frontend/components/playlist/Header.js");
 /* harmony import */ var _redux_hooks_usePlaylist__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/hooks/usePlaylist */ "./frontend/redux/hooks/usePlaylist.js");
+/* harmony import */ var _Player__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Player */ "./frontend/components/Player.js");
+
 
 
 
@@ -17823,6 +17818,8 @@ function Test() {
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "page"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "playlist"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header_js__WEBPACK_IMPORTED_MODULE_2__["default"], null), songs === undefined && likedSongs === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "loading") : songs.map(function (song, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SongRow_js__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -17833,7 +17830,9 @@ function Test() {
       className: "songRow",
       likedSongs: likedSongs
     });
-  }));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Player__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "player"
+  })));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Test);
