@@ -12,7 +12,7 @@
   flex-direction: column;
   display: flex;
   width: 100%;
-  height: 60vh;
+  height: 65vh;
   padding: 30px;
   /* padding: 30px;
   color: rgb(0, 0, 0); */
@@ -21,7 +21,7 @@
   color: white;
   background: linear-gradient(rgb(91, 87, 115), rgb(22, 21, 21) 30%);
   overflow-y: overlay;
-  margin-top: 30px;
+  margin-top: 15px;
 }
 .playlist::-webkit-scrollbar {
   display: none;
