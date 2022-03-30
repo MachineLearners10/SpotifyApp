@@ -181,7 +181,7 @@
   margin-left: 210px;
   position: fixed;
 }
-
+/* Login */
 .login-form {
   display: grid;
   height: 100%;
@@ -205,6 +205,16 @@
   background-color: black;
   font-family: Arial, Helvetica, sans-serif;
 }
+.login-form a:hover {
+  transition: all 0.1s ease-in-out;
+  transform: scale(1.2);
+}
+.logo {
+  width: 100px;
+  height: 60px;
+  padding-bottom: 60px;
+}
+/* helloWorld */
 .main-content {
   display: flex;
   background-color: #2941ab;
@@ -254,6 +264,7 @@
   font-family: Arial, Helvetica, sans-serif;
   border: 2px solid #1ed760;
 }
+
 .button-submit {
   font-size: 20px;
   padding: 20px 50px;
@@ -285,4 +296,175 @@
   width: 100vh;
   margin-top: 0px;
   margin-bottom: 100px;
+}
+
+/* About */
+
+.about-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.about-title {
+  padding-top: 80px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #2941ab;
+  margin: 30px;
+}
+.about-subtitle {
+  padding-top: 0px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: black;
+  margin: 50px 50px;
+}
+.color_image {
+  padding-top: 0px;
+  width: 100%;
+  height: 400px;
+  padding-bottom: 0px;
+}
+
+.about-detail {
+  padding-top: 0px;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  font-size: 20px;
+  line-height: 1.5em;
+  margin: 25px 25px;
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+.about-photo-gallery {
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-around;
+  padding-bottom: 100px;
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+.sub_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.sub_container > p {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: black;
+}
+.about_team_member_picture {
+  object-fit: cover;
+  width: 160px;
+  height: 160px;
+}
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+.github {
+  object-fit: cover;
+  width: 30px;
+  height: 30px;
+}
+.links a:hover {
+  transition: all 0.1s ease-in-out;
+  transform: scale(1.2);
+}
+.linkedin {
+  object-fit: cover;
+  width: 30px;
+  height: 30px;
+}
+
+/* Top Menu */
+nav {
+  position: fixed;
+  z-index: 1;
+  background-color: black;
+  width: 100%;
+  /* padding: 10px 0; */
+  top: 0;
+  display: block;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+  padding-top: 10px;
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: white;
+}
+a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+nav a:hover {
+  transition: all 0.1s ease-in-out;
+  transform: scale(1.2);
+}
+
+nav > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-left: 50px;
+}
+
+/* Footer */
+.footer {
+  background-color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  height: 4rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  display: block;
+}
+
+.footer-icons {
+  padding-top: 20px;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-icon {
+  object-fit: cover;
+  width: 30px;
+  height: 30px;
+  margin: 0px 30px 30px;
+}
+.footer a:hover {
+  transition: all 0.1s ease-in-out;
+  transform: scale(1.2);
+}
+.footer-title {
+  margin-left: 700px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: white;
+}
+body {
+  margin-left: 0px;
 }
