@@ -14,7 +14,6 @@ export const getPlaylist = (genresList) => async (dispatch) => {
     const { data } = await axios.get("/api/recommendation/playlist", {
       params: { genresList }
     });
-    console.log("data", data)
     return dispatch(_getPlaylist(data));
   } catch (error) {
     console.log(error)

@@ -17468,9 +17468,6 @@ function Player() {
   });
 
   function getUris(arrayOfTracks) {
-    console.log(arrayOfTracks.map(function (track) {
-      return track.uri;
-    }));
     return arrayOfTracks.map(function (track) {
       return track.uri;
     });
@@ -17902,88 +17899,6 @@ function getGenresReducer() {
 
 /***/ }),
 
-/***/ "./frontend/redux/getIdArtists.js":
-/*!****************************************!*\
-  !*** ./frontend/redux/getIdArtists.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ getIdArtistsReducer),
-/* harmony export */   "getIdArtists": () => (/* binding */ getIdArtists)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-var initialState = {};
-var GET_ID_ARTISTS = "GET_ID_ARTISTS";
-
-var _getIdArtists = function _getIdArtists(idArtists) {
-  return {
-    type: GET_ID_ARTISTS,
-    idArtists: idArtists
-  };
-};
-
-var getIdArtists = function getIdArtists() {
-  return /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
-      var _yield$axios$get, data;
-
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/recommendation/idArtists");
-
-            case 3:
-              _yield$axios$get = _context.sent;
-              data = _yield$axios$get.data;
-              return _context.abrupt("return", dispatch(_getIdArtists(data)));
-
-            case 8:
-              _context.prev = 8;
-              _context.t0 = _context["catch"](0);
-              next(_context.t0);
-
-            case 11:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[0, 8]]);
-    }));
-
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-};
-function getIdArtistsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case GET_ID_ARTISTS:
-      return {
-        idArtists: action.idArtists
-      };
-
-    default:
-      return state;
-  }
-}
-
-/***/ }),
-
 /***/ "./frontend/redux/getPlaylist.js":
 /*!***************************************!*\
   !*** ./frontend/redux/getPlaylist.js ***!
@@ -18033,20 +17948,19 @@ var getPlaylist = function getPlaylist(genresList) {
             case 3:
               _yield$axios$get = _context.sent;
               data = _yield$axios$get.data;
-              console.log("data", data);
               return _context.abrupt("return", dispatch(_getPlaylist(data)));
 
-            case 9:
-              _context.prev = 9;
+            case 8:
+              _context.prev = 8;
               _context.t0 = _context["catch"](0);
               console.log(_context.t0);
 
-            case 12:
+            case 11:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 9]]);
+      }, _callee, null, [[0, 8]]);
     }));
 
     return function (_x) {
@@ -18063,145 +17977,6 @@ function getPlaylistReducer() {
       return {
         playlist: action.playlist
       };
-
-    default:
-      return state;
-  }
-}
-
-/***/ }),
-
-/***/ "./frontend/redux/getRecommendations.js":
-/*!**********************************************!*\
-  !*** ./frontend/redux/getRecommendations.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addRecommendation": () => (/* binding */ addRecommendation),
-/* harmony export */   "default": () => (/* binding */ getRecommendationsReducer),
-/* harmony export */   "getRecommendations": () => (/* binding */ getRecommendations)
-/* harmony export */ });
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-var initialState = [];
-var GET_RECOMMENDATIONS = "GET_RECOMMENDATIONS ";
-var ADD_RECOMMENDATION = "ADD_RECOMMENDATION";
-
-var _getRecommendations = function _getRecommendations(recommendations) {
-  return {
-    type: GET_RECOMMENDATIONS,
-    recommendations: recommendations
-  };
-};
-
-var _addRecommendation = function _addRecommendation(recommendation) {
-  return {
-    type: ADD_RECOMMENDATION,
-    recommendation: recommendation
-  };
-};
-
-var getRecommendations = function getRecommendations() {
-  return /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
-      var recommendations;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              try {
-                if (window.localStorage.listRecommendations) {
-                  recommendations = JSON.parse(window.localStorage.getItem("listRecommendations"));
-                  dispatch(_getRecommendations(recommendations));
-                } else {
-                  dispatch(_getRecommendations([]));
-                }
-              } catch (error) {
-                next(error);
-              }
-
-            case 1:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-};
-var addRecommendation = function addRecommendation(recommendation) {
-  return /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
-      var recommendations, listRecommendations;
-      return regeneratorRuntime.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              // try {
-              window.onbeforeunload = function () {
-                localStorage.clear();
-              };
-
-              recommendations = JSON.parse(window.localStorage.getItem("listRecommendations"));
-
-              if (recommendations !== null) {
-                recommendations.push(recommendation);
-                window.localStorage.setItem("listRecommendations", JSON.stringify(recommendations));
-                dispatch(_addRecommendation(recommendation));
-              } else {
-                listRecommendations = [];
-                listRecommendations.push(recommendation);
-                window.localStorage.setItem("listRecommendations", JSON.stringify(listRecommendations));
-                dispatch(_addRecommendation(recommendation));
-              } // } catch (error) {
-              //   next(error);
-              // }
-
-
-            case 3:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-
-    return function (_x2) {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-};
-function getRecommendationsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case GET_RECOMMENDATIONS:
-      return action.recommendations;
-
-    case ADD_RECOMMENDATION:
-      return [].concat(_toConsumableArray(state), [action.recommendation]);
 
     default:
       return state;
@@ -18235,7 +18010,6 @@ function fetchPlaylist() {
   var genresList = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
     return state.getGenres;
   });
-  console.log("genresList", genresList);
 
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
     return state.user;
@@ -18632,17 +18406,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
-/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./redux/user */ "./frontend/redux/user.js");
 /* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./redux/playlist */ "./frontend/redux/playlist.js");
 /* harmony import */ var _redux_getGenres__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/getGenres */ "./frontend/redux/getGenres.js");
-/* harmony import */ var _redux_getIdArtists__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./redux/getIdArtists */ "./frontend/redux/getIdArtists.js");
-/* harmony import */ var _redux_getRecommendations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./redux/getRecommendations */ "./frontend/redux/getRecommendations.js");
-/* harmony import */ var _redux_getPlaylist__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./redux/getPlaylist */ "./frontend/redux/getPlaylist.js");
+/* harmony import */ var _redux_getPlaylist__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./redux/getPlaylist */ "./frontend/redux/getPlaylist.js");
 
 
 
@@ -18651,20 +18423,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_8__.combineReducers)({
+var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_6__.combineReducers)({
   user: _redux_user__WEBPACK_IMPORTED_MODULE_2__["default"],
   playlist: _redux_playlist__WEBPACK_IMPORTED_MODULE_3__["default"],
-  getPlaylist: _redux_getPlaylist__WEBPACK_IMPORTED_MODULE_7__["default"],
-  getIdArtists: _redux_getIdArtists__WEBPACK_IMPORTED_MODULE_5__["default"],
-  getGenres: _redux_getGenres__WEBPACK_IMPORTED_MODULE_4__["default"],
-  getRecommendations: _redux_getRecommendations__WEBPACK_IMPORTED_MODULE_6__["default"]
+  getPlaylist: _redux_getPlaylist__WEBPACK_IMPORTED_MODULE_5__["default"],
+  getGenres: _redux_getGenres__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
-var middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_8__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_9__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
+var middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_6__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_7__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
   collapsed: true
 })));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_8__.createStore)(reducer, middleware));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_6__.createStore)(reducer, middleware));
 
 /***/ }),
 

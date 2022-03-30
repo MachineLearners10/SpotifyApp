@@ -7,7 +7,7 @@ const spotifyApi = new SpotifyWebApi({
   callbackURL: process.env.CALLBACKURL,
 });
 
-const n = 3;
+const n = 2;
 const sample = (items) => {
   return items
     .map((x) => ({ x, r: Math.random() }))
@@ -27,7 +27,6 @@ router.get("/playlist", async (req, res, next) => {
     let genreOneObject = JSON.parse(req.query.genresList[0]);
     // let genreTwoObject = JSON.parse(req.query.genresList[1]);
     // let genres = `${genreOneObject.genre},${genreTwoObject.genre}`;
-    console.log("genres", genreOneObject);
     const playlistRecomendation = await spotifyApi.getRecommendations({
       seed_genres: genreOneObject.genre,
       seed_tracks: randomIds.join(','),

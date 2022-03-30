@@ -11,7 +11,6 @@ function Player() {
   const playlistTrackUris = useSelector((state) => state.getPlaylist);
 
   function getUris(arrayOfTracks) {
-   console.log(arrayOfTracks.map(track => track.uri))
    return arrayOfTracks.map(track => track.uri)
   }
 
