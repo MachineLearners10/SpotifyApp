@@ -361,3 +361,55 @@
   width: 30px;
   height: 30px;
 }
+
+/* Top Menu */
+nav {
+  position: fixed;
+  z-index: 1;
+  background-color: black;
+  width: 100%;
+  padding: 10px 0;
+  top: 0;
+  display: block;
+  /* position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0; */
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+  padding-top: 10px;
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: white;
+}
+a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+nav a:hover {
+  transition: all 0.1s ease-in-out;
+  transform: scale(1.2);
+}
+
+#logo {
+  height: 25px;
+  width: 25px;
+}
+
+#user-logo {
+  height: 25px;
+  width: 25px;
+}
+
+nav > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-left: 50px;
+  /* justify-content: space-evenly; */
+}

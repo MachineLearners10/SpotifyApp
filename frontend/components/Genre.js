@@ -3,14 +3,21 @@ import { connect } from "react-redux";
 import { addGenre } from "../redux/getGenres";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
+import { fetchUser } from "../redux/user";
 
 let count = 0;
 let list = [];
 class Genre extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      user: {},
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
+  }
+  componentDidMount() {
+    this.props.fetchUser();
   }
 
   handleInput(evt) {
@@ -81,12 +88,16 @@ class Genre extends React.Component {
 }
 const mapState = (state) => {
   return {
+    user: state.user,
     genre: state.genre,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
+    fetchUser: () => {
+      return dispatch(fetchUser());
+    },
     addGenre: (genre) => {
       return dispatch(addGenre(genre));
     },
