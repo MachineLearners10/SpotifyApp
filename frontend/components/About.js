@@ -1,5 +1,36 @@
 import React from "react";
 
+const members = [
+  {
+    id: 1,
+    name: "Averi Passmore",
+    gitHub: "https://github.com/averipassmore",
+    linkedIn: "https://github.com/averipassmore",
+    img: "https://ca.slack-edge.com/T024FPYBQ-U02TW4T0K6U-eb13764eee63-512",
+  },
+  {
+    id: 2,
+    name: "Ferhan Syed",
+    gitHub: "https://github.com/hanfer10",
+    linkedIn: "https://github.com/hanfer10",
+    img: "https://ca.slack-edge.com/T024FPYBQ-U02SRPVTKF1-7af5afb4e082-512",
+  },
+  {
+    id: 3,
+    name: "Kathia Villavicencio",
+    gitHub: "https://github.com/kathia83",
+    linkedIn: "https://www.linkedin.com/in/kathia-v-3863a047/",
+    img: "https://ca.slack-edge.com/T024FPYBQ-U02T6CRC9B4-707c82cd8900-512",
+  },
+  {
+    id: 4,
+    name: "Oscar Rolf",
+    gitHub: "https://github.com/oscareng",
+    linkedIn: "https://github.com/oscareng",
+    img: "HappyFaceSmiling.png",
+  },
+];
+
 function About() {
   return (
     <div className="about_container">
@@ -25,140 +56,42 @@ function About() {
       <div>
         <h4 className="about-subtitle"> Team Members</h4>
         <div className="about-photo-gallery">
-          <div className="sub_container">
-            <img
-              className="about_team_member_picture"
-              src={
-                "https://ca.slack-edge.com/T024FPYBQ-U02TW4T0K6U-eb13764eee63-512"
-              }
-              alt=""
-            />
-            <p>Averi Passmore</p>
-            <div className="links">
-              <a
-                href="https://github.com/averipassmore"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className="github"
-                  src={
-                    "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
-                  }
-                />
-              </a>
-              <a
-                href="https://github.com/averipassmore"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className="linkedin"
-                  src={"https://cdn-icons-png.flaticon.com/512/174/174857.png"}
-                />
-              </a>
+          {members.map((member) => (
+            <div className="sub_container" key={member.id}>
+              <img
+                className="about_team_member_picture"
+                src={member.img}
+                alt=""
+              />
+              <p>{member.name}</p>
+              <div className="links">
+                <a
+                  href={member.gitHub}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="github"
+                    src={
+                      "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+                    }
+                  />
+                </a>
+                <a
+                  href={member.linkedIn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="linkedin"
+                    src={
+                      "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                    }
+                  />
+                </a>
+              </div>
             </div>
-          </div>
-          <div className="sub_container">
-            <img
-              className="about_team_member_picture"
-              src={
-                "https://ca.slack-edge.com/T024FPYBQ-U02SRPVTKF1-7af5afb4e082-512"
-              }
-              alt=""
-            />
-            <p>Ferhan Syed</p>
-            <div className="links">
-              <a
-                href="https://github.com/hanfer10"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className="github"
-                  src={
-                    "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
-                  }
-                />
-              </a>
-              <a
-                href="https://github.com/hanfer10"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className="linkedin"
-                  src={"https://cdn-icons-png.flaticon.com/512/174/174857.png"}
-                />
-              </a>
-            </div>
-          </div>
-          <div className="sub_container">
-            <img
-              className="about_team_member_picture"
-              src={
-                "https://ca.slack-edge.com/T024FPYBQ-U02T6CRC9B4-707c82cd8900-512"
-              }
-              alt=""
-            />
-            <p>Kathia Villavicencio</p>
-            <div className="links">
-              <a
-                href="https://github.com/kathia83"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className="github"
-                  src={
-                    "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
-                  }
-                />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/kathia-v-3863a047/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className="linkedin"
-                  src={"https://cdn-icons-png.flaticon.com/512/174/174857.png"}
-                />
-              </a>
-            </div>
-          </div>
-          <div className="sub_container">
-            <img
-              className="about_team_member_picture"
-              src={"HappyFaceSmiling.png"}
-              alt=""
-            />
-            <p>Oscar Rolf</p>
-            <div className="links">
-              <a
-                href="https://github.com/oscareng"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className="github"
-                  src={
-                    "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
-                  }
-                />
-              </a>
-              <a
-                href="https://github.com/oscareng"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className="linkedin"
-                  src={"https://cdn-icons-png.flaticon.com/512/174/174857.png"}
-                />
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
