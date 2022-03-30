@@ -17029,7 +17029,7 @@ var Genre = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var list = ["acoustic", "country", "dance", "dancehall", "disco", "electronic", "hip-hop", "holidays", "indie-pop", "k-pop", "latin", "latino", "party", "pop", "reggae", "reggaeton", "rock"];
+      var list = ["acoustic", "alternative", "blues", "country", "disco", "edm", "emo", "folk", "french", "hip-hop", "holidays", "house", "indie", "k-pop", "latino", "metal", "pop", "punk", "reggae", "reggaeton", "rock", "r-n-b", "soul"];
       var handleSubmit = this.handleSubmit,
           handleInput = this.handleInput;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -17369,7 +17369,7 @@ var Mood = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var list = ["happy", "chill"];
+      var list = ["happy", "chill", "sad", "work-out", "study", "sleep", "romance", "party"];
       var handleSubmit = this.handleSubmit,
           handleInput = this.handleInput;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {

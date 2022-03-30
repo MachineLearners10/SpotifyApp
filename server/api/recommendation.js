@@ -29,16 +29,34 @@ router.get("/playlist", async (req, res, next) => {
       seed_genres: req.query.genresList,
       seed_tracks: randomIds.join(","),
       seed_artists: "",
+      limit: 50
     });
     //gonna do some addtional filtering and tweak the limit to get more songs
-    let trackIds = playlistRecomendation.body.tracks.map(track => {
-      return track.id
+    let trackAndArtistIds = playlistRecomendation.body.tracks.map(track => {
+      let songObj = {artist: track.artists[0].id, id: track.id}
+      return songObj
     })
-    console.log(trackIds);
-    const filteredRecommendation = await spotifyApi.getTracks(trackIds);
-    console.log(filteredRecommendation.body.tracks[0])
+    let traccs = '';
+    let songCount = 0;
+    for (let i = 0; i < trackAndArtistIds.length; i++) {
+      let song = trackAndArtistIds[i];
+      let artistInfo = await spotifyApi.getArtist(song.artist);
+      if (artistInfo.body.genres.join().includes(req.query.genresList.split(',')[1]) && songCount < 3) {
+        traccs += song.id + ',';
+        songCount++;
+        console.log(song.id);
+      }
+    }
+    console.log(traccs.slice(0, traccs.length - 1));
 
-    res.send(playlistRecomendation);
+    const playlistRecomendationerer = await spotifyApi.getRecommendations({
+      seed_genres: req.query.genresList,//req.query.genresList.split(',')[0],
+      seed_tracks: traccs.slice(0, traccs.length - 1),
+      seed_artists: "",
+      limit: 50
+    });
+
+    res.send(playlistRecomendationerer);
   } catch (error) {
     console.log(error);
     next(error);
