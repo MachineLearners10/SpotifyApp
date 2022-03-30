@@ -48,7 +48,7 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
         <p className="mood">chill</p>
         {likedSongs[order - 1] ? (
           <FavoriteIcon
-            className="favorite"
+            className="favorited"
             onClick={() => {
               console.log(`click`);
             }}
