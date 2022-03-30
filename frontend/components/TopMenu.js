@@ -10,7 +10,6 @@ const TopMenu = () => {
       <div>
         <nav>
           <div>
-            <Link to="/about">About</Link>
             <Link
               to="/helloWorld"
               onClick={() => {
@@ -19,7 +18,8 @@ const TopMenu = () => {
             >
               Home
             </Link>
-            <a href="https://accounts.spotify.com/logout">Sing out</a>
+            <Link to="/about">About</Link>
+            <a href="https://accounts.spotify.com/logout">Sign out</a>
           </div>
         </nav>
         <hr />
