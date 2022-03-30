@@ -11,6 +11,8 @@ const _getPlaylist = (playlist) => ({
 
 export const getPlaylist = (genresList) => async (dispatch) => {
   try {
+    console.log("window", window.localStorage)
+    window.localStorage.clear();
     const { data } = await axios.get("/api/recommendation/playlist", {
       params: { genresList }
     });

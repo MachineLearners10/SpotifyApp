@@ -5,12 +5,11 @@ import { addGenre } from "../redux/getGenres";
 class Mood extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
-  //
-  handleInput(evt) {
-    this.setState({ [evt.target.name]: evt.target.value });
+
+  handleInput(event) {
+    this.props.addMood({genre: event.target.value});
     function pageRedirect() {
       return window.location.replace(
         // `https://catch-a-vibe.herokuapp.com/genre`
@@ -20,22 +19,17 @@ class Mood extends React.Component {
     pageRedirect();
   }
 
-  handleSubmit(evt) {
-    evt.preventDefault();
-    this.props.addMood({ ...this.state });
-  }
-
   render() {
     const list = ["happy", "chill"];
-    const { handleSubmit, handleInput } = this;
+    const { handleInput } = this;
 
     return (
-      <form className="container2" onSubmit={handleSubmit}>
+      <form className="container2">
         {list.map((genre, index) => {
           return (
             <div key={index}>
               <button
-                type="submit"
+                type="button"
                 className="button-style"
                 onClick={handleInput}
                 value={genre}

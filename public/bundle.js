@@ -17301,12 +17301,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_getGenres__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/getGenres */ "./frontend/redux/getGenres.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -17342,16 +17336,16 @@ var Mood = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Mood);
 
     _this = _super.call(this, props);
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
     return _this;
-  } //
-
+  }
 
   _createClass(Mood, [{
     key: "handleInput",
-    value: function handleInput(evt) {
-      this.setState(_defineProperty({}, evt.target.name, evt.target.value));
+    value: function handleInput(event) {
+      this.props.addMood({
+        genre: event.target.value
+      });
 
       function pageRedirect() {
         return window.location.replace( // `https://catch-a-vibe.herokuapp.com/genre`
@@ -17361,25 +17355,17 @@ var Mood = /*#__PURE__*/function (_React$Component) {
       pageRedirect();
     }
   }, {
-    key: "handleSubmit",
-    value: function handleSubmit(evt) {
-      evt.preventDefault();
-      this.props.addMood(_objectSpread({}, this.state));
-    }
-  }, {
     key: "render",
     value: function render() {
       var list = ["happy", "chill"];
-      var handleSubmit = this.handleSubmit,
-          handleInput = this.handleInput;
+      var handleInput = this.handleInput;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        className: "container2",
-        onSubmit: handleSubmit
+        className: "container2"
       }, list.map(function (genre, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: index
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          type: "submit",
+          type: "button",
           className: "button-style",
           onClick: handleInput,
           value: genre,
@@ -17447,6 +17433,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _redux_getPlaylist__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../redux/getPlaylist */ "./frontend/redux/getPlaylist.js");
 /* harmony import */ var _redux_hooks_fetchPlaylist__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/hooks/fetchPlaylist */ "./frontend/redux/hooks/fetchPlaylist.js");
+/* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/user */ "./frontend/redux/user.js");
+/* harmony import */ var _redux_getGenres__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../redux/getGenres */ "./frontend/redux/getGenres.js");
+
+
 
 
 
@@ -17455,12 +17445,22 @@ __webpack_require__.r(__webpack_exports__);
 
 function Player() {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    dispatch((0,_redux_user__WEBPACK_IMPORTED_MODULE_5__.fetchUser)());
+    dispatch((0,_redux_getGenres__WEBPACK_IMPORTED_MODULE_6__.getGenres)());
+  }, []);
+  var genresList = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.getGenres;
+  });
 
-  var _fetchPlaylist = (0,_redux_hooks_fetchPlaylist__WEBPACK_IMPORTED_MODULE_4__["default"])(),
-      genresList = _fetchPlaylist.genresList,
-      user = _fetchPlaylist.user;
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.user;
+  }),
+      user = _useSelector.user; // const { genresList, user } = fetchPlaylist();
+
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log("player genresList", genresList);
     dispatch((0,_redux_getPlaylist__WEBPACK_IMPORTED_MODULE_3__.getPlaylist)(genresList));
   }, []);
   var playlistTrackUris = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
@@ -17770,8 +17770,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ getGenresReducer),
 /* harmony export */   "getGenres": () => (/* binding */ getGenres)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -17787,7 +17785,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 
 var initialState = [];
 var GET_GENRES = "GET_GENRES";
@@ -17848,10 +17845,6 @@ var addGenre = function addGenre(genre) {
           switch (_context2.prev = _context2.next) {
             case 0:
               try {
-                window.onbeforeunload = function () {
-                  localStorage.clear();
-                };
-
                 genres = JSON.parse(window.localStorage.getItem("listGenres"));
 
                 if (genres !== null) {
@@ -17887,6 +17880,7 @@ function getGenresReducer() {
 
   switch (action.type) {
     case GET_GENRES:
+      console.log("action genre", action.genres);
       return action.genres;
 
     case ADD_GENRE:
@@ -17938,29 +17932,31 @@ var getPlaylist = function getPlaylist(genresList) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
-              _context.next = 3;
+              console.log("window", window.localStorage);
+              window.localStorage.clear();
+              _context.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/recommendation/playlist", {
                 params: {
                   genresList: genresList
                 }
               });
 
-            case 3:
+            case 5:
               _yield$axios$get = _context.sent;
               data = _yield$axios$get.data;
               return _context.abrupt("return", dispatch(_getPlaylist(data)));
 
-            case 8:
-              _context.prev = 8;
+            case 10:
+              _context.prev = 10;
               _context.t0 = _context["catch"](0);
               console.log(_context.t0);
 
-            case 11:
+            case 13:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 8]]);
+      }, _callee, null, [[0, 10]]);
     }));
 
     return function (_x) {
@@ -18000,8 +17996,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user */ "./frontend/redux/user.js");
 /* harmony import */ var _getGenres__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../getGenres */ "./frontend/redux/getGenres.js");
-/* harmony import */ var _getPlaylist__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../getPlaylist */ "./frontend/redux/getPlaylist.js");
-
 
 
 
@@ -18019,9 +18013,9 @@ function fetchPlaylist() {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     dispatch((0,_user__WEBPACK_IMPORTED_MODULE_2__.fetchUser)());
-    dispatch((0,_getGenres__WEBPACK_IMPORTED_MODULE_3__.getGenres)());
-    dispatch((0,_getPlaylist__WEBPACK_IMPORTED_MODULE_4__.getPlaylist)(genresList));
+    dispatch((0,_getGenres__WEBPACK_IMPORTED_MODULE_3__.getGenres)()); // dispatch(getPlaylist(genresList));
   }, []);
+  console.log("fetchPlaylist genresList", genresList);
   return {
     genresList: genresList,
     user: user

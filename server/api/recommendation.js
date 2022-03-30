@@ -24,15 +24,18 @@ router.get("/playlist", async (req, res, next) => {
     let tracks = topTracks.body.items;
     let ids = tracks.map((a) => a.id);
     let randomIds = sample(ids);
-    let genreOneObject = JSON.parse(req.query.genresList[0]);
+    console.log(req.query);
+    const genres = req.query.genresList.map(genre => JSON.parse(genre).genre)
+    // let genreOneObject = JSON.parse(req.query.genresList[0]);
     // let genreTwoObject = JSON.parse(req.query.genresList[1]);
     // let genres = `${genreOneObject.genre},${genreTwoObject.genre}`;
     const playlistRecomendation = await spotifyApi.getRecommendations({
-      seed_genres: genreOneObject.genre,
+      seed_genres: genres.join(','),
       seed_tracks: randomIds.join(','),
       seed_artists: '',
     })
-    res.send(playlistRecomendation);
+    console.log(playlistRecomendation)
+    res.send(playlistRecomendation.body.seeds);
   } catch (error) {
     console.log(error);
     next(error);

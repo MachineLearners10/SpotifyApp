@@ -3,11 +3,25 @@ import SpotifyPlayer from "react-spotify-web-playback";
 import { useSelector, useDispatch } from "react-redux";
 import { getPlaylist } from "../redux/getPlaylist";
 import fetchPlaylist from "../redux/hooks/fetchPlaylist";
+import { fetchUser } from "../redux/user";
+import { getGenres } from "../redux/getGenres";
 
 function Player() {
   const dispatch = useDispatch();
-  const { genresList, user } = fetchPlaylist();
-  useEffect(() => {dispatch(getPlaylist(genresList))}, [])
+  useEffect(() => {
+    dispatch(fetchUser())
+    dispatch(getGenres())
+  },
+  [])
+  const genresList = useSelector((state) => state.getGenres);
+  const { user } = useSelector((state) => state.user);
+  // const { genresList, user } = fetchPlaylist();
+
+  useEffect(() => {
+    console.log("player genresList", genresList)
+    dispatch(getPlaylist(genresList))
+  },
+  [])
   const playlistTrackUris = useSelector((state) => state.getPlaylist);
 
   function getUris(arrayOfTracks) {

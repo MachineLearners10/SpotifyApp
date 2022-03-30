@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const initialState = [];
 
 const GET_GENRES = "GET_GENRES";
@@ -32,14 +30,11 @@ export const getGenres = () => {
 export const addGenre = (genre) => {
   return async (dispatch) => {
     try {
-      window.onbeforeunload = function () {
-        localStorage.clear();
-      };
       const genres = JSON.parse(window.localStorage.getItem("listGenres"));
       if (genres !== null) {
-        genres.push(genre);
-        window.localStorage.setItem("listGenres", JSON.stringify(genres));
-        dispatch(_addGenre(genre));
+          genres.push(genre);
+          window.localStorage.setItem("listGenres", JSON.stringify(genres));
+          dispatch(_addGenre(genre));
       } else {
         let listGenres = [];
         listGenres.push(genre);
@@ -55,6 +50,7 @@ export const addGenre = (genre) => {
 export default function getGenresReducer(state = initialState, action) {
   switch (action.type) {
     case GET_GENRES:
+      console.log("action genre", action.genres)
       return action.genres;
     case ADD_GENRE:
       return [...state, action.genre];
