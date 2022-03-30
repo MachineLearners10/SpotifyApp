@@ -1,55 +1,53 @@
 import React from "react";
-import { AppBar, Typography, makeStyles } from "@material-ui/core";
-import { ImageListItem } from "@material-ui/core";
-import { ImageList } from "@material-ui/core";
 
-const drawerWidth = 0;
+const Footer = () => {
+  let postUrl = encodeURI(document.location.href);
+  let postTitle = encodeURI("Hi, look this new app: ");
 
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    top: "auto",
-    bottom: 0,
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    backgroundColor: "#000a12",
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  footer1: {
-    marginLeft: 20,
-    fontSize: 17,
-  },
-  footer2: {
-    marginRight: 20,
-  },
-  image: {
-    width: 5,
-    height: 5,
-  },
-}));
+  const miniIcons = [
+    {
+      id: 1,
+      link: "https://www.spotify.com/us/",
+      icon: "https://podcast.tcia.org/wp-content/uploads/2020/06/Spotify_Logo_icon_White.png",
+    },
+    {
+      id: 2,
+      link: "https://github.com/MachineLearners10/SpotifyApp",
+      icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn11Rru16VFClaKhYzoL9yGLIwOEaggMpa1Q&usqp=CAU",
+    },
+    {
+      id: 3,
+      link: `https://www.facebook.com/sharer.php?u=${postUrl}`,
+      icon: "https://www.pinclipart.com/picdir/big/150-1504080_facebook-white-facebook-white-icon-png-2018-clipart.png",
+    },
+    {
+      id: 4,
+      link: `https://wa.me/?text=${postTitle} ${postUrl}`,
+      icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvWvxa4GQ25xdva6Z8gHwcF1Y0QLtfMKnI9A&usqp=CAU",
+    },
+    {
+      id: 5,
+      link: `https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`,
+      icon: "https://www.citypng.com/public/uploads/preview/hd-white-square-outline-linkedin-in-icon-symbol-png-31623972553hxk4l9ziuw.png",
+    },
+  ];
 
-function Footer() {
-  const classes = useStyles();
   return (
-    <AppBar position="fixed" className={classes.appBar}>
-      <Typography variant="h6" className={classes.footer1}>
-        SpotifyApp
-      </Typography>
-      {/* <ImageList
-      // className={classes.footer2}
-      // sx={{ width: 10, height: 10 }}
-      // cols={5}
-      // rowHeight={16}
-      >
-        <ImageListItem className={classes.image}>
-          <img src={require("./Images/SpotifyIcon.png")} alt="" />
-          <img src={require("./Images/GithubIcon.png")} alt="" />
-          <img src={require("./Images/FacebookIcon.png")} alt="" />
-          <img src={require("./Images/InstagramIcon.png")} alt="" />
-        </ImageListItem>
-      </ImageList> */}
-    </AppBar>
+    <footer className="footer">
+      <div className="footer-icons">
+        {miniIcons.map((miniIcon) => (
+          <a
+            key={miniIcon.id}
+            href={miniIcon.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img className="footer-icon" src={miniIcon.icon} alt="" />
+          </a>
+        ))}
+      </div>
+    </footer>
   );
-}
+};
 
 export default Footer;

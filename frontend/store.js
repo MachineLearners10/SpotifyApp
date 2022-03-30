@@ -15,7 +15,7 @@ const reducer = combineReducers({
   getPlaylist: getPlaylistReducer,
   getIdArtists: getIdArtistsReducer,
   getGenres: getGenresReducer,
-  getRecommendations: getRecommendationsReducer,
+  getListRecommendations: getRecommendationsReducer,
 });
 
 const middleware = composeWithDevTools(

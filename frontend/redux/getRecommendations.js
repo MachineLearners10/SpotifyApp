@@ -31,32 +31,32 @@ export const getRecommendations = () => {
 
 export const addRecommendation = (recommendation) => {
   return async (dispatch) => {
-    // try {
-    window.onbeforeunload = function () {
-      localStorage.clear();
-    };
-    const recommendations = JSON.parse(
-      window.localStorage.getItem("listRecommendations")
-    );
-    if (recommendations !== null) {
-      recommendations.push(recommendation);
-      window.localStorage.setItem(
-        "listRecommendations",
-        JSON.stringify(recommendations)
+    try {
+      window.onbeforeunload = function () {
+        localStorage.clear();
+      };
+      const recommendations = JSON.parse(
+        window.localStorage.getItem("listRecommendations")
       );
-      dispatch(_addRecommendation(recommendation));
-    } else {
-      let listRecommendations = [];
-      listRecommendations.push(recommendation);
-      window.localStorage.setItem(
-        "listRecommendations",
-        JSON.stringify(listRecommendations)
-      );
-      dispatch(_addRecommendation(recommendation));
+      if (recommendations !== null) {
+        recommendations.push(recommendation);
+        window.localStorage.setItem(
+          "listRecommendations",
+          JSON.stringify(recommendations)
+        );
+        dispatch(_addRecommendation(recommendation));
+      } else {
+        let listRecommendations = [];
+        listRecommendations.push(recommendation);
+        window.localStorage.setItem(
+          "listRecommendations",
+          JSON.stringify(listRecommendations)
+        );
+        dispatch(_addRecommendation(recommendation));
+      }
+    } catch (error) {
+      next(error);
     }
-    // } catch (error) {
-    //   next(error);
-    // }
   };
 };
 

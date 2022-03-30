@@ -3,22 +3,29 @@ import { connect } from "react-redux";
 import { addGenre } from "../redux/getGenres";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
+import { fetchUser } from "../redux/user";
 
 let count = 0;
 let list = [];
 class Genre extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      user: {},
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
+  }
+  componentDidMount() {
+    this.props.fetchUser();
   }
 
   handleInput(evt) {
     if (list.includes(evt.target.value)) {
       return alert("You'd already chosen this genre");
     } else {
-      if (count > 3) {
-        return alert("You can't choose more than 5 genres");
+      if (count > 1) {
+        return alert("You can't choose more than 2 genres");
       } else {
         this.setState({ [evt.target.name]: evt.target.value });
         list.push(evt.target.value);
@@ -34,28 +41,34 @@ class Genre extends React.Component {
   render() {
     const list = [
       "acoustic",
+      "alternative",
+      "blues",
       "country",
-      "dance",
-      "dancehall",
       "disco",
-      "electronic",
+      "edm",
+      "emo",
+      "folk",
+      "french",
       "hip-hop",
       "holidays",
-      "indie-pop",
+      "house",
+      "indie",
       "k-pop",
-      "latin",
       "latino",
-      "party",
+      "metal",
       "pop",
+      "punk",
       "reggae",
       "reggaeton",
       "rock",
+      "r-n-b",
+      "soul",
     ];
     const { handleSubmit, handleInput } = this;
 
     return (
       <div className="main-content">
-        <h1 className="genre">Select genres up to 4 ({count})</h1>
+        <h1 className="genre">Select genres up to 2 ({count})</h1>
         <form className="container3" onSubmit={handleSubmit}>
           {list.map((genre, index) => {
             return (
@@ -82,12 +95,16 @@ class Genre extends React.Component {
 }
 const mapState = (state) => {
   return {
+    user: state.user,
     genre: state.genre,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
+    fetchUser: () => {
+      return dispatch(fetchUser());
+    },
     addGenre: (genre) => {
       return dispatch(addGenre(genre));
     },
