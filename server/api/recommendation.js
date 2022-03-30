@@ -32,31 +32,31 @@ router.get("/playlist", async (req, res, next) => {
       limit: 50
     });
     //gonna do some addtional filtering and tweak the limit to get more songs
-    let trackAndArtistIds = playlistRecomendation.body.tracks.map(track => {
-      let songObj = {artist: track.artists[0].id, id: track.id}
-      return songObj
-    })
-    let traccs = '';
-    let songCount = 0;
-    for (let i = 0; i < trackAndArtistIds.length; i++) {
-      let song = trackAndArtistIds[i];
-      let artistInfo = await spotifyApi.getArtist(song.artist);
-      if (artistInfo.body.genres.join().includes(req.query.genresList.split(',')[1]) && songCount < 3) {
-        traccs += song.id + ',';
-        songCount++;
-        console.log(song.id);
-      }
-    }
-    console.log(traccs.slice(0, traccs.length - 1));
+    // let trackAndArtistIds = playlistRecomendation.body.tracks.map(track => {
+    //   let songObj = {artist: track.artists[0].id, id: track.id}
+    //   return songObj
+    // })
+    // let traccs = '';
+    // let songCount = 0;
+    // for (let i = 0; i < trackAndArtistIds.length; i++) {
+    //   let song = trackAndArtistIds[i];
+    //   let artistInfo = await spotifyApi.getArtist(song.artist);
+    //   if (artistInfo.body.genres.join().includes(req.query.genresList.split(',')[1]) && songCount < 3) {
+    //     traccs += song.id + ',';
+    //     songCount++;
+    //     console.log(song.id);
+    //   }
+    // }
+    // console.log(traccs.slice(0, traccs.length - 1));
 
-    const playlistRecomendationerer = await spotifyApi.getRecommendations({
-      seed_genres: req.query.genresList,//req.query.genresList.split(',')[0],
-      seed_tracks: traccs.slice(0, traccs.length - 1),
-      seed_artists: "",
-      limit: 50
-    });
+    // const playlistRecomendationerer = await spotifyApi.getRecommendations({
+    //   seed_genres: req.query.genresList,//req.query.genresList.split(',')[0],
+    //   seed_tracks: traccs.slice(0, traccs.length - 1),
+    //   seed_artists: "",
+    //   limit: 50
+    // });
 
-    res.send(playlistRecomendationerer);
+    res.send(playlistRecomendation);
   } catch (error) {
     console.log(error);
     next(error);
