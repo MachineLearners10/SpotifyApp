@@ -1,18 +1,12 @@
 import React from "react";
 
 const Footer = () => {
+  let postUrl = encodeURI(document.location.href);
+  let postTitle = encodeURI("Hi, look this new app: ");
+
   return (
     <footer className="footer">
       <div className="footer-icons">
-        <a href="https://www.spotify.com/us/">
-          <img
-            className="footer-icon"
-            src={
-              "https://1000logos.net/wp-content/uploads/2017/08/Spotify-emblem.jpg"
-            }
-            alt=""
-          />
-        </a>
         <a href="https://github.com/MachineLearners10/SpotifyApp">
           <img
             className="footer-icon"
@@ -22,7 +16,7 @@ const Footer = () => {
             alt=""
           />
         </a>
-        <a href="https://www.facebook.com/">
+        <a href={`https://www.facebook.com/sharer.php?u=${postUrl}`}>
           <img
             className="footer-icon"
             src={
@@ -31,11 +25,22 @@ const Footer = () => {
             alt=""
           />
         </a>
-        <a href="https://www.instagram.com/">
+        <a href={`https://wa.me/?text=${postTitle} ${postUrl}`}>
           <img
             className="footer-icon"
             src={
-              "https://www.citypng.com/public/uploads/preview/-51609193615decnmgwyz7.png"
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvWvxa4GQ25xdva6Z8gHwcF1Y0QLtfMKnI9A&usqp=CAU"
+            }
+            alt=""
+          />
+        </a>
+        <a
+          href={`https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`}
+        >
+          <img
+            className="footer-icon"
+            src={
+              "https://www.citypng.com/public/uploads/preview/hd-white-square-outline-linkedin-in-icon-symbol-png-31623972553hxk4l9ziuw.png"
             }
             alt=""
           />

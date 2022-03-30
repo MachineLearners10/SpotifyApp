@@ -375,7 +375,7 @@ nav {
   z-index: 1;
   background-color: black;
   width: 100%;
-  padding: 10px 0;
+  /* padding: 10px 0; */
   top: 0;
   display: block;
 }
@@ -417,12 +417,11 @@ nav > div {
   bottom: 0;
   width: 100%;
   z-index: 1;
-  padding: 10px 0;
   display: block;
 }
 
 .footer-icons {
-  padding-top: 10px;
+  padding-top: 20px;
   margin-left: 2rem;
   display: flex;
   flex-direction: row;

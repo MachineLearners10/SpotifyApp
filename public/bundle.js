@@ -13248,33 +13248,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Footer = function Footer() {
+  var postUrl = encodeURI(document.location.href);
+  var postTitle = encodeURI("Hi, look this new app: ");
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
     className: "footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer-icons"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://www.spotify.com/us/"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    className: "footer-icon",
-    src: "https://1000logos.net/wp-content/uploads/2017/08/Spotify-emblem.jpg",
-    alt: ""
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: "https://github.com/MachineLearners10/SpotifyApp"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "footer-icon",
     src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn11Rru16VFClaKhYzoL9yGLIwOEaggMpa1Q&usqp=CAU",
     alt: ""
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://www.facebook.com/"
+    href: "https://www.facebook.com/sharer.php?u=".concat(postUrl)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "footer-icon",
     src: "https://www.pinclipart.com/picdir/big/150-1504080_facebook-white-facebook-white-icon-png-2018-clipart.png",
     alt: ""
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://www.instagram.com/"
+    href: "https://wa.me/?text=".concat(postTitle, " ").concat(postUrl)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "footer-icon",
-    src: "https://www.citypng.com/public/uploads/preview/-51609193615decnmgwyz7.png",
+    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvWvxa4GQ25xdva6Z8gHwcF1Y0QLtfMKnI9A&usqp=CAU",
+    alt: ""
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://www.linkedin.com/shareArticle?url=".concat(postUrl, "&title=").concat(postTitle)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "footer-icon",
+    src: "https://www.citypng.com/public/uploads/preview/hd-white-square-outline-linkedin-in-icon-symbol-png-31623972553hxk4l9ziuw.png",
     alt: ""
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer-title"
