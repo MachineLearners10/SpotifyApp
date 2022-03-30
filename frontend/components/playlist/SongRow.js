@@ -6,6 +6,7 @@ import PauseIcon from "@mui/icons-material/Pause";
 function SongRow({ song, order, convertDuration, likedSongs }) {
   const [hover, setHover] = useState(false);
   const [selected, setSelected] = useState(false);
+  console.log(likedSongs);
   return likedSongs === undefined ? (
     <div>loading</div>
   ) : (

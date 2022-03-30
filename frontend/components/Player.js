@@ -4,25 +4,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPlaylist } from "../redux/getPlaylist";
 import fetchPlaylist from "../redux/hooks/fetchPlaylist";
 
-function Player() {
-  const dispatch = useDispatch();
-  const { genresList, user } = fetchPlaylist();
-  useEffect(() => {
-    dispatch(getPlaylist(genresList));
-  }, []);
-  const playlistTrackUris = useSelector((state) => state.getPlaylist);
-
+function Player({ user, playlistTracks }) {
   function getUris(arrayOfTracks) {
-    console.log(arrayOfTracks.map((track) => track.uri));
     return arrayOfTracks.map((track) => track.uri);
   }
 
   return (
-    <div className="player">
-      {user.token && Object.keys(playlistTrackUris).length > 0 ? (
+    <div>
+      {user.token && Object.keys(playlistTracks).length > 0 ? (
         <SpotifyPlayer
+          initialVolume={0.5}
           token={user.token}
-          uris={getUris(playlistTrackUris.playlist.body.tracks)}
+          uris={getUris(playlistTracks.playlist)}
         />
       ) : (
         <p> Loading </p>

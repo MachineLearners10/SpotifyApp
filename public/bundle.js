@@ -17417,14 +17417,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Player */ "./frontend/components/Player.js");
+/* harmony import */ var _playlist_Test_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./playlist/Test.js */ "./frontend/components/playlist/Test.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _redux_getPlaylist__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/getPlaylist */ "./frontend/redux/getPlaylist.js");
+/* harmony import */ var _redux_hooks_fetchPlaylist__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/hooks/fetchPlaylist */ "./frontend/redux/hooks/fetchPlaylist.js");
 
 
 
-function PlayList(_ref) {
-  var uris = _ref.uris;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Playlist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "List of music")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Player__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
+
+
+
+
+function PlayList() {
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
+
+  var _fetchPlaylist = (0,_redux_hooks_fetchPlaylist__WEBPACK_IMPORTED_MODULE_5__["default"])(),
+      genresList = _fetchPlaylist.genresList,
+      user = _fetchPlaylist.user;
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    dispatch((0,_redux_getPlaylist__WEBPACK_IMPORTED_MODULE_4__.getPlaylist)(genresList));
+  }, []);
+  var playlistTracks = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+    return state.getPlaylist;
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_playlist_Test_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    songs: playlistTracks.playlist
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Player__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    user: user,
+    playlistTracks: playlistTracks
+  })));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PlayList);
@@ -17453,34 +17475,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Player() {
-  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
-
-  var _fetchPlaylist = (0,_redux_hooks_fetchPlaylist__WEBPACK_IMPORTED_MODULE_4__["default"])(),
-      genresList = _fetchPlaylist.genresList,
-      user = _fetchPlaylist.user;
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch((0,_redux_getPlaylist__WEBPACK_IMPORTED_MODULE_3__.getPlaylist)(genresList));
-  }, []);
-  var playlistTrackUris = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
-    return state.getPlaylist;
-  });
+function Player(_ref) {
+  var user = _ref.user,
+      playlistTracks = _ref.playlistTracks;
 
   function getUris(arrayOfTracks) {
-    console.log(arrayOfTracks.map(function (track) {
-      return track.uri;
-    }));
     return arrayOfTracks.map(function (track) {
       return track.uri;
     });
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "player"
-  }, user.token && Object.keys(playlistTrackUris).length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, user.token && Object.keys(playlistTracks).length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spotify_web_playback__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    initialVolume: 0.5,
     token: user.token,
-    uris: getUris(playlistTrackUris.playlist.body.tracks)
+    uris: getUris(playlistTracks.playlist)
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, " Loading "));
 }
 
@@ -17573,7 +17581,9 @@ var Header = function Header() {
     className: "header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "header_left"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_icons_material_Search__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_icons_material_Search__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "searchbar"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     placeholder: "Search for Artists, Songs, or Albums",
     type: "text"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -17635,6 +17645,7 @@ function SongRow(_ref) {
       selected = _useState4[0],
       setSelected = _useState4[1];
 
+  console.log(likedSongs);
   return likedSongs === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "loading") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "songRow",
     onMouseEnter: function onMouseEnter() {
@@ -17708,16 +17719,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SongRow_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SongRow.js */ "./frontend/components/playlist/SongRow.js");
 /* harmony import */ var _Header_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header.js */ "./frontend/components/playlist/Header.js");
 /* harmony import */ var _redux_hooks_usePlaylist__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/hooks/usePlaylist */ "./frontend/redux/hooks/usePlaylist.js");
-/* harmony import */ var _Player__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Player */ "./frontend/components/Player.js");
 
 
 
 
 
+function Test(_ref) {
+  var songs = _ref.songs;
 
-function Test() {
   var _usePlaylist = (0,_redux_hooks_usePlaylist__WEBPACK_IMPORTED_MODULE_3__["default"])(),
-      songs = _usePlaylist.songs,
       convertDuration = _usePlaylist.convertDuration,
       getLikedSongs = _usePlaylist.getLikedSongs,
       likedSongs = _usePlaylist.likedSongs;
@@ -17739,8 +17749,6 @@ function Test() {
       className: "songRow",
       likedSongs: likedSongs
     });
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Player__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    className: "player"
   })));
 }
 
@@ -18022,7 +18030,7 @@ var _getPlaylist = function _getPlaylist(playlist) {
 var getPlaylist = function getPlaylist(genresList) {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
-      var _yield$axios$get, data;
+      var _yield$axios$get, data, songs;
 
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
@@ -18039,8 +18047,8 @@ var getPlaylist = function getPlaylist(genresList) {
             case 3:
               _yield$axios$get = _context.sent;
               data = _yield$axios$get.data;
-              console.log("data", data);
-              return _context.abrupt("return", dispatch(_getPlaylist(data)));
+              songs = data.body.tracks;
+              return _context.abrupt("return", dispatch(_getPlaylist(songs)));
 
             case 9:
               _context.prev = 9;
@@ -18241,7 +18249,6 @@ function fetchPlaylist() {
   var genresList = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
     return state.getGenres;
   });
-  console.log("genresList", genresList);
 
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
     return state.user;
@@ -18252,7 +18259,6 @@ function fetchPlaylist() {
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     dispatch((0,_user__WEBPACK_IMPORTED_MODULE_2__.fetchUser)());
     dispatch((0,_getGenres__WEBPACK_IMPORTED_MODULE_3__.getGenres)());
-    dispatch((0,_getPlaylist__WEBPACK_IMPORTED_MODULE_4__.getPlaylist)(genresList));
   }, []);
   return {
     genresList: genresList,
@@ -18277,6 +18283,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_playlist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../redux/playlist */ "./frontend/redux/playlist.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _redux_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/user */ "./frontend/redux/user.js");
+/* harmony import */ var _getPlaylist__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../getPlaylist */ "./frontend/redux/getPlaylist.js");
+
 
 
 
@@ -18311,8 +18319,8 @@ function usePlaylist() {
   return {
     convertDuration: convertDuration,
     getLikedSongs: getLikedSongs,
-    songs: songs,
-    likedSongs: likedSongs
+    likedSongs: likedSongs,
+    songs: songs
   };
 }
 

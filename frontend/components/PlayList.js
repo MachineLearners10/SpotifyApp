@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Player from "./Player";
+import Test from "./playlist/Test.js";
+import { useSelector, useDispatch } from "react-redux";
+import { getPlaylist } from "../redux/getPlaylist";
+import fetchPlaylist from "../redux/hooks/fetchPlaylist";
+function PlayList() {
+  const dispatch = useDispatch();
+  const { genresList, user } = fetchPlaylist();
+  useEffect(() => {
+    dispatch(getPlaylist(genresList));
+  }, []);
+  const playlistTracks = useSelector((state) => state.getPlaylist);
 
-function PlayList({ uris }) {
   return (
-    <div className="container">
-      <div>{/* <img src="../../public/dance.gif" /> */}</div>
+    <div>
       <div>
         <div>
-          <h1>Playlist</h1>
-          <p>List of music</p>
+          <Test songs={playlistTracks.playlist} />
         </div>
-        <Player />
+        <Player user={user} playlistTracks={playlistTracks} />
       </div>
     </div>
   );

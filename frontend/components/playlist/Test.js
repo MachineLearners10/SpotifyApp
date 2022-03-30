@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import SongRow from "./SongRow.js";
 import Header from "./Header.js";
 import usePlaylist from "../../redux/hooks/usePlaylist";
-import Player from "../Player";
-function Test() {
-  const { songs, convertDuration, getLikedSongs, likedSongs } = usePlaylist();
+
+function Test({ songs }) {
+  const { convertDuration, getLikedSongs, likedSongs } = usePlaylist();
+
   if (songs !== undefined && likedSongs === undefined) {
     getLikedSongs(songs);
   }
@@ -27,9 +28,6 @@ function Test() {
           ))
         )}
       </div>
-      <h1>
-        <Player className="player" />
-      </h1>
     </div>
   );
 }

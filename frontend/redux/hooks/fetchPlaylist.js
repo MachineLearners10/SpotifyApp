@@ -6,15 +6,13 @@ import { getPlaylist } from "../getPlaylist";
 
 export default function fetchPlaylist() {
   const genresList = useSelector((state) => state.getGenres);
-  console.log("genresList", genresList)
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUser());
     dispatch(getGenres());
-    dispatch(getPlaylist(genresList));
   }, []);
 
-  return { genresList, user }
+  return { genresList, user };
 }
