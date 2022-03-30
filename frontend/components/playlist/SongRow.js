@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
+import { setPlaying } from "../../redux/playlist.js";
 function SongRow({ song, order, convertDuration, likedSongs }) {
+  const dispatch = useDispatch();
   const [hover, setHover] = useState(false);
-  const [selected, setSelected] = useState(false);
-  console.log(likedSongs);
+  // const [selected, setSelected] = useState(false);
+  const currentSong = useSelector((state) => state.playlist.playing);
   return likedSongs === undefined ? (
     <div>loading</div>
   ) : (
@@ -22,11 +25,15 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
       <div
         className="songRow_left"
         onClick={() => {
-          setSelected(!selected);
+          if (currentSong === song.uri) {
+            dispatch(setPlaying(""));
+          } else {
+            dispatch(setPlaying(song.uri));
+          }
         }}
       >
         {hover ? (
-          selected ? (
+          currentSong === song.uri ? (
             <PauseIcon className="svg_icons" />
           ) : (
             <PlayArrowIcon className="svg_icons" />
@@ -36,7 +43,7 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
         )}
         <img className="songRow_album" src={song.album.images[0].url} alt="" />
         <div className="songRow_info">
-          {selected ? (
+          {currentSong === song.uri ? (
             <h1 className="active">{song.name}</h1>
           ) : (
             <h1 className="inactive">{song.name}</h1>

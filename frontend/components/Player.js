@@ -5,21 +5,24 @@ import { getPlaylist } from "../redux/getPlaylist";
 import fetchPlaylist from "../redux/hooks/fetchPlaylist";
 
 function Player({ user, playlistTracks }) {
-  function getUris(arrayOfTracks) {
-    return arrayOfTracks.map((track) => track.uri);
-  }
-
+  // function getUris(arrayOfTracks) {
+  //   return arrayOfTracks.map((track) => track.uri);
+  // }
+  // getUris(playlistTracks.playlist)
+  const currentSong = useSelector((state) => state.playlist.playing);
   return (
     <div>
-      {user.token && Object.keys(playlistTracks).length > 0 ? (
-        <SpotifyPlayer
-          initialVolume={0.5}
-          token={user.token}
-          uris={getUris(playlistTracks.playlist)}
-        />
-      ) : (
-        <p> Loading </p>
-      )}
+      {
+        /* {user.token && Object.keys(playlistTracks).length > 0 */ currentSong ? (
+          <SpotifyPlayer
+            initialVolume={0.5}
+            token={user.token}
+            uris={`${currentSong}`}
+          />
+        ) : (
+          <p> Loading </p>
+        )
+      }
     </div>
   );
 }
