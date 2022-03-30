@@ -24,12 +24,20 @@ router.get("/playlist", async (req, res, next) => {
     let tracks = topTracks.body.items;
     let ids = tracks.map((a) => a.id);
     let randomIds = sample(ids);
-    let genreOneObject = JSON.parse(req.query.genresList[0]);
+    console.log(req.query.genresList)
     const playlistRecomendation = await spotifyApi.getRecommendations({
-      seed_genres: genreOneObject.genre,
+      seed_genres: req.query.genresList,
       seed_tracks: randomIds.join(","),
       seed_artists: "",
     });
+    //gonna do some addtional filtering and tweak the limit to get more songs
+    let trackIds = playlistRecomendation.body.tracks.map(track => {
+      return track.id
+    })
+    console.log(trackIds);
+    const filteredRecommendation = await spotifyApi.getTracks(trackIds);
+    console.log(filteredRecommendation.body.tracks[0])
+
     res.send(playlistRecomendation);
   } catch (error) {
     console.log(error);

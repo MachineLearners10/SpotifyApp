@@ -17435,8 +17435,10 @@ function PlayList() {
       genresList = _fetchPlaylist.genresList,
       user = _fetchPlaylist.user;
 
+  var genres = JSON.parse(window.localStorage.getItem("listGenres"));
+  console.log(genres[0].genre + ',' + genres[1].genre);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch((0,_redux_getPlaylist__WEBPACK_IMPORTED_MODULE_4__.getPlaylist)(genresList));
+    dispatch((0,_redux_getPlaylist__WEBPACK_IMPORTED_MODULE_4__.getPlaylist)(genres[0].genre + ',' + genres[1].genre));
   }, []);
   var playlistTracks = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
     return state.getPlaylist;
@@ -17645,7 +17647,6 @@ function SongRow(_ref) {
       selected = _useState4[0],
       setSelected = _useState4[1];
 
-  console.log(likedSongs);
   return likedSongs === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "loading") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "songRow",
     onMouseEnter: function onMouseEnter() {

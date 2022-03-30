@@ -7,8 +7,10 @@ import fetchPlaylist from "../redux/hooks/fetchPlaylist";
 function PlayList() {
   const dispatch = useDispatch();
   const { genresList, user } = fetchPlaylist();
+  let genres = JSON.parse(window.localStorage.getItem("listGenres"));
+  console.log(genres[0].genre + ',' + genres[1].genre);
   useEffect(() => {
-    dispatch(getPlaylist(genresList));
+    dispatch(getPlaylist(genres[0].genre + ',' + genres[1].genre));
   }, []);
   const playlistTracks = useSelector((state) => state.getPlaylist);
 
