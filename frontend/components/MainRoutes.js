@@ -5,9 +5,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Genre from "./Genre";
 import PlayList from "./PlayList";
 import Test from "./playlist/Test";
+import About from "./About";
+import TopMenu from "./TopMenu";
+import Footer from "./Footer";
 const MainRoutes = () => {
   return (
     <Router history={history}>
+      <TopMenu />
       <div>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -16,8 +20,10 @@ const MainRoutes = () => {
           <Route path="/genre" element={<Genre />} />
           <Route path="/playlist" element={<PlayList />} />
           <Route exact path="/test" element={<Test />} />
+          <Route exact path="/about" element={<About />} />
         </Routes>
       </div>
+      <Footer />
     </Router>
   );
 };

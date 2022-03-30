@@ -47,7 +47,6 @@ router.get("/playlist", (req, res, next) => {
 });
 
 router.get("/likedSongs", (req, res, next) => {
-  console.log(req.query);
   spotifyApi.setAccessToken(req.user.token);
   spotifyApi.containsMySavedTracks(req.query.songs).then(function (data) {
     res.send(data);

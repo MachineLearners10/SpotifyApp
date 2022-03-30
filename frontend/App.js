@@ -8,8 +8,6 @@ const App = () => {
   return (
     <div history={history}>
       <MainRoutes />
-      <TopMenu />
-      <Footer />
     </div>
   );
 };

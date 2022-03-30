@@ -7,47 +7,35 @@ const spotifyApi = new SpotifyWebApi({
   callbackURL: process.env.CALLBACKURL,
 });
 
-const n = 5;
+const n = 3;
 const sample = (items) => {
   return items
     .map((x) => ({ x, r: Math.random() }))
     .sort((a, b) => a.r - b.r)
     .map((a) => a.x)
-    .slice(0, n);
+    .slice(0, 1);
 };
 
 //list of random id songs
-router.get("/idTracks", (req, res, next) => {
+router.get("/playlist", async (req, res, next) => {
   try {
     spotifyApi.setAccessToken(req.user.token);
-    const songsData = spotifyApi.getMyTopTracks().then(function (data) {
-      let dataTracks = data.body.items;
-      let ids = dataTracks.map((a) => a.id);
-      let randomIds = sample(ids);
-      res.send(randomIds);
+    const topTracks = await spotifyApi.getMyTopTracks();
+    let tracks = topTracks.body.items;
+    let ids = tracks.map((a) => a.id);
+    let randomIds = sample(ids);
+    let genreOneObject = JSON.parse(req.query.genresList[0]);
+    // let genreTwoObject = JSON.parse(req.query.genresList[1]);
+    // let genres = `${genreOneObject.genre},${genreTwoObject.genre}`;
+    console.log("genres", genreOneObject);
+    const playlistRecomendation = await spotifyApi.getRecommendations({
+      seed_genres: genreOneObject.genre,
+      seed_tracks: randomIds.join(","),
+      seed_artists: "",
     });
+    res.send(playlistRecomendation);
   } catch (error) {
-    next(error);
-  }
-});
-
-//list of random id artists
-router.get("/idArtists", (req, res, next) => {
-  try {
-    spotifyApi.setAccessToken(req.user.token);
-    const songsData = spotifyApi.getMyTopTracks().then(function (data) {
-      let dataTracks = data.body.items;
-      let artists = dataTracks.map((a) => a.artists);
-      let listIds = [];
-      for (let i = 0; i < artists.length; i++) {
-        for (let j = 0; j < artists[i].length; j++) {
-          listIds.push(artists[i][j].id);
-        }
-      }
-      let randomIds = sample(listIds);
-      res.send(randomIds);
-    });
-  } catch (error) {
+    console.log(error);
     next(error);
   }
 });

@@ -5,9 +5,13 @@ const Login = () => {
     <div className="login-form">
       <h1 className="title">Welcome to Catch A Vibe </h1>
       <a href="/auth/spotify" className="button-two">
-        Login In
+        Login
       </a>
-      <img src="../../public/spotify.png" alt="" />
+      <img
+        className="logo"
+        src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg"
+        alt=""
+      />
     </div>
   );
 };
