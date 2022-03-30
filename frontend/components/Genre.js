@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { fetchUser } from "../redux/user";
 
-let count = 0;
 let list = [];
 class Genre extends React.Component {
   constructor(props) {
@@ -21,18 +20,10 @@ class Genre extends React.Component {
   }
 
   handleInput(evt) {
-    if (list.includes(evt.target.value)) {
-      return alert("You'd already chosen this genre");
-    } else {
-      if (count > 1) {
-        return alert("You can't choose more than 2 genres");
-      } else {
-        this.setState({ [evt.target.name]: evt.target.value });
-        list.push(evt.target.value);
-        count++;
-      }
-    }
+    this.setState({ [evt.target.name]: evt.target.value });
+    list.push(evt.target.value);
   }
+
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.addGenre({ ...this.state });
@@ -68,7 +59,7 @@ class Genre extends React.Component {
 
     return (
       <div className="main-content">
-        <h1 className="genre">Select genres up to 2 ({count})</h1>
+        <h1 className="genre">Select genres</h1>
         <form className="container3" onSubmit={handleSubmit}>
           {list.map((genre, index) => {
             return (
