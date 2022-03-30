@@ -45,6 +45,7 @@ const Footer = () => {
             <img className="footer-icon" src={miniIcon.icon} alt="" />
           </a>
         ))}
+        <p className="footer-title">Catch a Vibe</p>
       </div>
     </footer>
   );
