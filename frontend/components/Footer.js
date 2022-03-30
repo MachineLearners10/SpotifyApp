@@ -7,7 +7,24 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-icons">
-        <a href="https://github.com/MachineLearners10/SpotifyApp">
+        <a
+          href="https://www.spotify.com/us/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            className="footer-icon"
+            src={
+              "https://podcast.tcia.org/wp-content/uploads/2020/06/Spotify_Logo_icon_White.png"
+            }
+            alt=""
+          />
+        </a>
+        <a
+          href="https://github.com/MachineLearners10/SpotifyApp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             className="footer-icon"
             src={
@@ -16,7 +33,11 @@ const Footer = () => {
             alt=""
           />
         </a>
-        <a href={`https://www.facebook.com/sharer.php?u=${postUrl}`}>
+        <a
+          href={`https://www.facebook.com/sharer.php?u=${postUrl}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             className="footer-icon"
             src={
@@ -25,7 +46,11 @@ const Footer = () => {
             alt=""
           />
         </a>
-        <a href={`https://wa.me/?text=${postTitle} ${postUrl}`}>
+        <a
+          href={`https://wa.me/?text=${postTitle} ${postUrl}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             className="footer-icon"
             src={
@@ -36,6 +61,8 @@ const Footer = () => {
         </a>
         <a
           href={`https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <img
             className="footer-icon"

@@ -35,7 +35,11 @@ function About() {
             />
             <p>Averi Passmore</p>
             <div className="links">
-              <a href="https://github.com/averipassmore">
+              <a
+                href="https://github.com/averipassmore"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   className="github"
                   src={
@@ -43,7 +47,11 @@ function About() {
                   }
                 />
               </a>
-              <a href="https://github.com/averipassmore">
+              <a
+                href="https://github.com/averipassmore"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   className="linkedin"
                   src={"https://cdn-icons-png.flaticon.com/512/174/174857.png"}
@@ -61,7 +69,11 @@ function About() {
             />
             <p>Ferhan Syed</p>
             <div className="links">
-              <a href="https://github.com/hanfer10">
+              <a
+                href="https://github.com/hanfer10"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   className="github"
                   src={
@@ -69,7 +81,11 @@ function About() {
                   }
                 />
               </a>
-              <a href="https://github.com/hanfer10">
+              <a
+                href="https://github.com/hanfer10"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   className="linkedin"
                   src={"https://cdn-icons-png.flaticon.com/512/174/174857.png"}
@@ -87,7 +103,11 @@ function About() {
             />
             <p>Kathia Villavicencio</p>
             <div className="links">
-              <a href="https://github.com/kathia83">
+              <a
+                href="https://github.com/kathia83"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   className="github"
                   src={
@@ -95,7 +115,11 @@ function About() {
                   }
                 />
               </a>
-              <a href="https://www.linkedin.com/in/kathia-v-3863a047/">
+              <a
+                href="https://www.linkedin.com/in/kathia-v-3863a047/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   className="linkedin"
                   src={"https://cdn-icons-png.flaticon.com/512/174/174857.png"}
@@ -111,7 +135,11 @@ function About() {
             />
             <p>Oscar Rolf</p>
             <div className="links">
-              <a href="https://github.com/oscareng">
+              <a
+                href="https://github.com/oscareng"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   className="github"
                   src={
@@ -119,7 +147,11 @@ function About() {
                   }
                 />
               </a>
-              <a href="https://github.com/oscareng">
+              <a
+                href="https://github.com/oscareng"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   className="linkedin"
                   src={"https://cdn-icons-png.flaticon.com/512/174/174857.png"}

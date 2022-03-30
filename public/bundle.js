@@ -13163,12 +13163,16 @@ function About() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Averi Passmore"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "links"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://github.com/averipassmore"
+    href: "https://github.com/averipassmore",
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "github",
     src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://github.com/averipassmore"
+    href: "https://github.com/averipassmore",
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "linkedin",
     src: "https://cdn-icons-png.flaticon.com/512/174/174857.png"
@@ -13181,12 +13185,16 @@ function About() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Ferhan Syed"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "links"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://github.com/hanfer10"
+    href: "https://github.com/hanfer10",
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "github",
     src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://github.com/hanfer10"
+    href: "https://github.com/hanfer10",
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "linkedin",
     src: "https://cdn-icons-png.flaticon.com/512/174/174857.png"
@@ -13199,12 +13207,16 @@ function About() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Kathia Villavicencio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "links"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://github.com/kathia83"
+    href: "https://github.com/kathia83",
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "github",
     src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://www.linkedin.com/in/kathia-v-3863a047/"
+    href: "https://www.linkedin.com/in/kathia-v-3863a047/",
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "linkedin",
     src: "https://cdn-icons-png.flaticon.com/512/174/174857.png"
@@ -13217,12 +13229,16 @@ function About() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Oscar Rolf"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "links"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://github.com/oscareng"
+    href: "https://github.com/oscareng",
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "github",
     src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://github.com/oscareng"
+    href: "https://github.com/oscareng",
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "linkedin",
     src: "https://cdn-icons-png.flaticon.com/512/174/174857.png"
@@ -13255,25 +13271,41 @@ var Footer = function Footer() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer-icons"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://github.com/MachineLearners10/SpotifyApp"
+    href: "https://www.spotify.com/us/",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "footer-icon",
+    src: "https://podcast.tcia.org/wp-content/uploads/2020/06/Spotify_Logo_icon_White.png",
+    alt: ""
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://github.com/MachineLearners10/SpotifyApp",
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "footer-icon",
     src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn11Rru16VFClaKhYzoL9yGLIwOEaggMpa1Q&usqp=CAU",
     alt: ""
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://www.facebook.com/sharer.php?u=".concat(postUrl)
+    href: "https://www.facebook.com/sharer.php?u=".concat(postUrl),
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "footer-icon",
     src: "https://www.pinclipart.com/picdir/big/150-1504080_facebook-white-facebook-white-icon-png-2018-clipart.png",
     alt: ""
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://wa.me/?text=".concat(postTitle, " ").concat(postUrl)
+    href: "https://wa.me/?text=".concat(postTitle, " ").concat(postUrl),
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "footer-icon",
     src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvWvxa4GQ25xdva6Z8gHwcF1Y0QLtfMKnI9A&usqp=CAU",
     alt: ""
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://www.linkedin.com/shareArticle?url=".concat(postUrl, "&title=").concat(postTitle)
+    href: "https://www.linkedin.com/shareArticle?url=".concat(postUrl, "&title=").concat(postTitle),
+    target: "_blank",
+    rel: "noopener noreferrer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "footer-icon",
     src: "https://www.citypng.com/public/uploads/preview/hd-white-square-outline-linkedin-in-icon-symbol-png-31623972553hxk4l9ziuw.png",

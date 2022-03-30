@@ -363,6 +363,10 @@
   width: 30px;
   height: 30px;
 }
+.links a:hover {
+  transition: all 0.1s ease-in-out;
+  transform: scale(1.2);
+}
 .linkedin {
   object-fit: cover;
   width: 30px;
