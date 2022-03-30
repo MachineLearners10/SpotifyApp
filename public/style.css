@@ -21,7 +21,6 @@
   color: white;
   background: linear-gradient(rgb(91, 87, 115), rgb(22, 21, 21) 30%);
   overflow-y: overlay;
-  margin-top: 30px;
 }
 .playlist::-webkit-scrollbar {
   display: none;
