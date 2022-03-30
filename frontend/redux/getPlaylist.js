@@ -12,12 +12,12 @@ const _getPlaylist = (playlist) => ({
 export const getPlaylist = (genresList) => async (dispatch) => {
   try {
     const { data } = await axios.get("/api/recommendation/playlist", {
-      params: { genresList }
+      params: { genresList },
     });
-    console.log("data", data)
-    return dispatch(_getPlaylist(data));
+    const songs = data.body.tracks;
+    return dispatch(_getPlaylist(songs));
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
