@@ -161,6 +161,7 @@
   color: #1ed760;
   font-size: 60px;
   font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 0px;
 }
 
 .subtitle {
@@ -192,16 +193,12 @@
   background-color: #2941ab;
 }
 
-.login-form > img {
-  height: 200px;
-}
-
 .login-form > a {
   color: white;
   text-decoration: none;
   padding: 20px;
   border-radius: 99px;
-  font-weight: 800;
+  font-weight: 800px;
   font-size: 30px;
   background-color: black;
   font-family: Arial, Helvetica, sans-serif;
@@ -211,9 +208,9 @@
   transform: scale(1.2);
 }
 .logo {
-  width: 100px;
-  height: 60px;
-  padding-bottom: 60px;
+  width: 30vh;
+  height: 10vh;
+  padding-bottom: 100px;
 }
 /* helloWorld */
 .main-content {
@@ -507,4 +504,5 @@ nav > div {
 }
 body {
   margin-left: 0px;
+  margin-right: 0px;
 }
