@@ -18,6 +18,7 @@ function Player({ user, playlistTracks }) {
             initialVolume={0.5}
             token={user.token}
             uris={`${currentSong}`}
+            autoPlay={true}
           />
         ) : (
           <p> Loading </p>

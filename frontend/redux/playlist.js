@@ -54,7 +54,20 @@ export const fetchPlaylistThunk = () => async (dispatch) => {
   const { data } = await Axios.get("/api/songs/playlist");
   return dispatch(fetchPlaylist(data));
 };
-
+export const removeFromSaved = (song, songArr, index) => async (dispatch) => {
+  let arr = [];
+  arr.push(song);
+  const remove = Axios.get("/api/songs/unlike", { params: { song: arr } });
+  songArr[index] = false;
+  return dispatch(likedSongs(songArr));
+};
+export const addToSaved = (song, songArr, index) => async (dispatch) => {
+  let arr = [];
+  arr.push(song);
+  const like = Axios.get("/api/songs/like", { params: { song: arr } });
+  songArr[index] = true;
+  return dispatch(likedSongs(songArr));
+};
 export default function playlistReducer(state = initialState, action) {
   console.log(action);
   switch (action.type) {

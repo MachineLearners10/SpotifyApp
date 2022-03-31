@@ -4,7 +4,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
-import { setPlaying } from "../../redux/playlist.js";
+import {
+  setPlaying,
+  removeFromSaved,
+  addToSaved,
+} from "../../redux/playlist.js";
 function SongRow({ song, order, convertDuration, likedSongs }) {
   const dispatch = useDispatch();
   const [hover, setHover] = useState(false);
@@ -58,14 +62,16 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
           <FavoriteIcon
             className="favorited"
             onClick={() => {
-              console.log(`click`);
+              dispatch(
+                removeFromSaved(song.uri.slice(14), likedSongs, order - 1)
+              );
             }}
           />
         ) : (
           <FavoriteBorderIcon
             className="favorite"
             onClick={() => {
-              console.log(`click`);
+              dispatch(addToSaved(song.uri.slice(14), likedSongs, order - 1));
             }}
           />
         )}
