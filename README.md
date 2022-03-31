@@ -1,4 +1,5 @@
 CATCH A VIBE
+
 DISCLAIMER: Must have Spotify Premium account.
 
 Catch A Vibe is an app that makes you feel better. The inspiration behind came from our need to improve our mood through music during daily activities.
