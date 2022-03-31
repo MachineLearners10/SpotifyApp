@@ -21,7 +21,7 @@
   color: white;
   background: linear-gradient(rgb(91, 87, 115), rgb(22, 21, 21) 30%);
   overflow-y: overlay;
-  margin-top: 15px;
+  margin-top: 22px;
 }
 .playlist::-webkit-scrollbar {
   display: none;
@@ -324,17 +324,17 @@
   height: 30vh;
   width: 100vh;
   margin: 0px 0px 0px;
+  margin-bottom: auto;
 }
 .container4 {
   display: flex;
   flex-flow: wrap;
   justify-content: space-evenly;
-  align-content: space-around;
+  /* align-content: space-around; */
   gap: 10px 30px;
-  padding-top: 0px;
   height: 30vh;
-  width: 100vh;
-  margin: 0px 0px 0px;
+  width: 50vh;
+  margin: 80px 0px 0px;
 }
 
 /* About */
