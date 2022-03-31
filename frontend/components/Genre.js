@@ -75,7 +75,8 @@ class Genre extends React.Component {
               </div>
             );
           })}
-
+        </form>
+        <form className="container4">
           <Link to="/playlist">
             <button className="button-submit">Submit</button>
           </Link>

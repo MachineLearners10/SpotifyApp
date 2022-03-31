@@ -26,7 +26,16 @@ class Mood extends React.Component {
   }
 
   render() {
-    const list = ["happy", "chill", "sad", "work-out", "study", "sleep", "romance", "party", ];
+    const list = [
+      "happy",
+      "chill",
+      "sad",
+      "work-out",
+      "study",
+      "sleep",
+      "romance",
+      "party",
+    ];
     const { handleSubmit, handleInput } = this;
 
     return (
