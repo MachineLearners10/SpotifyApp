@@ -48,6 +48,7 @@
   flex-direction: row;
   border-radius: 5px;
   border: solid;
+  border-image: linear-gradient(to right, rgb(51, 0, 190), darkorchid) 1;
 }
 .songRow_left {
   align-items: center;
@@ -147,9 +148,6 @@
 .header_left {
   flex: 0.45;
   min-width: 70px;
-  background-color: white;
-  color: gray;
-  border-radius: 30px;
   padding: 10px;
   display: flex;
   align-items: center;

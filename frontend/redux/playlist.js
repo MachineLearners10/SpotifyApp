@@ -58,6 +58,8 @@ export const fetchPlaylistThunk = () => async (dispatch) => {
 };
 
 export const removeFromSaved = (song, songArr, index) => async (dispatch) => {
+  // if (songArr.indexOf(song)) {
+  // } go to that index and remove
   let arr = [];
   arr.push(song);
   const remove = Axios.get("/api/songs/unlike", { params: { song: arr } });
@@ -74,7 +76,13 @@ export const addToSaved = (song, songArr, index) => async (dispatch) => {
 };
 
 export const dispatchSelectSong = (queue, songId) => (dispatch) => {
-  queue.push(songId.slice(14));
+  const id = songId.slice(14);
+  const queueIdx = queue.indexOf(id);
+  if (queueIdx >= 0) {
+    queue.splice(queue.indexOf(queueIdx), 1);
+    return dispatch(selectSong(queue));
+  }
+  queue.push(id);
   return dispatch(selectSong(queue));
 };
 export default function playlistReducer(state = initialState, action) {

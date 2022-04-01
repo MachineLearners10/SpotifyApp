@@ -85,7 +85,7 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
             if (selected === "songRow_Active") {
               setSelected("songRow");
               dispatch(dispatchSelectSong(nextSongs, song.uri));
-            } else {
+            } else if (nextSongs.length <= 4) {
               setSelected("songRow_Active");
               dispatch(dispatchSelectSong(nextSongs, song.uri));
             }

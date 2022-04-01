@@ -8,12 +8,15 @@ const Header = () => {
 
   return (
     <div className="header">
-      <RefreshIcon
-        className="svg_icons"
-        onClick={() => {
-          dispatch(nextPlaylist(nextSongs));
-        }}
-      />
+      <div className="header_left">
+        <RefreshIcon
+          className="svg_icons"
+          onClick={() => {
+            dispatch(nextPlaylist(nextSongs));
+          }}
+        />{" "}
+        Remix Playlist!
+      </div>
     </div>
   );
 };

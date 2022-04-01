@@ -35,7 +35,6 @@ export const nextPlaylist = (seedTracks) => async (dispatch) => {
 };
 
 export default function getPlaylistReducer(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case GET_PLAYLIST:
       return {
