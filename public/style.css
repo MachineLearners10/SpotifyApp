@@ -268,28 +268,16 @@
   font-family: Arial, Helvetica, sans-serif;
   border: 2px solid #1ed760;
 }
-
-/* .button-style:focus {
-  background-color: black;
-  border: 2px solid black;
-  color: white;
-} */
-/* .button-style:visited {
-  background-color: black;
-  border: 2px solid black;
-  color: white;
-} */
-.button-style:hover {
+.button-style:hover,
+.button-style:focus {
+  transition: all 0.1s ease-in-out;
+  transform: scale(1.2);
   background-color: black;
   border: 2px solid black;
   color: white;
 }
-/* .button-style:active {
-  background-color: black;
-  border: 2px solid black;
-  color: white;
-} */
 .button-style.clicked {
+  transform: scale(1.2);
   background-color: black;
   border: 2px solid black;
   color: white;
@@ -304,6 +292,16 @@
   font-family: Arial, Helvetica, sans-serif;
   border: 2px solid black;
   margin-top: 0px;
+  transition: all 0.1s ease-in-out;
+}
+
+.button-submit:hover,
+.button-submit:focus {
+  transition: all 0.1s ease-in-out;
+  transform: scale(1.2);
+  border: 2px solid gray;
+  background-color: gray;
+  color: white;
 }
 .genre {
   align-items: center;

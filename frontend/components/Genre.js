@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { addGenre } from "../redux/getGenres";
 import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
 import { fetchUser } from "../redux/user";
 
 let list = [];
@@ -21,6 +20,7 @@ class Genre extends React.Component {
 
   handleInput(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
+    evt.target.classList = "button-style clicked";
     list.push(evt.target.value);
   }
 
@@ -68,10 +68,7 @@ class Genre extends React.Component {
                   onClick={handleInput}
                   name="genre"
                   value={genre}
-                  className={
-                    handleInput ? "button-style clicked" : "button-style"
-                  }
-                  //
+                  className="button-style"
                 >
                   {genre}
                 </button>
