@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const initialState = {};
+const initialState = { selected: [] };
 
 const FETCH_SONGS = "FETCH_SONGS";
 const FETCH_RECS = "FETCH_RECS";
@@ -8,6 +8,7 @@ const FETCH_PLAYLIST = "FETCH_PLAYLIST";
 const LIKED_SONGS = "LIKED_SONGS";
 const HOVER_SONG = "HOVER_SONG";
 const SET_PLAYING = "SET_PLAYING";
+const SELECT_SONG = "SELECT_SONG";
 const fetchRecs = (recs) => ({ type: FETCH_RECS, recs });
 
 const fetchSongs = (songs) => ({
@@ -23,7 +24,7 @@ const fetchPlaylist = (playlist) => ({
   type: FETCH_PLAYLIST,
   playlist,
 });
-
+const selectSong = (queue) => ({ type: SELECT_SONG, queue });
 export const setPlaying = (song) => ({
   type: SET_PLAYING,
   song,
@@ -50,10 +51,12 @@ export const dispatchLikedSongs = (songs) => async (dispatch) => {
   });
   return dispatch(likedSongs(data.body));
 };
+
 export const fetchPlaylistThunk = () => async (dispatch) => {
   const { data } = await Axios.get("/api/songs/playlist");
   return dispatch(fetchPlaylist(data));
 };
+
 export const removeFromSaved = (song, songArr, index) => async (dispatch) => {
   let arr = [];
   arr.push(song);
@@ -61,6 +64,7 @@ export const removeFromSaved = (song, songArr, index) => async (dispatch) => {
   songArr[index] = false;
   return dispatch(likedSongs(songArr));
 };
+
 export const addToSaved = (song, songArr, index) => async (dispatch) => {
   let arr = [];
   arr.push(song);
@@ -68,8 +72,12 @@ export const addToSaved = (song, songArr, index) => async (dispatch) => {
   songArr[index] = true;
   return dispatch(likedSongs(songArr));
 };
+
+export const dispatchSelectSong = (queue, songId) => (dispatch) => {
+  queue.push(songId.slice(14));
+  return dispatch(selectSong(queue));
+};
 export default function playlistReducer(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case FETCH_SONGS:
       return { ...state, songs: action.songs };
@@ -92,6 +100,9 @@ export default function playlistReducer(state = initialState, action) {
       return { ...state, hoveredSong: action.hoveredSong };
     case SET_PLAYING:
       return { ...state, playing: action.song };
+    case SELECT_SONG: {
+      return { ...state, selected: action.queue };
+    }
     default:
       return state;
   }

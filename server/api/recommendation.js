@@ -20,11 +20,11 @@ const sample = (items) => {
 router.get("/playlist", async (req, res, next) => {
   try {
     spotifyApi.setAccessToken(req.user.token);
-    const topTracks = await spotifyApi.getMyTopTracks();
-    let tracks = topTracks.body.items;
-    let ids = tracks.map((a) => a.id);
-    let randomIds = sample(ids);
-    console.log(req.query.genresList);
+    // const topTracks = await spotifyApi.getMyTopTracks();
+    // let tracks = topTracks.body.items;
+    // let ids = tracks.map((a) => a.id);
+    // let randomIds = sample(ids);
+    // console.log(req.query.genresList);
     const playlistRecomendation = await spotifyApi.getRecommendations({
       seed_genres: req.query.genresList,
       seed_tracks: "",
@@ -83,6 +83,27 @@ router.get("/playlist", async (req, res, next) => {
     //   seed_artists: "",
     //   limit: 50
     // });
+    res.send(playlistRecomendation);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});
+
+router.get("/nextplaylist", async (req, res, next) => {
+  try {
+    // spotifyApi.setAccessToken(req.user.token);
+    // const topTracks = await spotifyApi.getMyTopTracks();
+    // let tracks = topTracks.body.items;
+    // let ids = tracks.map((a) => a.id);
+    // let randomIds = sample(ids);
+    // console.log(req.query.genresList);
+    const playlistRecomendation = await spotifyApi.getRecommendations({
+      seed_genres: "",
+      seed_tracks: req.query.seedTracks,
+      seed_artists: "",
+      limit: 50,
+    });
     res.send(playlistRecomendation);
   } catch (error) {
     console.log(error);

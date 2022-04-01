@@ -8,17 +8,20 @@ import {
   setPlaying,
   removeFromSaved,
   addToSaved,
+  dispatchSelectSong,
 } from "../../redux/playlist.js";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 function SongRow({ song, order, convertDuration, likedSongs }) {
   const dispatch = useDispatch();
   const [hover, setHover] = useState(false);
-  // const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState("songRow");
+  const nextSongs = useSelector((state) => state.playlist.selected);
   const currentSong = useSelector((state) => state.playlist.playing);
   return likedSongs === undefined ? (
     <div>loading</div>
   ) : (
     <div
-      className="songRow"
+      className={`${selected}`}
       onMouseEnter={() => {
         setHover(true);
       }}
@@ -76,6 +79,18 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
           />
         )}
         <p className="duration">{convertDuration(song.duration_ms)}</p>
+        <AutoAwesomeIcon
+          className="svg_icons"
+          onClick={() => {
+            if (selected === "songRow_Active") {
+              setSelected("songRow");
+              dispatch(dispatchSelectSong(nextSongs, song.uri));
+            } else {
+              setSelected("songRow_Active");
+              dispatch(dispatchSelectSong(nextSongs, song.uri));
+            }
+          }}
+        />
       </div>
     </div>
   );

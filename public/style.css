@@ -11,7 +11,7 @@
   /* border: linear-gradient(rgb(94, 0, 200), rgba(0, 0, 0, 0)); */
   flex-direction: column;
   display: flex;
-  width: 100%;
+  width: 80%;
   height: 65vh;
   padding: 30px;
   /* padding: 30px;
@@ -21,7 +21,7 @@
   color: white;
   background: linear-gradient(rgb(91, 87, 115), rgb(22, 21, 21) 30%);
   overflow-y: overlay;
-  margin-top: 15px;
+  margin-top: 5%;
 }
 .playlist::-webkit-scrollbar {
   display: none;
@@ -36,6 +36,18 @@
   padding-bottom: 5px;
   flex-direction: row;
   border-radius: 5px;
+}
+.songRow_Active {
+  margin-left: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  flex-direction: row;
+  border-radius: 5px;
+  border: solid;
 }
 .songRow_left {
   align-items: center;
@@ -113,15 +125,18 @@
   display: flex;
   padding-right: 5px;
   padding-left: 25%;
+  margin-right: 5px;
 }
 .favorited {
   display: flex;
   padding-right: 5px;
   padding-left: 25%;
   color: rgb(30, 215, 96);
+  margin-right: 5px;
 }
 .duration {
   display: flex;
+  margin-right: 15px;
 }
 .header {
   display: flex;
