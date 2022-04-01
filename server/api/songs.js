@@ -53,4 +53,26 @@ router.get("/likedSongs", (req, res, next) => {
   });
 });
 
+router.get("/unlike", (req, res, next) => {
+  try {
+    spotifyApi.setAccessToken(req.user.token);
+    spotifyApi.removeFromMySavedTracks(req.query.song).then(function (data) {
+      res.send(data);
+    });
+  } catch (err) {
+    res.send(`failed to remove song!`);
+  }
+});
+
+router.get("/like", (req, res, next) => {
+  try {
+    spotifyApi.setAccessToken(req.user.token);
+    spotifyApi.addToMySavedTracks(req.query.song).then(function (data) {
+      res.send(data);
+    });
+  } catch (err) {
+    res.send(`failed to remove song!`);
+  }
+});
+
 module.exports = router;
