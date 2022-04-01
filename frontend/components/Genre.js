@@ -21,7 +21,7 @@ class Genre extends React.Component {
     evt.target.classList = "button-style clicked";
     function pageRedirect() {
       return window.location.replace(
-        `https://catch-a-vibe.herokuapp.com/genre`
+        `https://catch-a-vibe.herokuapp.com/playlist`
         //"http://localhost:8888/playlist"
       );
     }
