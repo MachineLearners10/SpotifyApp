@@ -25,6 +25,8 @@ router.get("/playlist", async (req, res, next) => {
     let ids = tracks.map((a) => a.id);
     let randomIds = sample(ids);
     console.log(req.query.genresList);
+    let genres = "";
+    if (!req.query.genresList) genres = req.query.genresList;
     const playlistRecomendation = await spotifyApi.getRecommendations({
       seed_genres: req.query.genresList,
       seed_tracks: randomIds.join(","),
@@ -51,6 +53,7 @@ router.get("/playlist", async (req, res, next) => {
         songCount++;
         console.log(song.id);
       }
+      if (songCount > 2) break;
     }
     console.log(traccs.slice(0, traccs.length - 1));
     if (traccs.length === 0) traccs = "";
@@ -80,6 +83,7 @@ router.get("/playlist", async (req, res, next) => {
         songCount++;
         console.log(song.id);
       }
+      if (songCount > 5) break;
     }
     console.log(traccs);
     const playlistRecomendationererer = await spotifyApi.getRecommendations({
