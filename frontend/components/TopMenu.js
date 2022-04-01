@@ -19,7 +19,10 @@ const TopMenu = () => {
               Home
             </Link>
             <Link to="/about">About</Link>
-            <a href="https://accounts.spotify.com/logout">Sign out</a>
+            <a href=
+            "http://localhost:8888"
+            //"https://catch-a-vibe.herokuapp.com"
+            >Sign out</a>
           </div>
         </nav>
         <hr />
