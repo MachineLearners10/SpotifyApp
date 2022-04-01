@@ -68,7 +68,10 @@ class Genre extends React.Component {
                   onClick={handleInput}
                   name="genre"
                   value={genre}
-                  className="button-style"
+                  className={
+                    handleInput ? "button-style clicked" : "button-style"
+                  }
+                  //
                 >
                   {genre}
                 </button>

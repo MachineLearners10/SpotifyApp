@@ -21,7 +21,7 @@
   color: white;
   background: linear-gradient(rgb(91, 87, 115), rgb(22, 21, 21) 30%);
   overflow-y: overlay;
-  margin-top: 22px;
+  margin-top: 17px;
 }
 .playlist::-webkit-scrollbar {
   display: none;
@@ -269,22 +269,27 @@
   border: 2px solid #1ed760;
 }
 
-.button-style:focus {
+/* .button-style:focus {
   background-color: black;
   border: 2px solid black;
   color: white;
-}
-.button-style:visited {
+} */
+/* .button-style:visited {
   background-color: black;
   border: 2px solid black;
   color: white;
-}
+} */
 .button-style:hover {
   background-color: black;
   border: 2px solid black;
   color: white;
 }
-.button-style:active {
+/* .button-style:active {
+  background-color: black;
+  border: 2px solid black;
+  color: white;
+} */
+.button-style.clicked {
   background-color: black;
   border: 2px solid black;
   color: white;
