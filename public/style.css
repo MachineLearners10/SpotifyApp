@@ -251,7 +251,7 @@
 .container2 {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   width: 80%;
   margin: auto;
@@ -267,6 +267,8 @@
   color: #2941ab;
   font-family: Arial, Helvetica, sans-serif;
   border: 2px solid #1ed760;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 .button-style:hover,
 .button-style:focus {
@@ -293,12 +295,13 @@
   border: 2px solid black;
   margin-top: 0px;
   transition: all 0.1s ease-in-out;
+  margin-top: 5px;
 }
 
 .button-submit:hover,
 .button-submit:focus {
   transition: all 0.1s ease-in-out;
-  transform: scale(1.2);
+  transform: scale(1.1);
   border: 2px solid gray;
   background-color: gray;
   color: white;
@@ -408,6 +411,7 @@
   object-fit: cover;
   width: 160px;
   height: 160px;
+  border-radius: 10%;
 }
 .links {
   display: flex;
@@ -503,7 +507,7 @@ nav > div {
   font-size: 20px;
   color: white;
   margin: 0px 30px 30px;
-  margin-left: 600px;
+  margin-left: 800px;
 }
 body {
   margin-left: 0px;
