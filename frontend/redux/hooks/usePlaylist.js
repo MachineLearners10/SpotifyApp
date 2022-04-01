@@ -10,7 +10,7 @@ export default function usePlaylist() {
   const likedSongs = useSelector((state) => state.playlist.likedSongs);
   useEffect(() => {
     dispatch(fetchUser());
-    dispatch(dispatchFetchSongs());
+    // dispatch(dispatchFetchSongs());
   }, []);
 
   function getLikedSongs(songs) {

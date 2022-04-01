@@ -14,7 +14,7 @@ class Mood extends React.Component {
     function pageRedirect() {
       return window.location.replace(
         `https://catch-a-vibe.herokuapp.com/genre`
-        //"http://localhost:8888/genre"
+        // "http://localhost:8888/genre"
       );
     }
     pageRedirect();
@@ -26,7 +26,16 @@ class Mood extends React.Component {
   }
 
   render() {
-    const list = ["happy", "chill", "sad", "work-out", "study", "sleep", "romance", "party", ];
+    const list = [
+      "happy",
+      "chill",
+      "sad",
+      "work-out",
+      "study",
+      "sleep",
+      "romance",
+      "party",
+    ];
     const { handleSubmit, handleInput } = this;
 
     return (

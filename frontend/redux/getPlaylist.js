@@ -1,4 +1,5 @@
 import axios from "axios";
+import { combineReducers } from "redux";
 
 const initialState = {};
 
@@ -13,6 +14,18 @@ export const getPlaylist = (genresList) => async (dispatch) => {
   try {
     const { data } = await axios.get("/api/recommendation/playlist", {
       params: { genresList },
+    });
+    const songs = data.body.tracks;
+    return dispatch(_getPlaylist(songs));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const nextPlaylist = (seedTracks) => async (dispatch) => {
+  try {
+    const { data } = await axios.get("/api/recommendation/nextplaylist", {
+      params: { seedTracks },
     });
     const songs = data.body.tracks;
     return dispatch(_getPlaylist(songs));
