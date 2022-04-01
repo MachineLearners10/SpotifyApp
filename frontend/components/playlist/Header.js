@@ -1,14 +1,22 @@
-import { Divider } from "@material-ui/core";
 import React, { useEffect } from "react";
-import SearchIcon from "@mui/icons-material/Search";
+import { useDispatch, useSelector } from "react-redux";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import { nextPlaylist } from "../../redux/getPlaylist";
 const Header = () => {
+  const dispatch = useDispatch();
+  const nextSongs = useSelector((state) => state.playlist.selected);
+
   return (
     <div className="header">
       <div className="header_left">
-        <SearchIcon className="searchbar" />
-        <input placeholder="Search for Artists, Songs, or Albums" type="text" />
+        <RefreshIcon
+          className="svg_icons"
+          onClick={() => {
+            dispatch(nextPlaylist(nextSongs));
+          }}
+        />{" "}
+        Remix Playlist!
       </div>
-      <div className="header_right"></div>
     </div>
   );
 };
