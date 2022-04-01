@@ -8,7 +8,7 @@ const Footer = () => {
     {
       id: 1,
       link: "https://www.spotify.com/us/",
-      icon: "https://podcast.tcia.org/wp-content/uploads/2020/06/Spotify_Logo_icon_White.png",
+      icon: "Spotify_Icon_CMYK_White.png",
     },
     {
       id: 2,
