@@ -12,7 +12,7 @@
   flex-direction: column;
   display: flex;
   width: 100%;
-  height: 65vh;
+  height: 55vh;
   padding: 30px;
   /* padding: 30px;
   color: rgb(0, 0, 0); */
@@ -508,4 +508,5 @@ nav > div {
 body {
   margin-left: 0px;
   margin-right: 0px;
+  margin-top: 0px;
 }
