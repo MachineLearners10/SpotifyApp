@@ -25,8 +25,7 @@ router.get("/playlist", async (req, res, next) => {
     let ids = tracks.map((a) => a.id);
     let randomIds = sample(ids);
     console.log(req.query.genresList);
-    let genres = "";
-    if (!req.query.genresList) genres = req.query.genresList;
+    console.log('1')
     const playlistRecomendation = await spotifyApi.getRecommendations({
       seed_genres: req.query.genresList,
       seed_tracks: randomIds.join(","),
@@ -40,9 +39,20 @@ router.get("/playlist", async (req, res, next) => {
     });
     let traccs = "";
     let songCount = 0;
+    console.log(trackAndArtistIds.length);
+    // if (!trackAndArtistIds.length) {
+    //   const playlistRecomendation = await spotifyApi.getRecommendations({
+    //     seed_genres: req.query.genresList.split(",")[1],
+    //     seed_tracks: "",
+    //     seed_artists: "",
+    //     limit: 50,
+    //   });
+    //   res.send(playlistRecomendation);
+    // } 
     for (let i = 0; i < trackAndArtistIds.length; i++) {
       let song = trackAndArtistIds[i];
       let artistInfo = await spotifyApi.getArtist(song.artist);
+      console.log('2')
       if (
         artistInfo.body.genres
           .join()
@@ -65,6 +75,7 @@ router.get("/playlist", async (req, res, next) => {
       seed_artists: "",
       limit: 50,
     });
+    console.log('3')
     trackAndArtistIds = playlistRecomendationerer.body.tracks.map((track) => {
       let songObj = { artist: track.artists[0].id, id: track.id };
       return songObj;
@@ -73,6 +84,7 @@ router.get("/playlist", async (req, res, next) => {
     for (let i = 0; i < trackAndArtistIds.length; i++) {
       let song = trackAndArtistIds[i];
       let artistInfo = await spotifyApi.getArtist(song.artist);
+      console.log('4')
       if (
         artistInfo.body.genres
           .join()
@@ -86,13 +98,24 @@ router.get("/playlist", async (req, res, next) => {
       if (songCount > 5) break;
     }
     console.log(traccs);
-    const playlistRecomendationererer = await spotifyApi.getRecommendations({
-      seed_genres: "",
-      seed_tracks: traccs,
-      seed_artists: "",
-      limit: 50,
-    });
-    res.send(playlistRecomendationererer);
+    if (traccs.length) {
+      const playlistRecomendationererer = await spotifyApi.getRecommendations({
+        seed_genres: "",
+        seed_tracks: traccs,
+        seed_artists: "",
+        limit: 50,
+      });
+      res.send(playlistRecomendationererer);
+    } else {
+      const playlistRecomendationererer = await spotifyApi.getRecommendations({
+        seed_genres: req.query.genresList.split(",")[1],
+        seed_tracks: "",
+        seed_artists: "",
+        limit: 50,
+      });
+      res.send(playlistRecomendationererer);
+    }
+    console.log('5')
   } catch (error) {
     console.log(error);
     next(error);
