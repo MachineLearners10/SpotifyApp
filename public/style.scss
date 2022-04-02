@@ -1,0 +1,507 @@
+/* @import "../frontend/components//Test.css"; */
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 3%;
+  }
+  .playlist {
+    /* border: linear-gradient(rgb(94, 0, 200), rgba(0, 0, 0, 0)); */
+    flex-direction: column;
+    display: flex;
+    width: 80%;
+    height: 65vh;
+    padding: 30px;
+    /* padding: 30px;
+    color: rgb(0, 0, 0); */
+    border-color: rgb(77, 0, 51);
+    border-width: 10px;
+    color: white;
+    background: linear-gradient(rgb(91, 87, 115), rgb(22, 21, 21) 30%);
+    overflow-y: overlay;
+    margin-top: 5%;
+  }
+  .playlist::-webkit-scrollbar {
+    display: none;
+  }
+  .songRow {
+    margin-left: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    flex-direction: row;
+    border-radius: 5px;
+  }
+  .songRow_Active {
+    margin-left: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    flex-direction: row;
+    border-radius: 5px;
+    border: solid;
+    border-image: linear-gradient(to right, rgb(51, 0, 190), darkorchid) 1;
+  }
+  .songRow_left {
+    align-items: center;
+    display: flex;
+    height: 75%;
+    width: 33%;
+  }
+  .songRow_order {
+    display: flex;
+    flex: 0 0 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    color: rgb(163, 163, 163);
+  }
+  .svg_icons {
+    display: flex;
+    flex: 0 0 10px;
+    padding-right: 8px;
+    transform: scale(2);
+    color: white;
+  }
+  .songRow:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.212);
+    opacity: 1;
+  }
+  
+  .songRow_info {
+    margin: left 20px;
+  }
+  
+  .songRow_info > h1.active {
+    font-size: 16px;
+    padding-left: 10px;
+    padding-top: 10px;
+    color: rgb(30, 215, 96);
+  }
+  
+  .songRow_info > h1.inactive {
+    font-size: 16px;
+    padding-left: 10px;
+    padding-top: 10px;
+  }
+  
+  .songRow_info > p {
+    font-size: 14px;
+    margin-top: 3px;
+    color: rgb(192, 192, 192);
+    padding-left: 10px;
+  }
+  .songRow_album {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .songRow_right {
+    align-items: center;
+    color: rgb(192, 192, 192);
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    height: 75%;
+  }
+  .albumName {
+    display: flex;
+    margin-left: 5%;
+    flex: 0 0 25%;
+  }
+  .mood {
+    display: flex;
+    flex: 0 0 29%;
+    justify-content: center;
+  }
+  .favorite {
+    display: flex;
+    padding-right: 5px;
+    padding-left: 25%;
+    margin-right: 5px;
+  }
+  .favorited {
+    display: flex;
+    padding-right: 5px;
+    padding-left: 25%;
+    color: rgb(30, 215, 96);
+    margin-right: 5px;
+  }
+  .duration {
+    display: flex;
+    margin-right: 15px;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .header_left {
+    flex: 0.45;
+    min-width: 70px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .header_left > input {
+    border: 0;
+    width: 100%;
+    outline: none;
+    padding: 30px;
+  }
+  .searchBar {
+    width: 10%;
+  }
+  .player {
+    margin-left: 50%;
+  }
+  .title {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    color: #1ed760;
+    font-size: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 0px;
+  }
+  
+  .subtitle {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+    margin-left: 200px;
+  }
+  
+  .container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: 80%;
+    margin: auto;
+    padding: 50px;
+    margin-left: 210px;
+    position: fixed;
+  }
+  /* Login */
+  .login-form {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    place-items: center;
+    position: fixed;
+    background-color: #2941ab;
+  }
+  
+  .login-form > a {
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 99px;
+    font-weight: 800px;
+    font-size: 30px;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .login-form a:hover {
+    transition: all 0.1s ease-in-out;
+    transform: scale(1.2);
+  }
+  .logo {
+    width: 30vh;
+    height: 10vh;
+    padding-bottom: 100px;
+  }
+  /* helloWorld */
+  .main-content {
+    display: flex;
+    background-color: #2941ab;
+    height: 100vh;
+    width: 100%;
+    place-items: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    margin-right: 300px;
+    padding-top: 0px;
+  }
+  .welcome {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    color: #1ed760;
+    font-size: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 0px;
+  }
+  .welcome-subtitle {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    color: white;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px 0px 0px;
+  }
+  .container2 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    padding: 30px;
+    border: 0px;
+    margin: 0px 0px 0px;
+  }
+  .button-style {
+    font-size: 20px;
+    padding: 10px 30px;
+    border-radius: 8px;
+    background-color: #1ed760;
+    color: #2941ab;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 2px solid #1ed760;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  .button-style:hover,
+  .button-style:focus {
+    transition: all 0.1s ease-in-out;
+    transform: scale(1.2);
+    background-color: #f230aa;
+    border: 2px solid #f230aa;
+    color: white;
+  }
+  .button-style.clicked {
+    transform: scale(1.2);
+    background-color: #f230aa;
+    border: 2px solid #f230aa;
+    color: white;
+  }
+  .genre {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 80px;
+    color: white;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px 0px 0px;
+  }
+  .container3 {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+    align-content: space-around;
+    gap: 10px 30px;
+    padding-top: 100px;
+    height: 30vh;
+    width: 100vh;
+    margin: 0px 0px 0px;
+    margin-bottom: auto;
+  }
+  .container4 {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+    gap: 10px 30px;
+    height: 30vh;
+    width: 50vh;
+    margin: 80px 0px 0px;
+  }
+  
+  /* About */
+  
+  .about-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .about-title {
+    padding-top: 80px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 60px;
+    font-weight: bold;
+    color: #2941ab;
+    margin: 30px;
+  }
+  .about-subtitle {
+    padding-top: 0px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    color: black;
+    margin: 50px 50px;
+  }
+  .color_image {
+    padding-top: 0px;
+    width: 100%;
+    height: 500px;
+    padding-bottom: 0px;
+  }
+  
+  .about-detail {
+    padding-top: 0px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    font-size: 20px;
+    line-height: 1.5em;
+    margin: 25px 25px;
+    margin-left: 250px;
+    margin-right: 250px;
+  }
+  
+  .about-photo-gallery {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: space-around;
+    padding-bottom: 100px;
+    margin-left: 250px;
+    margin-right: 250px;
+  }
+  
+  .sub_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .sub_container > p {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: black;
+  }
+  .about_team_member_picture {
+    object-fit: cover;
+    width: 160px;
+    height: 160px;
+    border-radius: 10%;
+  }
+  .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-evenly;
+  }
+  .github {
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+  }
+  .links a:hover {
+    transition: all 0.1s ease-in-out;
+    transform: scale(1.2);
+  }
+  .linkedin {
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+  }
+  
+  /* Top Menu */
+  nav {
+    position: fixed;
+    z-index: 1;
+    background-color: black;
+    width: 100%;
+    padding: 0px 30px;
+    top: 0;
+    display: block;
+  }
+  
+  nav a {
+    display: inline-block;
+    margin: 1em;
+    padding-top: 10px;
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: white;
+  }
+  a:visited {
+    text-decoration: none;
+    color: white;
+  }
+  
+  nav a:hover {
+    transition: all 0.1s ease-in-out;
+    transform: scale(1.2);
+  }
+  
+  nav > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-left: 50px;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    height: 4rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    display: block;
+  }
+  
+  .footer-icons {
+    padding-top: 20px;
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .footer-icon {
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+    margin: 0px 30px 30px;
+  }
+  .footer a:hover {
+    transition: all 0.1s ease-in-out;
+    transform: scale(1.2);
+  }
+  .footer-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: white;
+    margin: 0px 30px 30px;
+    margin-left: 600px;
+  }
+  body {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+  }
+  
