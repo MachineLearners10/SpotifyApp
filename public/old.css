@@ -1,11 +1,4 @@
 /* @import "../frontend/components//Test.css"; */
-
-$blue: #2941ab;
-$green:#1ed760;
-$pink: #f230aa;
-$black:#000000;
-$white: #ffffff;
-
 .page {
     display: flex;
     flex-direction: column;
@@ -25,7 +18,7 @@ $white: #ffffff;
     color: rgb(0, 0, 0); */
     border-color: rgb(77, 0, 51);
     border-width: 10px;
-    color: $white;
+    color: white;
     background: linear-gradient(rgb(91, 87, 115), rgb(22, 21, 21) 30%);
     overflow-y: overlay;
     margin-top: 5%;
@@ -75,7 +68,7 @@ $white: #ffffff;
     flex: 0 0 10px;
     padding-right: 8px;
     transform: scale(2);
-    color: $white;
+    color: white;
   }
   .songRow:hover {
     cursor: pointer;
@@ -172,16 +165,13 @@ $white: #ffffff;
   .player {
     margin-left: 50%;
   }
-  
   .title {
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
     padding: 50px;
-    // color: $green;
-    color: $blue;
+    color: #1ed760;
     font-size: 60px;
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 0px;
@@ -213,19 +203,17 @@ $white: #ffffff;
     width: 100%;
     place-items: center;
     position: fixed;
-    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
-            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
-            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+    background-color: #2941ab;
   }
   
   .login-form > a {
-    color: $white;
+    color: white;
     text-decoration: none;
     padding: 20px;
     border-radius: 99px;
     font-weight: 800px;
     font-size: 30px;
-    background-color: $black;
+    background-color: black;
     font-family: Arial, Helvetica, sans-serif;
   }
   .login-form a:hover {
@@ -240,9 +228,7 @@ $white: #ffffff;
   /* helloWorld */
   .main-content {
     display: flex;
-    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
-    linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
-    linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+    background-color: #2941ab;
     height: 100vh;
     width: 100%;
     place-items: center;
@@ -259,8 +245,7 @@ $white: #ffffff;
     flex-direction: column;
     justify-content: center;
     padding: 30px;
-    // color: $green;
-    color: $blue;
+    color: #1ed760;
     font-size: 60px;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 0px;
@@ -271,7 +256,7 @@ $white: #ffffff;
     flex-direction: column;
     justify-content: center;
     padding: 5px;
-    color: $white;
+    color: white;
     font-size: 40px;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px 0px 0px;
@@ -291,28 +276,26 @@ $white: #ffffff;
     font-size: 20px;
     padding: 10px 30px;
     border-radius: 8px;
-    background-color: $blue;
-    color: $green;
+    background-color: #1ed760;
+    color: #2941ab;
     font-family: Arial, Helvetica, sans-serif;
-    border: 2px solid $blue;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    border: 2px solid #1ed760;
+    margin-top: 6px;
+    margin-bottom: 6px;
   }
   .button-style:hover,
   .button-style:focus {
     transition: all 0.1s ease-in-out;
     transform: scale(1.2);
-    background-color: $pink;
-    border: 2px solid $pink;
-    color: $white;
-    margin-left: 8px;
-    margin-right:8px;
+    background-color: #f230aa;
+    border: 2px solid #f230aa;
+    color: white;
   }
   .button-style.clicked {
     transform: scale(1.2);
-    background-color: $pink;
-    border: 2px solid $pink;
-    color: $white;
+    background-color: #f230aa;
+    border: 2px solid #f230aa;
+    color: white;
   }
   .genre {
     align-items: center;
@@ -320,7 +303,7 @@ $white: #ffffff;
     flex-direction: column;
     justify-content: center;
     padding-top: 80px;
-    color: $white;
+    color: white;
     font-size: 40px;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px 0px 0px;
@@ -331,7 +314,7 @@ $white: #ffffff;
     justify-content: space-evenly;
     align-content: space-around;
     gap: 10px 30px;
-    padding-top: 150px;
+    padding-top: 100px;
     height: 30vh;
     width: 100vh;
     margin: 0px 0px 0px;
@@ -360,7 +343,7 @@ $white: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 60px;
     font-weight: bold;
-    color: $blue;
+    color: #2941ab;
     margin: 30px;
   }
   .about-subtitle {
@@ -369,7 +352,7 @@ $white: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 32px;
     font-weight: bold;
-    color: $black;
+    color: black;
     margin: 50px 50px;
   }
   .color_image {
@@ -383,7 +366,7 @@ $white: #ffffff;
     padding-top: 0px;
     text-align: left;
     font-family: Arial, Helvetica, sans-serif;
-    color: $black;
+    color: black;
     font-size: 20px;
     line-height: 1.5em;
     margin: 25px 25px;
@@ -412,7 +395,7 @@ $white: #ffffff;
   .sub_container > p {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    color: $black;
+    color: black;
   }
   .about_team_member_picture {
     object-fit: cover;
@@ -445,7 +428,7 @@ $white: #ffffff;
   nav {
     position: fixed;
     z-index: 1;
-    background-color: $black;
+    background-color: black;
     width: 100%;
     padding: 0px 30px;
     top: 0;
@@ -459,11 +442,11 @@ $white: #ffffff;
     font-size: 1.2rem;
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
-    color: $white;
+    color: white;
   }
   a:visited {
     text-decoration: none;
-    color: $white;
+    color: white;
   }
   
   nav a:hover {
@@ -480,9 +463,9 @@ $white: #ffffff;
   
   /* Footer */
   .footer {
-    background-color: $black;
+    background-color: black;
     font-family: Arial, Helvetica, sans-serif;
-    color: $white;
+    color: white;
     height: 4rem;
     position: fixed;
     left: 0;
@@ -512,7 +495,7 @@ $white: #ffffff;
   .footer-title {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
-    color: $white;
+    color: white;
     margin: 0px 30px 30px;
     margin-left: 600px;
   }
@@ -521,4 +504,3 @@ $white: #ffffff;
     margin-right: 0px;
     margin-top: 0px;
   }
-  
