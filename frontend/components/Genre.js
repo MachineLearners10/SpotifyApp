@@ -1,11 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addGenre } from "../redux/getGenres";
-import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
 import { fetchUser } from "../redux/user";
 
-let list = [];
 class Genre extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +18,14 @@ class Genre extends React.Component {
 
   handleInput(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
-    list.push(evt.target.value);
+    evt.target.classList = "button-style clicked";
+    function pageRedirect() {
+      return window.location.replace(
+        `https://catch-a-vibe.herokuapp.com/playlist`
+        // "http://localhost:8888/playlist"
+      );
+    }
+    pageRedirect();
   }
 
   handleSubmit(evt) {
@@ -59,26 +63,23 @@ class Genre extends React.Component {
 
     return (
       <div className="main-content">
-        <h1 className="genre">Select genres</h1>
+        <h1 className="genre">Select a genre</h1>
         <form className="container3" onSubmit={handleSubmit}>
           {list.map((genre, index) => {
             return (
               <div key={index}>
                 <button
-                  onClick={handleInput}
-                  name="genre"
-                  value={genre}
+                  type="submit"
                   className="button-style"
+                  onClick={handleInput}
+                  value={genre}
+                  name="genre"
                 >
                   {genre}
                 </button>
               </div>
             );
           })}
-
-          <Link to="/playlist">
-            <button className="button-submit">Submit</button>
-          </Link>
         </form>
       </div>
     );

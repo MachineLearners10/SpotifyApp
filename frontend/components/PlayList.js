@@ -13,6 +13,7 @@ function PlayList() {
     dispatch(getPlaylist(genres[0].genre + "," + genres[1].genre));
   }, []);
   const playlistTracks = useSelector((state) => state.getPlaylist);
+  // console.log(fetchPlaylist());
 
   return (
     <div>
