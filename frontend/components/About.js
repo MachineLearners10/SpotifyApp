@@ -36,18 +36,17 @@ function About() {
     <div className="about_container">
       {/* First container */}
       <div>
-        <h4 className="about-title">Catch A Vibe</h4>
+        <h4 className="about-title">Free Swan</h4>
         <img className="color_image " src={"image1.jpg"} alt="" />
         <h4 className="about-subtitle">About Us</h4>
         <p className="about-detail">
-          <strong>Catch A Vibe</strong> is an App that makes you feel better.
+          <strong></strong> 
           The inspiration behind the app came from our need to feel happy or
-          chill during the day while working, working out, cooking or any daily
+          chill during the day while working, working out, cooking, or any daily
           activity.
         </p>
         <p className="about-detail">
-          We love music and we hope people could enjoy the app. For any
-          questions please contact us through our Linkedin account.
+          We love music and we hope people could enjoy the app. Found a bug? Please contact us through Linkedin!
         </p>
         <p className="about-detail">We look forward to hearing from you!</p>
       </div>
