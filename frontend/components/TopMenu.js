@@ -11,7 +11,7 @@ const TopMenu = () => {
         <nav>
           <div>
             <Link
-              to="/helloWorld"
+              to="/home"
               onClick={() => {
                 localStorage.clear();
               }}
