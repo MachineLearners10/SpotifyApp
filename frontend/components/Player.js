@@ -19,6 +19,7 @@ function Player({ user, playlistTracks }) {
             token={user.token}
             uris={`${currentSong}`}
             autoPlay={true}
+            //offset
           />
         ) : (
           <p> Loading </p>
