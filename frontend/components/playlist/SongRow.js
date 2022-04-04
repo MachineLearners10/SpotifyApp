@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
+import {
+  setPlaying,
+  removeFromSaved,
+  addToSaved,
+  dispatchSelectSong,
+} from "../../redux/playlist.js";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 function SongRow({ song, order, convertDuration, likedSongs }) {
+  const dispatch = useDispatch();
   const [hover, setHover] = useState(false);
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState("songRow");
+  const nextSongs = useSelector((state) => state.playlist.selected);
+  const currentSong = useSelector((state) => state.playlist.playing);
   return likedSongs === undefined ? (
     <div>loading</div>
   ) : (
     <div
-      className="songRow"
+      className={`${selected}`}
       onMouseEnter={() => {
         setHover(true);
       }}
@@ -21,11 +32,15 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
       <div
         className="songRow_left"
         onClick={() => {
-          setSelected(!selected);
+          if (currentSong === song.uri) {
+            dispatch(setPlaying(""));
+          } else {
+            dispatch(setPlaying(song.uri));
+          }
         }}
       >
         {hover ? (
-          selected ? (
+          currentSong === song.uri ? (
             <PauseIcon className="svg_icons" />
           ) : (
             <PlayArrowIcon className="svg_icons" />
@@ -35,7 +50,7 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
         )}
         <img className="songRow_album" src={song.album.images[0].url} alt="" />
         <div className="songRow_info">
-          {selected ? (
+          {currentSong === song.uri ? (
             <h1 className="active">{song.name}</h1>
           ) : (
             <h1 className="inactive">{song.name}</h1>
@@ -50,18 +65,32 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
           <FavoriteIcon
             className="favorited"
             onClick={() => {
-              console.log(`click`);
+              dispatch(
+                removeFromSaved(song.uri.slice(14), likedSongs, order - 1)
+              );
             }}
           />
         ) : (
           <FavoriteBorderIcon
             className="favorite"
             onClick={() => {
-              console.log(`click`);
+              dispatch(addToSaved(song.uri.slice(14), likedSongs, order - 1));
             }}
           />
         )}
         <p className="duration">{convertDuration(song.duration_ms)}</p>
+        <AutoAwesomeIcon
+          className="svg_icons"
+          onClick={() => {
+            if (selected === "songRow_Active") {
+              setSelected("songRow");
+              dispatch(dispatchSelectSong(nextSongs, song.uri));
+            } else if (nextSongs.length <= 4) {
+              setSelected("songRow_Active");
+              dispatch(dispatchSelectSong(nextSongs, song.uri));
+            }
+          }}
+        />
       </div>
     </div>
   );

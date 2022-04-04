@@ -11,8 +11,8 @@
   /* border: linear-gradient(rgb(94, 0, 200), rgba(0, 0, 0, 0)); */
   flex-direction: column;
   display: flex;
-  width: 100%;
-  height: 55vh;
+  width: 80%;
+  height: 65vh;
   padding: 30px;
   /* padding: 30px;
   color: rgb(0, 0, 0); */
@@ -21,7 +21,7 @@
   color: white;
   background: linear-gradient(rgb(91, 87, 115), rgb(22, 21, 21) 30%);
   overflow-y: overlay;
-  margin-top: 17px;
+  margin-top: 5%;
 }
 .playlist::-webkit-scrollbar {
   display: none;
@@ -36,6 +36,19 @@
   padding-bottom: 5px;
   flex-direction: row;
   border-radius: 5px;
+}
+.songRow_Active {
+  margin-left: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  flex-direction: row;
+  border-radius: 5px;
+  border: solid;
+  border-image: linear-gradient(to right, rgb(51, 0, 190), darkorchid) 1;
 }
 .songRow_left {
   align-items: center;
@@ -113,15 +126,18 @@
   display: flex;
   padding-right: 5px;
   padding-left: 25%;
+  margin-right: 5px;
 }
 .favorited {
   display: flex;
   padding-right: 5px;
   padding-left: 25%;
   color: rgb(30, 215, 96);
+  margin-right: 5px;
 }
 .duration {
   display: flex;
+  margin-right: 15px;
 }
 .header {
   display: flex;
@@ -132,9 +148,6 @@
 .header_left {
   flex: 0.45;
   min-width: 70px;
-  background-color: white;
-  color: gray;
-  border-radius: 30px;
   padding: 10px;
   display: flex;
   align-items: center;
