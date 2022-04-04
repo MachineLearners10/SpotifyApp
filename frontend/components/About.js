@@ -36,11 +36,11 @@ function About() {
     <div className="about_container">
       {/* First container */}
       <div>
-        <h4 className="about-title">Trouvaille</h4>
+        <h4 className="about-title">Free Swan</h4>
         <img className="color_image " src={"image1.jpg"} alt="" />
         <h4 className="about-subtitle">About Us</h4>
         <p className="about-detail">
-          <strong>Trouville:</strong> a lucky find.
+          <strong></strong> 
           The inspiration behind the app came from our need to feel happy or
           chill during the day while working, working out, cooking, or any daily
           activity.
