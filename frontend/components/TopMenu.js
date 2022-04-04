@@ -21,7 +21,7 @@ const TopMenu = () => {
             <Link to="/about">About</Link>
             <a
               href="http://localhost:8888"
-              //"https://catch-a-vibe.herokuapp.com"
+              //"https://freeswan.herokuapp.com"
             >
               Sign out
             </a>

@@ -10,7 +10,7 @@ const App = () => {
       {performance.navigation.type === performance.navigation.TYPE_RELOAD &&
         window.location.replace(
           "http://localhost:8888"
-          //"https://catch-a-vibe.herokuapp.com"
+          //"https://freeswan.herokuapp.com"
         )}
       <MainRoutes />
     </div>
