@@ -60,7 +60,6 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
       </div>
       <div className="songRow_right">
         <p className="albumName">{song.album.name}</p>
-        <p className="mood">chill</p>
         {likedSongs[order - 1] ? (
           <FavoriteIcon
             className="favorited"
