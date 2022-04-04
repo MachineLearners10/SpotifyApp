@@ -1,4 +1,5 @@
 import React from "react";
+import '../public/style.scss'
 import MainRoutes from "./components/MainRoutes";
 import TopMenu from "./components/TopMenu";
 import Footer from "./components/Footer";
