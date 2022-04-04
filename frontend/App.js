@@ -7,8 +7,8 @@ const App = () => {
     <div history={history}>
       {performance.navigation.type === performance.navigation.TYPE_RELOAD &&
         window.location.replace(
-          "http://localhost:8888"
-          //"https://freeswan.herokuapp.com"
+          //"http://localhost:8888"
+          "https://freeswan.herokuapp.com"
         )}
       <MainRoutes />
     </div>
