@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const initialState = { selected: [] };
+const initialState = { selected: [], toggle: true };
 
 const FETCH_SONGS = "FETCH_SONGS";
 const FETCH_RECS = "FETCH_RECS";
@@ -9,13 +9,14 @@ const LIKED_SONGS = "LIKED_SONGS";
 const HOVER_SONG = "HOVER_SONG";
 const SET_PLAYING = "SET_PLAYING";
 const SELECT_SONG = "SELECT_SONG";
+const TOGGLE_PLAYLIST = "TOGGLE_PLAYLIST";
 const fetchRecs = (recs) => ({ type: FETCH_RECS, recs });
 
 const fetchSongs = (songs) => ({
   type: FETCH_SONGS,
   songs,
 });
-
+export const togglePlaylist = (toggle) => ({ type: TOGGLE_PLAYLIST, toggle });
 const likedSongs = (likedSongs) => ({
   type: LIKED_SONGS,
   likedSongs,
@@ -44,7 +45,10 @@ export const dispatchFetchSongs = () => async (dispatch) => {
   const { data } = await Axios.get("/api/songs/topTracks");
   return dispatch(fetchSongs(data));
 };
-
+// export const dispatchTogglePlaylist = () => (dispatch) => {
+//   let playing = false;
+//   return dispatch(togglePlaylist(false));
+// };
 export const dispatchLikedSongs = (songs) => async (dispatch) => {
   const { data } = await Axios.get("/api/songs/likedSongs", {
     params: { songs },
@@ -110,6 +114,9 @@ export default function playlistReducer(state = initialState, action) {
       return { ...state, playing: action.song };
     case SELECT_SONG: {
       return { ...state, selected: action.queue };
+    }
+    case TOGGLE_PLAYLIST: {
+      return { ...state, toggle: action.toggle };
     }
     default:
       return state;

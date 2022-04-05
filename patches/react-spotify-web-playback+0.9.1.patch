@@ -1,0 +1,42 @@
+diff --git a/node_modules/react-spotify-web-playback/src/index.tsx b/node_modules/react-spotify-web-playback/src/index.tsx
+index 0593ed1..a502218 100644
+--- a/node_modules/react-spotify-web-playback/src/index.tsx
++++ b/node_modules/react-spotify-web-playback/src/index.tsx
+@@ -48,6 +48,7 @@ import {
+   STATUS,
+   TYPE,
+   validateURI,
++  isEqualNumber
+ } from './utils';
+ 
+ class SpotifyWebPlayer extends React.PureComponent<Props, State> {
+@@ -183,9 +184,9 @@ class SpotifyWebPlayer extends React.PureComponent<Props, State> {
+       ? !isEqualArray(previousProps.uris, uris)
+       : previousProps.uris !== uris;
+     const playOptions = this.getPlayOptions(uris);
+-
++    const changedOffset = Number.isInteger(offset) ? !isEqualNumber(previousProps.offset, offset) : previousProps.offset !== offset
+     const canPlay = !!currentDeviceId && !!(playOptions.context_uri || playOptions.uris);
+-    const shouldPlay = (changedURIs && isPlaying) || !!(isReady && (autoPlay || playProp));
++    const shouldPlay = changedOffset || !!(isReady && (autoPlay || playProp));
+ 
+     if (canPlay && shouldPlay) {
+       await play(token, { deviceId: currentDeviceId, offset, ...playOptions });
+diff --git a/node_modules/react-spotify-web-playback/src/utils.ts b/node_modules/react-spotify-web-playback/src/utils.ts
+index e9646e3..af8339b 100644
+--- a/node_modules/react-spotify-web-playback/src/utils.ts
++++ b/node_modules/react-spotify-web-playback/src/utils.ts
+@@ -51,6 +51,13 @@ export function getSpotifyURIType(uri: string): string {
+   return type;
+ }
+ 
++export function isEqualNumber(a?: any, b?: any){
++if (a === b){
++  return true
++} else if (a !== b || !Number.isInteger(a) || !Number.isInteger(b)){
++  return false
++}
++}
+ export function isEqualArray(A?: any, B?: any) {
+   if (!Array.isArray(A) || !Array.isArray(B) || A.length !== B.length) {
+     return false;
