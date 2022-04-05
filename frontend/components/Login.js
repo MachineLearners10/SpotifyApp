@@ -3,7 +3,7 @@ import React from "react";
 const Login = () => {
   return (
     <div className="login-form">
-      <h1 className="title">Welcome to Free Swan</h1>
+      <h1 className="title">Free Swan</h1>
       <a href="/auth/spotify" className="button-two">
         Login
       </a>

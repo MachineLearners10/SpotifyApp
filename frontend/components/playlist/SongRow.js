@@ -9,6 +9,7 @@ import {
   removeFromSaved,
   addToSaved,
   dispatchSelectSong,
+  togglePlaylist,
 } from "../../redux/playlist.js";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 function SongRow({ song, order, convertDuration, likedSongs }) {
@@ -17,6 +18,8 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
   const [selected, setSelected] = useState("songRow");
   const nextSongs = useSelector((state) => state.playlist.selected);
   const currentSong = useSelector((state) => state.playlist.playing);
+  const toggle = useSelector((state) => state.playlist.toggle);
+  const selectedSong = useSelector((state) => state.playlist.selected);
   return likedSongs === undefined ? (
     <div>loading</div>
   ) : (
@@ -33,14 +36,14 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
         className="songRow_left"
         onClick={() => {
           if (currentSong === song.uri) {
-            dispatch(setPlaying(""));
-          } else {
+            dispatch(togglePlaylist(!toggle));
+          } else if (currentSong !== song.uri) {
             dispatch(setPlaying(song.uri));
           }
         }}
       >
         {hover ? (
-          currentSong === song.uri ? (
+          currentSong === song.uri && toggle ? (
             <PauseIcon className="svg_icons" />
           ) : (
             <PlayArrowIcon className="svg_icons" />
@@ -48,7 +51,15 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
         ) : (
           <p className="songRow_order">{order < 10 ? `0${order}` : order}</p>
         )}
-        <img className="songRow_album" src={song.album.images[0].url} alt="" />
+        <img
+          className="songRow_album"
+          src={
+            song.album.images.length
+              ? song.album.images[0].url
+              : "https://robohash.org/bobby"
+          }
+          alt=""
+        />
         <div className="songRow_info">
           {currentSong === song.uri ? (
             <h1 className="active">{song.name}</h1>
@@ -60,6 +71,7 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
       </div>
       <div className="songRow_right">
         <p className="albumName">{song.album.name}</p>
+        <p className="mood"></p>
         {likedSongs[order - 1] ? (
           <FavoriteIcon
             className="favorited"

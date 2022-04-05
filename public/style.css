@@ -7,6 +7,41 @@
   height: 100%;
   margin-top: 3%;
 }
+.background0 {
+  background-color: white;
+}
+.background1 {
+  background-image: url("https://preview.redd.it/0w656gh9ixs61.png?width=960&crop=smart&auto=webp&s=80fa413c76e3da55a1c7f4ea08ce09e0a62ff8fe");
+}
+.background2 {
+  background-image: url("https://preview.redd.it/q8aw8rul6rr81.jpg?width=960&crop=smart&auto=webp&s=bf4502c15cf8fd062ceb3091775532c6fc604b1b");
+}
+.background3 {
+  background-image: url("https://preview.redd.it/ekgrmpbs4th81.png?width=960&crop=smart&auto=webp&s=9633ce8d2906001aa3f4fe54d1d5ed6b6563be48");
+}
+.background4 {
+  background-image: url("https://preview.redd.it/bbflzw8lmfoz.png?width=960&crop=smart&auto=webp&s=f08b7ea227587775e0aa7ec83a0b26dcb3ca7fe5");
+}
+.background5 {
+  background-image: url("https://external-preview.redd.it/0dJvbojhmHQbygHDIh0FI2RNri3Z2WqwE04nmsiAqc8.jpg?width=960&crop=smart&auto=webp&s=b08012bcc80477a74e533aca7088c91a01992183");
+}
+.background6 {
+  background-image: url("https://preview.redd.it/q4t9eu0411k81.jpg?width=640&crop=smart&auto=webp&s=72fe4a63d0ea97b4dd064be3dfd3a5b17e42a2f6");
+}
+.background7 {
+  background-image: url("https://preview.redd.it/v88x9aawrkh81.png?width=640&crop=smart&auto=webp&s=be0cb06f0ccbfbd9574c194243d0ae49e20b5e63");
+}
+
+.background8 {
+  background-image: url("https://preview.redd.it/ofas72yn1kt01.jpg?width=960&crop=smart&auto=webp&s=ca55b28215d1e74c099e509765c00a996df90221");
+}
+.background9 {
+  background-image: url("https://preview.redd.it/owf4fzify7by.jpg?width=960&crop=smart&auto=webp&s=ed7ebbabc474c3591b292c262798deb6c47a0d08");
+}
+.background10 {
+  background-image: url("https://preview.redd.it/59bsn5hgnojy.jpg?width=960&crop=smart&auto=webp&s=23bcf37ecc3cd0c3bcf36205de3ae6ede2443ec0");
+}
+
 .playlist {
   /* border: linear-gradient(rgb(94, 0, 200), rgba(0, 0, 0, 0)); */
   flex-direction: column;
@@ -21,7 +56,8 @@
   color: white;
   background: linear-gradient(rgb(91, 87, 115), rgb(22, 21, 21) 30%);
   overflow-y: overlay;
-  margin-top: 5%;
+  margin-top: 7%;
+  border-radius: 25px;
 }
 .playlist::-webkit-scrollbar {
   display: none;
@@ -69,6 +105,9 @@
   padding-right: 8px;
   transform: scale(2);
   color: white;
+}
+.svg_icons1 {
+  transform: scale(0.7);
 }
 .songRow:hover {
   cursor: pointer;
@@ -143,8 +182,16 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
+  align-items: center;
+  flex-direction: row;
 }
-
+.header_right {
+  min-width: 70px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-left: 80%;
+}
 .header_left {
   flex: 0.45;
   min-width: 70px;
@@ -172,7 +219,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 50px;
-  color: #2941ab;
+  color: #000000;
   font-size: 60px;
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 0px;
