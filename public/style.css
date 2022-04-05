@@ -212,13 +212,14 @@
 .player {
   margin-left: 50%;
 }
+
 .title {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 50px;
-  color: #1ed760;
+  color: #2941ab;
   font-size: 60px;
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 0px;
@@ -250,7 +251,13 @@
   width: 100%;
   place-items: center;
   position: fixed;
-  background-color: #2941ab;
+  background: linear-gradient(
+      217deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
 }
 
 .login-form > a {
@@ -270,12 +277,15 @@
 .logo {
   width: 30vh;
   height: 10vh;
-  padding-bottom: 100px;
 }
-/* helloWorld */
+
+.frisson_meaning {
+  font-size: 20px;
+  padding-bottom: 80px;
+}
+/* home */
 .main-content {
   display: flex;
-  background-color: #2941ab;
   height: 100vh;
   width: 100%;
   place-items: center;
@@ -285,6 +295,120 @@
   position: fixed;
   margin-right: 300px;
   padding-top: 0px;
+
+  /*for chrome and safari*/
+  -webkit-animation: pulse 5s infinite;
+
+  /*for firefox*/
+  -moz-animation: pulse 5s infinite;
+
+  /* for opera*/
+  -o-animation: pulse 5s infinite;
+
+  /*Standard syntax*/
+  animation: pulse 5s infinite;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    background: linear-gradient(
+      217deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    );
+  }
+
+  50% {
+    background: linear-gradient(
+      127deg,
+      rgba(0, 255, 0, 0.8),
+      rgba(0, 255, 0, 0) 70.71%
+    );
+  }
+
+  100% {
+    background: linear-gradient(
+      336deg,
+      rgba(0, 0, 255, 0.8),
+      rgba(0, 0, 255, 0) 70.71%
+    );
+  }
+}
+
+@-moz-keyframes pulse {
+  0% {
+    background: linear-gradient(
+      217deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    );
+  }
+
+  50% {
+    background: linear-gradient(
+      127deg,
+      rgba(0, 255, 0, 0.8),
+      rgba(0, 255, 0, 0) 70.71%
+    );
+  }
+
+  100% {
+    background: linear-gradient(
+      336deg,
+      rgba(0, 0, 255, 0.8),
+      rgba(0, 0, 255, 0) 70.71%
+    );
+  }
+}
+@-o-keyframes pulse {
+  0% {
+    background: linear-gradient(
+      217deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    );
+  }
+
+  50% {
+    background: linear-gradient(
+      127deg,
+      rgba(0, 255, 0, 0.8),
+      rgba(0, 255, 0, 0) 70.71%
+    );
+  }
+
+  100% {
+    background: linear-gradient(
+      336deg,
+      rgba(0, 0, 255, 0.8),
+      rgba(0, 0, 255, 0) 70.71%
+    );
+  }
+}
+@keyframes pulse {
+  0% {
+    background: linear-gradient(
+      217deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    );
+  }
+
+  50% {
+    background: linear-gradient(
+      127deg,
+      rgba(0, 255, 0, 0.8),
+      rgba(0, 255, 0, 0) 70.71%
+    );
+  }
+
+  100% {
+    background: linear-gradient(
+      336deg,
+      rgba(0, 0, 255, 0.8),
+      rgba(0, 0, 255, 0) 70.71%
+    );
+  }
 }
 .welcome {
   align-items: center;
@@ -292,7 +416,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 30px;
-  color: #1ed760;
+  color: #2941ab;
   font-size: 60px;
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 0px;
@@ -303,7 +427,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 5px;
-  color: white;
+  color: black;
   font-size: 40px;
   font-family: Arial, Helvetica, sans-serif;
   margin: 0px 0px 0px;
@@ -323,10 +447,10 @@
   font-size: 20px;
   padding: 10px 30px;
   border-radius: 8px;
-  background-color: #1ed760;
-  color: #2941ab;
+  background-color: #2941ab;
+  color: #1ed760;
   font-family: Arial, Helvetica, sans-serif;
-  border: 2px solid #1ed760;
+  border: 2px solid #2941ab;
   margin-top: 6px;
   margin-bottom: 6px;
 }
@@ -337,6 +461,8 @@
   background-color: #f230aa;
   border: 2px solid #f230aa;
   color: white;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 .button-style.clicked {
   transform: scale(1.2);
@@ -349,8 +475,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 80px;
-  color: white;
+  padding-top: 100px;
+  color: black;
   font-size: 40px;
   font-family: Arial, Helvetica, sans-serif;
   margin: 0px 0px 0px;
@@ -361,7 +487,7 @@
   justify-content: space-evenly;
   align-content: space-around;
   gap: 10px 30px;
-  padding-top: 100px;
+  padding-top: 150px;
   height: 30vh;
   width: 100vh;
   margin: 0px 0px 0px;

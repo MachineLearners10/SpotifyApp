@@ -1,7 +1,5 @@
 import React from "react";
 import MainRoutes from "./components/MainRoutes";
-import TopMenu from "./components/TopMenu";
-import Footer from "./components/Footer";
 import history from "./history";
 
 const App = () => {

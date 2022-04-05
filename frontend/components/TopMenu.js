@@ -11,7 +11,7 @@ const TopMenu = () => {
         <nav>
           <div>
             <Link
-              to="/helloWorld"
+              to="/home"
               onClick={() => {
                 localStorage.clear();
               }}
@@ -19,10 +19,13 @@ const TopMenu = () => {
               Home
             </Link>
             <Link to="/about">About</Link>
-            <a href=
-            // "http://localhost:8888"
-            "https://catch-a-vibe.herokuapp.com"
-            >Sign out</a>
+            <a
+              href=
+              //"http://localhost:8888"
+              "https://freeswan.herokuapp.com"
+            >
+              Sign out
+            </a>
           </div>
         </nav>
         <hr />
