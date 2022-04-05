@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const initialState = { selected: [], toggle: true };
+const initialState = { selected: [], toggle: true, added: false };
 
 const FETCH_SONGS = "FETCH_SONGS";
 const FETCH_RECS = "FETCH_RECS";
@@ -10,6 +10,7 @@ const HOVER_SONG = "HOVER_SONG";
 const SET_PLAYING = "SET_PLAYING";
 const SELECT_SONG = "SELECT_SONG";
 const TOGGLE_PLAYLIST = "TOGGLE_PLAYLIST";
+const ADD_PLAYLIST = "ADD_PLAYLIST";
 const fetchRecs = (recs) => ({ type: FETCH_RECS, recs });
 
 const fetchSongs = (songs) => ({
@@ -25,7 +26,11 @@ const fetchPlaylist = (playlist) => ({
   type: FETCH_PLAYLIST,
   playlist,
 });
-const selectSong = (queue) => ({ type: SELECT_SONG, queue });
+const addPlaylist = (added) => ({
+  type: ADD_PLAYLIST,
+  added,
+});
+export const selectSong = (queue) => ({ type: SELECT_SONG, queue });
 export const setPlaying = (song) => ({
   type: SET_PLAYING,
   song,
@@ -89,6 +94,17 @@ export const dispatchSelectSong = (queue, songId) => (dispatch) => {
   queue.push(id);
   return dispatch(selectSong(queue));
 };
+export const dispatchAddPlaylist = (songs, id) => async (dispatch) => {
+  const { data } = await Axios.get("/api/songs/createplaylist", {
+    params: { userId: id },
+  });
+  console.log(data);
+  if (data) {
+    return dispatch(addPlaylist(true));
+  } else {
+    return false;
+  }
+};
 export default function playlistReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_SONGS:
@@ -117,6 +133,9 @@ export default function playlistReducer(state = initialState, action) {
     }
     case TOGGLE_PLAYLIST: {
       return { ...state, toggle: action.toggle };
+    }
+    case ADD_PLAYLIST: {
+      return { ...state, added: action.added };
     }
     default:
       return state;

@@ -19,6 +19,7 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
   const nextSongs = useSelector((state) => state.playlist.selected);
   const currentSong = useSelector((state) => state.playlist.playing);
   const toggle = useSelector((state) => state.playlist.toggle);
+  const selectedSong = useSelector((state) => state.playlist.selected);
   return likedSongs === undefined ? (
     <div>loading</div>
   ) : (
@@ -52,7 +53,11 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
         )}
         <img
           className="songRow_album"
-          src={song.album.images[0].url.length ? song.album.images[0].url : ""}
+          src={
+            song.album.images.length
+              ? song.album.images[0].url
+              : "https://robohash.org/bobby"
+          }
           alt=""
         />
         <div className="songRow_info">

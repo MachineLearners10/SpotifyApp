@@ -75,4 +75,20 @@ router.get("/like", (req, res, next) => {
   }
 });
 
+router.get("/createplaylist", async (req, res, next) => {
+  try {
+    console.log("userId", typeof req.query.userId);
+    await spotifyApi.setAccessToken(req.user.token);
+    const playlist = await spotifyApi.createPlaylist(
+      req.query.userId,
+      `Free Swan`,
+      { public: true },
+      callback
+    );
+    res.send(playlist);
+  } catch (err) {
+    res.send(`failed to create playlist!`);
+  }
+});
+
 module.exports = router;

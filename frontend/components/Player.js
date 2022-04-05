@@ -22,8 +22,9 @@ function Player({ user, playlistTracks }) {
       {user.token && Object.keys(playlistTracks).length > 0 ? (
         <SpotifyPlayer
           callback={(state) => {
-            console.log(state);
             if (!currentSong) {
+              dispatch(setPlaying(`${state.track.uri}`));
+            } else if (currentSong !== state.track.uri) {
               dispatch(setPlaying(`${state.track.uri}`));
             }
           }}
