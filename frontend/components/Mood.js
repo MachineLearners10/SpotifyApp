@@ -14,7 +14,7 @@ class Mood extends React.Component {
     function pageRedirect() {
       return window.location.replace(
         `https://freeswan.herokuapp.com/genre`
-        // "http://localhost:8888/genre"
+        //"http://localhost:8888/genre"
       );
     }
     pageRedirect();
@@ -23,7 +23,7 @@ class Mood extends React.Component {
   componentDidMount() {
     window.localStorage.clear();
   }
- 
+
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.addMood({ ...this.state });

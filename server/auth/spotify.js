@@ -45,7 +45,7 @@ router.get(
   passport.authenticate("spotify", { failureRedirect: "/unauth" }),
   function (req, res) {
     res.header("X-Access-Token", req.user.token);
-    res.redirect("/helloWorld");
+    res.redirect("/home");
   }
 );
 

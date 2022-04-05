@@ -1,6 +1,6 @@
 import React from "react";
 import Login from "./Login";
-import HelloWorld from "./HelloWorld";
+import Home from "./Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Genre from "./Genre";
 import PlayList from "./PlayList";
@@ -16,7 +16,7 @@ const MainRoutes = () => {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/helloWorld" element={<HelloWorld />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/genre" element={<Genre />} />
           <Route path="/playlist" element={<PlayList />} />
           <Route exact path="/test" element={<Test />} />

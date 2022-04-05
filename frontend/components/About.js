@@ -40,13 +40,14 @@ function About() {
         <img className="color_image " src={"image1.jpg"} alt="" />
         <h4 className="about-subtitle">About Us</h4>
         <p className="about-detail">
-          <strong></strong> 
+          <strong></strong>
           The inspiration behind the app came from our need to feel happy or
           chill during the day while working, working out, cooking, or any daily
           activity.
         </p>
         <p className="about-detail">
-          We love music and we hope people could enjoy the app. Found a bug? Please contact us through Linkedin!
+          We love music and we hope people could enjoy the app. Found a bug?
+          Please contact us through Linkedin!
         </p>
         <p className="about-detail">We look forward to hearing from you!</p>
       </div>

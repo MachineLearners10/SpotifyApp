@@ -230,9 +230,13 @@
 .logo {
   width: 30vh;
   height: 10vh;
-  padding-bottom: 100px;
 }
-/* helloWorld */
+
+.frisson_meaning {
+  font-size: 20px;
+  padding-bottom: 80px;
+}
+/* home */
 .main-content {
   display: flex;
   height: 100vh;
@@ -246,16 +250,16 @@
   padding-top: 0px;
 
   /*for chrome and safari*/
-  -webkit-animation: pulse 2s infinite;
+  -webkit-animation: pulse 5s infinite;
 
   /*for firefox*/
-  -moz-animation: pulse 2s infinite;
+  -moz-animation: pulse 5s infinite;
 
   /* for opera*/
-  -o-animation: pulse 2s infinite;
+  -o-animation: pulse 5s infinite;
 
   /*Standard syntax*/
-  animation: pulse 2s infinite;
+  animation: pulse 5s infinite;
 }
 
 @-webkit-keyframes pulse {

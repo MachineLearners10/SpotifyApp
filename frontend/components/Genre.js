@@ -22,7 +22,7 @@ class Genre extends React.Component {
     function pageRedirect() {
       return window.location.replace(
         `https://freeswan.herokuapp.com/playlist`
-        // "http://localhost:8888/playlist"
+        //"http://localhost:8888/playlist"
       );
     }
     pageRedirect();
