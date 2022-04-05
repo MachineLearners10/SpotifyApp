@@ -39,7 +39,7 @@ class Home extends React.Component {
     return (
       <div className="main-content">
         <h1 className="welcome">
-          Welcome, {this.props.user.spotifyId} {console.log(this.props.user)}
+          Welcome {this.props.user.spotifyId} {console.log(this.props.user)}
         </h1>
         <h2 className="welcome-subtitle">What's the vibe today?</h2>
         <Mood />
