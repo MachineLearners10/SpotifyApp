@@ -250,16 +250,16 @@
   padding-top: 0px;
 
   /*for chrome and safari*/
-  -webkit-animation: pulse 2s infinite;
+  -webkit-animation: pulse 5s infinite;
 
   /*for firefox*/
-  -moz-animation: pulse 2s infinite;
+  -moz-animation: pulse 5s infinite;
 
   /* for opera*/
-  -o-animation: pulse 2s infinite;
+  -o-animation: pulse 5s infinite;
 
   /*Standard syntax*/
-  animation: pulse 2s infinite;
+  animation: pulse 5s infinite;
 }
 
 @-webkit-keyframes pulse {
