@@ -2,11 +2,10 @@ CATCH A VIBE
 
 DISCLAIMER: Must have Spotify Premium account.
 
-Catch A Vibe is an app that makes you feel better. The inspiration behind came from our need to improve our mood through music during daily activities.
-It is based on your existing music taste, and genres you select from the app.
+Free Swan is an app created for you, the eternal lover of music. We know that we’ve passed difficult times during lockdown, so we wanted to give you a tool to change your mood according to what you want to. Therefore, we based on your existing music taste and the genre you selected from the app.
 
-HOW TO USE CATCH A VIBE
-You can visit https://catch-a-vibe.herokuapp.com/ on your computer.
+HOW TO USE FREE SWAN
+You can visit http://freeswan.herokuapp.com/ on your computer.
 
 CREATORS
 Averi Passmore
