@@ -4,11 +4,15 @@ import Test from "./playlist/Test.js";
 import { useSelector, useDispatch } from "react-redux";
 import { getPlaylist } from "../redux/getPlaylist";
 import fetchPlaylist from "../redux/hooks/fetchPlaylist";
+import { getGenres } from "../redux/getGenres";
 import Queue from "./playlist/Queue.js";
 function PlayList() {
   const dispatch = useDispatch();
   const { genresList, user } = fetchPlaylist();
   let genres = JSON.parse(window.localStorage.getItem("listGenres"));
+  console.log('this is genres', genres);
+  //console.log(state)
+  if (!genres) genres = [{genre: "chill"}, {genre: "indie"}]
   useEffect(() => {
     dispatch(getPlaylist(genres[0].genre + "," + genres[1].genre));
   }, []);

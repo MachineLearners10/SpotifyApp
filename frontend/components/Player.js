@@ -32,7 +32,7 @@ function Player({ user, playlistTracks }) {
             autoPlay={true}
           />
         ) : (
-          <p> Loading </p>
+        <p> Loading </p>
         )
       }
     </div>
