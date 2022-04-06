@@ -14,7 +14,7 @@ function Test({ songs, user }) {
       <div className="playlist">
         <Header user={user} songs={songs} />
         {songs === undefined && likedSongs === undefined ? (
-          <div>
+          <div className="loading">
           <iframe src="https://giphy.com/embed/3y0oCOkdKKRi0" width="480" height="350" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
           </div>
         ) : (
