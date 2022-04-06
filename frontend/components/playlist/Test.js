@@ -3,7 +3,7 @@ import SongRow from "./SongRow.js";
 import Header from "./Header.js";
 import usePlaylist from "../../redux/hooks/usePlaylist";
 
-function Test({ songs }) {
+function Test({ songs, user }) {
   const { convertDuration, getLikedSongs, likedSongs } = usePlaylist();
 
   if (songs !== undefined && likedSongs === undefined) {
@@ -12,7 +12,7 @@ function Test({ songs }) {
   return (
     <div className="page">
       <div className="playlist">
-        <Header />
+        <Header user={user} songs={songs} />
         {songs === undefined && likedSongs === undefined ? (
           <div>
           <iframe src="https://giphy.com/embed/3y0oCOkdKKRi0" width="480" height="350" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
@@ -20,7 +20,7 @@ function Test({ songs }) {
         ) : (
           songs.map((song, i) => (
             <SongRow
-              key={i + 1}
+              key={song.id}
               convertDuration={convertDuration}
               order={i + 1}
               song={song}

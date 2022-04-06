@@ -3,25 +3,22 @@ import SpotifyPlayer from "react-spotify-web-playback";
 import { useSelector, useDispatch } from "react-redux";
 import { getPlaylist } from "../redux/getPlaylist";
 import fetchPlaylist from "../redux/hooks/fetchPlaylist";
-
+import { togglePlaylist, setPlaying } from "../redux/playlist.js";
 function Player({ user, playlistTracks }) {
+  const dispatch = useDispatch();
   function getUris(arrayOfTracks) {
     return arrayOfTracks.map((track) => track.uri);
   }
-  console.log(playlistTracks);
+  const toggle = useSelector((state) => state.playlist.toggle);
   const currentSong = useSelector((state) => state.playlist.playing);
   function startHere(currentSong, arrayOfTracks) {
-    let count = 0;
-    for (let track of arrayOfTracks) {
-      if (track.uri === currentSong) {
-        return count;
-      }
-      count++;
-    }
-    return 0;
+    if (currentSong) {
+      return arrayOfTracks.map((track) => track.uri).indexOf(currentSong);
+    } else return 0;
   }
+
   return (
-    <div>
+    <div style={{position:"fixed", left:0, bottom:70, right:0, zIndex: 100000}}>
       {
         user.token && Object.keys(playlistTracks).length > 0 ? (
           <SpotifyPlayer
@@ -32,7 +29,7 @@ function Player({ user, playlistTracks }) {
             autoPlay={true}
           />
         ) : (
-          <p> Loading </p>
+        <p> Loading </p>
         )
       }
     </div>
