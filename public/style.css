@@ -264,6 +264,16 @@
     linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
 }
 
+.genre-and-mood {
+  background: linear-gradient(
+    217deg,
+    rgba(255, 0, 0, 0.8),
+    rgba(255, 0, 0, 0) 70.71%
+  ),
+  linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+  linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
+}
+
 .login-form > a {
   color: white;
   text-decoration: none;
@@ -301,16 +311,24 @@
   padding-top: 0px;
 
   /*for chrome and safari*/
-  -webkit-animation: pulse 5s infinite;
+  /* -webkit-animation: pulse 5s infinite; */
 
   /*for firefox*/
-  -moz-animation: pulse 5s infinite;
+  /* -moz-animation: pulse 5s infinite; */
 
   /* for opera*/
-  -o-animation: pulse 5s infinite;
+  /* -o-animation: pulse 5s infinite; */
 
   /*Standard syntax*/
-  animation: pulse 5s infinite;
+  /* animation: pulse 5s infinite; */
+  background: linear-gradient(
+    217deg,
+    rgba(255, 0, 0, 0.8),
+    rgba(255, 0, 0, 0) 70.71%
+  ),
+  linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+  linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
+  
 }
 
 @-webkit-keyframes pulse {
@@ -420,7 +438,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 30px;
-  color: #2941ab;
+  color: #000000;
   font-size: 60px;
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 0px;
@@ -451,10 +469,10 @@
   font-size: 20px;
   padding: 10px 30px;
   border-radius: 8px;
-  background-color: #2941ab;
-  color: #1ed760;
+  background-color: #010413;
+  color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
-  border: 2px solid #2941ab;
+  border: 2px solid #ffffff;
   margin-top: 6px;
   margin-bottom: 6px;
 }
