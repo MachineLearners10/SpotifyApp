@@ -15,7 +15,7 @@ function Test({ songs, user }) {
         <Header user={user} songs={songs} />
         {songs === undefined && likedSongs === undefined ? (
           <div className="loading">
-          <iframe src="https://giphy.com/embed/3y0oCOkdKKRi0" width="480" height="350" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          <iframe src="https://giphy.com/embed/3y0oCOkdKKRi0" width="480" height="350" frameBorder="0" className="giphy-embed" allowFullScreen></iframe>
           </div>
         ) : (
           songs.map((song, i) => (
