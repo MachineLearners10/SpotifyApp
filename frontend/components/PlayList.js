@@ -6,6 +6,7 @@ import { getPlaylist } from "../redux/getPlaylist";
 import fetchPlaylist from "../redux/hooks/fetchPlaylist";
 import { getGenres } from "../redux/getGenres";
 import Queue from "./playlist/Queue.js";
+const num = Math.floor(Math.random() * (10 - 1) + 1);
 function PlayList() {
   const dispatch = useDispatch();
   const { genresList, user } = fetchPlaylist();
@@ -17,16 +18,13 @@ function PlayList() {
     dispatch(getPlaylist(genres[0].genre + "," + genres[1].genre));
   }, []);
   const playlistTracks = useSelector((state) => state.getPlaylist);
-  // console.log(fetchPlaylist());
 
   return (
-    <div>
+    <div className={`background${num}`}>
       <div>
-        <div>
-          <Test songs={playlistTracks.playlist} />
-        </div>
-        <Player user={user} playlistTracks={playlistTracks} />
+        <Test user={user} songs={playlistTracks.playlist} />
       </div>
+      <Player user={user} playlistTracks={playlistTracks} />
     </div>
   );
 }

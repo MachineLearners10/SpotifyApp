@@ -3,7 +3,7 @@ import SongRow from "./SongRow.js";
 import Header from "./Header.js";
 import usePlaylist from "../../redux/hooks/usePlaylist";
 
-function Test({ songs }) {
+function Test({ songs, user }) {
   const { convertDuration, getLikedSongs, likedSongs } = usePlaylist();
 
   if (songs !== undefined && likedSongs === undefined) {
@@ -12,13 +12,13 @@ function Test({ songs }) {
   return (
     <div className="page">
       <div className="playlist">
-        <Header />
+        <Header user={user} songs={songs} />
         {songs === undefined && likedSongs === undefined ? (
           <h1>loading</h1>
         ) : (
           songs.map((song, i) => (
             <SongRow
-              key={i + 1}
+              key={song.id}
               convertDuration={convertDuration}
               order={i + 1}
               song={song}

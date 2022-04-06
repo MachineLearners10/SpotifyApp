@@ -23,7 +23,7 @@ class Mood extends React.Component {
   componentDidMount() {
     window.localStorage.clear();
   }
- 
+
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.addMood({ ...this.state });

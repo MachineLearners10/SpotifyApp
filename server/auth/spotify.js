@@ -35,7 +35,7 @@ router.get(
   "/",
   passport.authenticate("spotify", {
     scope: [
-      "user-read-private user-read-email user-top-read streaming user-read-playback-state user-modify-playback-state  playlist-read-private playlist-read-collaborative user-library-read user-library-modify",
+      "user-read-private user-read-email user-top-read streaming user-read-playback-state user-modify-playback-state  playlist-read-private playlist-read-collaborative user-library-read user-library-modify playlist-modify-public playlist-modify-private",
     ],
   })
 );
@@ -45,7 +45,7 @@ router.get(
   passport.authenticate("spotify", { failureRedirect: "/unauth" }),
   function (req, res) {
     res.header("X-Access-Token", req.user.token);
-    res.redirect("/helloWorld");
+    res.redirect("/home");
   }
 );
 
