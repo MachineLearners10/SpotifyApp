@@ -42,6 +42,14 @@
   background-image: url("https://preview.redd.it/59bsn5hgnojy.jpg?width=960&crop=smart&auto=webp&s=23bcf37ecc3cd0c3bcf36205de3ae6ede2443ec0");
 }
 
+.staticFix {
+  position:fixed; 
+  left:0; 
+  bottom:64;
+  right:0; 
+  z-index:100000
+}
+
 .playlist {
   /* border: linear-gradient(rgb(94, 0, 200), rgba(0, 0, 0, 0)); */
   flex-direction: column;

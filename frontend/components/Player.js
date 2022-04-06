@@ -18,7 +18,7 @@ function Player({ user, playlistTracks }) {
   }
 
   return (
-    <div style={{position:"fixed", left:0, bottom:64, right:0, zIndex: 100000}}>
+    <div className="staticFix">
       {
         user.token && Object.keys(playlistTracks).length > 0 ? (
           <SpotifyPlayer
