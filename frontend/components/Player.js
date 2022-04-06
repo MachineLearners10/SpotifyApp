@@ -21,7 +21,7 @@ function Player({ user, playlistTracks }) {
     return 0;
   }
   return (
-    <div>
+    <div style={{position:"fixed", left:0, bottom:70, right:0, zIndex: 100000}}>
       {
         user.token && Object.keys(playlistTracks).length > 0 ? (
           <SpotifyPlayer
