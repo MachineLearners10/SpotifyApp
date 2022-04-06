@@ -21,8 +21,8 @@ class Genre extends React.Component {
     evt.target.classList = "button-style clicked";
     function pageRedirect() {
       return window.location.replace(
-        `https://freeswan.herokuapp.com/playlist`
-        // "http://localhost:8888/playlist"
+        // `https://freeswan.herokuapp.com/playlist`
+        "http://localhost:8888/playlist"
       );
     }
     pageRedirect();

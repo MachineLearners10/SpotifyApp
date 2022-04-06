@@ -18,15 +18,22 @@ function Player({ user, playlistTracks }) {
   }
 
   return (
-    <div className="staticFix">
+    <div style={{position:"fixed", left:0, bottom:64, right:0, zIndex: 100000}}>
       {
         user.token && Object.keys(playlistTracks).length > 0 ? (
           <SpotifyPlayer
-            initialVolume={0.5}
-            token={user.token}
-            uris={getUris(playlistTracks.playlist)}
-            offset={startHere(currentSong, playlistTracks.playlist)}
-            autoPlay={true}
+          callback={(state) => {
+            if (!currentSong) {
+              dispatch(setPlaying(`${state.track.uri}`));
+            } else if (currentSong !== state.track.uri) {
+              dispatch(setPlaying(`${state.track.uri}`));
+            }
+          }}
+          initialVolume={0.5}
+          token={user.token}
+          uris={getUris(playlistTracks.playlist)}
+          offset={startHere(currentSong, playlistTracks.playlist)}
+          play={toggle}
           />
         ) : (
         <p> Loading </p>
