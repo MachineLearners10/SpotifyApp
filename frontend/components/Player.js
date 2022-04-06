@@ -36,7 +36,7 @@ function Player({ user, playlistTracks }) {
           play={toggle}
           />
         ) : (
-        <p> Loading </p>
+        <p></p>
         )
       }
     </div>

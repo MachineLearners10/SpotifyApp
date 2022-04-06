@@ -212,6 +212,10 @@
 .player {
   margin-left: 50%;
 }
+.loading {
+  display: flex;
+  justify-content: center;
+}
 
 .title {
   align-items: center;
