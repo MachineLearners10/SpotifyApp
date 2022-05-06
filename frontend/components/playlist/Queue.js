@@ -13,20 +13,6 @@ function Queue({ songs }) {
     <div className="page">
       <div className="playlist">
         <Header />
-        {/* {songs === undefined && likedSongs === undefined ? (
-          <h1>loading</h1>
-        ) : (
-          songs.map((song, i) => (
-            <SongRow
-              key={i + 1}
-              convertDuration={convertDuration}
-              order={i + 1}
-              song={song}
-              className="songRow"
-              likedSongs={likedSongs}
-            />
-          ))
-        )} */}
       </div>
     </div>
   );

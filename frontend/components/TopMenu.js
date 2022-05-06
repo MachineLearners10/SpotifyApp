@@ -18,14 +18,7 @@ const TopMenu = () => {
             >
               Home
             </Link>
-            <Link to="/about">About</Link>
-            <a
-              href=
-              // "http://localhost:8888"
-              "https://freeswan.herokuapp.com"
-            >
-              Sign out
-            </a>
+            <a href="http://localhost:8888">Sign out</a>
           </div>
         </nav>
         <hr />
@@ -36,7 +29,6 @@ const TopMenu = () => {
       <div>
         <nav>
           <div>
-            <Link to="/about">About</Link>
             <Link to="/login">Login</Link>
           </div>
         </nav>

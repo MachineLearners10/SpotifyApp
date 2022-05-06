@@ -3,7 +3,7 @@ import SongRow from "./SongRow.js";
 import Header from "./Header.js";
 import usePlaylist from "../../redux/hooks/usePlaylist";
 
-function Test({ songs, user }) {
+function Playlist({ songs, user }) {
   const { convertDuration, getLikedSongs, likedSongs } = usePlaylist();
 
   if (songs !== undefined && likedSongs === undefined) {
@@ -32,4 +32,4 @@ function Test({ songs, user }) {
   );
 }
 
-export default Test;
+export default Playlist;

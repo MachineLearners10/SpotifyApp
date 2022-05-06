@@ -1,62 +1,27 @@
-/* @import "../frontend/components//Test.css"; */
 .page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 84vh;
   margin-top: 3%;
+  background-image: url("https://styles.redditmedia.com/t5_2siht/styles/backgroundImage_57vk79u5l8y41.png");
+  background-repeat: repeat;
 }
-.background0 {
-  background-color: white;
-}
-.background1 {
-  background-image: url("https://preview.redd.it/0w656gh9ixs61.png?width=960&crop=smart&auto=webp&s=80fa413c76e3da55a1c7f4ea08ce09e0a62ff8fe");
-}
-.background2 {
-  background-image: url("https://preview.redd.it/q8aw8rul6rr81.jpg?width=960&crop=smart&auto=webp&s=bf4502c15cf8fd062ceb3091775532c6fc604b1b");
-}
-.background3 {
-  background-image: url("https://preview.redd.it/ekgrmpbs4th81.png?width=960&crop=smart&auto=webp&s=9633ce8d2906001aa3f4fe54d1d5ed6b6563be48");
-}
-.background4 {
-  background-image: url("https://preview.redd.it/bbflzw8lmfoz.png?width=960&crop=smart&auto=webp&s=f08b7ea227587775e0aa7ec83a0b26dcb3ca7fe5");
-}
-.background5 {
-  background-image: url("https://external-preview.redd.it/0dJvbojhmHQbygHDIh0FI2RNri3Z2WqwE04nmsiAqc8.jpg?width=960&crop=smart&auto=webp&s=b08012bcc80477a74e533aca7088c91a01992183");
-}
-.background6 {
-  background-image: url("https://preview.redd.it/q4t9eu0411k81.jpg?width=640&crop=smart&auto=webp&s=72fe4a63d0ea97b4dd064be3dfd3a5b17e42a2f6");
-}
-.background7 {
-  background-image: url("https://preview.redd.it/v88x9aawrkh81.png?width=640&crop=smart&auto=webp&s=be0cb06f0ccbfbd9574c194243d0ae49e20b5e63");
-}
-
-.background8 {
-  background-image: url("https://preview.redd.it/ofas72yn1kt01.jpg?width=960&crop=smart&auto=webp&s=ca55b28215d1e74c099e509765c00a996df90221");
-}
-.background9 {
-  background-image: url("https://preview.redd.it/owf4fzify7by.jpg?width=960&crop=smart&auto=webp&s=ed7ebbabc474c3591b292c262798deb6c47a0d08");
-}
-.background10 {
-  background-image: url("https://preview.redd.it/59bsn5hgnojy.jpg?width=960&crop=smart&auto=webp&s=23bcf37ecc3cd0c3bcf36205de3ae6ede2443ec0");
-}
+/* .background {
+} */
 
 .playlist {
-  /* border: linear-gradient(rgb(94, 0, 200), rgba(0, 0, 0, 0)); */
   flex-direction: column;
   display: flex;
   width: 80%;
-  height: 65vh;
+  height: 70vh;
   padding: 30px;
-  /* padding: 30px;
-  color: rgb(0, 0, 0); */
   border-color: rgb(77, 0, 51);
   border-width: 10px;
   color: white;
   background: linear-gradient(rgb(91, 87, 115), rgb(22, 21, 21) 30%);
   overflow-y: scroll;
-  margin-top: 7%;
   border-radius: 25px;
 }
 .playlist::-webkit-scrollbar {
@@ -212,7 +177,10 @@
 .player {
   margin-left: 50%;
 }
-
+@font-face {
+  font-family: "artdeco";
+  src: url("RousseauDeco.ttf");
+}
 .title {
   align-items: center;
   display: flex;
@@ -220,8 +188,8 @@
   justify-content: center;
   padding: 50px;
   color: #000000;
-  font-size: 60px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100px;
+  font-family: artdeco;
   margin-bottom: 0px;
 }
 
@@ -251,23 +219,11 @@
   width: 100%;
   place-items: center;
   position: fixed;
-  background: linear-gradient(
-      217deg,
-      rgba(255, 0, 0, 0.8),
-      rgba(255, 0, 0, 0) 70.71%
-    ),
-    linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
-    linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
 }
 
 .genre-and-mood {
-  background: linear-gradient(
-    217deg,
-    rgba(255, 0, 0, 0.8),
-    rgba(255, 0, 0, 0) 70.71%
-  ),
-  linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
-  linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
+  background-image: url("https://styles.redditmedia.com/t5_2siht/styles/backgroundImage_57vk79u5l8y41.png");
+  background-repeat: repeat;
 }
 
 .login-form > a {
@@ -318,13 +274,12 @@
   /*Standard syntax*/
   /* animation: pulse 5s infinite; */
   background: linear-gradient(
-    217deg,
-    rgba(255, 0, 0, 0.8),
-    rgba(255, 0, 0, 0) 70.71%
-  ),
-  linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
-  linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
-  
+      217deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
 }
 
 @-webkit-keyframes pulse {
@@ -521,61 +476,11 @@
   margin: 80px 0px 0px;
 }
 
-/* About */
-
-.about-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-}
-.about-title {
-  padding-top: 80px;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 60px;
-  font-weight: bold;
-  color: #2941ab;
-  margin: 30px;
-}
-.about-subtitle {
-  padding-top: 0px;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 32px;
-  font-weight: bold;
-  color: black;
-  margin: 50px 50px;
-}
 .color_image {
   padding-top: 0px;
   width: 100%;
   height: 500px;
   padding-bottom: 0px;
-}
-
-.about-detail {
-  padding-top: 0px;
-  text-align: left;
-  font-family: Arial, Helvetica, sans-serif;
-  color: black;
-  font-size: 20px;
-  line-height: 1.5em;
-  margin: 25px 25px;
-  margin-left: 250px;
-  margin-right: 250px;
-}
-
-.about-photo-gallery {
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-content: space-around;
-  padding-bottom: 100px;
-  margin-left: 250px;
-  margin-right: 250px;
 }
 
 .sub_container {
@@ -587,12 +492,6 @@
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   color: black;
-}
-.about_team_member_picture {
-  object-fit: cover;
-  width: 160px;
-  height: 160px;
-  border-radius: 10%;
 }
 .links {
   display: flex;

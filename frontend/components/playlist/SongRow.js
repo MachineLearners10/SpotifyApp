@@ -106,6 +106,5 @@ function SongRow({ song, order, convertDuration, likedSongs }) {
     </div>
   );
 }
-//useContext and switching the heart from clear to filled
 
 export default SongRow;
