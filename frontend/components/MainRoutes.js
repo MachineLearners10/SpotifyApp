@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Genre from "./Genre";
 import PlayList from "./PlayList";
 import Playlist from "./playlist/Playlist";
-import TopMenu from "./TopMenu";
+import Header from "./Header";
 import Footer from "./Footer";
 const MainRoutes = () => {
   return (
     <Router history={history}>
-      <TopMenu />
+      <Header />
       <div>
         <Routes>
           <Route path="/" element={<Login />} />

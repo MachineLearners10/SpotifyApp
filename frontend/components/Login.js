@@ -7,7 +7,6 @@ const Login = () => {
       <a href="/auth/spotify" className="button-two">
         Login with Spotify
       </a>
-      <img className="logo" src={"Spotify_Logo_CMYK_Black.png"} alt="" />
     </div>
   );
 };

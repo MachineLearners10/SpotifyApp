@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const TopMenu = () => {
+const Header = () => {
   const { user } = useSelector((state) => state.user);
 
   if (user.token) {
@@ -18,6 +18,7 @@ const TopMenu = () => {
             >
               Home
             </Link>
+
             <a href="http://localhost:8888">Sign out</a>
           </div>
         </nav>
@@ -38,4 +39,4 @@ const TopMenu = () => {
   }
 };
 
-export default TopMenu;
+export default Header;

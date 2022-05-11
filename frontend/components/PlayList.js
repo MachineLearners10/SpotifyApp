@@ -11,7 +11,6 @@ function PlayList() {
   const dispatch = useDispatch();
   const { genresList, user } = fetchPlaylist();
   let genres = JSON.parse(window.localStorage.getItem("listGenres"));
-  console.log("this is genres", genres);
   if (!genres) genres = [{ genre: "chill" }, { genre: "indie" }];
   useEffect(() => {
     dispatch(getPlaylist(genres[0].genre + "," + genres[1].genre));
