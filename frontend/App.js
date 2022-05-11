@@ -5,10 +5,8 @@ import history from "./history";
 const App = () => {
   return (
     <div history={history}>
-      {performance.navigation.type === performance.navigation.TYPE_RELOAD && window.location.replace(
-        // "http://localhost:8888"
-        "https://freeswan.herokuapp.com"
-        )}
+      {performance.navigation.type === performance.navigation.TYPE_RELOAD &&
+        window.location.replace("http://localhost:8888")}
       <MainRoutes />
     </div>
   );
