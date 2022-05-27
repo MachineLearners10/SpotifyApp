@@ -1,4 +1,4 @@
------Maestro-----
+https://freeswan.herokuapp.com/
 
 Currently, the spotify web api only allows a certain amount of users to access applications. This app unfortunately is not accessible for demo unless you have a spotify account and are whitelisted. If you would like to test the app without premium spotify features you can use the login created below.
 
